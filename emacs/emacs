@@ -1,0 +1,27 @@
+;; Variables
+(setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
+(setq default-major-mode 'text-mode)
+(setq inhibit-startup-message t)
+(setq scroll-step 1)
+(setq standard-indent 4)
+(setq-default fill-column 80)
+(setq-default indent-tabs-mode nil)
+
+;; Minos modes
+(global-font-lock-mode t) ;; Syntax highlighting
+(global-hl-line-mode 1)   ;; Highlight current line
+(global-linum-mode t)     ;; Show line numbers
+(iswitchb-mode 1)         ;; iSwitch
+(tool-bar-mode -1)        ;; Remove toolbar
+
+;; Shortcuts
+(global-set-key (kbd "C-c b") 'ibuffer)
+(global-set-key (kbd "C-c g") 'goto-line) 
+(global-set-key (kbd "C-c i") 'indent-region)
+(global-set-key (kbd "C-c m") 'uncomment-region)
+(global-set-key (kbd "C-c n") 'comment-region)
+(global-set-key (kbd "C-c o") 'start-kbd-macro)
+(global-set-key (kbd "C-c p") 'end-kbd-macro)
+(global-set-key (kbd "C-q") 'query-replace)
+(global-set-key (kbd "C-x C-k") 'kill-buffer)
+(global-set-key (kbd "C-z") 'call-last-kbd-macro)
