@@ -5,20 +5,19 @@
 
 ;; Variables
 (setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
-(setq default-major-mode 'text-mode)  ;; Default mode: Text
+(setq default-major-mode 'text-mode)  ;; Default mode: Text-mode
 (setq inhibit-startup-message t)      ;; Remove startup message
-(setq scroll-step 1)                  ;; Scroll-step: 1
-(setq standard-indent 4)              ;; Tab size: 4
-(setq-default fill-column 80)         ;; Fill column: 80
+(setq standard-indent 4)
+(setq-default fill-column 80)
 (setq-default indent-tabs-mode nil)   ;; Indent with spaces
 (toggle-scroll-bar -1)                ;; Remove scrollbar
 (tool-bar-mode -1)                    ;; Remove toolbar
 
-;; Minos modes
+;; Minor modes
 (global-font-lock-mode t) ;; Syntax highlighting
 (global-hl-line-mode 1)   ;; Highlight current line
 (global-linum-mode t)     ;; Show line numbers
-(iswitchb-mode 1)         ;; iSwitch
+(iswitchb-mode 1)
 
 ;; Shortcuts
 (global-set-key (kbd "C-c b") 'ibuffer)
@@ -34,3 +33,7 @@
 
 ;; Solarized theme
 (load-theme 'solarized-dark t)
+
+;; Font
+(custom-set-faces
+ '(default ((t (:height 140 :family "Droid Sans Mono")))))

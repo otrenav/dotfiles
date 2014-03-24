@@ -108,7 +108,7 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-# Disable opening and closing window animations
+# Opening and closing window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 # Show the ~/Library folder
@@ -177,7 +177,7 @@ defaults write com.apple.dock launchanim -bool false
 defaults write com.apple.Dock autohide-delay -float 0
 
 # Remove the animation when hiding/showing the Dock
-defaults write com.apple.dock autohide-time-modifier -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.25
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
@@ -253,10 +253,6 @@ defaults write com.apple.Mail DisableSendAnimations -bool true
 # Copy email addresses as 'foo@example.com' instead of 
 # 'Foo Bar <foo@example.com>' in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
-# Disable send and reply animations in Mail.app
-defaults write com.apple.mail DisableReplyAnimations -bool true
-defaults write com.apple.mail DisableSendAnimations -bool true
 
 # Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
 defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\U21a9"
