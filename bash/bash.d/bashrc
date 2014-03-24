@@ -1,0 +1,25 @@
+export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:$PATH
+
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH"
+
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
+
+add-alias ()
+{
+    local name=$1 value=$2
+    echo "alias $name='$value'" >> ~/.bashrc
+    eval "alias $name='$value'"
+    alias $name
+}
+
+alias ls='ls -lG'
+alias lsall='ls -fla'
+alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab -nosplash -nodesktop'
+alias show='qlmanage -p'
