@@ -5,18 +5,21 @@
 
 ;; Variables
 (setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
-(setq default-major-mode 'text-mode)  ;; Default mode: Text-mode
-(setq inhibit-startup-message t)      ;; Remove startup message
+(global-hl-line-mode t)               ; Highlight current row
+(global-visual-line-mode t)           ; Line wrappring
+(setq calendar-week-start-day 1)      ; Calender should start on Monday
+(setq default-major-mode 'text-mode)  ; Default mode: Text-mode
+(setq inhibit-startup-message t)      ; Remove startup message
 (setq standard-indent 4)
 (setq-default fill-column 80)
-(setq-default indent-tabs-mode nil)   ;; Indent with spaces
-(toggle-scroll-bar -1)                ;; Remove scrollbar
-(tool-bar-mode -1)                    ;; Remove toolbar
+(setq-default indent-tabs-mode nil)   ; Indent with spaces
+(show-paren-mode t)
+(toggle-scroll-bar nil)
+(tool-bar-mode nil)                   ; Remove toolbar
 
 ;; Minor modes
-(global-font-lock-mode t) ;; Syntax highlighting
-(global-hl-line-mode 1)   ;; Highlight current line
-(global-linum-mode t)     ;; Show line numbers
+(global-font-lock-mode t) ; Syntax highlighting
+(global-linum-mode t)     ; Show line numbers
 (iswitchb-mode 1)
 
 ;; Shortcuts
@@ -37,3 +40,28 @@
 ;; Font
 (custom-set-faces
  '(default ((t (:height 140 :family "Droid Sans Mono")))))
+
+;; AUCTeX
+(setq TeX-parse-self t)       ; Enable parse on load.
+(setq TeX-auto-save t)        ; Enable parse on save.
+(setq-default TeX-master nil)
+(setq TeX-PDF-mode t)         ; PDF mode (rather than DVI-mode)
+
+; Enable Flyspell mode for TeX modes such as AUCTeX. 
+; Highlights all misspelled words.
+(add-hook 'TeX-mode-hook 'flyspell-mode)
+
+; Enable Flyspell program mode for emacs lisp mode, 
+; which highlights all misspelled words in comments and strings.
+(add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode) 
+
+; Default dictionary. 
+; M-x ispell-change-dictionary RET.
+(setq ispell-dictionary "english")
+
+; Automatically activate TeX-fold-mode
+(add-hook 'TeX-mode-hook (lambda () (TeX-fold-mode 1)))
+
+; Disable language-specific hyphen insertion
+(setq LaTeX-babel-hyphen nil)
+
