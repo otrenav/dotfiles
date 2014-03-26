@@ -1,20 +1,91 @@
-;; Variables
-(setq backup-directory-alist (quote ((".*" . "~/.emacs_backups/"))))
+;
+; Packages
+;
+
+(require 'package)
+(setq package-archives '(
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar my-packages '(autopair
+                      auctex
+                      auctex-latexmk
+                      auto-complete
+                      auto-complete
+                      flycheck
+                      fuzzy
+                      jedi
+                      magit
+                      org
+                      rainbow-mode
+                      solarized-theme
+                      yasnippet))
+
+(dolist (package my-packages)
+  (when (not (package-installed-p package))
+    (package-install package)))
+
+;
+; Load path
+;
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized/")
+(add-to-list 'load-path "~/Code/bin")
+(let ((default-directory "~/.emacs.d/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
+;
+; Variables
+;
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+(setq calendar-week-start-day 1)
 (setq default-major-mode 'text-mode)
 (setq inhibit-startup-message t)
-(setq scroll-step 1)
+(setq ispell-dictionary "english")
+(setq ispell-program-name "aspell")
 (setq standard-indent 4)
 (setq-default fill-column 80)
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
-;; Minos modes
-(global-font-lock-mode t) ;; Syntax highlighting
-(global-hl-line-mode 1)   ;; Highlight current line
-(global-linum-mode t)     ;; Show line numbers
-(iswitchb-mode 1)         ;; iSwitch
-(tool-bar-mode -1)        ;; Remove toolbar
+;
+; Environment
+;
+(custom-set-faces '(default ((t (:height 140 :family "Droid Sans Mono")))))
+(defalias 'yes-or-no-p 'y-or-n-p)
+(load-theme 'solarized-dark t)
+(prefer-coding-system 'utf-8)
+(set-frame-parameter nil 'fullscreen 'fullboth)
+(set-keyboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-scroll-amount '(2 ((shift) . 1)))
 
-;; Shortcuts
+;
+; Minor modes
+;
+(require 'autopair)
+(require 'ido)
+(autopair-global-mode 1)
+(autopair-global-mode)
+(global-font-lock-mode t)
+(global-hl-line-mode t)
+(global-linum-mode t)
+(global-visual-line-mode t)
+(ido-mode t)
+(outline-minor-mode 1)
+(show-paren-mode t)
+(tool-bar-mode -1)
+(yas-global-mode 1)
+
+;
+; Shortcuts
+;
 (global-set-key (kbd "C-c b") 'ibuffer)
 (global-set-key (kbd "C-c g") 'goto-line) 
 (global-set-key (kbd "C-c i") 'indent-region)
@@ -25,3 +96,53 @@
 (global-set-key (kbd "C-q") 'query-replace)
 (global-set-key (kbd "C-x C-k") 'kill-buffer)
 (global-set-key (kbd "C-z") 'call-last-kbd-macro)
+
+;
+; Latex
+;
+(require 'tex-site)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-outline-minor-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'TeX-mode-hook (lambda () (TeX-fold-mode 1)))
+(add-hook 'latex-mode-hook 'turn-on-outline-minor-mode)
+(setq TeX-PDF-mode t)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq reftex-plug-into-AUCTeX t)
+(setq-default TeX-master nil)
+(setq outline-minor-mode-prefix "\C-c \C-o")
+
+;
+; Python
+;
+(require 'python-mode)
+(add-hook 'python-mode-hook
+          (function (lambda ()
+                      (setq indent-tabs-mode nil
+                            tab-width 4))))
+
+; Auto-complete
+(require 'auto-complete-config)
+(setq ac-dictionary-files (list (concat user-emacs-directory ".dict")))
+(ac-config-default)
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (setq ac-sources '(ac-source-pycomplete
+                                ac-source-abbrev
+                                ac-source-dictionary
+                                ac-source-words-in-same-mode-buffers))))
+
+(setq py-set-complete-keymap-p t)
+(add-hook 'python-mode-hook 'auto-complete-mode)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
+(setq-default py-shell-name "ipython")
+(setq-default py-which-bufname "IPython")
+(setq py-force-py-shell-name-p t)
+(setq py-shell-switch-buffers-on-execute-p t)
+(setq py-switch-buffers-on-execute-p t)
+(setq py-split-windows-on-execute-p nil)
