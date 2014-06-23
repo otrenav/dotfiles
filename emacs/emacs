@@ -1,153 +1,138 @@
-;
-; Packages
-;
+;; Indent
+;; Re-indent
+;; Swap line up
+;; Swap line down
+;; Duplicate line
+;; Join lines
+;; Comment
+;; Insert line before
+;; Insert line after
+;; Delete word foreward
+;; Delete word backward
+;; Delete to beginning
+;; Set mark
+;; Swap with mark
+;; Delete to mark
+;; Clear mark
+;; Code folding
+;; Code folding level 1
+;; Code folding level 2
+;; Convert to uppercase
+;; Convert to lowercase
+;; Wrap on
+;; Wrap off
+;; Sort line
+;; Select all
+;; Expand selection to scope
+;; Expand selection to brackets
+;; Find
+;; Replace
+;; Quick find
+;; Show sidebar
+;; Show console
+;; Spell check
+;; Goto Anything
+;; Goto symbol
+;; Goto defition
+;; Goto line
+;; Bookmarks
+;; Build/Run results
+;; Record macro
+;; Reapply last macro
 
+;; Packages
 (require 'package)
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
-
 (package-initialize)
+(defvar packages '(autopair 
+				   auctex
+				   auto-complete 
+				   flycheck 
+				   jedi 
+				   org
+				   rainbow-mode 
+				   solarized-theme))
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-(defvar my-packages '(autopair
-                      auctex
-                      auctex-latexmk
-                      auto-complete
-                      auto-complete
-                      flycheck
-                      fuzzy
-                      jedi
-                      magit
-                      org
-                      rainbow-mode
-                      solarized-theme
-                      yasnippet))
-
-(dolist (package my-packages)
+(dolist (package packages)
   (when (not (package-installed-p package))
     (package-install package)))
 
-;
-; Load path
-;
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized/")
-(add-to-list 'load-path "~/Code/bin")
+;; Load path
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-;
-; Variables
-;
-(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
-(setq calendar-week-start-day 1)
-(setq default-major-mode 'text-mode)
+;; Global
+
+;; Scrolling
+(setq auto-window-vscroll nil)
+(setq mouse-wheel-follow-mouse 't)  
+(setq mouse-wheel-progressive-speed nil)   
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq scroll-conservatively 10000)
+(setq scroll-step 1)
+
+(require 'ido)
+(require 'autopair)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(ido-mode t)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(show-paren-mode t)
+(scroll-bar-mode -1)
+(global-linum-mode t)
+; (outline-minor-mode t)
+(global-hl-line-mode t)
+(autopair-global-mode t)
+(global-font-lock-mode t)
+(setq-default tab-width 4)
+(global-visual-line-mode t)
+(prefer-coding-system 'utf-8)
+(setq-default fill-column 80)
+(load-theme 'solarized-dark t)
 (setq inhibit-startup-message t)
 (setq ispell-dictionary "english")
 (setq ispell-program-name "aspell")
-(setq-default fill-column 80)
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-
-;
-; Environment
-;
-(custom-set-faces '(default ((t (:height 140 :family "Droid Sans Mono")))))
-(defalias 'yes-or-no-p 'y-or-n-p)
-(load-theme 'solarized-dark t)
-(prefer-coding-system 'utf-8)
-(set-frame-parameter nil 'fullscreen 'fullboth)
 (set-keyboard-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
-(setq mouse-wheel-follow-mouse 't)
-(setq mouse-wheel-progressive-speed nil)
-(setq mouse-wheel-scroll-amount '(2 ((shift) . 1)))
+(setq default-major-mode 'text-mode)
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
 
-;
-; Minor modes
-;
-(require 'autopair)
-(require 'ido)
-(autopair-global-mode 1)
-(autopair-global-mode)
-(global-font-lock-mode t)
-(global-hl-line-mode t)
-(global-linum-mode t)
-(global-visual-line-mode t)
-(ido-mode t)
-(outline-minor-mode 1)
-(scroll-bar-mode -1)
-(show-paren-mode t)
-(tool-bar-mode -1)
-(yas-global-mode 1)
+;; Fonts
+; (set-default-font "Droid Sans Mono 11")
+(set-face-attribute 'default nil
+                :family "Droid Sans Mono" 
+                :height 125
+                :weight 'normal)
 
-;
-; Shortcuts
-;
+;; Shortcuts
 (global-set-key (kbd "C-c b") 'ibuffer)
-(global-set-key (kbd "C-c g") 'goto-line) 
+(global-set-key (kbd "C-c g") 'goto-line)
+(global-set-key (kbd "C-q") 'query-replace)
 (global-set-key (kbd "C-c i") 'indent-region)
-(global-set-key (kbd "C-c m") 'uncomment-region)
+(global-set-key (kbd "C-c p") 'end-kbd-macro)
 (global-set-key (kbd "C-c n") 'comment-region)
 (global-set-key (kbd "C-c o") 'start-kbd-macro)
-(global-set-key (kbd "C-c p") 'end-kbd-macro)
-(global-set-key (kbd "C-q") 'query-replace)
-(global-set-key (kbd "C-x C-k") 'kill-buffer)
+(global-set-key (kbd "C-c m") 'uncomment-region)
 (global-set-key (kbd "C-z") 'call-last-kbd-macro)
 
-;
-; Latex
-;
+;; Latex
 (require 'tex-site)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-outline-minor-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'TeX-mode-hook (lambda () (TeX-fold-mode 1)))
+(setq tex-pdf-mode t)
+(setq tex-auto-save t)
+(setq tex-parse-self t)
+(setq-default tex-master nil)
+(setq reftex-plug-into-auctex t)
+(add-hook 'latex-mode-hook 'tab-width 4)
+(add-hook 'latex-mode-hook 'flyspell-mode)
+(add-hook 'latex-mode-hook 'turn-on-reftex)
+(add-hook 'latex-mode-hook 'LaTeX-math-mode)
+(add-hook 'latex-mode-hook 'flyspell-buffer)
+(add-hook 'latex-mode-hook 'visual-line-mode)
+(add-hook 'latex-mode-hook 'indent-tabs-mode nil)
 (add-hook 'latex-mode-hook 'turn-on-outline-minor-mode)
-(add-hook 'LaTex-mode-hook 'indent-tabs-mode nil)
-(add-hook 'LaTeX-mode-hook 'tab-width 4)
-(setq TeX-PDF-mode t)
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq reftex-plug-into-AUCTeX t)
-(setq-default TeX-master nil)
-(setq outline-minor-mode-prefix "\C-c \C-o")
+(add-hook 'tex-mode-hook (lambda () (TeX-fold-mode t)))
+(add-hook 'latex-mode-hook 'turn-on-outline-minor-mode)
 
-;
-; Python
-;
-(require 'python-mode)
-(add-hook 'python-mode-hook
-          (function (lambda ()
-                      (setq indent-tabs-mode nil
-                            tab-width 4))))
-
-; Auto-complete
-(require 'auto-complete-config)
-(setq ac-dictionary-files (list (concat user-emacs-directory ".dict")))
-(ac-config-default)
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (setq ac-sources '(ac-source-pycomplete
-                                ac-source-abbrev
-                                ac-source-dictionary
-                                ac-source-words-in-same-mode-buffers))))
-
-(setq py-set-complete-keymap-p t)
-(add-hook 'python-mode-hook 'auto-complete-mode)
-(add-hook 'python-mode-hook 'jedi:ac-setup)
-(setq-default py-shell-name "ipython")
-(setq-default py-which-bufname "IPython")
-(setq py-force-py-shell-name-p t)
-(setq py-shell-switch-buffers-on-execute-p t)
-(setq py-switch-buffers-on-execute-p t)
-(setq py-split-windows-on-execute-p nil)
-
-; ESS
-(require 'ess-site)
