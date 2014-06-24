@@ -1,71 +1,59 @@
-;; Indent
-;; Re-indent
-;; Swap line up
-;; Swap line down
-;; Duplicate line
-;; Join lines
-;; Comment
-;; Insert line before
-;; Insert line after
-;; Delete word foreward
-;; Delete word backward
-;; Delete to beginning
-;; Set mark
-;; Swap with mark
-;; Delete to mark
-;; Clear mark
-;; Code folding
-;; Code folding level 1
-;; Code folding level 2
-;; Convert to uppercase
-;; Convert to lowercase
-;; Wrap on
-;; Wrap off
-;; Sort line
-;; Select all
-;; Expand selection to scope
-;; Expand selection to brackets
-;; Find
-;; Replace
-;; Quick find
-;; Show sidebar
-;; Show console
-;; Spell check
-;; Goto Anything
-;; Goto symbol
-;; Goto defition
-;; Goto line
-;; Bookmarks
-;; Build/Run results
-;; Record macro
-;; Reapply last macro
+;; @title:  Emacs configuration file
+;; @date:   June, 2014
+;; @author: Omar Trejo Navarro
+;; @email:  otrenav [at] gmail [dot] com
 
+;; Note: This emacs configuration file is mainly
+;; used in a Mac OS X (Mavericks) environment, so
+;; some parts may not apply to other systems (for
+;; example: font configuration).
+
+;;
+;; Path
+;; 
+(getenv "PATH")
+(setenv "PATH"
+        (concat
+         "/usr/texbin" ":"
+         (getenv "PATH")))
+(let ((default-directory "~/.emacs.d/"))
+  (normal-top-level-add-subdirs-to-load-path))
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+
+;;
 ;; Packages
+;;
 (require 'package)
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
-(defvar packages '(autopair 
-				   auctex
-				   auto-complete 
-				   flycheck 
-				   jedi 
-				   org
-				   rainbow-mode 
-				   solarized-theme))
+(defvar packages '(auctex
+                   auto-complete 
+                   autopair 
+                   ess
+                   ess-R-data-view
+                   ess-R-object-popup
+                   ess-smart-underscore
+                   latex-pretty-symbols
+                   rainbow-mode
+                   solarized-theme))
 
 (dolist (package packages)
   (when (not (package-installed-p package))
     (package-install package)))
 
-;; Load path
-(let ((default-directory "~/.emacs.d/"))
-  (normal-top-level-add-subdirs-to-load-path))
+;;
+;; Fonts
+;;
+(set-face-attribute 'default nil
+                    :family "Droid Sans Mono" 
+                    :height 125
+                    :weight 'normal)
 
-;; Global
-
+;;
 ;; Scrolling
+;;
 (setq auto-window-vscroll nil)
 (setq mouse-wheel-follow-mouse 't)  
 (setq mouse-wheel-progressive-speed nil)   
@@ -73,66 +61,109 @@
 (setq scroll-conservatively 10000)
 (setq scroll-step 1)
 
-(require 'ido)
-(require 'autopair)
+;;
+;; Automatic modes
+;;
+(add-to-list 'auto-mode-alist '("/.tex\\'" . latex-mode))
+(add-to-list 'auto-mode-alist '("/.R\\'" . R-mode))
+(add-to-list 'auto-mode-alist '("/.r\\'" . R-mode))
+(add-to-list 'auto-mode-alist '("/emacs\\'" . emacs-lisp-mode))
+
+;;
+;; General settings
+;;
 (defalias 'yes-or-no-p 'y-or-n-p)
-(ido-mode t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(show-paren-mode t)
-(scroll-bar-mode -1)
-(global-linum-mode t)
-; (outline-minor-mode t)
-(global-hl-line-mode t)
+(require 'autopair)
+(require 'ido)
 (autopair-global-mode t)
 (global-font-lock-mode t)
-(setq-default tab-width 4)
+(global-hl-line-mode t)
+(global-linum-mode t)
 (global-visual-line-mode t)
-(prefer-coding-system 'utf-8)
-(setq-default fill-column 80)
+(ido-mode t)
 (load-theme 'solarized-dark t)
-(setq inhibit-startup-message t)
-(setq ispell-dictionary "english")
-(setq ispell-program-name "aspell")
-(setq-default indent-tabs-mode nil)
+(prefer-coding-system 'utf-8)
+(scroll-bar-mode -1)
 (set-keyboard-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(setq default-major-mode 'text-mode)
-(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+(setq inhibit-startup-message t)
+(setq ring-bell-function 'ignore)
+(setq-default fill-column 80)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(show-paren-mode t)
+(tool-bar-mode -1)
 
-;; Fonts
-; (set-default-font "Droid Sans Mono 11")
-(set-face-attribute 'default nil
-                :family "Droid Sans Mono" 
-                :height 125
-                :weight 'normal)
-
-;; Shortcuts
-(global-set-key (kbd "C-c b") 'ibuffer)
-(global-set-key (kbd "C-c g") 'goto-line)
-(global-set-key (kbd "C-q") 'query-replace)
-(global-set-key (kbd "C-c i") 'indent-region)
-(global-set-key (kbd "C-c p") 'end-kbd-macro)
-(global-set-key (kbd "C-c n") 'comment-region)
-(global-set-key (kbd "C-c o") 'start-kbd-macro)
-(global-set-key (kbd "C-c m") 'uncomment-region)
-(global-set-key (kbd "C-z") 'call-last-kbd-macro)
-
+;;
 ;; Latex
-(require 'tex-site)
-(setq tex-pdf-mode t)
+;;
+(require 'latex-pretty-symbols)
+(require 'auctex-latexmk)
+(add-hook 'latex-mode-hook 'latex-math-mode)
+(add-hook 'tex-mode-hook (lambda () (tex-fold-mode t)))
+(auctex-latexmk-setup)
 (setq tex-auto-save t)
 (setq tex-parse-self t)
-(setq-default tex-master nil)
-(setq reftex-plug-into-auctex t)
-(add-hook 'latex-mode-hook 'tab-width 4)
-(add-hook 'latex-mode-hook 'flyspell-mode)
-(add-hook 'latex-mode-hook 'turn-on-reftex)
-(add-hook 'latex-mode-hook 'LaTeX-math-mode)
-(add-hook 'latex-mode-hook 'flyspell-buffer)
-(add-hook 'latex-mode-hook 'visual-line-mode)
-(add-hook 'latex-mode-hook 'indent-tabs-mode nil)
-(add-hook 'latex-mode-hook 'turn-on-outline-minor-mode)
-(add-hook 'tex-mode-hook (lambda () (TeX-fold-mode t)))
-(add-hook 'latex-mode-hook 'turn-on-outline-minor-mode)
+(setq tex-pdf-mode t)
+(setq tex-save-query nil)
+(setq tex-electric-sub-and-superscript t)
 
+;;
+;; ESS
+;;
+
+;; Source a file: C-c C-l
+;; Find out about errors: C-c
+;; Source paragarph: C-c C-c
+
+
+;;
+;; Shortcuts
+;;
+(global-set-key (kbd "C-c b") 'ibuffer)
+(global-set-key (kbd "s-g") 'goto-line)
+(global-set-key (kbd "s-/") 'comment-or-uncomment-region)
+(global-set-key (kbd "s-r") 'query-replace)
+
+
+;;
+;; Emacs useful keybindings
+;; 
+;; View all shortcuts:        C-h b (describe bindings)
+;; View mode characteristics: C-h m (describe mode)
+;; View what's in this key:   C-h k (describe key)
+
+;;
+;; Sublime Text equivalents
+;;
+
+;; Insert line before
+(defun bol-and-inl ()
+  (interactive)
+  (beginning-of-visual-line)
+  (newline-and-indent)
+  (previous-line))
+(global-set-key (kbd "<S-s-return>") 'bol-and-inl)
+
+;; Insert line after
+(defun eof-and-inl ()
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+(global-set-key (kbd "<s-return>") 'eof-and-inl)
+
+;; Swap line up:                 C-x C-t (transpose-lines)
+;; Join lines:                   M-^     (delete-indentation)
+;; Delete word foreward:         M-d     (kill-word)
+;; Delete word backward:         M-<DEL> (backward-kill-word)
+;; Delete to beginning:          C-0 C-k (backward-kill-line)
+;; Swap with mark:               C-x C-x (exchange-point-and-mark)
+;; Delete to mark:               C-w     (kill-region)
+;; Convert to uppercase:         C-x C-l (downcase-region)
+;; Convert to lowercase:         C-x C-u (upcase-region)
+;; Expand selection to scope:    
+;; Expand selection to brackets: 
+;; Spell check: 
+;; Goto Anything:
+;; Goto symbol: 
+;; Goto defition: 
+;; Bookmarks: 
