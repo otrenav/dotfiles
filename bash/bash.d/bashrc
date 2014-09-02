@@ -1,15 +1,16 @@
-# Path
-export PATH=/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.3/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.bash.d/scripts/:$PATH
+## Path
+export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.rvm/bin:$PATH
 
-# Aliases
+## Aliases
 alias ls='ls -lGF'
 alias lsall='ls -flaF'
 alias show='qlmanage -p'
+alias xemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
-# Source
+## Git completion
 source ~/.bash.d/scripts/git-completion.bash
 
-# Size of file or directory
+## Size of file or directory
 function fs() {
     if du -b /dev/null > /dev/null 2>&1; then
         local arg=-sbh
@@ -23,4 +24,4 @@ function fs() {
     fi
 }
 
-# EOF
+## EOF

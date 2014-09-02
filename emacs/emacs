@@ -1,4 +1,4 @@
-;; @title:  Emacs configuration file
+;; @title:  Emacs configuratioon file
 ;; @date:   June, 2014
 ;; @author: Omar Trejo Navarro
 ;; @email:  otrenav [at] gmail [dot] com
@@ -10,7 +10,7 @@
 
 ;;
 ;; Path
-;; 
+;;
 (getenv "PATH")
 (setenv "PATH"
         (concat
@@ -29,12 +29,17 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 (defvar packages '(auctex
-                   auto-complete 
-                   autopair 
+                   auto-complete
+                   autopair
                    ess
                    ess-R-data-view
                    ess-R-object-popup
                    ess-smart-underscore
+                   expand-region
+                   flyspell-lazy
+                   helm
+                   helm-R
+                   langtool
                    latex-pretty-symbols
                    rainbow-mode
                    solarized-theme))
@@ -47,7 +52,7 @@
 ;; Fonts
 ;;
 (set-face-attribute 'default nil
-                    :family "Droid Sans Mono" 
+                    :family "Droid Sans Mono"
                     :height 125
                     :weight 'normal)
 
@@ -55,8 +60,8 @@
 ;; Scrolling
 ;;
 (setq auto-window-vscroll nil)
-(setq mouse-wheel-follow-mouse 't)  
-(setq mouse-wheel-progressive-speed nil)   
+(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq scroll-conservatively 10000)
 (setq scroll-step 1)
@@ -75,65 +80,129 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'autopair)
 (require 'ido)
+
+;; Minor modes
 (autopair-global-mode t)
+(ido-mode t)
+(pending-delete-mode t)
+(scroll-bar-mode -1)
+(show-paren-mode t)
+(tool-bar-mode -1)
+
+;; Global
 (global-font-lock-mode t)
 (global-hl-line-mode t)
 (global-linum-mode t)
 (global-visual-line-mode t)
-(ido-mode t)
 (load-theme 'solarized-dark t)
 (prefer-coding-system 'utf-8)
-(scroll-bar-mode -1)
 (set-keyboard-coding-system 'utf-8)
 (setq inhibit-startup-message t)
 (setq ring-bell-function 'ignore)
 (setq-default fill-column 80)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(show-paren-mode t)
-(tool-bar-mode -1)
 
 ;;
 ;; Latex
 ;;
 (require 'latex-pretty-symbols)
 (require 'auctex-latexmk)
+(add-hook 'latex-mode-hook 'imenu-add-menubar-index)
 (add-hook 'latex-mode-hook 'latex-math-mode)
-(add-hook 'tex-mode-hook (lambda () (tex-fold-mode t)))
-(auctex-latexmk-setup)
+(add-hook 'latex-mode-hook 'turn-on-reftex)
+(add-hook 'latex-mode-hook 'visual-line-mode)
+;; (auctex-latexmk-setup)
+(setq reftex-plug-into-AUCTeX t)
 (setq tex-auto-save t)
+(setq tex-electric-sub-and-superscript t)
 (setq tex-parse-self t)
 (setq tex-pdf-mode t)
 (setq tex-save-query nil)
-(setq tex-electric-sub-and-superscript t)
+(setq-default tex-master nil)
+
+;; Sync with Skim
+;; http://www.stefanom.org/setting-up-a-nice-auctex-environment-on-mac-os-x/
+(add-hook 'tex-mode-hook '(lambda () (setq tex-command-default "latexmk")))
+(add-hook 'latex-mode-hook 
+          (lambda () 
+            (push
+             '("latexmk" "latexmk -pdf %s" tex-run-tex nil t
+               :help "Run latexmk on file.")
+             tex-command-list)))
+(setq tex-view-program-selection '((output-pdf "PDF Viewer")))
+(setq tex-view-program-list
+      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 
 ;;
 ;; ESS
 ;;
-
-;; Source a file: C-c C-l
+;; Source a file:         C-c C-l
 ;; Find out about errors: C-c
-;; Source paragarph: C-c C-c
-
-
-;;
-;; Shortcuts
-;;
-(global-set-key (kbd "C-c b") 'ibuffer)
-(global-set-key (kbd "s-g") 'goto-line)
-(global-set-key (kbd "s-/") 'comment-or-uncomment-region)
-(global-set-key (kbd "s-r") 'query-replace)
-
+;; Source paragraph:      C-c C-c
+(add-hook 'R-mode-hook 'imenu-add-menubar-index)
 
 ;;
-;; Emacs useful keybindings
-;; 
-;; View all shortcuts:        C-h b (describe bindings)
-;; View mode characteristics: C-h m (describe mode)
-;; View what's in this key:   C-h k (describe key)
+;; Lisp
+;;
+(add-hook 'emacs-lisp-mode-hook 'imenu-add-menubar-index)
 
 ;;
-;; Sublime Text equivalents
+;; Helm
+;;
+
+;; Instant recursive grep on a directory with helm
+(defun instant-rgrep-using-helm ()
+  "Recursive grep in a directory."
+  (interactive)
+  (let ((helm-after-initialize-hook #'helm-follow-mode))
+    (helm-do-grep)))
+
+;; Instant search across all buffers with helm
+(defun instant-search-using-helm ()
+  "Multi-occur in all buffers backed by files."
+  (interactive)
+  (let ((helm-after-initialize-hook #'helm-follow-mode))
+    (helm-multi-occur
+     (delq nil
+           (mapcar (lambda (b)
+                     (when (buffer-file-name b) (buffer-name b)))
+                   (buffer-list))))))
+
+;;
+;; Spell check
+;;
+(require 'flyspell-lazy)
+(flyspell-lazy-mode t)
+(setq ispell-program-name "/opt/local/bin/aspell")
+(setq ispell-program-name "aspell")
+
+(dolist (mode '(emacs-lisp-mode-hook
+                latex-mode-hook
+                python-mode-hook
+                R-mode-hook))
+  (add-hook mode '(lambda () (flyspell-prog-mode))))
+
+(defun flyspell-check-next-word ()
+  "Spell check next word"
+  (interactive)
+  (flyspell-goto-next-error)
+  (ispell-word))
+
+(eval-after-load "flyspell"
+  '(progn
+     (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
+     (define-key flyspell-mouse-map [mouse-3] #'undefined)))
+
+(require 'langtool)
+(setq langtool-language-tool-jar "~/Projects/bin/langtool/languagetool-commandline.jar")
+(setq langtool-disabled-rules '("WHITESPACE_RULE"
+                                "EN_UNPAIRED_BRACKETS"
+                                "COMMA_PARENTHESIS_WHITESPACE"
+                                "EN_QUOTES"))
+
+;;
+;; Editing
 ;;
 
 ;; Insert line before
@@ -151,19 +220,43 @@
   (newline-and-indent))
 (global-set-key (kbd "<s-return>") 'eof-and-inl)
 
-;; Swap line up:                 C-x C-t (transpose-lines)
-;; Join lines:                   M-^     (delete-indentation)
-;; Delete word foreward:         M-d     (kill-word)
-;; Delete word backward:         M-<DEL> (backward-kill-word)
-;; Delete to beginning:          C-0 C-k (backward-kill-line)
-;; Swap with mark:               C-x C-x (exchange-point-and-mark)
-;; Delete to mark:               C-w     (kill-region)
-;; Convert to uppercase:         C-x C-l (downcase-region)
-;; Convert to lowercase:         C-x C-u (upcase-region)
-;; Expand selection to scope:    
-;; Expand selection to brackets: 
-;; Spell check: 
-;; Goto Anything:
-;; Goto symbol: 
-;; Goto defition: 
-;; Bookmarks: 
+;; Expand selection
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
+;;
+;; Key bindings
+;;
+(global-set-key (kbd "C-c b") 'ibuffer)
+(global-set-key (kbd "s-g") 'goto-line)
+(global-set-key (kbd "s-/") 'comment-or-uncomment-region)
+(global-set-key (kbd "s-r") 'query-replace)
+(global-set-key (kbd "s-o") 'ido-find-file)
+(global-set-key (kbd "s-i") 'browse-url-at-point)
+(global-set-key (kbd "<f8>") 'ispell-word)
+(global-set-key (kbd "M-<f8>") 'flyspell-check-next-word)
+(global-set-key (kbd "C-M-s") 'instant-search-using-helm)
+(global-set-key (kbd "C-M-S-s") 'helm-resume)
+(global-set-key (kbd "C-M-g") 'instant-rgrep-using-helm)
+(global-set-key (kbd "C-h s-f") 'find-function)
+(global-set-key (kbd "C-h s-t") 'occur)
+(global-set-key (kbd "S-s-a") 'align-regexp)
+;; describe-bindings        C-h b
+;; describe-mode            C-h m
+;; describe-key             C-h k
+;; kill-rectangle           C-x r k
+;; yank-rectangle           C-x r y
+;; insert-rectangle         C-x r t
+;; delete-rectangle         C-x r d
+;; open-rectangle           C-x r o
+;; number-to-register       C-x r N
+;; transpose-lines          C-x C-t
+;; delete-indentation       M-^
+;; kill-word                M-d
+;; backward-kill-word       M-<DEL>
+;; backward-kill-line       C-0 C-k
+;; exchange-point-and-mark  C-x C-x
+;; kill-region              C-w
+;; downcase-region          C-x C-l
+;; upcase-region            C-x C-u
