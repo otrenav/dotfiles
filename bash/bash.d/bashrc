@@ -7,9 +7,6 @@ alias lsall='ls -flaF'
 alias show='qlmanage -p'
 alias xemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
-## Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 ## Git completion
 source ~/.bash.d/scripts/git-completion.bash
 
