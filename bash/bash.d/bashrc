@@ -5,6 +5,9 @@ export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.rvm/bin:
 alias ls='ls -lGF'
 alias lsall='ls -flaF'
 alias show='qlmanage -p'
+alias R='R --no-save'
+alias r='R --no-save'
+alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
 
 # Load RVM into a shell session as a function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
