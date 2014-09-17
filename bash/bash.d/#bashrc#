@@ -1,18 +1,17 @@
-# Path
+## Path
 export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.rvm/bin:$PATH
 
-# Aliases
+## Aliases
 alias ls='ls -lGF'
 alias lsall='ls -flaF'
 alias show='qlmanage -p'
+alias R='R --no-save'
+aslias
 
-# Load RVM into a shell session as a function
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# Git completion
+## Git completion
 source ~/.bash.d/scripts/git-completion.bash
 
-# Size of file or directory
+## Size of file or directory
 function fs() {
     if du -b /dev/null > /dev/null 2>&1; then
         local arg=-sbh
@@ -25,3 +24,5 @@ function fs() {
         du $arg .[^.]* *
     fi
 }
+
+## EOF
