@@ -1,11 +1,15 @@
+#!/usr/bin/env bash
+
 if [ -e ~/.bash.d/bashrc ] ; then
   . ~/.bash.d/bashrc
 fi
 
-## Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# Path to the bash it configuration
+export BASH_IT=$HOME/.bash_it
 
-# Setting PATH for MacPython 3.0
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.0/bin:${PATH}"
-export PATH
+# Lock and Load a custom theme file
+# location /.bash_it/themes/
+export BASH_IT_THEME='pure'
+
+# Load Bash It
+source $BASH_IT/bash_it.sh

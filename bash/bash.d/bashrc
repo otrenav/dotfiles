@@ -1,11 +1,10 @@
 ## Path
-export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.rvm/bin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.rvm/bin:/Library/Frameworks/Python.framework/Versions/3.0/bin:$PATH
 
 ## Aliases
 alias ls='ls -lGF'
 alias lsall='ls -flaF'
 alias show='qlmanage -p'
-alias xemacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 alias R='R --no-save'
 alias r='R --no-save'
 alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
