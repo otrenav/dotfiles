@@ -1,3 +1,18 @@
+#!/usr/bin/env bash
+
 if [ -e ~/.bash.d/bashrc ] ; then
   . ~/.bash.d/bashrc
 fi
+<<<<<<< HEAD
+=======
+
+# Path to the bash it configuration
+export BASH_IT=$HOME/.bash_it
+
+# Lock and Load a custom theme file
+# location /.bash_it/themes/
+export BASH_IT_THEME='pure'
+
+# Load Bash It
+source $BASH_IT/bash_it.sh
+>>>>>>> 3aacc552c61e874083c72b22f6c994887651fa4a
