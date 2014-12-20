@@ -1,5 +1,5 @@
 # Path
-export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.rvm/bin:/Library/Frameworks/Python.framework/Versions/3.0/bin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.rvm/bin:/Library/Frameworks/Python.framework/Versions/3.0/bin:/Users/Omar/.local/bin:$PATH
 
 # Aliases
 alias ls='ls -lGF'

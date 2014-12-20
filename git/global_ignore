@@ -8,7 +8,7 @@
 *.o
 *.so
 *.pyc
- 
+
 #
 # Packages
 #
@@ -20,14 +20,14 @@
 *.rar
 *.tar
 *.zip
- 
+
 #
 # Logs and databases
 #
 *.log
 *.sql
 *.sqlite
- 
+
 #
 # OS generated files
 #
@@ -39,3 +39,84 @@
 ehthumbs.db
 Thumbs.db
 *~
+
+#
+# Lavarel
+#
+/bootstrap/compiled.php
+.env.*.php
+.env.php
+
+#
+# NodeJS
+#
+logs
+pids
+*.pid
+*.seed
+lib-cov
+coverage
+.grunt
+.lock-wscript
+build/Release
+node_modules
+
+#
+# Python
+#
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.mo
+*.pot
+docs/_build/
+target/
+
+#
+# R
+#
+.Rhistory
+.Rapp.history
+
+#
+# Latex
+#
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.out
+*.tex
+
+#
+# Yeomen
+#
+node_modules/
+bower_components/
+build/
+dist/
