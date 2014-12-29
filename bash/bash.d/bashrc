@@ -1,21 +1,23 @@
-# Path
-export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:~/.rvm/bin:/Library/Frameworks/Python.framework/Versions/3.0/bin:/Users/Omar/.local/bin:$PATH
+#!/usr/bin/env bash
 
-# Aliases
+export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar/.local/bin:$PATH
+
 alias ls='ls -lGF'
 alias lsall='ls -flaF'
-alias show='qlmanage -p'
 alias R='R --no-save'
 alias r='R --no-save'
+alias p='cd ~/Projects'
 alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
 
-# Load RVM into a shell session as a function
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export BASH_IT=$HOME/.bash_it
+export BASH_IT_THEME='minimal'
 
-# Git completion
-source ~/.bash.d/scripts/git-completion.bash
+source $BASH_IT/bash_it.sh
+source '~/.bash.d/scripts/git-completion.bash'
+source '~/Projects/Google Cloud/google-cloud-sdk/path.bash.inc'
+source '~/Projects/Google Cloud/google-cloud-sdk/completion.bash.inc'
 
-# Size of file or directory
+# File/dir size
 function fs() {
     if du -b /dev/null > /dev/null 2>&1; then
         local arg=-sbh
