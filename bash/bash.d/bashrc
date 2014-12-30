@@ -6,16 +6,18 @@ alias ls='ls -lGF'
 alias lsall='ls -flaF'
 alias R='R --no-save'
 alias r='R --no-save'
-alias p='cd ~/Projects'
+alias p='cd ~/Projects; ls;'
 alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
 
+export WORKON_HOME=~/Projects/Python/Envs
 export BASH_IT=$HOME/.bash_it
 export BASH_IT_THEME='minimal'
 
 source $BASH_IT/bash_it.sh
-source '~/.bash.d/scripts/git-completion.bash'
-source '~/Projects/Google Cloud/google-cloud-sdk/path.bash.inc'
-source '~/Projects/Google Cloud/google-cloud-sdk/completion.bash.inc'
+source ~/.bash.d/scripts/git-completion.bash
+source ~/Projects/Google\ Cloud/google-cloud-sdk/path.bash.inc
+source ~/Projects/Google\ Cloud/google-cloud-sdk/completion.bash.inc
+source /usr/local/bin/virtualenvwrapper.sh
 
 # File/dir size
 function fs() {
@@ -29,4 +31,16 @@ function fs() {
     else
         du $arg .[^.]* *
     fi
+}
+
+# Update all projects in directory
+# GUD := Git Up Directories
+function gud() {
+    for d in */; do
+        echo $d
+        cd $d
+        git up
+        echo " "
+        cd ..
+    done
 }
