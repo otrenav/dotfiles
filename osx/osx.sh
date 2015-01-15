@@ -578,6 +578,9 @@ fi;
 # Install the Solarized Dark theme for iTerm
 open "${HOME}/init/Solarized Dark.itermcolors"
 
+# Remove animation for fullscreen mode hotkey.
+defaults write com.googlecode.iterm2 HotkeyTermAnimationDuration -float 0.0000001
+
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 

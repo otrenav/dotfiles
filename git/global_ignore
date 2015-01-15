@@ -126,3 +126,4 @@ dist/
 #
 .last-run
 .system-ca-bundle
+r.db
