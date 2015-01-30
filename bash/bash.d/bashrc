@@ -2,6 +2,10 @@
 
 export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar/.local/bin:$PATH
 
+# export GAE="/usr/local/google_appengine"
+# export PYTHONPATH="$PYTHONPATH:$GAE:$GAE/lib/django_1_4"
+# export PATH=${PATH}:$GAE/lib/django_1_4/django/bin/
+
 alias ls='ls -lGF'
 alias lsall='ls -flaF'
 alias R='R --no-save --quite'
@@ -11,14 +15,14 @@ alias d='cd ~/Downloads; ls;'
 alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
 alias photoshop='open -a "Adobe Photoshop CS6"'
 
-export WORKON_HOME=~/Projects/Python/Envs
+export WORKON_HOME=~/Projects/python/envs
 export BASH_IT=$HOME/.bash_it
 export BASH_IT_THEME='minimal'
 
 source $BASH_IT/bash_it.sh
 source ~/.bash.d/scripts/git-completion.bash
-source ~/Projects/Google\ Cloud/google-cloud-sdk/path.bash.inc
-source ~/Projects/Google\ Cloud/google-cloud-sdk/completion.bash.inc
+source ~/Projects/Google_Cloud/google-cloud-sdk/path.bash.inc
+source ~/Projects/Google_Cloud/google-cloud-sdk/completion.bash.inc
 source /usr/local/bin/virtualenvwrapper.sh
 
 # File/dir size
