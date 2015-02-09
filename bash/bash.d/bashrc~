@@ -4,8 +4,8 @@ export PATH=/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar
 
 alias ls='ls -lGF'
 alias lsall='ls -flaF'
-alias R='R --no-save'
-alias r='R --no-save'
+alias R='R --no-save --quite'
+alias r='R --no-save --quite'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
 alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
