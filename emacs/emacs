@@ -41,6 +41,7 @@
                    helm-R
                    langtool
                    latex-pretty-symbols
+                   matlab-mode
                    rainbow-mode
                    solarized-theme))
 
@@ -73,6 +74,7 @@
 (add-to-list 'auto-mode-alist '("/.R\\'" . R-mode))
 (add-to-list 'auto-mode-alist '("/.r\\'" . R-mode))
 (add-to-list 'auto-mode-alist '("/emacs\\'" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("/.m\\'" . matlab-mode))
 
 ;;
 ;; General settings
@@ -85,9 +87,21 @@
 (autopair-global-mode t)
 (ido-mode t)
 (pending-delete-mode t)
-(scroll-bar-mode -1)
 (show-paren-mode t)
 (tool-bar-mode -1)
+(if (display-graphic-p)
+    scroll-bar-mode -1
+  (progn
+    (require 'mouse)
+    (xterm-mouse-mode 1)
+    (global-set-key [mouse-4] '(lambda ()
+                                 (interactive)
+                                 (scroll-down 1)))
+    (global-set-key [mouse-5] '(lambda ()
+                                 (interactive)
+                                                               (scroll-up 1)))
+    (defun track-mouse(e))
+    (setq mouse-sel-mode 1)))
 
 ;; Global
 (global-font-lock-mode t)
@@ -195,13 +209,6 @@
      (define-key flyspell-mouse-map [down-mouse-3] #'flyspell-correct-word)
      (define-key flyspell-mouse-map [mouse-3] #'undefined)))
 
-(require 'langtool)
-(setq langtool-language-tool-jar "~/Projects/bin/langtool/languagetool-commandline.jar")
-(setq langtool-disabled-rules '("WHITESPACE_RULE"
-                                "EN_UNPAIRED_BRACKETS"
-                                "COMMA_PARENTHESIS_WHITESPACE"
-                                "EN_QUOTES"))
-
 ;;
 ;; Editing
 ;;
@@ -261,3 +268,12 @@
 ;; kill-region              C-w
 ;; downcase-region          C-x C-l
 ;; upcase-region            C-x C-u
+
+;;
+;; MATLAB
+;;
+(add-to-list
+  'auto-mode-alist
+  '("\\.m$" . matlab-mode))
+ (setq matlab-indent-function t)
+;; (setq matlab-shell-command "matlab")

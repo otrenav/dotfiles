@@ -31,7 +31,7 @@ alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
 alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
 alias photoshop='open -a "Adobe Photoshop CS6"'
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9 &'
+alias xemacs='/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9 &'
 
 alias -g L="| less"
 alias -g X="| xargs"
