@@ -53,7 +53,7 @@
 ;;
 (set-face-attribute 'default nil
                     :family "Droid Sans Mono"
-                    :height 125
+                    :height 170
                     :weight 'normal)
 
 ;;
@@ -102,6 +102,7 @@
 (setq-default fill-column 80)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(switch-to-buffer (get-buffer-create "empty"))
 
 ;;
 ;; Latex
