@@ -54,7 +54,7 @@
 ;;
 (set-face-attribute 'default nil
                     :family "Droid Sans Mono"
-                    :height 170
+                    :height 145
                     :weight 'normal)
 
 ;;
@@ -90,7 +90,7 @@
 (show-paren-mode t)
 (tool-bar-mode -1)
 (if (display-graphic-p)
-    scroll-bar-mode -1
+    (scroll-bar-mode -1)
   (progn
     (require 'mouse)
     (xterm-mouse-mode 1)
@@ -117,6 +117,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (switch-to-buffer (get-buffer-create "empty"))
+(x-focus-frame nil)
 
 ;;
 ;; Latex
