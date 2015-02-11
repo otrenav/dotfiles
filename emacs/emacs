@@ -54,9 +54,8 @@
 ;;
 (set-face-attribute 'default nil
                     :family "Droid Sans Mono"
-                    :height 145
-                    :weight 'normal)
-
+                    :height 180
+		    :weight 'normal)
 ;;
 ;; Scrolling
 ;;
@@ -117,7 +116,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (switch-to-buffer (get-buffer-create "empty"))
-(x-focus-frame nil)
+(menu-bar-mode -1)
 
 ;;
 ;; Latex
@@ -140,8 +139,8 @@
 ;; Sync with Skim
 ;; http://www.stefanom.org/setting-up-a-nice-auctex-environment-on-mac-os-x/
 (add-hook 'tex-mode-hook '(lambda () (setq tex-command-default "latexmk")))
-(add-hook 'latex-mode-hook 
-          (lambda () 
+(add-hook 'latex-mode-hook
+          (lambda ()
             (push
              '("latexmk" "latexmk -pdf %s" tex-run-tex nil t
                :help "Run latexmk on file.")

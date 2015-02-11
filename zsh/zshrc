@@ -31,7 +31,11 @@ alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
 alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
 alias photoshop='open -a "Adobe Photoshop CS6"'
-alias emacs='/usr/bin/emacs'
+alias xemacs='/usr/bin/emacs'
+alias xem='/usr/bin/emacs'
+alias emacs='/usr/local/bin/emacs'
+alias em='/usr/local/bin/emacs'
+alias es='/usr/bin/emacsserver'
 
 alias -g L="| less"
 alias -g X="| xargs"
