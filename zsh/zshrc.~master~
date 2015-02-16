@@ -17,7 +17,7 @@ export PATH="/Users/Omar/Projects/Google_Cloud/google-cloud-sdk/bin:/usr/local/b
 
 source $ZSH/oh-my-zsh.sh
 
-# Problems (fix this):
+# Problems:
 # source ~/Projects/Google_Cloud/google-cloud-sdk/path.bash.inc
 # source ~/Projects/Google_Cloud/google-cloud-sdk/completion.bash.inc
 

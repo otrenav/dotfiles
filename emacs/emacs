@@ -31,6 +31,8 @@
 (defvar packages '(auctex
                    auto-complete
                    autopair
+                   diff-hl
+                   editorconfig
                    ess
                    ess-R-data-view
                    ess-R-object-popup
@@ -54,7 +56,7 @@
 ;;
 (set-face-attribute 'default nil
                     :family "Droid Sans Mono"
-                    :height 180
+                    :height 150
 		    :weight 'normal)
 ;;
 ;; Scrolling
@@ -78,6 +80,8 @@
 ;;
 ;; General settings
 ;;
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'autopair)
 (require 'ido)
@@ -212,6 +216,7 @@
 ;;
 ;; Editing
 ;;
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; Insert line before
 (defun bol-and-inl ()
@@ -231,6 +236,10 @@
 ;; Expand selection
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;; TODO: Editorconfig
+(require 'editorconfig)
+(require 'diff-hl)
 
 
 ;;
@@ -275,5 +284,25 @@
 (add-to-list
   'auto-mode-alist
   '("\\.m$" . matlab-mode))
- (setq matlab-indent-function t)
-;; (setq matlab-shell-command "matlab")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(matlab-comment-anti-indent 0)
+ '(matlab-fill-code t)
+ '(matlab-functions-have-end t)
+ '(matlab-indent-function-body t)
+ '(matlab-shell-command-switches (quote ("-nodesktop -nosplash"))))
+
+;; Matlab debugging
+(global-set-key (kbd "<f10>") 'gud-cont)
+(global-set-key (kbd "<f9>") 'gud-step)  ;; Step in
+(global-set-key (kbd "<f8>") 'gud-next)  ;; Step 1 
+(global-set-key (kbd "<f7>") 'gud-finish)  ;; Step back
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
