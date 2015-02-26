@@ -1,0 +1,99 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/Omar/Projects/score_group/score-group/" . "score_group/")
+ ("/Users/Omar/Projects/score_group/" . "score-group/")
+ ("/Users/Omar/Dropbox/Documents/Classes/" . "IDO/")
+ ("/Users/Omar/Dropbox/Documents/" . "Classes/")
+ ("/Users/Omar/" . "Projects/")
+ ("/Applications/MAMP/" . "htdocs/")
+ ("/Applications/" . "MAMP/")
+ ("/Users/Omar/Dropbox/" . "Documents/")
+ ("/Users/" . "Omar/")
+ ("/Users/Omar/Projects/itam/ido/" . "tarea_1/")
+ ("/Users/Omar/Projects/itam/" . "ido/")
+ ("/Users/Omar/Projects/" . "score_group/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/Omar/Projects/score_group/score-group/score_group/"
+ "/Users/Omar/.emacs.d/"
+ "/Users/Omar/Dropbox/Documents/Classes/IDO/"
+ "/Users/Omar/Projects/dotfiles/emacs/emacs.d/"
+ "/Users/Omar/"
+ "/Users/Omar/Downloads/"
+ "/Applications/MAMP/htdocs/"
+ "/Users/Omar/Dropbox/Shared/"
+ "/Users/Omar/Projects/itam/ido/tarea_1/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "settings.py"
+ "init.el"
+ "init_python.el"
+ "Temario.pdf"
+ "init_keybindings.el"
+ "init_functions.el"
+ "init_settings.el"
+ "init_abbrevs.el"
+ ".emacs"
+ "init_path.el"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/Omar/Projects/score_group/score-group/score_group/" (21734 52302 0 0) "wsgi.pyc" "wsgi.py" "views.pyc" "views.py" "urls.pyc" "urls.py" "templates/" "settings.pyc" "settings.py" "forms.pyc" "forms.py" "__init__.pyc" "__init__.py" "../" "./")
+
+ ("/Users/Omar/Projects/score_group/" (21701 44056 0 0) "stbs-admin/" "score-group/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/.emacs.d/" (21734 52793 0 0) "themes/" "srecode-map.el" "init_spellcheck.el" "init_settings.el" "init_python.el" "init_pdf.el" "init_path.el" "init_packages.el" "init_matlab.el" "init_lisp.el" "init_latex.el" "init_keybindings.el" "init_helm.el" "init_functions.el" "init_ess.el" "init_editing.el" "init_abbrevs.el" "init.el" "ido.last" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")
+
+ ("/Users/Omar/Downloads/" (21734 51455 0 0) "sc190215.sql" "Correcciones página web.pptx" ".Rhistory" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/" (21734 51689 0 0) "VirtualBox VMs/" "Public/" "Projects/" "Pictures/" "Music/" "Movies/" "Library/" "GDrive/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc.zni" ".zshrc-e" ".zshrc" ".zsh_history" ".zsh-update" ".zcompdump-OLAP-5.0.7" ".zcompdump" ".xdvirc" ".Xauthority" ".vnc/" ".viminfo" ".Trash/" ".subversion/" ".ssh/" ".sqlite_history" ".rvm/" ".rstudio-desktop/" ".Rprofile" ".rnd" ".Rhistory" ".Rapp.history" ".R/" ".pip/" ".oh-my-zsh/" ".npm/" ".netrc" ".mysql_history" ".matplotlib/" ".matlab/" ".local/" ".lesshst" ".ipython/" ".InstallAnywhere/" ".idlerc/" ".googlesql_oauth2.dat" ".gnome2/" ".gitconfig" ".fontconfig/" ".flexlmrc" ".emacs.d/" ".dvdcss/" ".DS_Store" ".dropbox/" ".cups/" ".config/" ".codeintel/" ".CFUserTextEncoding" ".cache/" ".bash_profile" ".bash_it/" ".bash_history" ".bash.d/" ".appcfg_nag" ".adobe/" "../" "./")
+
+ ("/Users/Omar/Projects/dotfiles/emacs/emacs.d/" (21733 41802 0 0) "themes/" "srecode-map.el" "init_spellcheck.el" "init_settings.el" "init_pdf.el" "init_path.el" "init_packages.el" "init_matlab.el" "init_lisp.el" "init_latex.el" "init_keybindings.el" "init_helm.el" "init_functions.el" "init_ess.el" "init_editing.el" "init_abbrevs.el" "init.el" "ido.last" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")
+
+ ("/Users/Omar/Projects/score_group/score-group/" (21734 52273 0 0) "static_root/" "static/" "score_group/" "requirements.txt" "README.md" "manage.py" "main.py" "libs/" "apps/" "app.yaml" ".gitignore" ".git/" ".editorconfig" "../" "./")
+
+ ("/Users/Omar/Dropbox/Documents/Classes/IDO/" (21733 36948 0 0) "Temario.pdf" "Temario Público.pdf" "Tareas/" "Libros/" "Algoritmos/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Dropbox/Documents/Classes/" (21714 13991 0 0) "ON/" "MD/" "IDO/" "HEM/" "GT/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Dropbox/Documents/" (21730 28918 0 0) "Teshima/" "Notes/" "Icon
+" "Classes/" "Books/" "Archived/" "Admin/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Projects/dotfiles/emacs/" (21733 25997 0 0) "emacs.d/" "emacs" "../" "./")
+
+ ("/Users/Omar/Dropbox/Shared/" (21732 49199 0 0) "Papers/" "Icon
+" "emacs_commands.txt" "Datata/" "01.png" ".DS_Store" "../" "./")
+
+ ("/Applications/MAMP/htdocs/" (21732 12488 0 0) "Woo/" "Multi/" "index.html" "iDea/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Library/Application Support/Sublime Text 3/Packages/User/" (21719 5760 0 0) "Themes/" "Terminal.sublime-settings" "SublimeREPL.sublime-settings" "SublimeLinter.sublime-settings" "SublimeLinter/" "SublimeCodeIntel.sublime-settings" "Snippets/" "SideBarEnhancements/" "scope_hunter.sublime-settings" "README.md" "R-Box.sublime-settings" "Preferences.sublime-settings~" "Preferences.sublime-settings" "Package Control.user-ca-bundle" "Package Control.system-ca-bundle" "Package Control.sublime-settings" "Package Control.merged-ca-bundle" "Package Control.last-run" "Package Control.cache/" "Objective-C++.sublime-settings" "Matlab.sublime-settings" "MarkdownPreview.sublime-settings" "Markdown.sublime-settings" "Macros/" "LiveReload.sublime-settings" "LICENSE.txt" "LaTeXTools.sublime-settings" "JavaScriptNext.sublime-settings" "JavaScript.sublime-settings" "INI.sublime-settings" "HTML.sublime-settings" "HTML (Django).sublime-settings" "FileDiffs.sublime-settings" "EasyMotion.sublime-settings" "Default (OSX).sublime-keymap" "ColorPicker/" "ColorHighlighter.sublime-settings" "Color Highlighter/" "bh_unicode_properties.cache" "bh_core.sublime-settings" "Base File.sublime-settings" "Anaconda.sublime-settings" "AlignTab.sublime-settings" ".SublimeREPLHistory/" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/Omar/Projects/itam/ido/tarea_1/" (21729 15772 0 0) "wrapper.m" "script.m" "pruebas.m" "prim.m" "kruskal.m" "conexa.m" "../" "./")
+
+ ("/Applications/MAMP/" (21551 5192 0 0) "お読みください.rtf" "прочти.rtf" "tmp/" "Sequel Pro.app/" "README.rtf" "MAMP.app/" "logs/" "LISEZ-MOI.rtf" "LIESMICH.rtf" "licences/" "Library/" "LEAME.rtf" "Icon
+" "htdocs/" "fcgi-bin/" "db/" "conf/" "cgi-bin/" "bin/" ".DS_Store" "../" "./")
+
+ ("/Applications/" (21728 921 0 0) "Zenmap.app/" "Xcode.app/" "VLC.app/" "VirtualBox.app/" "Utilities/" "Transmission.app/" "Time Machine.app/" "The Unarchiver.app/" "TextEdit.app/" "TeX/" "System Preferences.app/" "Sunrise.app/" "Sublime Text.app/" "Stickies.app/" "Spotify.app/" "Spectacle.app/" "Skype.app/" "Skim.app/" "Safari.app/" "RStudio.app/" "Remote Desktop Connection.app/" "Reminders.app/" "RealVNC/" "R.app/" "QuickTime Player.app/" "Python 3.3/" "Python 2.7/" "Preview.app/" "Pocket.app/" "Photo Booth.app/" "Notes.app/" "MySQLWorkbench.app/" "MoneyWiz.app/" "Mission Control.app/" "Microsoft Silverlight/" "Microsoft Office 2011/" "Messages.app/" "Memory Clean.app/" "MATLAB_R2013a.app/" "Maps.app/" "MAMP PRO/" "MAMP/" "Mail.app/" "MacDjView.app/" "Launchpad.app/" "iTunes.app/" "iTerm.app/" "ImageOptim.app/" "Image Capture.app/" "iBooks.app/" "Hewlett-Packard/" "HandBrake.app/" "GoogleAppEngineLauncher.app/" "Google Drive.app/" "Google Chrome.app/" "Game Center.app/" "Font Book.app/" "Firefox.app/" "FileZilla.app/" "FaceTime.app/" "Evernote.app/" "Emacs.app" "Eclipse/" "DVD Player.app/" "Dropbox.app/" "DiskWave.app/" "Dictionary.app/" "Dashboard.app/" "Contacts.app/" "Colloquy.app/" "Chess.app/" "Calendar.app/" "Calculator.app/" "Automator.app/" "AppCleaner.app/" "App Store.app/" "Air Display Host.app/" "Adobe Reader.app/" "Adobe Photoshop CS6/" "Adobe Extension Manager CS6/" "Adobe Bridge CS6/" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Dropbox/" (21730 25665 0 0) "Shared/" "Personal/" "Icon
+" "Documents/" ".DS_Store" ".dropbox.cache/" ".dropbox" "../" "./")
+
+ ("/Users/" (21518 49769 0 0) "Shared/" "Omar/" "Guest/" ".localized" "../" "./")
+
+ ("/Users/Omar/Projects/itam/ido/" (21728 4806 0 0) "tarea_1/" "LICENSE" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Projects/itam/" (21728 1522 0 0) "opt-num/" "itam-research/" "ido/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Projects/" (21719 7121 0 0) "web_development/" "sublime_projects/" "score_group/" "python/" "others/" "itam/" "Icon
+" "google_cloud/" "dotfiles/" ".DS_Store" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
