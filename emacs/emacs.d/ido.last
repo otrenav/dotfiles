@@ -2,97 +2,99 @@
 
 ;; ----- ido-last-directory-list -----
 (
- ("/Users/Omar/Projects/score_group/score-group/" . "score_group/")
- ("/Users/Omar/Projects/score_group/" . "score-group/")
- ("/Users/Omar/Dropbox/Documents/Classes/" . "IDO/")
- ("/Users/Omar/Dropbox/Documents/" . "Classes/")
- ("/Users/Omar/" . "Projects/")
- ("/Applications/MAMP/" . "htdocs/")
- ("/Applications/" . "MAMP/")
- ("/Users/Omar/Dropbox/" . "Documents/")
- ("/Users/" . "Omar/")
- ("/Users/Omar/Projects/itam/ido/" . "tarea_1/")
- ("/Users/Omar/Projects/itam/" . "ido/")
- ("/Users/Omar/Projects/" . "score_group/")
+ ("/Users/otrenav/Projects/score_group/" . "score-group/")
+ ("/Users/otrenav/Dropbox/Documents/Admin/" . "2F Auth/")
+ ("/Users/otrenav/Dropbox/Documents/" . "Admin/")
+ ("/Users/otrenav/Projects/itam/itam-research/scripts/" . "web_utilities/")
+ ("/Users/otrenav/Downloads/" . "Miscellanea/")
+ ("/Users/otrenav/Projects/itam/itam-research/" . "scripts/")
+ ("/Users/otrenav/" . ".emacs.d/")
+ ("/Users/otrenav/Projects/dotfiles/" . "zsh/")
+ ("/Users/otrenav/Projects/itam/" . "itam-research/")
+ ("/Users/otrenav/Projects/" . "score_group/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
- "/Users/Omar/Projects/score_group/score-group/score_group/"
- "/Users/Omar/.emacs.d/"
- "/Users/Omar/Dropbox/Documents/Classes/IDO/"
- "/Users/Omar/Projects/dotfiles/emacs/emacs.d/"
- "/Users/Omar/"
- "/Users/Omar/Downloads/"
- "/Applications/MAMP/htdocs/"
- "/Users/Omar/Dropbox/Shared/"
- "/Users/Omar/Projects/itam/ido/tarea_1/"
+ "/Users/otrenav/"
+ "/Users/otrenav/Projects/dotfiles/emacs/emacs.d/init/"
+ "/Users/otrenav/.emacs.d/"
+ "/Users/otrenav/Downloads/Miscellanea/"
+ "/Users/otrenav/Projects/score_group/score-group/"
+ "/Users/otrenav/Dropbox/Documents/Admin/2F Auth/"
+ "/Users/otrenav/Downloads/"
+ "/Users/otrenav/Projects/itam/itam-research/scripts/web_utilities/"
+ "/Users/otrenav/Projects/itam/itam-research/"
+ "/Users/otrenav/Downloads/Censos Económicos_files/"
+ "/Users/otrenav/Projects/itam/itam-research/scripts/"
+ "/Users/otrenav/Projects/dotfiles/zsh/"
+ "/Users/otrenav/Projects/itam/ido/"
 )
 
 ;; ----- ido-work-file-list -----
 (
- "settings.py"
+ ".zshrc"
+ "settings.el"
  "init.el"
- "init_python.el"
- "Temario.pdf"
- "init_keybindings.el"
- "init_functions.el"
- "init_settings.el"
- "init_abbrevs.el"
+ "U.txt"
+ "Name.com.txt"
+ "Censos Económicos.html"
+ "input_elements.js"
+ "WebServiceCaller.js"
+ "otrenav.zsh-theme"
  ".emacs"
- "init_path.el"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/Omar/Projects/score_group/score-group/score_group/" (21734 52302 0 0) "wsgi.pyc" "wsgi.py" "views.pyc" "views.py" "urls.pyc" "urls.py" "templates/" "settings.pyc" "settings.py" "forms.pyc" "forms.py" "__init__.pyc" "__init__.py" "../" "./")
+ ("/Users/otrenav/Projects/dotfiles/emacs/emacs.d/init/" (21748 6013 0 0) "spellcheck.el" "settings.el" "python.el" "pdf.el" "path.el" "packages.el" "org-mode.el" "matlab.el" "lisp.el" "latex.el" "keybindings.el" "helm.el" "functions.el" "ess.el" "editing.el" "abbrevs.el" "../" "./")
 
- ("/Users/Omar/Projects/score_group/" (21701 44056 0 0) "stbs-admin/" "score-group/" ".DS_Store" "../" "./")
+ ("/Users/otrenav/Projects/dotfiles/zsh/" (21748 5927 0 0) "zshrc.~master~" "zshrc.zni" "zshrc" "zcompdump" "otrenav.zsh-theme" "histfile" "../" "./")
 
- ("/Users/Omar/.emacs.d/" (21734 52793 0 0) "themes/" "srecode-map.el" "init_spellcheck.el" "init_settings.el" "init_python.el" "init_pdf.el" "init_path.el" "init_packages.el" "init_matlab.el" "init_lisp.el" "init_latex.el" "init_keybindings.el" "init_helm.el" "init_functions.el" "init_ess.el" "init_editing.el" "init_abbrevs.el" "init.el" "ido.last" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")
+ ("/Users/otrenav/Downloads/" (21748 4670 0 0) "Triangle 2.jpg" "Triangle 1.jpg" "Miscellanea/" "Courses/" "Cambios sitio Score 2.pptx" "Cambios página web 3.pptx" ".localized" ".DS_Store" "../" "./")
 
- ("/Users/Omar/Downloads/" (21734 51455 0 0) "sc190215.sql" "Correcciones página web.pptx" ".Rhistory" ".localized" ".DS_Store" "../" "./")
+ ("/Users/otrenav/Dropbox/Documents/Admin/2F Auth/" (21748 525 0 0) "Twitter.JPG" "Name.com.txt" "Google.txt" "GitHub.txt" "Evernote.png" "Dropbox.png" "../" "./")
 
- ("/Users/Omar/" (21734 51689 0 0) "VirtualBox VMs/" "Public/" "Projects/" "Pictures/" "Music/" "Movies/" "Library/" "GDrive/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc.zni" ".zshrc-e" ".zshrc" ".zsh_history" ".zsh-update" ".zcompdump-OLAP-5.0.7" ".zcompdump" ".xdvirc" ".Xauthority" ".vnc/" ".viminfo" ".Trash/" ".subversion/" ".ssh/" ".sqlite_history" ".rvm/" ".rstudio-desktop/" ".Rprofile" ".rnd" ".Rhistory" ".Rapp.history" ".R/" ".pip/" ".oh-my-zsh/" ".npm/" ".netrc" ".mysql_history" ".matplotlib/" ".matlab/" ".local/" ".lesshst" ".ipython/" ".InstallAnywhere/" ".idlerc/" ".googlesql_oauth2.dat" ".gnome2/" ".gitconfig" ".fontconfig/" ".flexlmrc" ".emacs.d/" ".dvdcss/" ".DS_Store" ".dropbox/" ".cups/" ".config/" ".codeintel/" ".CFUserTextEncoding" ".cache/" ".bash_profile" ".bash_it/" ".bash_history" ".bash.d/" ".appcfg_nag" ".adobe/" "../" "./")
+ ("/Users/otrenav/Downloads/Miscellanea/" (21748 4619 0 0) "Virginia Gallardo Bailando2011 071011 HD 720.mp4" "U.txt" "tightened-corset.gif" "Screen Shot 2014-09-21 at 11.13.44 PM.png" "Screen Shot 2014-03-13 at 1.43.15 PM.png" "Screen Shot 2014-03-06 at 11.20.20 AM.png" "Screen Shot 2013-12-17 at 6.40.38 PM.png" "Screen Shot 2013-12-17 at 6.40.25 PM.png" "Screen Shot 2013-09-25 at 1.53.28 AM.png" "Screen Shot 2013-09-25 at 1.53.26 AM.png" "Screen Shot 2013-09-25 at 1.53.17 AM.png" "Screen Shot 2013-09-25 at 1.53.09 AM.png" "Screen Shot 2013-09-25 at 1.52.48 AM.png" "Screen Shot 2013-09-24 at 10.08.58 PM.png" "pixmix-44-6.png" "N2aXInz.jpg" "mollyslife-muffia6.jpg" "Millonario y W.Corona Más flow Más cash (Oficial).mp4" "Making of Mas Flow Mas Cash - Millonario W Corona.mp4" "laBtE.jpg" "iVckKT6MUR3Ns.jpg" "hot-woman.jpg" "hot-busty-girls-31.jpg" "Hot Teen Dancing 12.mp4" "fajnc.gif" "claire_abbott_bikini_7_5ItUuTpp.sized.jpg" "Cinthia Fernandez - Strip dande.mp4" "CA1-39.jpg" "CA1-22.jpg" "CA1-21.jpg" "Blake-Lively-in-a-sexy-tight-dress.jpeg" "Bailando Web Cam..mp4" "Aracelis Bochio bailando.mp4" "alice-goodwin-topless-in-lingerie-shoot-16-cr1369941876867-675x900.jpg" "64fhhi.gif" "63697_10151346012389617_1763740097_n 2.jpg" "5K6zu1I.jpg" "5f498b230143708.jpg" "537087_10152036854999617_1801628765_n.jpg" "429172_10151345996134617_1586790781_n 2.jpg" "32459_411609471672_578941_n.jpg" "3100f48339d1dd7f47afe0d9400d6925_zps38b72a6c.jpg" "200_12709826929_1223_n.jpg" "2.jpg" "1948178_641362032577685_13323521_n.jpg" "1911871_645239628856592_1197619875_n.jpg" "1692441793.jpg" "1539503899.jpg" "1245487450.jpg" "1131430952.jpg" "10747854_599714636822169_1676161996_n.jpg" "1014032_10151492742201500_266444280_n.jpg" "0a4fa656d221f7302dfccd9a2574c934.jpg" "03. [after dance] Cinthia Fernandez (Abbey Diaz) - Bailando 2011 03.10.11 HD1080.mp4" "0115192825136_10_AliceGoodwin_FWPS_06Feb2013__17_.jpg" ".DS_Store" "../" "./")
 
- ("/Users/Omar/Projects/dotfiles/emacs/emacs.d/" (21733 41802 0 0) "themes/" "srecode-map.el" "init_spellcheck.el" "init_settings.el" "init_pdf.el" "init_path.el" "init_packages.el" "init_matlab.el" "init_lisp.el" "init_latex.el" "init_keybindings.el" "init_helm.el" "init_functions.el" "init_ess.el" "init_editing.el" "init_abbrevs.el" "init.el" "ido.last" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")
+ ("/Users/otrenav/Projects/dotfiles/emacs/emacs.d/" (21748 528 0 0) "themes/" "packages/" "init.el" "init/" "ido.last" "games/" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")
 
- ("/Users/Omar/Projects/score_group/score-group/" (21734 52273 0 0) "static_root/" "static/" "score_group/" "requirements.txt" "README.md" "manage.py" "main.py" "libs/" "apps/" "app.yaml" ".gitignore" ".git/" ".editorconfig" "../" "./")
+ ("/Users/otrenav/.emacs.d/" (21748 528 0 0) "themes/" "packages/" "init.el" "init/" "ido.last" "games/" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")
 
- ("/Users/Omar/Dropbox/Documents/Classes/IDO/" (21733 36948 0 0) "Temario.pdf" "Temario Público.pdf" "Tareas/" "Libros/" "Algoritmos/" ".DS_Store" "../" "./")
+ ("/Users/otrenav/Projects/score_group/score-group/" (21725 34482 0 0) "static_root/" "static/" "score_group/" "requirements.txt" "README.md" "manage.py" "main.pyc" "main.py" "libs/" "apps/" "app.yaml" ".gitignore" ".git/" ".editorconfig" "../" "./")
 
- ("/Users/Omar/Dropbox/Documents/Classes/" (21714 13991 0 0) "ON/" "MD/" "IDO/" "HEM/" "GT/" ".DS_Store" "../" "./")
+ ("/Users/otrenav/Projects/score_group/" (21701 44249 0 0) "stbs-admin-menu/" "stbs-admin/" "score-group/" "../" "./")
 
- ("/Users/Omar/Dropbox/Documents/" (21730 28918 0 0) "Teshima/" "Notes/" "Icon
+ ("/Users/otrenav/Projects/itam/ido/" (21742 22845 0 0) "tarea_1/" "prim.m" "LICENSE" ".git/" "../" "./")
+
+ ("/Users/otrenav/Projects/itam/itam-research/scripts/web_utilities/" (21747 58485 0 0) "input_elements.js" "../" "./")
+
+ ("/Users/otrenav/Dropbox/Documents/Admin/" (21739 31263 0 0) "~$Desempeño.xlsx" "Venta de Macs.txt" "Resume/" "Receipts/" "Programa.pdf" "Poliza/" "PGP/" "Materias.png" "Legal/" "Income/" "Facturas/" "Bajas/" "Awards/" "2F Auth/" ".DS_Store" "../" "./")
+
+ ("/Users/otrenav/Dropbox/Documents/" (21730 28912 0 0) "Teshima/" "Notes/" "Icon
 " "Classes/" "Books/" "Archived/" "Admin/" ".DS_Store" "../" "./")
 
- ("/Users/Omar/Projects/dotfiles/emacs/" (21733 25997 0 0) "emacs.d/" "emacs" "../" "./")
+ ("/Users/otrenav/Dropbox/" (21747 46625 0 0) "Shared/" "Personal/" "Icon
+" "Documents/" "Backups/" ".DS_Store" ".dropbox.cache/" ".dropbox" "../" "./")
 
- ("/Users/Omar/Dropbox/Shared/" (21732 49199 0 0) "Papers/" "Icon
-" "emacs_commands.txt" "Datata/" "01.png" ".DS_Store" "../" "./")
+ ("/Users/otrenav/" (21747 58591 0 0) "Public/" "Projects/" "Pictures/" "Music/" "Movies/" "Library/" "GDrive/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc-e" ".zshrc" ".zsh_history" ".zsh-update" ".zcompdump-OMAC-5.0.7" ".zcompdump" ".Xauthority" ".Trash/" ".subversion/" ".ssh/" ".rstudio-desktop/" ".Rprofile" ".rnd" ".Rhistory" ".recentf" ".Rapp.history" ".R/" ".profile" ".oh-my-zsh/" ".npm/" ".netrc" ".mysql_history" ".matplotlib/" ".matlab/" ".ipython/" ".InstallAnywhere/" ".gnupg/" ".gitconfig" ".fontconfig/" ".flexlmrc" ".emacs.d/" ".dvdcss/" ".DS_Store" ".dropbox/" ".cvspass" ".cups/" ".config/" ".codeintel/" ".CFUserTextEncoding" ".cache/" ".bash_profile" ".bash_it/" ".bash_history" ".bash.d/" ".adobe/" "../" "./")
 
- ("/Applications/MAMP/htdocs/" (21732 12488 0 0) "Woo/" "Multi/" "index.html" "iDea/" ".DS_Store" "../" "./")
+ ("/Users/otrenav/Projects/itam/itam-research/geocode/" (21720 11964 0 0) "README.md" "getCoordinates.R" "geocode_v2.R" "geocode.R" ".git/" "../" "./")
 
- ("/Users/Omar/Library/Application Support/Sublime Text 3/Packages/User/" (21719 5760 0 0) "Themes/" "Terminal.sublime-settings" "SublimeREPL.sublime-settings" "SublimeLinter.sublime-settings" "SublimeLinter/" "SublimeCodeIntel.sublime-settings" "Snippets/" "SideBarEnhancements/" "scope_hunter.sublime-settings" "README.md" "R-Box.sublime-settings" "Preferences.sublime-settings~" "Preferences.sublime-settings" "Package Control.user-ca-bundle" "Package Control.system-ca-bundle" "Package Control.sublime-settings" "Package Control.merged-ca-bundle" "Package Control.last-run" "Package Control.cache/" "Objective-C++.sublime-settings" "Matlab.sublime-settings" "MarkdownPreview.sublime-settings" "Markdown.sublime-settings" "Macros/" "LiveReload.sublime-settings" "LICENSE.txt" "LaTeXTools.sublime-settings" "JavaScriptNext.sublime-settings" "JavaScript.sublime-settings" "INI.sublime-settings" "HTML.sublime-settings" "HTML (Django).sublime-settings" "FileDiffs.sublime-settings" "EasyMotion.sublime-settings" "Default (OSX).sublime-keymap" "ColorPicker/" "ColorHighlighter.sublime-settings" "Color Highlighter/" "bh_unicode_properties.cache" "bh_core.sublime-settings" "Base File.sublime-settings" "Anaconda.sublime-settings" "AlignTab.sublime-settings" ".SublimeREPLHistory/" ".gitignore" ".git/" "../" "./")
+ ("/Users/" (21520 8116 0 0) "Shared/" "otrenav/" "Guest/" ".localized" "../" "./")
 
- ("/Users/Omar/Projects/itam/ido/tarea_1/" (21729 15772 0 0) "wrapper.m" "script.m" "pruebas.m" "prim.m" "kruskal.m" "conexa.m" "../" "./")
+ ("/Users/otrenav/Downloads/Censos Económicos_files/" (21747 42861 0 0) "WebServiceCaller.js" "WebResource.axd" "WebResource(1).axd" "Tabs_Eco.css" "StyleSheet.css" "simple.gif" "selec_rama.gif" "ScriptResource.axd" "ScriptResource(5).axd" "ScriptResource(4).axd" "ScriptResource(3).axd" "ScriptResource(2).axd" "ScriptResource(1).axd" "rFG58m7xAig.html" "rFG58m7xAig(1).html" "redes_sociales_generar.min.js" "postmessageRelay.html" "Pop_ups_v2.0.js" "navegacion.css" "modalpopup_redes.min.js" "logoinegi.gif" "like.html" "JScript.js" "js" "jquery.xdomainrequest.min.js" "jquery-1.11.1.min.js" "ir_a_SAIC_izq.png" "ir_a_SAIC_der.png" "ir_a_SAIC_2004.png" "ir_a_SAIC_1999.png" "icotw.png" "icono_twitter.gif" "icono_gplus.gif" "icono_facebook.gif" "icono_correo.gif" "icofb.png" "ga.js" "Estilos.css" "estexplorer.css" "estcerrado.gif" "estAbierto.gif" "encabezado.css" "enc_generales.js" "Economicos.css" "custom.modernizr.js" "core-rpc-shindig.random-shindig.sha1.js" "client-plusone.js" "cb=gapi.loaded_0" "buscar.png" "btn_descargaXLS.gif" "btn_descargaCSV.gif" "bootstrap.min.js" "balloons.min.js" "api.js" "all.js" "AC_RunActiveContent.js" "6dELRbjCMPT.js" "3467502649-postmessagerelay.js" "2.png" "1_active.png" "../" "./")
 
- ("/Applications/MAMP/" (21551 5192 0 0) "お読みください.rtf" "прочти.rtf" "tmp/" "Sequel Pro.app/" "README.rtf" "MAMP.app/" "logs/" "LISEZ-MOI.rtf" "LIESMICH.rtf" "licences/" "Library/" "LEAME.rtf" "Icon
-" "htdocs/" "fcgi-bin/" "db/" "conf/" "cgi-bin/" "bin/" ".DS_Store" "../" "./")
+ ("/Users/otrenav/Projects/itam/itam-research/scripts/" (21712 22255 0 0) "web_utilities/" "web_download/" "README.md" "mdb_csv/" ".git/" "../" "./")
 
- ("/Applications/" (21728 921 0 0) "Zenmap.app/" "Xcode.app/" "VLC.app/" "VirtualBox.app/" "Utilities/" "Transmission.app/" "Time Machine.app/" "The Unarchiver.app/" "TextEdit.app/" "TeX/" "System Preferences.app/" "Sunrise.app/" "Sublime Text.app/" "Stickies.app/" "Spotify.app/" "Spectacle.app/" "Skype.app/" "Skim.app/" "Safari.app/" "RStudio.app/" "Remote Desktop Connection.app/" "Reminders.app/" "RealVNC/" "R.app/" "QuickTime Player.app/" "Python 3.3/" "Python 2.7/" "Preview.app/" "Pocket.app/" "Photo Booth.app/" "Notes.app/" "MySQLWorkbench.app/" "MoneyWiz.app/" "Mission Control.app/" "Microsoft Silverlight/" "Microsoft Office 2011/" "Messages.app/" "Memory Clean.app/" "MATLAB_R2013a.app/" "Maps.app/" "MAMP PRO/" "MAMP/" "Mail.app/" "MacDjView.app/" "Launchpad.app/" "iTunes.app/" "iTerm.app/" "ImageOptim.app/" "Image Capture.app/" "iBooks.app/" "Hewlett-Packard/" "HandBrake.app/" "GoogleAppEngineLauncher.app/" "Google Drive.app/" "Google Chrome.app/" "Game Center.app/" "Font Book.app/" "Firefox.app/" "FileZilla.app/" "FaceTime.app/" "Evernote.app/" "Emacs.app" "Eclipse/" "DVD Player.app/" "Dropbox.app/" "DiskWave.app/" "Dictionary.app/" "Dashboard.app/" "Contacts.app/" "Colloquy.app/" "Chess.app/" "Calendar.app/" "Calculator.app/" "Automator.app/" "AppCleaner.app/" "App Store.app/" "Air Display Host.app/" "Adobe Reader.app/" "Adobe Photoshop CS6/" "Adobe Extension Manager CS6/" "Adobe Bridge CS6/" ".localized" ".DS_Store" "../" "./")
+ ("/Users/otrenav/Projects/itam/itam-research/" (21746 27636 0 0) "scripts/" "maps/" "geocode/" "eeckhout-kircher/" "do_descartes_textile/" "data/" "bi-graphs/" "../" "./")
 
- ("/Users/Omar/Dropbox/" (21730 25665 0 0) "Shared/" "Personal/" "Icon
-" "Documents/" ".DS_Store" ".dropbox.cache/" ".dropbox" "../" "./")
+ ("/Users/otrenav/Projects/itam/" (21746 57405 0 0) "on/" "itam-research/" "ido/" ".DS_Store" "../" "./")
 
- ("/Users/" (21518 49769 0 0) "Shared/" "Omar/" "Guest/" ".localized" "../" "./")
+ ("/Users/otrenav/Projects/dotfiles/" (21720 11912 0 0) "zsh/" "README.md" "osx/" "LICENSE" "iterm2/" "git/" "emacs/" "bash/" ".gitignore" ".git/" "../" "./")
 
- ("/Users/Omar/Projects/itam/ido/" (21728 4806 0 0) "tarea_1/" "LICENSE" ".git/" ".DS_Store" "../" "./")
-
- ("/Users/Omar/Projects/itam/" (21728 1522 0 0) "opt-num/" "itam-research/" "ido/" ".DS_Store" "../" "./")
-
- ("/Users/Omar/Projects/" (21719 7121 0 0) "web_development/" "sublime_projects/" "score_group/" "python/" "others/" "itam/" "Icon
-" "google_cloud/" "dotfiles/" ".DS_Store" "../" "./")
+ ("/Users/otrenav/Projects/" (21701 43844 0 0) "web_development/" "sublime_projects/" "score_group/" "python/" "itam/" "Icon
+" "google_cloud/" "dotfiles/" "databases/" ".editorconfig" ".DS_Store" "../" "./")
 )
 
 ;; ----- ido-unc-hosts-cache -----

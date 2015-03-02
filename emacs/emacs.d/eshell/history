@@ -1,0 +1,11 @@
+ls
+lsall
+ls -fla
+cd ..
+ls -fla
+rm .emacs
+rm .emacs
+git st
+ls
+git st
+exit

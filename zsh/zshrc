@@ -13,7 +13,7 @@ ZSH_THEME="otrenav"
 DISABLE_AUTO_TITLE="true"
 
 export WORKON_HOME=~/Projects/python/envs
-export PATH="/Users/Omar/Projects/Google_Cloud/google-cloud-sdk/bin:/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
+export PATH="/Users/Omar/Projects/Google_Cloud/google-cloud-sdk/bin:/usr/local/bin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,3 +98,10 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory autocd extendedglob nomatch notify
 bindkey -e
+
+# For Emacs ansi-term
+# if [ -n "$INSIDE_EMACS" ]; then
+#   chpwd() { print -P "\033AnSiTc %d" }
+#   print -P "\033AnSiTu %n"
+#   print -P "\033AnSiTc %d"
+# fi

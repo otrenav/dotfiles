@@ -1,77 +1,108 @@
 ;;
-;; Packages
+;; Automadted packages
 ;;
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
 (package-initialize)
 
-(defvar packages '(ace-jump-mode
+(defvar packages '(ac-helm       
+                   ac-html           
+                   ac-html-bootstrap
+                   ac-html-csswatcher
+                   ac-js2            
+                   ac-math            
+                   ace-jump-mode
+                   ace-window         
+                   aes                
+                   anaconda-mode      
                    anchored-transpose
-                   angular-snippets
-                   async
+                   angular-snippets   
+                   async              
                    auctex
-                   auctex-latexmk
-                   auto-complete
-                   auto-yasnippet
+                   auctex-latexmk     
+                   auto-compile       
+                   auto-complete      
+                   auto-complete-auctex
+                   auto-complete-chunk
+                   auto-yasnippet     
                    autopair
-                   company
-                   ctable
+                   bog                
+                   bookmark+          
+                   capture            
+                   cdlatex
                    diff-hl
-;;                   dired-x
+                   dired+             
+                   dired-details+     
+                   dired-imenu        
+                   dired-rainbow      
+                   dired-subtree      
+                   direx              
+                   django-mode        
                    django-snippets
+                   djvu               
                    editorconfig
+                   ein                
                    el-autoyas
-;;                   eldoc-mode
                    elpy
                    ess
-                   ess-R-data-view
-                   ess-R-object-popup
+                   ess-R-data-view    
+                   ess-R-object-popup 
+                   ess-smart-equals   
                    ess-smart-underscore
                    expand-region
-                   find-file-in-project
+                   flatui-theme       
+                   flymake-python-pyflakes
                    flyspell-lazy
-                   flx
-                   git-commit-mode
-                   git-rebase-mode
-                   god-mode
+                   frame-fns          
                    helm
                    helm-R
-                   highlight-indentation
-n                   ibuffer
-                   ido-vertical-mode
-                   ido-ubiquitous
+                   ibuffer
+                   ido-vertical-mode  
                    jedi
+                   jedi-direx         
+                   js2-mode           
                    latex-pretty-symbols
                    magit
-                   magit-filenotify
-		   markdown-mode
+                   magit-filenotify   
+                   markdown-mode
+                   math-symbol-lists  
                    matlab-mode
-		   nodejs-repl
+                   nodejs-repl        
+                   nose               
                    org
-                   pony-mode
+                   pony-mode          
                    popup
                    powerline
-                   pymacs
-                   pyvenv
-                   projectile
+                   projectile         
+                   pungi              
+                   py-autopep8        
+                   py-import-check    
+                   py-isort           
+                   pydoc-info         
+                   pyenv-mode         
+                   pyimpsort          
+                   pylint             
+                   python-django      
+                   python-environment 
+                   python-info        
+                   python-mode        
+                   pyvenv             
                    r-autoyas
-                   recentf
-                   rainbow-mode
+                   rainbow-mode       
                    react-snippets
-                   s
+                   recentf
+                   skewer-mode        
                    smex
                    solarized-theme
-;;                   transient-mark-mode
-                   tomatinho
-;;                   uniquify
-                   yasnippet
+                   virtualenvwrapper  
+                   web-beautify
                    web-mode
                    windmove
-                   winner-mode))
+                   window-jump
+                   yasnippet))
 
 (dolist (package packages)
   (when (not (package-installed-p package))
