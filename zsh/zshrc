@@ -31,9 +31,6 @@ alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
 alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
 alias photoshop='open -a "Adobe Photoshop CS6"'
-alias xemacs='/usr/bin/emacs'
-alias xem='/usr/bin/emacs'
-alias emacs='/usr/local/bin/emacs'
 alias em='/usr/local/bin/emacs'
 alias es='/usr/bin/emacsserver'
 
@@ -100,8 +97,8 @@ setopt appendhistory autocd extendedglob nomatch notify
 bindkey -e
 
 # For Emacs ansi-term
-# if [ -n "$INSIDE_EMACS" ]; then
-#   chpwd() { print -P "\033AnSiTc %d" }
-#   print -P "\033AnSiTu %n"
-#   print -P "\033AnSiTc %d"
-# fi
+if [ -n "$INSIDE_EMACS" ]; then
+    chpwd() { print -P "\033AnSiTc %d" }
+    print -P "\033AnSiTu %n"
+    print -P "\033AnSiTc %d"
+fi

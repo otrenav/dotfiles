@@ -55,3 +55,21 @@
 (global-set-key (kbd "C-c C-k") 'compile)
 (global-set-key (kbd "C-x g") 'magit-status)
 
+
+;; Smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c M-x") 'smex-update)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;;
+;; Experimental
+;;
+;; (global-set-key (kbd "\C-cu") 'reset-ui)
+;; (global-set-key (kbd "C-c t") 'toggle-eshell-visor)
+
+;;
+;; Python
+;;
+(define-key yas-minor-mode-map (kbd "C-c k") 'yas-expand)
+(define-key global-map (kbd "C-c o") 'iedit-mode)

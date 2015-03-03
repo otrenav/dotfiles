@@ -12,14 +12,14 @@
                    ac-html           
                    ac-html-bootstrap
                    ac-html-csswatcher
-                   ac-js2            
-                   ac-math            
+                   ac-js2
+                   ac-math
                    ace-jump-mode
-                   ace-window         
-                   aes                
-                   anaconda-mode      
+                   ace-window
+                   aes
+                   anaconda-mode
                    anchored-transpose
-                   angular-snippets   
+                   angular-snippets
                    async              
                    auctex
                    auctex-latexmk     
@@ -30,25 +30,25 @@
                    auto-yasnippet     
                    autopair
                    bog                
-                   bookmark+          
-                   capture            
+                   bookmark+
+                   capture
                    cdlatex
                    diff-hl
                    dired+             
-                   dired-details+     
-                   dired-imenu        
-                   dired-rainbow      
-                   dired-subtree      
+                   dired-details+
+                   dired-imenu
+                   dired-rainbow
+                   dired-subtree
                    direx              
-                   django-mode        
+                   django-mode
                    django-snippets
-                   djvu               
+                   djvu
                    editorconfig
-                   ein                
+                   ein
                    el-autoyas
                    elpy
                    ess
-                   ess-R-data-view    
+                   ess-R-data-view
                    ess-R-object-popup 
                    ess-smart-equals   
                    ess-smart-underscore
@@ -59,6 +59,22 @@
                    frame-fns          
                    helm
                    helm-R
+                   helm-ack
+                   helm-bibtex
+                   helm-bind-key
+                   helm-chrome
+                   helm-css-scss
+                   helm-dictionary
+                   helm-dired-recent-dirs
+                   helm-dirset
+                   helm-emmet
+                   helm-flymake
+                   helm-flyspell
+                   helm-git
+                   helm-helm-commands
+                   helm-itunes
+                   helm-mt
+                   helm-open-github
                    ibuffer
                    ido-vertical-mode  
                    jedi
@@ -70,8 +86,10 @@
                    markdown-mode
                    math-symbol-lists  
                    matlab-mode
+                   multi-term
+                   multi-web-mode
                    nodejs-repl        
-                   nose               
+                   nose
                    org
                    pony-mode          
                    popup
@@ -107,3 +125,4 @@
 (dolist (package packages)
   (when (not (package-installed-p package))
     (package-install package)))
+

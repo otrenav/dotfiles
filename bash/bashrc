@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [ -e ~/.bash_profile ] ; then
+    . ~/.bash_profile
+fi

@@ -1,5 +1,52 @@
 #!/usr/bin/env bash
 
-if [ -e ~/.bash.d/bashrc ] ; then
-  . ~/.bash.d/bashrc
-fi
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar/.local/bin:$PATH
+
+# export GAE="/usr/local/google_appengine"
+# export PYTHONPATH="$PYTHONPATH:$GAE:$GAE/lib/django_1_4"
+# export PATH=${PATH}:$GAE/lib/django_1_4/django/bin/
+
+alias ls='ls -lGF'
+alias lsall='ls -flaF'
+alias R='R --no-save --quite'
+alias r='R --no-save --quite'
+alias p='cd ~/Projects; ls;'
+alias d='cd ~/Downloads; ls;'
+alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
+alias photoshop='open -a "Adobe Photoshop CS6"'
+
+export WORKON_HOME=~/Projects/python/envs
+export BASH_IT=$HOME/.bash_it
+export BASH_IT_THEME='minimal'
+
+source $BASH_IT/bash_it.sh
+source ~/Projects/dotfiles/bash/scripts/git-completion.bash
+source ~/Projects/Google_Cloud/google-cloud-sdk/path.bash.inc
+source ~/Projects/Google_Cloud/google-cloud-sdk/completion.bash.inc
+source /usr/local/bin/virtualenvwrapper.sh
+
+# File/dir size
+function fs() {
+    if du -b /dev/null > /dev/null 2>&1; then
+        local arg=-sbh
+    else
+        local arg=-sh
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@"
+    else
+        du $arg .[^.]* *
+    fi
+}
+
+# Update all projects in directory
+# GUD := Git Up Directories
+function gud() {
+    for d in */; do
+        echo $d
+        cd $d
+        git up
+        echo " "
+        cd ..
+    done
+}

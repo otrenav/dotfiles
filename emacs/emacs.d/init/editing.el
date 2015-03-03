@@ -20,3 +20,9 @@
 ;; (set-face-attribute 'popup-tip-face nil
 ;;                     :background "#003A4E"
 ;;                     :foreground "light gray")
+
+(defun delete-file-and-buffer ()
+  "Deletes the current file and buffer, assumes file exists"
+  (interactive)
+  (delete-file buffer-file-name)
+  (kill-buffer (buffer-name)))
