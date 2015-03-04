@@ -1,3 +1,7 @@
+;;
+;; Functions
+;;
+
 ;; Insert line before
 (defun bol-and-inl ()
   (interactive)
@@ -150,3 +154,59 @@ If a region is active (a phrase), lookup that phrase."
   "Delete duplicate lines in buffer and keep first occurrence."
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
+
+(defun delete-file-and-buffer ()
+  "Deletes the current file and buffer (assumes file exists)."
+  (interactive)
+  (delete-file buffer-file-name)
+  (kill-buffer (buffer-name)))
+
+;;
+;; Reindentation and buffer cleanup
+;;
+(defun untabify-buffer ()
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun indent-buffer ()
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun cleanup-buffer ()
+  "perations on the whitespace content of a buffer."
+  (interactive)
+  (indent-buffer)
+  (untabify-buffer)
+  (delete-trailing-whitespace))
+
+;;
+;; JavaScript
+;;
+(defun js-custom ()
+  "js-mode-hook"
+  (setq js-indent-level 2))
+(add-hook 'js-mode-hook 'js-custom)
+
+
+;;
+;; Duplicate lines or region
+;;
+(defun duplicate-current-line-or-region (arg)
+  "Duplicates the current line or region ARG times.
+If there's no region, the current line will be duplicated. However, if
+there's a region, all lines that region covers will be duplicated."
+  (interactive "p")
+  (let (beg end (origin (point)))
+    (if (and mark-active (> (point) (mark)))
+        (exchange-point-and-mark))
+    (setq beg (line-beginning-position))
+    (if mark-active
+        (exchange-point-and-mark))
+    (setq end (line-end-position))
+    (let ((region (buffer-substring-no-properties beg end)))
+      (dotimes (i arg)
+        (goto-char end)
+        (newline)
+        (insert region)
+        (setq end (point)))
+      (goto-char (+ origin (* (length region) arg) arg)))))

@@ -8,8 +8,8 @@
 
 (package-initialize)
 
-(defvar packages '(ac-helm       
-                   ac-html           
+(defvar packages '(ac-helm
+                   ac-html
                    ac-html-bootstrap
                    ac-html-csswatcher
                    ac-js2
@@ -20,26 +20,26 @@
                    anaconda-mode
                    anchored-transpose
                    angular-snippets
-                   async              
+                   async
                    auctex
-                   auctex-latexmk     
-                   auto-compile       
-                   auto-complete      
+                   auctex-latexmk
+                   auto-compile
+                   auto-complete
                    auto-complete-auctex
                    auto-complete-chunk
-                   auto-yasnippet     
+                   auto-yasnippet
                    autopair
-                   bog                
+                   bog
                    bookmark+
                    capture
                    cdlatex
                    diff-hl
-                   dired+             
+                   dired+
                    dired-details+
                    dired-imenu
                    dired-rainbow
                    dired-subtree
-                   direx              
+                   direx
                    django-mode
                    django-snippets
                    djvu
@@ -49,14 +49,14 @@
                    elpy
                    ess
                    ess-R-data-view
-                   ess-R-object-popup 
-                   ess-smart-equals   
+                   ess-R-object-popup
+                   ess-smart-equals
                    ess-smart-underscore
                    expand-region
-                   flatui-theme       
+                   flatui-theme
                    flymake-python-pyflakes
                    flyspell-lazy
-                   frame-fns          
+                   frame-fns
                    helm
                    helm-R
                    helm-ack
@@ -76,46 +76,44 @@
                    helm-mt
                    helm-open-github
                    ibuffer
-                   ido-vertical-mode  
+                   ido-vertical-mode
                    jedi
-                   jedi-direx         
-                   js2-mode           
+                   jedi-direx
                    latex-pretty-symbols
                    magit
-                   magit-filenotify   
+                   magit-filenotify
                    markdown-mode
-                   math-symbol-lists  
+                   math-symbol-lists
                    matlab-mode
                    multi-term
-                   multi-web-mode
-                   nodejs-repl        
+                   nodejs-repl
                    nose
                    org
-                   pony-mode          
+                   pony-mode
                    popup
                    powerline
-                   projectile         
-                   pungi              
-                   py-autopep8        
-                   py-import-check    
-                   py-isort           
-                   pydoc-info         
-                   pyenv-mode         
-                   pyimpsort          
-                   pylint             
-                   python-django      
-                   python-environment 
-                   python-info        
-                   python-mode        
-                   pyvenv             
+                   projectile
+                   pungi
+                   py-autopep8
+                   py-import-check
+                   py-isort
+                   pydoc-info
+                   pyenv-mode
+                   pyimpsort
+                   pylint
+                   python-django
+                   python-environment
+                   python-info
+                   python-mode
+                   pyvenv
                    r-autoyas
-                   rainbow-mode       
+                   rainbow-mode
                    react-snippets
                    recentf
-                   skewer-mode        
+                   skewer-mode
                    smex
                    solarized-theme
-                   virtualenvwrapper  
+                   virtualenvwrapper
                    web-beautify
                    web-mode
                    windmove

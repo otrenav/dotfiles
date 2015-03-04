@@ -1,28 +1,42 @@
 ;;
+;; Editing
+;;
+
+;;
 ;; Automatic modes
 ;;
-(add-to-list 'auto-mode-alist '("/.tex\\'" . latex-mode))
-(add-to-list 'auto-mode-alist '("/.R\\'" . R-mode))
-(add-to-list 'auto-mode-alist '("/.r\\'" . R-mode))
-(add-to-list 'auto-mode-alist '("/emacs\\'" . emacs-lisp-mode))
-(add-to-list 'auto-mode-alist '("/.m\\'" . matlab-mode))
+(add-to-list 'auto-mode-alist '("/.zsh$" . shell-script-mode))
+;;(add-to-list 'auto-mode-alist '("/.gitconfig$" . conf-mode))
+(add-to-list 'auto-mode-alist '("/.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("/.mdown$" . markdown-mode))
 
 ;; TODO: Editorconfig
 (require 'editorconfig)
 (require 'diff-hl)
 
-;; (set-face-attribute 'ac-candidate-face nil
-;;                     :background "#00222c"
-;;                     :foreground "light gray")
-;; (set-face-attribute 'ac-selection-face nil
-;;                     :background "SteelBlue4"
-;;                     :foreground "white")
-;; (set-face-attribute 'popup-tip-face nil
-;;                     :background "#003A4E"
-;;                     :foreground "light gray")
+;;
+;; Backups
+;;
+;;(setq backup-directory-alist `((".*" . , temporary-file-directory)))
+;;(setq auto-save-file-name-transforms `((".*" , temporary-file-directory t)))
 
-(defun delete-file-and-buffer ()
-  "Deletes the current file and buffer, assumes file exists"
-  (interactive)
-  (delete-file buffer-file-name)
-  (kill-buffer (buffer-name)))
+;;
+;; Others
+;;
+(require 'autopair)
+(require 'auto-complete-config)
+(ac-config-default)
+
+;;
+;; Clean up
+;;
+(setq-default show-trailing-whitespace t)
+
+;;
+;; Markdown
+;;
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (visual-line-mode t)
+            (writegood-mode t)
+            (flyspell-mode t)))

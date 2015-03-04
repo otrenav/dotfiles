@@ -1,8 +1,14 @@
+;;
+;; Terminal
+;;
+
+;; TODO: Figure out a setup for zsh
 (setq multi-term-program "/usr/local/bin/bash")
 
 ;;
 ;; Multi-term
 ;;
+;; TODO: Figure out this setup
 (add-hook 'term-mode-hook
           (lambda ()
             (setq show-trailing-whitespace nil)

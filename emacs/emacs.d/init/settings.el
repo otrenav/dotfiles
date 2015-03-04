@@ -40,10 +40,6 @@
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines))
 
-(set-face-attribute 'default nil
-                    :font "Source Code Pro-18"
-                    :weight 'normal)
-
 ;;
 ;; Graphic vs terminal
 ;;
@@ -61,6 +57,7 @@
     (defun track-mouse(e))
     (setq mouse-sel-mode 1)))
 
+;; TODO: Fix according to screen
 (when window-system (set-frame-size (selected-frame) 85 47))
 
 ;;
@@ -77,21 +74,38 @@
 ;;
 ;; I use different screens in my setup
 ;;
+;; TODO: Fix this. Use screen size.
 (if (string-equal system-name "OLAP")
     (set-face-attribute 'default nil
-                        :height 150))
+                        :font "Source Code Pro-16"))
 
 (if (string-equal system-name "OMAC")
     (set-face-attribute 'default nil
-                        :height 190))
-
+                        :font "Source Code Pro-18"))
+;;
 ;; Themes
+;;
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (if window-system
+;;     (load-theme 'solarized-light t)
+;;   (load-theme 'wombat t))
 
+;;
+;; Ido
+;;
+(ido-mode t)
+(setq ido-enable-flex-matching t
+      ido-use-virtual-buffers t)
+
+;;
 ;; Smex
+;;
+;; TODO: Figure this out.
 (require 'smex)
 (smex-initialize)
- 
+(setq smex-save-file (expand-file-name ".smex-items" user-emacs-directory))
+
+
 ;;
 ;; Experimental
 ;;
@@ -125,20 +139,20 @@
 ;;         (set-frame-size (selected-frame) 163 53)
 ;;         (set-frame-position (selected-frame) 0 0))))
 ;;   (split-window-horizontally))
- 
+
 ;; ;; fires when an emacs frame is created (emacsclient)
 ;; ;; invoke like this ( on osx):
 ;; ;; emacsclient -c -n; osascript -e "tell application \"Emacs\" to activate"
 ;; (add-hook 'after-make-frame-functions 'reset-ui)
- 
+
 ;; ;; hook for setting up UI when not running in daemon mode
 ;; (add-hook 'emacs-startup-hook 'reset-ui)
- 
+
 ;; (fset 'eshell-visor-on
 ;;       "\C-x1\M-xeshell\n")
 ;; (fset 'eshell-visor-off
 ;;       "\C-x3\M-xbury-buffer\n\C-xo\M-xbury-buffer\n\M-xswap-windows")
- 
+
 ;; ;; assumes using reset-ui based layout
 ;; (defun toggle-eshell-visor ()
 ;;   (interactive)

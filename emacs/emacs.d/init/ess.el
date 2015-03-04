@@ -1,6 +1,13 @@
 ;;
 ;; ESS
 ;;
+
+;;
+;; Modes
+;;
+(add-to-list 'auto-mode-alist '("/.R$'" . R-mode))
+(add-to-list 'auto-mode-alist '("/.r$'" . R-mode))
+
 (add-hook 'R-mode-hook 'imenu-add-menubar-index)
 (setq ess-indent-level 4)
 (setq ess-arg-function-offset 4)
@@ -45,3 +52,8 @@ options(oo)})\n"  string) buf)
 
 (add-hook 'ess-mode-hook '(lambda () (set (make-local-variable 'indent-region-function)
                                           'ess-indent-region-as-R-function)))
+
+;;
+;; Keybindings
+;;
+

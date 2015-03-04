@@ -2,6 +2,10 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("/Users/Omar/Projects/itam/" . "itam-research/")
+ ("/Users/Omar/Projects/" . "itam/")
+ ("/Users/Omar/Dropbox/" . "Shared/")
+ ("/Users/Omar/" . "Dropbox/")
  ("/Users/otrenav/Projects/dotfiles/emacs/emacs.d/" . "init/")
  ("/Users/otrenav/Projects/dotfiles/emacs/" . "emacs.d/")
  ("/Users/otrenav/.emacs.d/" . "init/")
@@ -19,6 +23,13 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/Omar/Projects/itam/itam-research/eeckhout-kircher/"
+ "/Users/Omar/Projects/itam/itam-research/"
+ "/Users/Omar/Projects/dotfiles/emacs/emacs.d/init/"
+ "/Users/Omar/Dropbox/Shared/"
+ "/Users/Omar/Projects/dotfiles/emacs/emacs.d/"
+ "/Users/Omar/.emacs.d/init/"
+ "/Users/Omar/Projects/score_group/score-group/"
  "/Users/otrenav/.emacs.d/init/"
  "/Users/otrenav/Projects/dotfiles/emacs/emacs.d/init/"
  "/Users/otrenav/Projects/score_group/score-group/apps/data/"
@@ -39,20 +50,49 @@
 
 ;; ----- ido-work-file-list -----
 (
- "python.el"
+ "acceptance_ratios.R"
+ "simulation.R"
+ "lisp.el"
+ "emacs_commands.txt"
  "keybindings.el"
- "functions.py"
- "README.md"
- "terminal.el"
- "init.el"
- "matlab.el"
  "functions.el"
- "packages.el"
+ "settings.el"
+ "web.el"
  "editing.el"
+ "python.el"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("/Users/Omar/" (21750 12016 0 0) "VirtualBox VMs/" "Public/" "Projects/" "Pictures/" "Music/" "Movies/" "Library/" "GDrive/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc.zni" ".zshrc-e" ".zshrc" ".zsh_history" ".zsh-update" ".zcompdump-OLAP-5.0.7" ".zcompdump" ".xdvirc" ".Xauthority" ".vnc/" ".viminfo" ".Trash/" ".subversion/" ".ssh/" ".sqlite_history" ".rvm/" ".rstudio-desktop/" ".Rprofile" ".rnd" ".Rhistory" ".Rapp.history" ".R/" ".pip/" ".oh-my-zsh/" ".npm/" ".netrc" ".mysql_history" ".matplotlib/" ".matlab/" ".local/" ".lesshst" ".ipython/" ".InstallAnywhere/" ".idlerc/" ".googlesql_oauth2.dat" ".gnupg/" ".gnome2/" ".gitconfig" ".fontconfig/" ".flexlmrc" ".emacs.d/" ".dvdcss/" ".DS_Store" ".dropbox/" ".cups/" ".config/" ".codeintel/" ".CFUserTextEncoding" ".cache/" ".bashrc" ".bash_profile" ".bash_it/" ".bash_history" ".appcfg_nag" ".adobe/" "../" "./")
+
+ ("/Users/Omar/Projects/itam/itam-research/eeckhout-kircher/" (21750 9868 0 0) "simulation.R" "graph_x_vs_y.R" "graph_x_vs_f_w_p.R" "functions.R" "function_definitions.R" ".git/" "../" "./")
+
+ ("/Users/Omar/Projects/itam/itam-research/" (21734 24138 0 0) "scripts/" "maps/" "ksw-matlab-to-python/" "geocode/" "eeckhout-kircher/" "data/" "bi-graphs/" ".Rhistory" "../" "./")
+
+ ("/Users/Omar/Projects/itam/" (21728 1522 0 0) "opt-num/" "itam-research/" "ido/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Projects/score_group/" (21701 44056 0 0) "stbs-admin/" "score-group/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Projects/" (21719 7121 0 0) "web_development/" "sublime_projects/" "score_group/" "python/" "others/" "itam/" "Icon
+" "google_cloud/" "dotfiles/" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Projects/dotfiles/emacs/emacs.d/init/" (21750 8955 0 0) "web.el" "terminal.el" "spellcheck.el" "settings.el" "python.el" "path.el" "packages.el" "org-mode.el" "matlab.el" "lisp.el" "latex.el" "keybindings.el" "helm.el" "functions.el" "ess.el" "editing.el" "abbrevs.el" "../" "./")
+
+ ("/Users/Omar/Dropbox/Shared/" (21750 1995 0 0) "Icon
+" "emacs_commands.txt" "Dvorak.png" ".DS_Store" "../" "./")
+
+ ("/Users/Omar/Dropbox/" (21750 5753 0 0) "Shared/" "Personal/" "Icon
+" "Documents/" ".DS_Store" ".dropbox.cache/" ".dropbox" "../" "./")
+
+ ("/Users/Omar/Projects/dotfiles/emacs/emacs.d/" (21750 4136 0 0) "zsh_mac/" "var/" "themes/" "smex-items" "init.el" "init/" "ido.last" "games/" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")
+
+ ("/Users/Omar/.emacs.d/init/" (21750 5988 0 0) "web.el" "terminal.el" "spellcheck.el" "settings.el" "python.el" "pdf.el" "path.el" "packages.el" "org-mode.el" "matlab.el" "lisp.el" "latex.el" "keybindings.el" "helm.el" "functions.el" "ess.el" "editing.el" "abbrevs.el" "#settings.el#" "../" "./")
+
+ ("/Users/Omar/.emacs.d/" (21750 4136 0 0) "zsh_mac/" "var/" "themes/" "smex-items" "init.el" "init/" "ido.last" "games/" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")
+
+ ("/Users/Omar/Projects/score_group/score-group/" (21749 56269 0 0) "static_root/" "static/" "score_group/" "requirements.txt" "README.md" "manage.py" "main.pyc" "main.py" "libs/" "apps/" "app.yaml" ".gitignore" ".git/" ".editorconfig" "../" "./")
+
  ("/Users/otrenav/.emacs.d/init/" (21749 25330 0 0) "terminal.el" "spellcheck.el" "settings.el" "python.el" "pdf.el" "path.el" "packages.el" "org-mode.el" "matlab.el" "lisp.el" "latex.el" "keybindings.el" "helm.el" "functions.el" "ess.el" "editing.el" "abbrevs.el" "../" "./")
 
  ("/Users/otrenav/.emacs.d/" (21749 25335 0 0) "zsh_mac/" "var/" "themes/" "smex-items" "packages/" "init.el" "init/" "ido.last" "games/" "eshell/" "elpa/" "backups/" "auto-save-list/" "../" "./")

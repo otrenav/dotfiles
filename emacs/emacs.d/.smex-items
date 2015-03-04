@@ -1,12 +1,12 @@
 
 ;; ----- smex-history -----
 (
- comment-region
- package-list-packages
- dired
- lisp-mode
+ R-mode
+ R
+ tar-mode
+ eval-expression
  eval-region
- toggle-truncate-lines
+ comment-region
  toggle-frame-fullscreen
 )
 
@@ -14,13 +14,16 @@
 (
  (multi-term . 3)
  (auto-save-mode . 1)
- (eval-expression . 1)
+ (eval-expression . 6)
  (toggle-frame-maximized . 1)
- (toggle-frame-fullscreen . 1)
+ (toggle-frame-fullscreen . 2)
  (dired . 2)
  (toggle-truncate-lines . 2)
- (eval-region . 7)
+ (eval-region . 12)
  (lisp-mode . 1)
- (comment-region . 2)
+ (comment-region . 4)
  (package-list-packages . 1)
+ (tar-mode . 1)
+ (R . 1)
+ (R-mode . 1)
 )
