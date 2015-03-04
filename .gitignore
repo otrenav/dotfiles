@@ -1,2 +1,11 @@
 histfile
 elpa/
+ido.last
+smex-items
+auto-save-list/
+eshell/
+recentf
+var/
+.smex-items
+ac-comphist.dat
+misc/

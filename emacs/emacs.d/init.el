@@ -11,7 +11,6 @@
 (load "~/.emacs.d/init/editing.el")
 (load "~/.emacs.d/init/terminal.el")
 (load "~/.emacs.d/init/latex.el")
-(load "~/.emacs.d/init/pdf.el")
 (load "~/.emacs.d/init/helm.el")
 (load "~/.emacs.d/init/spellcheck.el")
 (load "~/.emacs.d/init/python.el")

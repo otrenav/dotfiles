@@ -1,29 +1,16 @@
 
 ;; ----- smex-history -----
 (
- R-mode
  R
- tar-mode
- eval-expression
- eval-region
- comment-region
- toggle-frame-fullscreen
+ S
+ cd
+ 5x5
+ arp
+ dbx
+ dig
 )
 
 ;; ----- smex-data -----
 (
- (multi-term . 3)
- (auto-save-mode . 1)
- (eval-expression . 6)
- (toggle-frame-maximized . 1)
- (toggle-frame-fullscreen . 2)
- (dired . 2)
- (toggle-truncate-lines . 2)
- (eval-region . 12)
- (lisp-mode . 1)
- (comment-region . 4)
- (package-list-packages . 1)
- (tar-mode . 1)
- (R . 1)
- (R-mode . 1)
+ 
 )
