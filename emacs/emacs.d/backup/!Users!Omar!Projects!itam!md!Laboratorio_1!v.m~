@@ -1,0 +1,80 @@
+function [kt,yt,it,ct] = v(alpha,beta,delta,A,maxit,crit,T,kss,k0,malla)
+
+
+%vfiter.m    Programa para resolver una versión sencilla del problema del
+%        planificador social usando el método de iteración de la función
+%        de valor. La ecuación de Bellman a resolver es:
+%
+%              v(k) =  max {u(k) + beta v(k')}
+%                       k'
+
+% Define la malla de valores para k
+
+Kmin   = 0.5*kss;
+Kmax   = 1.2*kss;
+K      = [Kmin:(Kmax-Kmin)/(malla-1):Kmax]'; % partición de la maya espaciado según:(Kmax-Kmin)/(malla-1)
+
+% Guess inicial para la funcion de valor (V0=0) y construcción de la
+% matriz M
+
+V0     = 0*K; %guess inicial tamaño(500x1)
+e      = ones(malla,1);
+M      = log(max((A*K.^alpha+(1-delta)*K)*e'-e*K',1e-8)); %Matriz M es de 500 x 500(ver slides)
+
+
+%Obs: la función max compara los dos argumentos, en caso de que salga un
+%negativo le va colocar el numero 1e-8,es decir,"cero".
+
+% Iteración de la funcion de valor
+
+figure(1)
+iconv  = 0; % variable indicadora donde icon=1 indica que se alcanzó la convergencia. 
+it     = 1; % variable que indica las iteraciones
+
+while (iconv==0 & it<maxit)
+   [V1,G] = max((M+beta*e*V0')'); %matriz de 500x500, al transponer estamos sacando el máximo de la primera fila inicial(pues ya se convirtio en columna),
+   % la primera fila indicaba F(K1,K1),F(K1,K2),F(K1,K3)...F(K1,Kp)
+
+   V1     = V1';% como el max me devuelve un vector fila para V1(valores máximos)
+   G      = G'; % como el max me devuelve un vector fila para G1(posiciones de cada máximo)
+  	if norm(V0-V1)<crit % esto es para evaluar la norma de los vectores(distancia entre t y t+1)
+     	iconv = 1;
+  	end
+   plot(K,V1) % dibujamos la funcion valor dado el capital
+   % Va mostrando el cambio en la gráfica según se va iterando. Cambiamos
+   % el nombre según el número de iteración así como la norma.
+   title(['Funcion de Valor en Iteración ',int2str(it),...
+         ' con Norma ',num2str(norm(V0-V1))])
+   % Genramos una pausa pequeña para poder ver el cambio en la gráfica.
+     pause(0.01)
+   V0 = V1; % si no se alcanza la convergencia hacemos v0= v1, otra iteración donde ahora nuestro 
+   % V inicial es V1, ya no V0.
+   it = it+1; %esto indica otra iteración y reemplaza el it anterior por el it nuevo.
+end     
+figure(2)
+plot(K,K(G),K,K,':') % dibujo de la función de politica del capital y la funcion identidad (K,K)
+% K(G) me indica dado el capital hoy cuál es el capital de mañana y el capital de mañana se 
+%obtiene usando el vector de posicin ´óptimo que maximiza la función valor.
+title('Regla de Decisión Óptima')
+text(kss,kss,'o  kss')
+
+% Simulación de las trayectorias óptimas para el capital (kt), consumo
+% (ct), inversión (it) y producto (yt)
+
+kt    = zeros(T+1,1); % vector de capital
+ind    = zeros(T,1); % vector indicador de posiciones óptimas del capital que maximiza la funcion valor en t+1
+[aux,ind(1)] = min(K<k0); % recordar k0	= (2/3)*kss=273.3665, esto nos dice cuando el vector 
+%K es menor al k0 y su posición,en este caso para la posición 120 del
+%vector K tenemos un capital de 273.47< 273.365 esto es falso por tanto
+%coloca cero.
+kt(1)  = K(ind(1)); % vamos a partir de la posición K(120)= 273.47 una proxy del valor inicial(k0) de (2/3)k de estado estacionario
+for t=1:T
+   ind(t+1) = G(ind(t)); % G(ind(1)=120)=136 es la posicion óptima del capital que maximiza la función valor que se usará para el siguiente periodo
+   kt(t+1)  = K(ind(t+1));% el capital de manana(k_2) óptimo va ser la posición 136 del vector de capital K pues este maximiza la función valor
+   % el loop hace que cada vez a medida que pasa el tiempo T el capital se
+   % aproxime a su valor de estado estacionario.
+end
+
+yt = A*kt(1:T).^alpha; % construcción del producto
+it = kt(2:T+1)-(1-delta)*kt(1:T);% construcción de la inversión
+ct = yt-it; % construcción del consumo

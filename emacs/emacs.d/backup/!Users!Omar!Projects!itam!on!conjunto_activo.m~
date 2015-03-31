@@ -1,0 +1,48 @@
+%
+% Programacion Cuadratica Convexa
+% Metodo: Region Activa
+%
+% Omar Trejo Navarro, 119711
+% Natalia Orozco, 00000
+%
+% Marzo, 2015
+%
+% Dr. Zeferino Parado
+% Optimizacion Numerica
+% ITAM
+%
+% El algoritmo que programamos aquei es el que se
+% encuentra en Nocedal - "Numerical Optimiation", pg. 472.
+%
+
+%
+% Fase I: encontrar un punto inicial factible.
+%
+
+x = ; % ... inital point
+W = ; % ... active constraints at x
+
+while ()
+    % Solve p = argmin 1/2p'Gp + gk'p s.t. a'p = 0 with i in Wk
+    if p'e <= tol 
+        % lambda <- (16.42) with W
+        if lambda(i) >= 0 % for all i in W intersect I;
+            % Solucion optima
+            return x;
+        else
+            % j <- argmin lambda_j in j in W intersect I;
+            W = W\{j};
+        end
+    else
+        alpha = min(1, min((b-a'x)/(a'p)));
+        x = x + a .* p;
+        if blocking constraints
+            W = W + {blocking};
+        end
+    end
+end
+%
+% Fase II: resolver el problema.
+%
+
+

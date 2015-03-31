@@ -1,0 +1,96 @@
+%
+% Programacion Cuadratica Convexa
+% Metodo: Region Activa
+%
+% Omar Trejo Navarro, 119711
+% Natalia Orozco Urquijo, 111008
+%
+% Marzo, 2015
+%
+% Dr. Zeferino Parada
+% Optimizacion Numerica
+% ITAM
+%
+% El algoritmo que programamos aqui es el que se
+% encuentra en Nocedal - "Numerical Optimization",
+% pg. 472, para resolver el problema:
+%
+%     min 1/2 x'Gx + x'c
+%     s.a. Ax = b para aquellas restricciones
+%                 cuyos indices estan en A(x).
+%
+% In:
+% - G: matriz simetrica positiva definida de R^nxn.
+% - c: vector en R^n.
+% - F: matriz de R^mxn de rango m con m <= n.
+% - d: vector en R^n.
+%
+% Out:
+% - fx: valor de f(x*) en R.
+% - x: x*, vector de solucion optima en R^n.
+% - W: conjunto de restricciones activas en x*.
+% - lambda: vector de lambdas en la solucion optima.
+% - k: numero de iteraciones realizadas.
+%
+function [fx, x, W, lambda,k] = conjunto_activo(G, c, F, d)
+    k = 0;
+    kmax = 500;
+    tol = 1e-5;
+    lambda = -1;
+
+    [x, W] = fase_uno(A, b);
+
+    fprintf('\n iter \t f(x)\n')
+    fprintf('----------------------\n')
+    while (any(lambda < 0) && k <= kmax)
+        % Resolver el subprolema (16.39):
+        %     p = argmin (1/2)p'Gp + g'p
+        %     s.a. ai'p = 0 con i en W
+        g = G*x + c;
+        Fsub = F(W, :);
+        dsub = zeros(size(Fsub, 1), 1);
+
+        % Nota:
+        % Este metodo no esta funcionando bien,
+        % en varios ejemplos sale que la matriz
+        % no es positiva definida para base_espacio_nulo.
+        % Que otro metodo podemos usar aqui?
+        %
+        p = metodo_espacio_nulo(G, g, Fsub, dsub);
+
+        if (norm(p) <= tol)
+            % Resolver la ecuacion (16.42) para lambda:
+            %     Fsub*lambda = g = Gx + c
+            % lambda = Fsub'\g;
+            lambda = solucion_particular(Fsub, g)
+
+            if (any(lambda < 0))
+                % Nota: cuidado con las que restricciones
+                % de desigualdad (las que estan en I).
+                [~, i] = min(lambda)
+                W = W(W ~= i);
+            end
+        else
+            % Calcular alpha para
+            % i fuera de W y ai'pk < 0:
+            D = (b - F*x)./(F*p);
+            idx = find(F*p > 0);
+            D(idx) = inf;
+            D(W) = inf;
+            alpha = min(1, min(D));
+            x = x + alpha*p;
+            if (any(F*x == b))
+                i = find(F*x == b);
+                W = [W; i];
+            end
+        end
+        k = k + 1;
+        fx = (1/2)*x'*G*x + x'*c;
+        fprintf(' %d  \t %f\n', k, fx)
+    end
+    if (k == kmax)
+        fprint('[!] Maximo de iteracioes alcanzado($d)\n\n', kmax)
+    end
+end
+
+

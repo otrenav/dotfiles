@@ -1,0 +1,37 @@
+%
+% Metodo de espacio nulo
+%
+% Omar Trejo Navarro, 119711
+% Natalia Orozco Urquijo, 111008
+%
+% Marzo, 2015
+%
+% Dr. Zeferino Parada
+% Optimizacion Numerica
+% ITAM
+%
+%     min 1/2 x'Gx + x'c
+%     s.a. Ax = b
+%
+% In:
+% - G: matriz en R^nxn s.p.d.
+% - c: vector en R^n.
+% - A: matriz de R^mxnm de rango m,
+%      A = [B N] con B en R^mxm no singular.
+% - b: vector en R^m.
+%
+% Se usa espacio nulo con:
+%    a) Solucion particular de A*x=b con la pseudoinversa de A.
+%    b) Base de Null(A) con la inversa de [B N; zeros(n,m) eye(n)].
+%
+function [ x ] = metodo_espacio_nulo(G, c, A, b)
+    xp = solucion_particular(A, b);
+    Z = base_espacio_nulo(A);
+    R = Z'*G*Z; % s.p.d. en R^(n-m)x(n-m).
+    ld = -Z'*(G*xp + c);
+    L = chol(R);
+    z = L\ld;
+    xz = L'\z;
+    x = xp + Z*xz;
+end
+

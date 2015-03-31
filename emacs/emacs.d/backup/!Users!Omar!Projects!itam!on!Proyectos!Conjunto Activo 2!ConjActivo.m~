@@ -1,0 +1,96 @@
+function [iter,x] = ConjActivo(Q,A,F,c,b,d)
+% ITAM
+% Optimización Numérica
+% 20 de marzo de 2015
+%
+% Guillermo Schulz  122375
+% Hugo Correa       122951
+% Arturo Ávila      124990
+% Emilio Morones    124311
+%
+% Algoritmo de conjunto activo para resolver problema de la forma:
+%    min     (1/2)*x'*Q*x + c'*x
+%    s. a.   Ax = b 
+%            Fx >= d
+%
+% In
+%   Q.- Matriz simétrica positiva definida R^nxn
+%   c.- Vector en R^n
+%   A.- Matriz de restricciones de igualdad
+%   b.- Vector de restricciones de igualdad
+%   F.- Matriz de restricciones de desigualdad
+%   d.- Vector de restricciones de desigualdad
+% 
+% Out
+%   iter.- Número de iteraciones del algoritmo
+%   x   .- Punto que satisface las condiciones necesarias de primer
+%          orden a cierta tolerancia
+%------------------------------------------------------
+
+% Punto inicial
+options = optimset('Display','none');
+x = linprog(c,-F,-d,A,b,[],[],[],options);
+
+% Valores constantes
+tol = 10.e-06;      % Tolerancia
+m = length(x);      % Dimensión de x
+[n,~] = size(F);    % # de restricciones de desigualdad
+[n2,~] = size(A);   % # de restricciones de igualdad
+
+bandera = 0;        % STOP
+I = zeros(1,n);     % Siempre empezamos con I = vector de ceros
+iter = 0;           % # de iteraciones
+
+while bandera==0
+    
+    %-- Resolver el problema asociado min (1/2)*x'Qx+c'x Ax = b y Fx>=d ---
+    g = Q*x + c;
+    
+    % Matriz auxiliar de restricciones de desigualdad
+    f = [A ; F((I==1),:)]; % 
+    
+    % Se resuelve sistema lineal K(x,lambda)=ld de las CNPO
+    K = [Q,f';f,zeros(sum(I)+n2)];
+    ld = [-g;zeros(sum(I)+n2,1)];
+    res = linsolve(K,ld); %res=K\ld;
+    % Se separan la dirección hipotética de descenso p, lambdas
+    p = res(1:m);                 
+    lambda_des = res(m+n2+1: end);
+   
+    % -- Determina si termina o si calcula la nueva x e I de acuerdo a p --
+    if norm(p)<=tol
+        if sum(I) == 0   % No hay dirección de descenso en solución interior
+            bandera = 1;
+        else
+            if lambda_des <= 0
+                bandera = 1;
+            else
+                if (~isempty(lambda_des))
+                    rest_activ = find(I);
+                    lam_max = find(lambda_des==max(lambda_des));
+                    I(rest_activ(lam_max(1))) = 0; % sacarla de I la restricción (desigualdad estricta).
+                end
+            end
+        end
+    else
+        k = F*p;
+        w = (k<0).*(1-I)'; % Indicadora de que es menor que 0 y no está en I
+        if (sum(w)>0)
+            aux = [find(w),nan(sum(w),1)];
+            for i=1:sum(w) % Para las que sean menores que 0 y que no esten en I.
+                aux(i,2)= max((d(aux(i,1))-F(aux(i,1),:)*x)/k(aux(i,1)),1.e-8);
+            end
+            alpha = min(min(aux(:,2)),1); % alpha y posicion de la rest. que entra.
+            if alpha < 1
+                [~,i] = min(aux(:,2));
+                I(aux(i,1)) = 1; % se introduce a I la restricción.
+            end    
+        else
+            alpha = 1;
+        end
+        x = x + alpha*p;
+    end
+    iter = iter + 1;
+end %end while
+end
+

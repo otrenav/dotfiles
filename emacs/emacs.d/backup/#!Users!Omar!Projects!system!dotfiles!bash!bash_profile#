@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar/.local/bin:$PATH
-
-# export GAE="/usr/local/google_appengine"
-# export PYTHONPATH="$PYTHONPATH:$GAE:$GAE/lib/django_1_4"
-# export PATH=${PATH}:$GAE/lib/django_1_4/django/bin/
+export GAE="/usr/local/google_appengine"
+export PYTHONPATH="$PYTHONPATH:$GAE:$GAE/lib/django_1_4"
+export PATH=${PATH}:$GAE/lib/django_1_4/django/bin/
 
 alias ls='ls -lGF'
 alias lsall='ls -flaF'
@@ -20,9 +19,9 @@ export BASH_IT=$HOME/.bash_it
 export BASH_IT_THEME='otrenav'
 
 source $BASH_IT/bash_it.sh
-source ~/Projects/system/dotfiles/bash/scripts/git-completion.bash
-source ~/Projects/google_cloud/google-cloud-sdk/path.bash.inc
-source ~/Projects/google_cloud/google-cloud-sdk/completion.bash.inc
+source ~/Projects/dotfiles/bash/scripts/git-completion.bash
+source ~/Projects/Google_Cloud/google-cloud-sdk/path.bash.inc
+source ~/Projects/Google_Cloud/google-cloud-sdk/completion.bash.inc
 source /usr/local/bin/virtualenvwrapper.sh
 
 # File/dir size

@@ -1,0 +1,4 @@
+function [f2] = funcion_P1I1E2(x)
+    f2 = 3x^2 - exp(x);
+end
+

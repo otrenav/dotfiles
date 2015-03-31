@@ -1,0 +1,28 @@
+%
+% Fase I: encontrar un punto inicial factible para:
+%
+% Programacion Cuadratica Convexa
+% Metodo: Region Activa
+%
+% Omar Trejo Navarro, 119711
+% Natalia Orozco, 00000
+%
+% Marzo, 2015
+%
+% Dr. Zeferino Parado
+% Optimizacion Numerica
+% ITAM
+%
+% In:
+% - G: matriz simetrica positiva definida de R^nxn.
+% - c: vector en R^n.
+% - a: vector en R^n.
+% - b: vector en R^n.
+%
+% Out:
+% - x: punto inicial en R^n.
+% - W: conjunto activo inicial.
+%
+function [x, W] = fase_uno(G, c, a, b)
+
+end

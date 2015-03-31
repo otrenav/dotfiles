@@ -1,0 +1,4 @@
+function [res] = ejercicio_2( x )
+    res = (4*x - 7)/(x - 2);
+end
+

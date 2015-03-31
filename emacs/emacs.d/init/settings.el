@@ -4,6 +4,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (require 'autopair)
+(require 'dired+)
 
 (autopair-global-mode t)
 (delete-selection-mode t)
@@ -31,6 +32,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (show-paren-mode t)
+(toggle-diredp-find-file-reuse-dir 1)
 (tool-bar-mode -1)
 (transient-mark-mode t)
 
@@ -46,6 +48,7 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq scroll-conservatively 1000)
 (scroll-bar-mode -1)
+(set-default 'truncate-lines nil)
 
 (if (display-graphic-p)
     (scroll-bar-mode -1)
@@ -62,17 +65,22 @@
     (setq mouse-sel-mode 1)))
 
 ;; TODO: Fix this. Use screen size.
-(if (string-equal system-name "OLAP")
-    (set-face-attribute 'default nil
-                        :font "Source Code Pro-16"))
+;; (if (string-equal system-name "OLAP")
+;;     (set-face-attribute 'default nil
+;;                         :font "Source Code Pro-17"))
 
-(if (string-equal system-name "OMAC")
-    (set-face-attribute 'default nil
-                        :font "Source Code Pro-18"))
+;; (if (string-equal system-name "OMAC")
+;;     (set-face-attribute 'default nil
+;;                         :font "Source Code Pro-18"))
+
+(set-face-attribute 'default nil
+                    :font "Source Code Pro-16")
 
 ;; TODO: Fix according to screen
-(when window-system (set-frame-size (selected-frame) 85 50))
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (when window-system (set-frame-size (selected-frame) 85 50))
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(toggle-frame-fullscreen)
+(split-window-right)
 
 ;; Ido
 (require 'ido)
