@@ -47,6 +47,7 @@
                    ein
                    el-autoyas
                    elpy
+		   epc
                    ess
                    ess-R-data-view
                    ess-R-object-popup
@@ -113,6 +114,7 @@
                    skewer-mode
                    smex
                    solarized-theme
+		   ido-vertical-mode
                    virtualenvwrapper
                    web-beautify
                    web-mode
