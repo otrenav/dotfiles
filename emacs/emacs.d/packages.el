@@ -95,7 +95,6 @@
                    powerline
                    projectile
                    pungi
-                   py-autopep8
                    py-import-check
                    py-isort
                    pydoc-info
@@ -125,4 +124,5 @@
 (dolist (package packages)
   (when (not (package-installed-p package))
     (package-install package)))
+
 

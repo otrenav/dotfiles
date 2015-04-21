@@ -1,0 +1,30 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/otrenav/" . ".emacs.d/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/otrenav/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ ".gitconfig"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/" (21806 52523 595436 227000) "../" "otrenav/" ".ecryptfs/" "./")
+
+ ("/home/otrenav/.emacs.d/" (21812 40825 691267 587000) "backup/" "elpa/" ".smex-items" "init.el" "../" ".gitignore" "auto-save-list/" "init/" "backups/" "./")
+
+ ("/home/otrenav/" (21808 34733 62929 283000) ".xinputrc" ".xsession-errors" ".config/" "Documents/" "Projects/" ".adobe/" ".mozilla/" ".bash_it/" ".rstudio-desktop/" ".bashrc.backup" ".virt-manager/" ".mysql_history" "Desktop/" ".distlib/" ".dbus/" ".macromedia/" ".bash_history" ".cache/" ".ssh/" ".pip/" ".bashrc" ".Xauthority" ".gitconfig" ".xsession-errors.old" ".Private/" ".ecryptfs/" ".gnome2_private/" ".thunderbird/" ".java/" "Downloads/" "Backups/" ".gconf/" ".watershed/" ".dropbox/" ".Skype/" ".gnupg/" ".dropbox-dist/" ".matlab/" ".bash_profile" "Dropbox/" ".profile" ".local/" ".pki/" ".gnome/" ".bash_logout" ".gnome2/" ".hplip/" ".ICEauthority" ".compiz/" ".global_ignore" ".emacs.d/" ".wine/" "../" "./")
+
+ ("/home/otrenav/Projects/system/dotfiles/emacs/emacs.d/init/" (21812 41094 915271 941000) "terminal.el" "../" "packages.el" "lisp.el" "python.el" "org-mode.el" "web.el" "settings.el" "keybindings.el" "ess.el" "spellcheck.el" "path.el" "editing.el" "latex.el" "abbrevs.el" "matlab.el" "helm.el" "./" "functions.el")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
