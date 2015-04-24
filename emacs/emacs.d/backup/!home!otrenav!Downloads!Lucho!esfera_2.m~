@@ -1,0 +1,26 @@
+%
+% Funcion de la esfera de radio uno.
+%
+% In:
+% x: vector en R^3*np
+%
+% Out:
+% hx: vector en R^np
+%
+% Prof. Zeferino Parada
+% Optimización Numérica
+% Omar Trejo Navarro 119711
+% ITAM, 2015
+%
+function [gx, hx] = esfera_2(x)
+    gx = [];
+    n = length(x);
+    np = floor(n/3);
+    x = x(1:3*np);
+    hx = zeros(np, 1);
+    for i = 1:np
+        u = x(3*(i - 1) + 1:3*i);
+        hx(i) = (norm(u)^2) - 1;
+    end
+end
+

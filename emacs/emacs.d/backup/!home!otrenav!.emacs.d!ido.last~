@@ -2,26 +2,40 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("/home/otrenav/Projects/datata/" . "website/")
+ ("/home/otrenav/Projects/" . "datata/")
  ("/home/otrenav/" . ".emacs.d/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "/home/otrenav/.emacs.d/"
+ "/home/otrenav/Projects/datata/website/"
  "/home/otrenav/"
 )
 
 ;; ----- ido-work-file-list -----
 (
+ "editing.el"
+ "web.el"
  ".gitconfig"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("/home/otrenav/" (21816 5028 423904 816000) ".xinputrc" ".xsession-errors" ".config/" "Documents/" "Projects/" ".adobe/" ".mozilla/" ".bash_it/" ".rstudio-desktop/" ".bashrc.backup" ".virt-manager/" ".mysql_history" "Desktop/" ".gvfs/" ".distlib/" ".dbus/" ".macromedia/" ".bash_history" ".cache/" ".ssh/" ".pip/" ".bashrc" ".Xauthority" ".gitconfig" ".thumbnails/" ".xsession-errors.old" ".Private/" ".ecryptfs/" ".gnome2_private/" ".thunderbird/" ".java/" "Downloads/" "Backups/" ".gconf/" ".watershed/" ".dropbox/" ".Skype/" ".gnupg/" ".dropbox-dist/" ".matlab/" ".bash_profile" "Dropbox/" ".profile" ".local/" ".pki/" ".gnome/" ".bash_logout" ".gnome2/" ".hplip/" ".ICEauthority" ".gimp-2.8/" ".compiz/" ".global_ignore" ".emacs.d/" ".wine/" "../" "./")
+
+ ("/home/otrenav/Downloads/Imágenes/" (21816 36461 120413 191000) "youtube.png" "github.png" "personal_signature.xml~" "../" "twitter.png" "personal_signature.xml" "datata.png" "./" ".#personal_signature.xml" "facebook.png" "rss.png")
+
+ ("/home/otrenav/.emacs.d/" (21813 4256 855736 85000) "terminal.el" "var/" "ido.last" "backup/" "elpa/" ".smex-items" "init.el" "../" "packages.el" ".gitignore" "lisp.el" "python.el" "auto-save-list/" "org-mode.el" "recentf" "web.el" "settings.el" "keybindings.el" "ess.el" "spellcheck.el" "path.el" "editing.el" "backups/" "latex.el" "abbrevs.el" "matlab.el" "helm.el" "./" "srecode-map.el" "functions.el")
+
+ ("/home/otrenav/Projects/datata/website/" (21807 10198 642066 571000) "fonts/" "blog-single.html" ".git/" "faq.html" "process.php" "subscription.php" "blog-right-sidebar.html" "../" "blog-timeline.html" "projects/" "css/" "shortcodes.html" "get-tweets1.1.php" "blog-grid.html" "js/" "api/" "index.html" "blog-left-sidebar.html" "./" "images/")
+
+ ("/home/otrenav/Projects/datata/" (21807 10242 622067 282000) "../" "score-group/" "website/" "susi/" "der/" "./")
+
+ ("/home/otrenav/Projects/" (21807 10447 862070 602000) "python/" "itam/" "../" "datata/" "google_cloud/" "system/" "./")
+
  ("/home/" (21806 52523 595436 227000) "../" "otrenav/" ".ecryptfs/" "./")
-
- ("/home/otrenav/.emacs.d/" (21812 40825 691267 587000) "backup/" "elpa/" ".smex-items" "init.el" "../" ".gitignore" "auto-save-list/" "init/" "backups/" "./")
-
- ("/home/otrenav/" (21808 34733 62929 283000) ".xinputrc" ".xsession-errors" ".config/" "Documents/" "Projects/" ".adobe/" ".mozilla/" ".bash_it/" ".rstudio-desktop/" ".bashrc.backup" ".virt-manager/" ".mysql_history" "Desktop/" ".distlib/" ".dbus/" ".macromedia/" ".bash_history" ".cache/" ".ssh/" ".pip/" ".bashrc" ".Xauthority" ".gitconfig" ".xsession-errors.old" ".Private/" ".ecryptfs/" ".gnome2_private/" ".thunderbird/" ".java/" "Downloads/" "Backups/" ".gconf/" ".watershed/" ".dropbox/" ".Skype/" ".gnupg/" ".dropbox-dist/" ".matlab/" ".bash_profile" "Dropbox/" ".profile" ".local/" ".pki/" ".gnome/" ".bash_logout" ".gnome2/" ".hplip/" ".ICEauthority" ".compiz/" ".global_ignore" ".emacs.d/" ".wine/" "../" "./")
 
  ("/home/otrenav/Projects/system/dotfiles/emacs/emacs.d/init/" (21812 41094 915271 941000) "terminal.el" "../" "packages.el" "lisp.el" "python.el" "org-mode.el" "web.el" "settings.el" "keybindings.el" "ess.el" "spellcheck.el" "path.el" "editing.el" "latex.el" "abbrevs.el" "matlab.el" "helm.el" "./" "functions.el")
 )

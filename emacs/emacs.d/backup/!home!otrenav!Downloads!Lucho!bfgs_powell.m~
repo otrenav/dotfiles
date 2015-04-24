@@ -1,0 +1,27 @@
+%
+% Actualizacion BFGS (Powell)
+%
+% In:
+% B: aproximacion a matriz Hessiana
+% s: vector en R^n
+% y: vector en R^n
+%
+% Out:
+% B: aproximacion a matriz Hessiana
+%
+% Prof. Zeferino Parada
+% Optimización Numérica
+% Omar Trejo Navarro 119711
+% ITAM, 2015
+%
+function B = bfgs_powell(B, s, y)
+    ang = s'*y;
+    B_ang = s'*B*s;
+    if (ang < 0.2*B_ang)
+        theta = 0.8*B_ang/(B_ang - ang);
+    else
+        theta = 1;
+    end
+    r = theta*y + (1 - theta)*B*s;
+    B = B - (B*s*s'*B)/(s'*B*s) + r*r'/(s'*r);
+end

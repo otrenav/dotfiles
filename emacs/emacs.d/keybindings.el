@@ -128,6 +128,9 @@
 ;; describe-char
 ;; apropos-command F1 a
 
+;; C-= expand region
+
+
 ;;
 ;; Custom keybindings
 ;;

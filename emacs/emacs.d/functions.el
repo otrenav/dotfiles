@@ -181,3 +181,19 @@ See `otrenav-forward-quote'."
         (insert region)
         (setq end (point)))
       (goto-char (+ origin (* (length region) arg) arg)))))
+
+;;
+;; Use external program
+;;
+(defun otrenav-open-with ()
+  "Simple function that allows us to open the underlying file of a buffer in an external program."
+  (interactive)
+  (when buffer-file-name
+    (shell-command (concat
+                    (if (eq system-type 'darwin)
+                        "open"
+                      (read-shell-command "Open current file with: "))
+                    " "
+                    buffer-file-name))))
+
+(global-set-key (kbd "C-c C-c C-o") 'otrenav-open-with)
