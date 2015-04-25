@@ -1,7 +1,0 @@
-%
-% Nota: se encuentra el valor que esté más cercano a cero.
-%
-function [f1] = ejercicio_1(x)
-    f1 = x - (2 - exp(x) + x^2)/3;
-end
-
