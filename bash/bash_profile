@@ -11,8 +11,11 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias photoshop='open -a "Adobe Photoshop CS6"'
 fi
 
-alias ls='ls -lGF'
-alias lsall='ls -flaF'
+alias ls='ls -lGF --color=auto'
+alias lsall='ls -flaF --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
 
@@ -28,6 +31,12 @@ source $BASH_IT/bash_it.sh
 source ~/Projects/system/dotfiles/bash/scripts/git-completion.bash
 source ~/Projects/google_cloud/google-cloud-sdk/path.bash.inc
 source ~/Projects/google_cloud/google-cloud-sdk/completion.bash.inc
+
+HISTCONTROL=ignoredups:ignorespace
+
+# Check window size after each
+# command to adjust accordingly
+shopt -s checkwinsize
 
 # File/dir size
 function fs() {

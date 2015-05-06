@@ -47,7 +47,7 @@
                    ein
                    el-autoyas
                    elpy
-		   epc
+                   epc
                    ess
                    ess-R-data-view
                    ess-R-object-popup
@@ -86,6 +86,7 @@
                    markdown-mode
                    math-symbol-lists
                    matlab-mode
+                   moe-theme
                    multi-term
                    nodejs-repl
                    nose

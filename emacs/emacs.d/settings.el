@@ -12,7 +12,6 @@
 (global-hl-line-mode t)
 (global-linum-mode t)
 (global-visual-line-mode nil)
-(load-theme 'flatui t)
 (menu-bar-mode -1)
 (pending-delete-mode t)
 (prefer-coding-system 'utf-8)
@@ -36,6 +35,15 @@
 (toggle-diredp-find-file-reuse-dir 1)
 (tool-bar-mode -1)
 (transient-mark-mode t)
+
+;; Theme
+(require 'moe-theme)
+(load-theme 'moe-dark t)
+(require 'powerline)
+(powerline-default-theme)
+(powerline-moe-theme)
+(require 'moe-theme-switcher)
+(moe-theme-set-color 'w/b)
 
 ;; Info about empty lines
 (setq-default indicate-empty-lines t)
@@ -91,3 +99,7 @@
 ;; Acejump mode
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+
+;; Dired
+(require 'dired-x)
+(setq-default dired-omit-files-p t)
