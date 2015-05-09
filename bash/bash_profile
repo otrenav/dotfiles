@@ -3,16 +3,18 @@
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
     export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:$PATH
+    alias ls='ls -lGF --color=auto'
+    alias lsall='ls -flaF --color=auto'
 elif [[ "$unamestr" == 'Darwin' ]]; then
     export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar/.local/bin:$PATH
+    alias ls='ls -lGF'
+    alias lsall='ls -flaF'
     alias R='R --no-save --quite'
     alias r='R --no-save --quite'
     alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
     alias photoshop='open -a "Adobe Photoshop CS6"'
 fi
 
-alias ls='ls -lGF --color=auto'
-alias lsall='ls -flaF --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
