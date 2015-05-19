@@ -31,8 +31,8 @@ source `which virtualenvwrapper.sh`
 
 source $BASH_IT/bash_it.sh
 source ~/Projects/system/dotfiles/bash/scripts/git-completion.bash
-source ~/Projects/google_cloud/google-cloud-sdk/path.bash.inc
-source ~/Projects/google_cloud/google-cloud-sdk/completion.bash.inc
+source ~/Projects/system/gcloud/path.bash.inc
+source ~/Projects/system/gcloud/completion.bash.inc
 
 HISTCONTROL=ignoredups:ignorespace
 
