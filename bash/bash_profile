@@ -20,8 +20,12 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
+export ALTERNATE_EDITOR=emacs
+export EDITOR=emacsclient
+export VISUAL=emacsclient
 
 export WORKON_HOME=~/Projects/python/envs
+export PROJECTS_PATH=~/Projects/itam/research
 export BASH_IT=$HOME/.bash_it
 export BASH_IT_THEME='otrenav'
 
@@ -31,8 +35,8 @@ source `which virtualenvwrapper.sh`
 
 source $BASH_IT/bash_it.sh
 source ~/Projects/system/dotfiles/bash/scripts/git-completion.bash
-source ~/Projects/system/gcloud/path.bash.inc
-source ~/Projects/system/gcloud/completion.bash.inc
+source ~/Projects/system/google-cloud-sdk/path.bash.inc
+source ~/Projects/system/google-cloud-sdk/completion.bash.inc
 
 HISTCONTROL=ignoredups:ignorespace
 
