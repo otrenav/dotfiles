@@ -8,8 +8,6 @@
 	editor = emacs
 [color]
 	ui = true
-[credential]
-	helper = osxkeychain
 [git-up "fetch"]
 	all = true
 [push]
