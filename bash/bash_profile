@@ -20,6 +20,8 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
+alias gcpm='~/Projects/datata/gcpm/datata_gae_master_script.sh'
+
 export ALTERNATE_EDITOR=emacs
 export EDITOR=emacsclient
 export VISUAL=emacsclient
