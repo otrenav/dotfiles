@@ -2,19 +2,24 @@
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
-    export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:$PATH
+    export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
     alias ls='ls -lGF --color=auto'
     alias lsall='ls -flaF --color=auto'
+    alias firefox-otrenav='firefox -no-remote -P "otrenav" &'
+    alias firefox-datata='firefox -no-remote -P "datata" &'
 elif [[ "$unamestr" == 'Darwin' ]]; then
-    export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:/Users/Omar/.local/bin:$PATH
+    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
     alias ls='ls -lGF'
     alias lsall='ls -flaF'
     alias R='R --no-save --quite'
     alias r='R --no-save --quite'
     alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
     alias photoshop='open -a "Adobe Photoshop CS6"'
+    alias firefox-otrenav='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "otrenav" &'
+    alias firefox-datata='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "datata" &'
 fi
 
+export PATH
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -22,7 +27,11 @@ alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
 alias gcpm='~/Projects/datata/gcpm/datata_gae_master_script.sh'
 
-export ALTERNATE_EDITOR=emacs
+# If this is set to "" then the
+# emacs server will be started
+# if it's not already running.
+export ALTERNATE_EDITOR=""
+
 export EDITOR=emacsclient
 export VISUAL=emacsclient
 
@@ -71,3 +80,4 @@ function gud() {
         cd ..
     done
 }
+

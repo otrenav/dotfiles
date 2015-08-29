@@ -11,4 +11,4 @@ ac-comphist.dat
 misc/
 srecode-map.el
 backup/
-backups/
+.DS_Store
