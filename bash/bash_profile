@@ -1,13 +1,26 @@
 #!/usr/bin/env bash
 
+## Author:     Omar Trejo
+## IRC handle: otrenav
+## IRC server: freenode
+
+##
+## OS specific configuation
+##
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
+    ##
+    ## Linux setup
+    ##
     export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
     alias ls='ls -lGF --color=auto'
     alias lsall='ls -flaF --color=auto'
     alias firefox-otrenav='firefox -no-remote -P "otrenav" &'
     alias firefox-datata='firefox -no-remote -P "datata" &'
 elif [[ "$unamestr" == 'Darwin' ]]; then
+    ##
+    ## Mac setup
+    ##
     export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
     alias ls='ls -lGF'
     alias lsall='ls -flaF'
@@ -20,44 +33,71 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 export PATH
+
+##
+## Aliases
+##
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
-alias gcpm='~/Projects/datata/gcpm/datata_gae_master_script.sh'
-alias emacs='emacsclient -c -a ""'
 
-# If this is set to "" then the
-# emacs server will be started
-# if it's not already running.
-export ALTERNATE_EDITOR=""
+##
+## R setup
+##
+export R_PROFILE_USER='~/.Rprofile'
 
-export EDITOR=emacsclient
-export VISUAL=emacsclient
-
-export WORKON_HOME=~/Projects/python/envs
-export PROJECTS_PATH=~/Projects/itam/research
+##
+## BASH-IT (terminal customization)
+##
 export BASH_IT=$HOME/.bash_it
 export BASH_IT_THEME='otrenav'
+source $BASH_IT/bash_it.sh
+HISTCONTROL=ignoredups:ignorespace
 
+## Check window size after each
+## command to adjust accordingly
+## shopt -s checkwinsize
+
+##
+## ITAM Research
+##
+export PROJECTS_PATH=~/Projects/itam/research
+
+##
+## Virtual Environments for Python
+##
+export WORKON_HOME=~/Projects/python/envs
 export VIRTUALENVWRAPPER_PYTHON=`which python`
 export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
 source `which virtualenvwrapper.sh`
 
-source $BASH_IT/bash_it.sh
+##
+## Git configuration
+##
 source ~/Projects/system/dotfiles/bash/scripts/git-completion.bash
+
+##
+## Google Cloud SDK
+##
 source ~/Projects/system/google-cloud-sdk/path.bash.inc
 source ~/Projects/system/google-cloud-sdk/completion.bash.inc
 
-HISTCONTROL=ignoredups:ignorespace
+##
+## Emacs
+##
+export EDITOR=emacsclient
+export VISUAL=emacsclient
+export ALTERNATE_EDITOR=""
+function emacs() {
+    emacsclient -c -a "" "$@" &
+}
 
-# Check window size after each
-# command to adjust accordingly
-shopt -s checkwinsize
-
-# File/dir size
-function fs() {
+##
+## File or directory size
+##
+function file_directory_size() {
     if du -b /dev/null > /dev/null 2>&1; then
         local arg=-sbh
     else
@@ -70,8 +110,10 @@ function fs() {
     fi
 }
 
-# Update all projects in directory
-# GUD := Git Up Directories
+##
+## Update all projects in directory
+## GUD := Git Up Directories
+##
 function gud() {
     for d in */; do
         echo $d
@@ -82,3 +124,16 @@ function gud() {
     done
 }
 
+##
+## Count total number of files
+## in a folder, including symlinks
+##
+function file_count() {
+    total=0;
+    for object in `find . -type l`; do
+        count_in_folder=`find $object"/" | wc -l;`
+        echo "Count in current $l/: $count_in_folder"
+        let total=$total+$count_in_folder
+    done
+    echo "Total number of files: "$t
+}
