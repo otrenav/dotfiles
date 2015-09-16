@@ -58,7 +58,7 @@ HISTCONTROL=ignoredups:ignorespace
 
 ## Check window size after each
 ## command to adjust accordingly
-## shopt -s checkwinsize
+shopt -s checkwinsize
 
 ##
 ## ITAM Research
