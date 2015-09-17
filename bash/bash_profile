@@ -53,7 +53,10 @@ export R_PROFILE_USER='~/.Rprofile'
 ##
 export BASH_IT=$HOME/.bash_it
 export BASH_IT_THEME='otrenav'
-source $BASH_IT/bash_it.sh
+if [ -e $BASH_IT/bash_it.sh ]; then
+    source $BASH_IT/bash_it.sh
+fi
+
 HISTCONTROL=ignoredups:ignorespace
 
 ## Check window size after each
@@ -81,8 +84,10 @@ source ~/.git-completion.bash
 ##
 ## Google Cloud SDK
 ##
-source ~/Projects/system/google-cloud-sdk/path.bash.inc
-source ~/Projects/system/google-cloud-sdk/completion.bash.inc
+if [ -e ~/Projects/system/google-cloud-sdk/completion.bash.inc ]; then
+    source ~/Projects/system/google-cloud-sdk/path.bash.inc
+    source ~/Projects/system/google-cloud-sdk/completion.bash.inc
+fi
 
 ##
 ## Emacs
