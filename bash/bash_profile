@@ -17,6 +17,9 @@ if [[ "$unamestr" == 'Linux' ]]; then
     alias lsall='ls -flaF --color=auto'
     alias firefox-otrenav='firefox -no-remote -P "otrenav" &'
     alias firefox-datata='firefox -no-remote -P "datata" &'
+    export PATH="$HOME/.linuxbrew/bin:$PATH"
+    export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+    export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 elif [[ "$unamestr" == 'Darwin' ]]; then
     ##
     ## Mac setup
