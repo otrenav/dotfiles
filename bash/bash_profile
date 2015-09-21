@@ -33,6 +33,8 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias photoshop='open -a "Adobe Photoshop CS6"'
     alias firefox-otrenav='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "otrenav" &'
     alias firefox-datata='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "datata" &'
+    alias start_mysql='sudo /usr/local/mysql/support-files/mysql.server start'
+    alias stop_mysql='sudo /usr/local/mysql/support-files/mysql.server stop'
 fi
 
 export PATH
@@ -98,9 +100,15 @@ fi
 export EDITOR=emacsclient
 export VISUAL=emacsclient
 export ALTERNATE_EDITOR=""
-function emacs() {
-    emacsclient -c -a "" "$@" &
-}
+if [[ "$unamestr" == 'Linux' ]]; then
+    function emacs() {
+        emacsclient -c -a "" "$@" &
+    }
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    function emacs() {
+        emacsclient -c -a "" "$@"
+    }
+fi
 
 ##
 ## File or directory size
