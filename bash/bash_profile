@@ -39,6 +39,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias stop_arangodb='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.arangodb.plist'
     alias start_cassandra='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist'
     alias stop_cassandra='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist'
+    alias start_mongodb='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist'
     ## To start orientdb use: $ orientdb <start|stop|status> or orientdb-console or orientdb-gremlin
 fi
 
