@@ -5,7 +5,7 @@
 ## IRC server: freenode
 
 ##
-## OS specific configuation
+## OS specific configuration
 ##
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
@@ -35,6 +35,11 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias firefox-datata='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "datata" &'
     alias start_mysql='sudo /usr/local/mysql/support-files/mysql.server start'
     alias stop_mysql='sudo /usr/local/mysql/support-files/mysql.server stop'
+    alias start_arangodb='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.arangodb.plist'
+    alias stop_arangodb='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.arangodb.plist'
+    alias start_cassandra='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist'
+    alias stop_cassandra='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist'
+    ## To start orientdb use: $ orientdb <start|stop|status> or orientdb-console or orientdb-gremlin
 fi
 
 export PATH
