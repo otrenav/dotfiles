@@ -116,10 +116,10 @@ bower_components/
 build/
 dist/
 
-
 #
-# Sublime Text
+# Text editors
 #
+.\#*
 .last-run
 .system-ca-bundle
 r.db
