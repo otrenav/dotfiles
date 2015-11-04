@@ -31,6 +31,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias r='R --no-save --quite'
     alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
     alias photoshop='open -a "Adobe Photoshop CS6"'
+    alias julia='/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia'
     alias firefox-otrenav='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "otrenav" &'
     alias firefox-datata='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "datata" &'
     alias start_mysql='sudo /usr/local/mysql/support-files/mysql.server start'
@@ -39,7 +40,10 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias stop_arangodb='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.arangodb.plist'
     alias start_cassandra='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist'
     alias stop_cassandra='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist'
-    alias start_mongodb='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist'
+    alias start_mongodb='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist'
+    alias stop_mongodb='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist'
+    alias start_elasticsearch='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist'
+    alias stop_elasticsearch='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist'
     ## To start orientdb use: $ orientdb <start|stop|status> or orientdb-console or orientdb-gremlin
 fi
 
