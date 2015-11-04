@@ -99,12 +99,13 @@ source `which virtualenvwrapper.sh`
 source ~/.git-completion.bash
 
 ##
-## Google Cloud SDK
+## Google Cloud
 ##
 if [ -e ~/Projects/system/google-cloud-sdk/completion.bash.inc ]; then
     source ~/Projects/system/google-cloud-sdk/path.bash.inc
     source ~/Projects/system/google-cloud-sdk/completion.bash.inc
 fi
+export PATH=$PATH:~/Projects/system/google_appengine/
 
 ##
 ## Emacs
