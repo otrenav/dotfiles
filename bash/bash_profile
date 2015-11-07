@@ -32,6 +32,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
     alias photoshop='open -a "Adobe Photoshop CS6"'
     alias julia='/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia'
+    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
     alias firefox-otrenav='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "otrenav" &'
     alias firefox-datata='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "datata" &'
     alias start_mysql='sudo /usr/local/mysql/support-files/mysql.server start'
@@ -45,6 +46,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias start_elasticsearch='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist'
     alias stop_elasticsearch='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist'
     ## To start orientdb use: $ orientdb <start|stop|status> or orientdb-console or orientdb-gremlin
+    export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
 fi
 
 export PATH
@@ -107,18 +109,19 @@ fi
 ##
 ## Emacs
 ##
-export EDITOR=emacsclient
-export VISUAL=emacsclient
-export ALTERNATE_EDITOR=""
 if [[ "$unamestr" == 'Linux' ]]; then
+    # export EDITOR=emacsclient
+    # export VISUAL=emacsclient
+    # export ALTERNATE_EDITOR=""
     function emacs() {
         emacsclient -c -a "" "$@" &
     }
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    function emacs() {
-        emacsclient -c -a "" "$@"
-    }
 fi
+# elif [[ "$unamestr" == 'Darwin' ]]; then
+#     function emacs() {
+#         emacsclient -c -a "" "$@"
+#     }
+# fi
 
 ##
 ## File or directory size
