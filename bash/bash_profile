@@ -17,9 +17,9 @@ if [[ "$unamestr" == 'Linux' ]]; then
     alias lsall='ls -flaF --color=auto'
     alias firefox-otrenav='firefox -no-remote -P "otrenav" &'
     alias firefox-datata='firefox -no-remote -P "datata" &'
-    export PATH="$HOME/.linuxbrew/bin:$PATH"
-    export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-    export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+    # export PATH="$HOME/.linuxbrew/bin:$PATH"
+    # export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+    # export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 elif [[ "$unamestr" == 'Darwin' ]]; then
     ##
     ## Mac setup
@@ -48,6 +48,9 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     ## To start orientdb use: $ orientdb <start|stop|status> or orientdb-console or orientdb-gremlin
     export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
 fi
+
+## Add Ruby gems into the path
+PATH="$(ruby -e 'print Gem.user_dir')/bin/:$PATH"
 
 export PATH
 
@@ -96,6 +99,7 @@ source `which virtualenvwrapper.sh`
 ##
 ## Git configuration
 ##
+alias git_prune='git branch -r | awk "{print $1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print $1}" | xargs git branch -d'
 source ~/.git-completion.bash
 
 ##
@@ -110,14 +114,14 @@ export PATH=$PATH:~/Projects/system/google_appengine/
 ##
 ## Emacs
 ##
-if [[ "$unamestr" == 'Linux' ]]; then
-    # export EDITOR=emacsclient
-    # export VISUAL=emacsclient
-    # export ALTERNATE_EDITOR=""
-    function emacs() {
-        emacsclient -c -a "" "$@" &
-    }
-fi
+# if [[ "$unamestr" == 'Linux' ]]; then
+#     # export EDITOR=emacsclient
+#     # export VISUAL=emacsclient
+#     # export ALTERNATE_EDITOR=""
+#     function emacs() {
+#         emacsclient -c -a "" "$@" &
+#     }
+# fi
 # elif [[ "$unamestr" == 'Darwin' ]]; then
 #     function emacs() {
 #         emacsclient -c -a "" "$@"
@@ -167,3 +171,8 @@ function file_count() {
     done
     echo "Total number of files: "$t
 }
+
+##
+## Private setup
+##
+source ~/.private_setup
