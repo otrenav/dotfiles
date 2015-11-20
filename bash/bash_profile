@@ -129,6 +129,11 @@ export PATH=$PATH:~/Projects/system/google_appengine/
 # fi
 
 ##
+## Django completion
+##
+source ~/.django_bash_completion.bash
+
+##
 ## File or directory size
 ##
 function file_directory_size() {
@@ -175,4 +180,4 @@ function file_count() {
 ##
 ## Private setup
 ##
-source ~/.private_setup
+## source ~/.private_setup
