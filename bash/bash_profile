@@ -29,7 +29,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias lsall='ls -flaF'
     alias R='R --no-save --quite'
     alias r='R --no-save --quite'
-    alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab'
+    alias matlab='matlab -nodesktop -nosplash'
     alias photoshop='open -a "Adobe Photoshop CS6"'
     alias julia='/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia'
     alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
