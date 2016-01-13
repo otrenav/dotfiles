@@ -100,7 +100,7 @@ source `which virtualenvwrapper.sh`
 ## Git configuration
 ##
 alias git_prune='git branch -r | awk "{print $1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print $1}" | xargs git branch -d'
-source ~/.git-completion.bash
+source ~/Projects/system/dotfiles/git/git-completion.bash
 
 ##
 ## Google Cloud
@@ -131,7 +131,7 @@ export PATH=$PATH:~/Projects/system/google_appengine/
 ##
 ## Django completion
 ##
-source ~/.django_bash_completion.bash
+source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
 
 ##
 ## File or directory size
@@ -176,8 +176,3 @@ function file_count() {
     done
     echo "Total number of files: "$t
 }
-
-##
-## Private setup
-##
-## source ~/.private_setup
