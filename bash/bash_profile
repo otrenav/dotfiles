@@ -49,8 +49,9 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
 fi
 
+## TODO: Para qu'e?
 ## Add Ruby gems into the path
-PATH="$(ruby -e 'print Gem.user_dir')/bin/:$PATH"
+# PATH="$(ruby -e 'print Gem.user_dir')/bin/:$PATH"
 
 export PATH
 
