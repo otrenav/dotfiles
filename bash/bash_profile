@@ -59,10 +59,12 @@ export PATH
 ## Aliases
 ##
 alias grep='grep --color=auto'
+alias gg='grep --color=auto -rnwi . -e'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
+alias dj='./manage.py runserver'
 
 ##
 ## R setup
@@ -130,7 +132,7 @@ export PATH=$PATH:~/Projects/system/google_appengine/
 # fi
 
 ##
-## Django completion
+## Django
 ##
 source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
 
