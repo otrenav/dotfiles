@@ -57,7 +57,6 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
-alias dj='./manage.py runserver'
 
 ##
 ## R setup
@@ -77,7 +76,7 @@ HISTCONTROL=ignoredups:ignorespace
 
 ## Check window size after each
 ## command to adjust accordingly
-shopt -s checkwinsize
+# shopt -s checkwinsize
 
 ##
 ## ITAM Research
@@ -128,6 +127,8 @@ export PATH=$PATH:~/Projects/system/google_appengine/
 ## Django
 ##
 source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
+alias dj='./manage.py runserver'
+alias ds='./manage.py shell_plus'
 
 ##
 ## File or directory size
