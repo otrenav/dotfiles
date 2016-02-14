@@ -35,17 +35,10 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
     alias firefox-otrenav='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "otrenav" &'
     alias firefox-datata='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "datata" &'
-    alias start_mysql='sudo /usr/local/mysql/support-files/mysql.server start'
-    alias stop_mysql='sudo /usr/local/mysql/support-files/mysql.server stop'
-    alias start_arangodb='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.arangodb.plist'
-    alias stop_arangodb='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.arangodb.plist'
-    alias start_cassandra='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist'
-    alias stop_cassandra='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist'
-    alias start_mongodb='sudo launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist'
-    alias stop_mongodb='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist'
-    alias start_elasticsearch='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist'
-    alias stop_elasticsearch='sudo launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist'
-    ## To start orientdb use: $ orientdb <start|stop|status> or orientdb-console or orientdb-gremlin
+    # alias start_mysql='sudo launchctl load -F /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
+    # alias stop_mysql='sudo launchctl unload -F /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
+    alias start_mysql='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+    alias stop_mysql='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
     export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
 fi
 
