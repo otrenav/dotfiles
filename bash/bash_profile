@@ -173,3 +173,14 @@ function file_count() {
     done
     echo "Total number of files: "$t
 }
+
+
+##
+## Switch `score_group` database
+##
+function switch_database() {
+    echo "[+] Switching database for Score Group..."
+    mysql -u root < ~/Projects/system/dotfiles/sql/switch_database.sql
+    mysql -u root score_group < $1
+    echo "[+] Done."
+}
