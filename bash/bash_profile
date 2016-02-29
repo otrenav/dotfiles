@@ -58,6 +58,7 @@ alias egrep='egrep --color=auto'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
 alias clean='find . -name "*.pyc" -exec rm {} \;'
+alias kp='killall python'
 
 ##
 ## R setup
