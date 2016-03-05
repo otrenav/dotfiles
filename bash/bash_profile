@@ -102,11 +102,11 @@ source ~/Projects/system/dotfiles/git/git-completion.bash
 ##
 ## Google Cloud
 ##
-if [ -e ~/Projects/system/google-cloud-sdk/completion.bash.inc ]; then
-    source ~/Projects/system/google-cloud-sdk/path.bash.inc
-    source ~/Projects/system/google-cloud-sdk/completion.bash.inc
+if [ -e ~/Projects/system/google-cloud/completion.bash.inc ]; then
+    source ~/Projects/system/google-cloud/path.bash.inc
+    source ~/Projects/system/google-cloud/completion.bash.inc
 fi
-export PATH=$PATH:~/Projects/system/google_appengine/
+# export PATH=$PATH:~/Projects/system/google_appengine/
 
 ##
 ## Emacs
