@@ -129,7 +129,7 @@ fi
 ## Django
 ##
 source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
-alias dj='./manage.py runserver'
+alias dj='./manage.py runserver_plus'
 alias ds='./manage.py shell_plus'
 
 ##
