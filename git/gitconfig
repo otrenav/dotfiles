@@ -6,6 +6,7 @@
 	smudge = git-media-smudge %f
 [core]
 	editor = emacs
+	excludesfile = ~/Projects/system/dotfiles/git/global_ignore
 [color]
 	ui = true
 [git-up "fetch"]
