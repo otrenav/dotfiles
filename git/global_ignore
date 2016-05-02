@@ -1,13 +1,13 @@
 #
 # Compiled source
 #
-*.com
 *.class
+*.com
 *.dll
 *.exe
 *.o
-*.so
 *.pyc
+*.so
 
 #
 # Packages
@@ -33,62 +33,57 @@
 #
 .DS_Store
 .DS_Store?
-._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
+._*
 Thumbs.db
-*~
+ehthumbs.db
 
 #
 # NodeJS
 #
-logs
-pids
 *.pid
 *.seed
-lib-cov
-coverage
 .grunt
 .lock-wscript
-build/Release
-node_modules
+coverage
+lib-cov
+logs
+node_modules/
+pids
 
 #
 # Python
 #
-__pycache__/
-*.py[cod]
-*.so
-.Python
-env/
-build/
-develop-eggs/
-downloads/
-eggs/
-lib/
-libs/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
 *.egg
+*.egg-info/
 *.manifest
-*.spec
-pip-log.txt
-pip-delete-this-directory.txt
-htmlcov/
-.tox/
-.coverage
-.cache
-nosetests.xml
-coverage.xml
 *.mo
 *.pot
+*.py[cod]
+*.so
+*.spec
+.Python
+.cache
+.coverage
+.installed.cfg
+.tox/
+__pycache__/
+build/
+coverage.xml
+develop-eggs/
 docs/_build/
+eggs/
+env/
+htmlcov/
+lib/
+lib64/
+libs/
+nosetests.xml
+pip-delete-this-directory.txt
+pip-log.txt
 target/
+var/
 
 #
 # R
@@ -109,12 +104,13 @@ target/
 #
 # Build systems
 #
-node_modules/
-bower_components/
-.sass-cache
 *.css.map
+.sass-cache
+bower_components/
 build/
 dist/
+sdist/
+
 
 #
 # Text editors
@@ -124,3 +120,10 @@ dist/
 .system-ca-bundle
 r.db
 *~
+
+#
+# Netbeans Projects
+#
+nbproject/
+!project.properties
+!project.xml
