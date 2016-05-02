@@ -131,6 +131,7 @@ fi
 source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
 alias dj='./manage.py runserver_plus'
 alias ds='./manage.py shell_plus'
+alias clean_migrations='find . -name "000*.py*" -exec rm {} \;'
 
 ##
 ## File or directory size
