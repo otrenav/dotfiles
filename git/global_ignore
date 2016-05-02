@@ -124,6 +124,10 @@ r.db
 #
 # Netbeans Projects
 #
-nbproject/
 !project.properties
 !project.xml
+.nb-gradle/
+nbactions.xml
+nbbuild/
+nbdist/
+nbproject/
