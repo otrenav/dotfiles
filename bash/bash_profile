@@ -42,10 +42,6 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
 fi
 
-## TODO: Para qu'e?
-## Add Ruby gems into the path
-# PATH="$(ruby -e 'print Gem.user_dir')/bin/:$PATH"
-
 export PATH
 
 ##
@@ -57,8 +53,12 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias p='cd ~/Projects; ls;'
 alias d='cd ~/Downloads; ls;'
-alias clean='find . -name "*.pyc" -exec rm {} \;'
+alias s='cd ~/Projects/datata/score-data/project/; ls;'
+alias m='./manage.py'
+alias rm_pyc='find . -name "*.pyc" -exec rm {} \;'
+alias rm_migrations='find . -name "000*.py*" -exec rm {} \;'
 alias kp='killall python'
+alias file_count='find . -type -f | wc -l'
 
 ##
 ## R setup
@@ -162,21 +162,6 @@ function gud() {
         cd ..
     done
 }
-
-##
-## Count total number of files
-## in a folder, including symlinks
-##
-function file_count() {
-    total=0;
-    for object in `find . -type l`; do
-        count_in_folder=`find $object"/" | wc -l;`
-        echo "Count in current $l/: $count_in_folder"
-        let total=$total+$count_in_folder
-    done
-    echo "Total number of files: "$t
-}
-
 
 ##
 ## Switch `score_group` database
