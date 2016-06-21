@@ -1,52 +1,31 @@
 #!/usr/bin/env bash
 
-## Author:     Omar Trejo
-## IRC handle: otrenav
-## IRC server: freenode
-
-##
-## OS specific configuration
-##
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
     ##
     ## Linux setup
     ##
-    export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
     alias ls='ls -lGF --color=auto'
     alias lsall='ls -flaF --color=auto'
-    alias firefox-otrenav='firefox -no-remote -P "otrenav" &'
-    alias firefox-datata='firefox -no-remote -P "datata" &'
-    # export PATH="$HOME/.linuxbrew/bin:$PATH"
-    # export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-    # export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+    export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
+    double_click='xdg-open'
 elif [[ "$unamestr" == 'Darwin' ]]; then
     ##
     ## Mac setup
     ##
-    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
     alias ls='ls -lGF'
     alias lsall='ls -flaF'
     alias R='R --no-save --quite'
     alias r='R --no-save --quite'
     alias matlab='matlab -nodesktop -nosplash'
-    alias photoshop='open -a "Adobe Photoshop CS6"'
     alias julia='/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia'
-    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
-    alias firefox-otrenav='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "otrenav" &'
-    alias firefox-datata='/Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "datata" &'
-    # alias start_mysql='sudo launchctl load -F /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
-    # alias stop_mysql='sudo launchctl unload -F /Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist'
     alias start_mysql='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
     alias stop_mysql='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-    export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
+    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
 fi
 
 export PATH
 
-##
-## Aliases
-##
 alias grep='grep --color=auto'
 alias gg='grep --color=auto -rnwi . -e'
 alias fgrep='fgrep --color=auto'
@@ -61,7 +40,7 @@ alias kp='killall python'
 alias file_count='find . -type -f | wc -l'
 
 ##
-## R setup
+## R
 ##
 export R_PROFILE_USER='~/.Rprofile'
 
@@ -73,12 +52,7 @@ export BASH_IT_THEME='otrenav'
 if [ -e $BASH_IT/bash_it.sh ]; then
     source $BASH_IT/bash_it.sh
 fi
-
 HISTCONTROL=ignoredups:ignorespace
-
-## Check window size after each
-## command to adjust accordingly
-# shopt -s checkwinsize
 
 ##
 ## ITAM Research
@@ -96,8 +70,8 @@ source `which virtualenvwrapper.sh`
 ##
 ## Git configuration
 ##
-alias git_prune='git branch -r | awk "{print $1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print $1}" | xargs git branch -d'
 source ~/Projects/system/dotfiles/git/git-completion.bash
+alias git_prune='git branch -r | awk "{print $1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print $1}" | xargs git branch -d'
 
 ##
 ## Google Cloud
@@ -106,30 +80,32 @@ if [ -e ~/Projects/system/google-cloud/completion.bash.inc ]; then
     source ~/Projects/system/google-cloud/path.bash.inc
     source ~/Projects/system/google-cloud/completion.bash.inc
 fi
-# export PATH=$PATH:~/Projects/system/google_appengine/
+
 
 ##
 ## Emacs
 ##
-# if [[ "$unamestr" == 'Linux' ]]; then
-#     # export EDITOR=emacsclient
-#     # export VISUAL=emacsclient
-#     # export ALTERNATE_EDITOR=""
-#     function emacs() {
-#         emacsclient -c -a "" "$@" &
-#     }
-# fi
-# elif [[ "$unamestr" == 'Darwin' ]]; then
-#     function emacs() {
-#         emacsclient -c -a "" "$@"
-#     }
-# fi
+if [[ "$unamestr" == 'Linux' ]]; then
+    export kill_emacs="emacsclient -e '(save-buffers-kill-emacs)'"
+    export EDITOR="emacsclient -t"
+    export VISUAL="emacsclient -c -a emacs"
+    export ALTERNATE_EDITOR=""
+    function emax() {
+        emacsclient -c -a "emacs" "$@" &
+    }
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+    export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
+    # function emacs() {
+    #     emacsclient -c -a "" "$@"
+    # }
+fi
 
 ##
 ## Django
 ##
 source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
-alias dj='./manage.py runserver_plus'
+alias dj='./manage.py runserver'
 alias ds='./manage.py shell_plus'
 alias clean_migrations='find . -name "000*.py*" -exec rm {} \;'
 
