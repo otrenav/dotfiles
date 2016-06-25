@@ -6,7 +6,7 @@ If you want my help, you can reach me through:
 
 # Dotfile configurations
 
-In this repository you will find my configuration for Bash, Bash-it, Git, iTerm, and others.
+In this repository you will find [Omar Trejo](https://www.linkedin.com/in/otrenav)'s configuration for Bash, Bash-it, Git, iTerm, and others.
 
 This will probably not be useful to you as it's very customized to my needs, but I'm putting it here for convenience and for anyone that may find something interesting in it. I will not accept any pull-requests as it's my own configuration.
 
