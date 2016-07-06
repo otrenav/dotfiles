@@ -145,6 +145,6 @@ function gud() {
 function switch_database() {
     echo "[+] Switching database for Score Group..."
     mysql -u root < ~/Projects/system/dotfiles/sql/switch_database.sql
-    mysql -u root score_group < $1
+    mysql -u root development < $1
     echo "[+] Done."
 }

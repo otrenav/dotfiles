@@ -1,2 +1,2 @@
-drop database score_group;
-create database score_group;
+drop database development;
+create database development;
