@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+SCM_THEME_PROMPT_PREFIX="("
+SCM_THEME_PROMPT_SUFFIX=")"
+SCM_THEME_PROMPT_DIRTY=" X"
+SCM_THEME_PROMPT_CLEAN=" ✓"
+
+function virtualenv_prompt() {
+    if [ ! -z "$VIRTUAL_ENV" ]
+    then
+        env=$(basename "$VIRTUAL_ENV")
+        echo "(${env})"
+    fi
+}
+
+prompt() {
+    local env="$(virtualenv_prompt)"
+    local git=""
+    if [ ! -z "$(scm_prompt_info)" ]
+    then
+        local git="$(scm_prompt_info)"
+    fi
+    PS1="${git}${env}[\W] "
+}
+
+PROMPT_COMMAND=prompt
