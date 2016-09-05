@@ -2,19 +2,9 @@
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
-    ##
-    ## Linux setup
-    ##
-    alias ls='ls -lGF --color=auto'
-    alias lsall='ls -flaF --color=auto'
-    export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
     double_click='xdg-open'
+    export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
 elif [[ "$unamestr" == 'Darwin' ]]; then
-    ##
-    ## Mac setup
-    ##
-    alias ls='ls -lGF'
-    alias lsall='ls -flaF'
     alias R='R --no-save --quite'
     alias r='R --no-save --quite'
     alias matlab='matlab -nodesktop -nosplash'
@@ -35,7 +25,6 @@ alias d='cd ~/Downloads; ls;'
 alias s='cd ~/Projects/datata/score-data/project/; ls;'
 alias m='./manage.py'
 alias rm_pyc='find . -name "*.pyc" -exec rm {} \;'
-alias rm_migrations='find . -name "000*.py*" -exec rm {} \;'
 alias kp='killall python'
 alias file_count='find . -type -f | wc -l'
 
@@ -57,12 +46,12 @@ HISTCONTROL=ignoredups:ignorespace
 ##
 ## ITAM Research
 ##
-export PROJECTS_PATH=~/Projects/itam/research
+export PROJECTS_PATH=~/Projects/teshima
 
 ##
 ## Virtual Environments for Python
 ##
-export WORKON_HOME=~/Projects/python/envs
+export WORKON_HOME=~/Projects/system/python/envs
 export VIRTUALENVWRAPPER_PYTHON=`which python`
 export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
 source `which virtualenvwrapper.sh`
@@ -107,7 +96,7 @@ fi
 source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
 alias dj='./manage.py runserver'
 alias ds='./manage.py shell_plus'
-alias clean_migrations='find . -name "000*.py*" -exec rm {} \;'
+alias rm_migrations='find . -name "000*.py*" -exec rm {} \;'
 
 ##
 ## File or directory size
@@ -148,3 +137,11 @@ function switch_database() {
     mysql development < $1
     echo "[+] Done."
 }
+
+if [[ "$unamestr" == 'Linux' ]]; then
+    alias ls='ls -lGF --color=auto'
+    alias lsall='ls -flaF --color=auto'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    alias ls='ls -lGF'
+    alias lsall='ls -flaF'
+fi
