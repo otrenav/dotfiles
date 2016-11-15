@@ -3,8 +3,12 @@
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
     double_click='xdg-open'
+    alias ls='ls -lGF --color=auto'
+    alias lsall='ls -flaF --color=auto'
     export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
 elif [[ "$unamestr" == 'Darwin' ]]; then
+    alias ls='ls -lGF'
+    alias lsall='ls -flaF'
     alias R='R --no-save --quite'
     alias r='R --no-save --quite'
     alias matlab='matlab -nodesktop -nosplash'
@@ -46,15 +50,7 @@ HISTCONTROL=ignoredups:ignorespace
 ##
 ## ITAM Research
 ##
-export PROJECTS_PATH=~/Projects/teshima
-
-##
-## Virtual Environments for Python
-##
-export WORKON_HOME=~/Projects/system/python/envs
-export VIRTUALENVWRAPPER_PYTHON=`which python`
-export VIRTUALENVWRAPPER_VIRTUALENV=`which virtualenv`
-source `which virtualenvwrapper.sh`
+export TESHIMA_PROJECTS_PATH=~/Projects/personal/teshima
 
 ##
 ## Git configuration
@@ -69,7 +65,6 @@ if [ -e ~/Projects/system/google-cloud/completion.bash.inc ]; then
     source ~/Projects/system/google-cloud/path.bash.inc
     source ~/Projects/system/google-cloud/completion.bash.inc
 fi
-
 
 ##
 ## Emacs
@@ -138,10 +133,47 @@ function switch_database() {
     echo "[+] Done."
 }
 
-if [[ "$unamestr" == 'Linux' ]]; then
-    alias ls='ls -lGF --color=auto'
-    alias lsall='ls -flaF --color=auto'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    alias ls='ls -lGF'
-    alias lsall='ls -flaF'
-fi
+##
+## Python
+##
+alias pip='pip2'
+alias python='python2'
+export CURRENT_PYTHON='2'
+export WORKON_HOME=~/Projects/system/python/envs
+VIRTUALENVWRAPPER_PYTHON=`which python2.7`
+source `which virtualenvwrapper.sh`
+
+function switch_python() {
+
+    ## Deactivate current virtual_env to avoid problems
+    export CURRENT_ENV="$VIRTUAL_ENV"
+    if [[ "$CURRENT_ENV" != "" ]]; then
+        deactivate
+    fi
+
+    ## Switch Python version
+    if [[ "$CURRENT_PYTHON" == '2' ]]; then
+        CURRENT_PYTHON='3'
+        alias python='python3'
+        alias pip='pip3'
+        VIRTUALENVWRAPPER_PYTHON=`which python3.5`
+        source `which virtualenvwrapper.sh`
+        echo ""
+        echo "[+] Python 3 activated"
+        echo ""
+    elif [[ "$CURRENT_PYTHON" == '3' ]]; then
+        CURRENT_PYTHON='2'
+        alias python='python2'
+        alias pip='pip2'
+        VIRTUALENVWRAPPER_PYTHON=`which python2.7`
+        source `which virtualenvwrapper.sh`
+        echo ""
+        echo "[+] Python 2 activated"
+        echo ""
+    fi
+
+    ## Re-activate the virtual environment
+    if [[ "$CURRENT_ENV" != "" ]]; then
+        workon "$(basename $CURRENT_ENV)"
+    fi
+}
