@@ -104,47 +104,47 @@ function switch_database() {
 ##
 ## Python
 ##
-alias pip='pip2'
-alias python='python2'
-export CURRENT_PYTHON='2'
+# alias pip='pip2'
+# alias python='python2.7'
+# export CURRENT_PYTHON='2'
 export WORKON_HOME=~/Projects/system/python/envs
 VIRTUALENVWRAPPER_PYTHON=`which python2.7`
 source `which virtualenvwrapper.sh`
 
-function switch_python() {
+# function switch_python() {
 
-    ## Deactivate current virtual_env to avoid problems
-    export CURRENT_ENV="$VIRTUAL_ENV"
-    if [[ "$CURRENT_ENV" != "" ]]; then
-        deactivate
-    fi
+#     ## Deactivate current virtual_env to avoid problems
+#     export CURRENT_ENV="$VIRTUAL_ENV"
+#     if [[ "$CURRENT_ENV" != "" ]]; then
+#         deactivate
+#     fi
 
-    ## Switch Python version
-    if [[ "$CURRENT_PYTHON" == '2' ]]; then
-        CURRENT_PYTHON='3'
-        alias python='python3'
-        alias pip='pip3'
-        VIRTUALENVWRAPPER_PYTHON=`which python3.5`
-        source `which virtualenvwrapper.sh`
-        echo ""
-        echo "[+] Python 3 activated"
-        echo ""
-    elif [[ "$CURRENT_PYTHON" == '3' ]]; then
-        CURRENT_PYTHON='2'
-        alias python='python2'
-        alias pip='pip2'
-        VIRTUALENVWRAPPER_PYTHON=`which python2.7`
-        source `which virtualenvwrapper.sh`
-        echo ""
-        echo "[+] Python 2 activated"
-        echo ""
-    fi
+#     ## Switch Python version
+#     if [[ "$CURRENT_PYTHON" == '2' ]]; then
+#         CURRENT_PYTHON='3'
+#         alias python='python3.5'
+#         alias pip='pip3'
+#         VIRTUALENVWRAPPER_PYTHON=`which python3.5`
+#         source `which virtualenvwrapper.sh`
+#         echo ""
+#         echo "[+] Python 3 activated"
+#         echo ""
+#     elif [[ "$CURRENT_PYTHON" == '3' ]]; then
+#         CURRENT_PYTHON='2'
+#         alias python='python2.7'
+#         alias pip='pip2'
+#         VIRTUALENVWRAPPER_PYTHON=`which python2.7`
+#         source `which virtualenvwrapper.sh`
+#         echo ""
+#         echo "[+] Python 2 activated"
+#         echo ""
+#     fi
 
-    ## Re-activate the virtual environment
-    if [[ "$CURRENT_ENV" != "" ]]; then
-        workon "$(basename $CURRENT_ENV)"
-    fi
-}
+#     ## Re-activate the virtual environment
+#     if [[ "$CURRENT_ENV" != "" ]]; then
+#         workon "$(basename $CURRENT_ENV)"
+#     fi
+# }
 
 ##
 ## Aliases
