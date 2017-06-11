@@ -1,0 +1,8 @@
+
+.libPaths(c("~/Projects/system/r/", .libPaths()))
+
+Sys.setlocale("LC_ALL", 'en_US.UTF-8')
+
+PROJECTS_PATH <- "~/Projects/personal/teshima/"
+PLATFORM_APIS_DIRECTORY <- "~/Projects/datata/"
+
