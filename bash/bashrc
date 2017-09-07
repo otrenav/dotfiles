@@ -181,3 +181,10 @@ alias m='./manage.py'
 alias rm_pyc='find . -name "*.pyc" -exec rm {} \;'
 alias kp='killall python'
 alias file_count='find . -type -f | wc -l'
+
+function sk() {
+    gpg $1
+    f=$(echo $1 | sed 's/\.[^.]*$//')
+    more "${f}"
+    rm "${f}"
+}
