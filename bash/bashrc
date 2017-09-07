@@ -1,13 +1,41 @@
 #!/usr/bin/env bash
 
-##
-## R
-##
+#
+# Aliases
+#
+alias grep='grep --color=auto'
+alias gg='grep --color=auto -rnwi . -e'
+alias p='cd ~/Projects; ls;'
+alias d='cd ~/Downloads; ls;'
+alias file_count='find . -type -f | wc -l'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    double_click='xdg-open'
+    alias lsall='ls -flaF --color=auto'
+    alias ls='ls -lGF --color=auto'
+    # TODO: Check this is updated
+    export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    alias lsall='ls -flaF'
+    alias ls='ls -lGF'
+    alias julia='/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia'
+    alias start_mysql='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+    alias stop_mysql='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
+    # TODO: Check this is updated
+    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
+fi
+export PATH
+
+#
+# R
+#
+alias R='R --no-save'
+alias r='R --no-save'
 export R_PROFILE_USER='~/.Rprofile'
 
-##
-## BASH-IT (terminal customization)
-##
+#
+# Bash-It
+#
 export BASH_IT=$HOME/.bash_it
 export BASH_IT_THEME='otrenav'
 if [ -e $BASH_IT/bash_it.sh ]; then
@@ -15,28 +43,22 @@ if [ -e $BASH_IT/bash_it.sh ]; then
 fi
 HISTCONTROL=ignoredups:ignorespace
 
-##
-## ITAM Research
-##
-export TESHIMA_PROJECTS_PATH=~/Projects/personal/teshima
-
-##
-## Git configuration
-##
+#
+# Git
+#
 source ~/Projects/system/dotfiles/git/git-completion.bash
-alias git_prune='git branch -r | awk "{print $1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print $1}" | xargs git branch -d'
 
-##
-## Google Cloud
-##
+#
+# Google Cloud
+#
 if [ -e ~/Projects/system/google-cloud/completion.bash.inc ]; then
     source ~/Projects/system/google-cloud/path.bash.inc
     source ~/Projects/system/google-cloud/completion.bash.inc
 fi
 
-##
-## Emacs
-##
+#
+# Emacs
+#
 if [[ "$unamestr" == 'Linux' ]]; then
     export kill_emacs="emacsclient -e '(save-buffers-kill-emacs)'"
     export EDITOR="emacsclient -t"
@@ -48,22 +70,39 @@ if [[ "$unamestr" == 'Linux' ]]; then
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
     export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
-    # function emacs() {
-    #     emacsclient -c -a "" "$@"
-    # }
 fi
 
-##
-## Django
-##
-source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
+#
+# Score Data
+#
+alias s='cd ~/Projects/datata/score-data/project/; ls;'
+function switch_database() {
+    echo "[+] Switching database (development) for Score Data..."
+    mysql -u root < ~/Projects/system/dotfiles/sql/switch_database.sql
+    mysql -u root development < $1
+    echo "[+] Done."
+}
+
+#
+# Python
+#
+alias kp='killall python'
+alias rm_pyc='find . -name "*.pyc" -exec rm {} \;'
+export WORKON_HOME=~/Projects/system/python/envs
+source `which virtualenvwrapper.sh`
+
+#
+# Django
+#
+alias m='./manage.py'
 alias dj='./manage.py runserver'
 alias ds='./manage.py shell_plus'
 alias rm_migrations='find . -name "000*.py*" -exec rm {} \;'
+source ~/Projects/system/dotfiles/bash/scripts/django_bash_completion.bash
 
-##
-## File or directory size
-##
+#
+# Functions
+#
 function file_directory_size() {
     if du -b /dev/null > /dev/null 2>&1; then
         local arg=-sbh
@@ -76,111 +115,6 @@ function file_directory_size() {
         du $arg .[^.]* *
     fi
 }
-
-##
-## Update all projects in directory
-## GUD := Git Up Directories
-##
-function gud() {
-    for d in */; do
-        echo $d
-        cd $d
-        git up
-        echo " "
-        cd ..
-    done
-}
-
-##
-## Switch `score_group` database
-##
-function switch_database() {
-    echo "[+] Switching database (development) for Score Data..."
-    mysql < ~/Projects/system/dotfiles/sql/switch_database.sql
-    mysql development < $1
-    echo "[+] Done."
-}
-
-##
-## Python
-##
-# alias pip='pip2'
-# alias python='python2.7'
-# export CURRENT_PYTHON='2'
-export WORKON_HOME=~/Projects/system/python/envs
-VIRTUALENVWRAPPER_PYTHON=`which python2.7`
-source `which virtualenvwrapper.sh`
-
-# function switch_python() {
-
-#     ## Deactivate current virtual_env to avoid problems
-#     export CURRENT_ENV="$VIRTUAL_ENV"
-#     if [[ "$CURRENT_ENV" != "" ]]; then
-#         deactivate
-#     fi
-
-#     ## Switch Python version
-#     if [[ "$CURRENT_PYTHON" == '2' ]]; then
-#         CURRENT_PYTHON='3'
-#         alias python='python3.5'
-#         alias pip='pip3'
-#         VIRTUALENVWRAPPER_PYTHON=`which python3.5`
-#         source `which virtualenvwrapper.sh`
-#         echo ""
-#         echo "[+] Python 3 activated"
-#         echo ""
-#     elif [[ "$CURRENT_PYTHON" == '3' ]]; then
-#         CURRENT_PYTHON='2'
-#         alias python='python2.7'
-#         alias pip='pip2'
-#         VIRTUALENVWRAPPER_PYTHON=`which python2.7`
-#         source `which virtualenvwrapper.sh`
-#         echo ""
-#         echo "[+] Python 2 activated"
-#         echo ""
-#     fi
-
-#     ## Re-activate the virtual environment
-#     if [[ "$CURRENT_ENV" != "" ]]; then
-#         workon "$(basename $CURRENT_ENV)"
-#     fi
-# }
-
-##
-## Aliases
-##
-
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-    double_click='xdg-open'
-    alias lsall='ls -flaF --color=auto'
-    alias ls='ls -lGF --color=auto'
-    export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    alias lsall='ls -flaF'
-    alias ls='ls -lGF'
-    alias R='R --no-save --quite'
-    alias r='R --no-save --quite'
-    alias matlab='matlab -nodesktop -nosplash'
-    alias julia='/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia'
-    alias start_mysql='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-    alias stop_mysql='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-    export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
-fi
-
-export PATH
-
-alias grep='grep --color=auto'
-alias gg='grep --color=auto -rnwi . -e'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias p='cd ~/Projects; ls;'
-alias d='cd ~/Downloads; ls;'
-alias s='cd ~/Projects/datata/score-data/project/; ls;'
-alias m='./manage.py'
-alias rm_pyc='find . -name "*.pyc" -exec rm {} \;'
-alias kp='killall python'
-alias file_count='find . -type -f | wc -l'
 
 function sk() {
     gpg $1
