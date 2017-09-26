@@ -6,7 +6,7 @@
 	smudge = git-media-smudge %f
 [core]
 	editor = emacs
-	excludesfile = ~/Projects/system/dotfiles/git/global_ignore
+	excludesfile = ~/Projects/system/dotfiles/git/global-ignore
 [color]
 	ui = true
 [git-up "fetch"]
@@ -22,9 +22,7 @@
     last = log -1 HEAD
     cm = !git add -A && git commit -m
     undo = reset HEAD~1 --mixed
-    amend = commit -a --amend'
-    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
-    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+    amend = commit -a --amend
 [diff]
 	tool = meld
 [filter "lfs"]
