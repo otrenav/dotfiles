@@ -8,22 +8,17 @@ alias d='cd ~/Downloads; ls;'
 alias grep='grep --color=auto'
 alias gg='grep --color=auto -rnwi . -e'
 alias file_count='find . -type f | wc -l'
-unamestr=`uname`
 
+unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
     double_click='xdg-open'
-    alias lsall='ls -flaF --color=auto'
     alias ls='ls -lGF --color=auto'
-    # # TODO: Check this is updated
-    # export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
+    alias lsall='ls -flaF --color=auto'
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ls='ls -lGF'
     alias lsall='ls -flaF'
-    alias julia='/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia'
     alias start_mysql='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
     alias stop_mysql='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-    # # TODO: Check this is updated
-    # export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/texbin:/bin:/sbin:${PATH}"
 fi
 
 #
@@ -31,7 +26,7 @@ fi
 #
 alias R='R --no-save'
 alias r='R --no-save'
-export R_PROFILE_USER='~/.Rprofile'
+export R_PROFILE_USER='~/Projects/system/dotfiles/r/Rprofile'
 
 #
 # Bash-It
@@ -60,9 +55,9 @@ fi
 # Emacs
 #
 if [[ "$unamestr" == 'Linux' ]]; then
-    export EDITOR="emacsclient -t"
-    export VISUAL="emacsclient -c -a emacs"
     export ALTERNATE_EDITOR=""
+    alias emacs="emacsclient -c -n"
+    export EDITOR="emacsclient -c -n"
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
     export EDITOR="/Applications/Emacs.app/Contents/MacOS/Emacs"
@@ -74,8 +69,8 @@ fi
 alias s='cd ~/Projects/datata/score-data/project/; ls;'
 function switch_database() {
     echo "[+] Switching database (development) for Score Data..."
-    mysql -u root < ~/Projects/system/dotfiles/sql/switch_database.sql
-    mysql -u root development < $1
+    mysql < ~/Projects/system/dotfiles/sql/switch_database.sql
+    mysql development < $1
     echo "[+] Done."
 }
 
