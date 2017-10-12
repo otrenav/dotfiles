@@ -9,7 +9,7 @@ sudo apt install cpufrequtils gdebi hexchat clipit
 sudo apt install ubuntu-gnome-desktop gnome-shell gnome-tweak-tool gdm3
 
 # Development
-sudo apt install git emacs guake jekyll libssl-dev meld pandoc parallel apt-transport-https ca-certificates curl software-properties-common
+sudo apt install git emacs guake jekyll libssl-dev meld pandoc parallel apt-transport-https ca-certificates curl software-properties-common libcurl4-openssl-dev
 
 # SQL Databases
 sudo apt install mysql-client mysql-server postgresql-common libmysqlclient-dev
