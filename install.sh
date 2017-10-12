@@ -1,36 +1,92 @@
+#
+# System Installation
+#
 
-# TODO: Adjust for Mac
-# rm ~/.bash_profile
+# Ubuntu generics
+sudo apt install cpufrequtils gdebi hexchat clipit
 
-rm ~/.bashrc
+# Desktop environment
+sudo apt install ubuntu-gnome-desktop gnome-shell gnome-tweak-tool gdm3
+
+# Development
+sudo apt install git emacs guake jekyll libssl-dev meld pandoc parallel apt-transport-https ca-certificates curl software-properties-common
+
+# SQL Databases
+sudo apt install mysql-client mysql-server postgresql-common libmysqlclient-dev
+
+# Python
+sudo apt install python3-dev python3-pip python-dev python-pip
+sudo pip install virtualenvwrapper pyopenssl ipython
+
+# R
+sudo apt install r-base gfortran
+
+# JavaScript
+# https://stackoverflow.com/questions/43590776/install-node-6-9-on-ubuntu-zesty-17-04
+# sudo apt install nodejs npm
+# sudo npm install @angular/cli
+
+# Ruby
+sudo apt install ruby ruby-dev
+
+# Media
+sudo apt install audacity gimp inkscape kazam vlc
+
+# Virtualization
+sudo apt isntall virtualbox
 
 # Docker
-# sudo apt install docker-ce
-
-# Dropbox
-# sudo apt install dropbox
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update
+sudo apt install docker-ce
+sudo docker run hello-world
 
 # Google Chrome
-# sudo apt install google-chrome-stable
-
-# Insync
-# sudo apt install insync
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt install google-chrome-stable
 
 # Mongo
-# sudo apt isntall mongodb
+# NOTE: There's no Mongo repo for non-LTS Ubuntu
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+echo "deb [arch=amd64] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+sudo apt update
+sudo apt install mongodb-org
 
-# Themes
-# Theme: OSX Arc Darker
-# sudo apt install numix-icon-theme-circle
+# Numix icons
+sudo add-apt-repository ppa:numix/ppa
+sudo apt-get update
+sudo apt-get install numix-icon-theme-circle
+
+# OSX Arc theme
+google-chrome https://github.com/LinxGem33/OSX-Arc-Darker
+
+# Insync
+google-chrome https://www.insynchq.com/downloads
+
+# Dropbox
+google-chrome https://www.dropbox.com
 
 # Skype
-# sudo apt install skypeforlinux
+google-chrome https://www.skype.com/en/download-skype/skype-for-computer/
 
 # Spotify
-# sudo apt install spotify-client
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt update
+sudo apt install spotify-client
 
-# Ubuntu native packages
-sudo apt install audacity autoconf automake bundler clipit cpufrequtils emacs gdebi gdm3 gimp git gnome-shell gnome-tweak-tool guake hexchat inkscape jekyll kazam libmysqlclient-dev libssl-dev meld mysql-client mysql-server mythes-en-au nodejs-legacy npm pandoc parallel postgresql-common python3-dev python3-pip python-dev python-pip r-base ruby ruby-dev ubuntu-gnome-desktop virtualbox vlc
+# To remove notifications
+# echo "ui.track_notifications_enabled=false" > ~/.config/spotify/Users/<USER>/prefs
+
+#
+# Configuration
+#
+
+rm ~/.bashrc
 
 # Bash
 ln -s /home/otrenav/Projects/system/dotfiles/bash/bashrc /home/otrenav/.bashrc
@@ -46,5 +102,6 @@ ln -s /home/otrenav/Projects/system/dotfiles/bash/otrenav.theme.bash /home/otren
 # Emacs
 source ~/Projects/system/spacemacs/install.sh
 
-# Pip
-sudo pip install virtualenvwrapper pyopenssl ipython
+# R
+mkdir ~/Projects/system/r/
+Rscript ~/Projects/system/dotfiles/r/base_packages.R

@@ -57,6 +57,7 @@ fi
 if [[ "$unamestr" == 'Linux' ]]; then
     export ALTERNATE_EDITOR=""
     alias emacs="emacsclient -c -n"
+    alias emacss="/usr/bin/emacs"
     export EDITOR="emacsclient -c -n"
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
