@@ -16,7 +16,7 @@ sudo apt install mysql-client mysql-server postgresql-common libmysqlclient-dev
 
 # Python
 sudo apt install python3-dev python3-pip python-dev python-pip
-sudo pip install virtualenvwrapper pyopenssl ipython
+sudo pip install virtualenvwrapper pyopenssl ipython git-up
 
 # R
 sudo apt install r-base gfortran
