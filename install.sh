@@ -1,5 +1,5 @@
 #
-# System Installation
+# System Installation (non-idempotent)
 #
 
 # Ubuntu generics
@@ -15,19 +15,19 @@ sudo apt install git emacs guake jekyll libssl-dev meld pandoc parallel apt-tran
 sudo apt install mysql-client mysql-server postgresql-common libmysqlclient-dev
 
 # Python
-sudo apt install python3-dev python3-pip python-dev python-pip
-sudo pip install virtualenvwrapper pyopenssl ipython
+sudo apt install python3-dev python3-pip python-dev python-pip python-software-properties
+sudo pip install virtualenvwrapper pyopenssl ipython git-up
 
 # R
 sudo apt install r-base gfortran
 
-# JavaScript
-# https://stackoverflow.com/questions/43590776/install-node-6-9-on-ubuntu-zesty-17-04
-# sudo apt install nodejs npm
-# sudo npm install @angular/cli
-
 # Ruby
 sudo apt install ruby ruby-dev
+
+# JavaScript
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt install nodejs
+sudo npm install -g @angular/cli
 
 # Media
 sudo apt install audacity gimp inkscape kazam vlc
