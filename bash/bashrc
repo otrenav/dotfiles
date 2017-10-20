@@ -114,3 +114,8 @@ function show_keys() {
     more "${f}"
     rm "${f}"
 }
+
+#
+# AWS
+#
+alias dynamodb='java -Djava.library.path=~/Applications/DynamoDB/DynamoDBLocal_lib -jar ~/Applications/DynamoDB/DynamoDBLocal.jar -sharedDb'
