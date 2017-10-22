@@ -113,3 +113,8 @@ source ~/Projects/system/spacemacs/install.sh
 # R
 mkdir ~/Projects/system/r/
 Rscript ~/Projects/system/dotfiles/r/base_packages.R
+
+# GIS
+# sudo add-apt-repository ppa:ubuntugis/ppa
+# sudo apt update
+sudo apt install gdal-bin libgdal-dev
