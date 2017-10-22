@@ -121,3 +121,6 @@ sudo apt install gdal-bin libgdal-dev
 
 # RGL (R 3D Graphs)
 sudo apt install libglu1-mesa-dev
+
+# Latex
+sudo apt install texlive-latex-base texlive-latex-extra
