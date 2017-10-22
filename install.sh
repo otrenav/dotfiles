@@ -41,7 +41,7 @@ sudo npm install -g @angular/cli
 sudo apt install audacity gimp inkscape kazam vlc jekyll
 
 # Virtualization
-sudo apt isntall virtualbox
+sudo apt install virtualbox
 
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -63,6 +63,17 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A1
 echo "deb [arch=amd64] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 sudo apt update
 sudo apt install mongodb-org
+
+# GIS (R ARCGIS)
+# sudo add-apt-repository ppa:ubuntugis/ppa
+# sudo apt update
+sudo apt install gdal-bin libgdal-dev
+
+# RGL (R 3D Graphs)
+sudo apt install libglu1-mesa-dev
+
+# Latex
+sudo apt install texlive-latex-base texlive-latex-extra
 
 # Numix icons
 sudo add-apt-repository ppa:numix/ppa
@@ -113,14 +124,3 @@ source ~/Projects/system/spacemacs/install.sh
 # R
 mkdir ~/Projects/system/r/
 Rscript ~/Projects/system/dotfiles/r/base_packages.R
-
-# GIS (R ARCGIS)
-# sudo add-apt-repository ppa:ubuntugis/ppa
-# sudo apt update
-sudo apt install gdal-bin libgdal-dev
-
-# RGL (R 3D Graphs)
-sudo apt install libglu1-mesa-dev
-
-# Latex
-sudo apt install texlive-latex-base texlive-latex-extra
