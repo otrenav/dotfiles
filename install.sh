@@ -114,7 +114,10 @@ source ~/Projects/system/spacemacs/install.sh
 mkdir ~/Projects/system/r/
 Rscript ~/Projects/system/dotfiles/r/base_packages.R
 
-# GIS
+# GIS (R ARCGIS)
 # sudo add-apt-repository ppa:ubuntugis/ppa
 # sudo apt update
 sudo apt install gdal-bin libgdal-dev
+
+# RGL (R 3D Graphs)
+sudo apt install libglu1-mesa-dev
