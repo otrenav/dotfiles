@@ -1,6 +1,11 @@
 
 .libPaths(c("~/Projects/system/r/", .libPaths()))
 
+local({r <- getOption("repos")
+       r["CRAN"] <- "https://cran.itam.mx/"
+       options(repos=r)
+})
+
 Sys.setlocale("LC_ALL", 'en_US.UTF-8')
 
 PLATFORM_APIS_DIRECTORY <- "~/Projects/datata/"

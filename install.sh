@@ -27,6 +27,8 @@ sudo apt install python3-dev python3-pip python-dev python-pip python-software-p
 sudo pip install virtualenvwrapper pyopenssl ipython git-up
 
 # R
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo apt update
 sudo apt install r-base gfortran
 
 # Ruby
