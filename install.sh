@@ -9,7 +9,15 @@ sudo apt install cpufrequtils gdebi hexchat clipit
 sudo apt install ubuntu-gnome-desktop gnome-shell gnome-tweak-tool gdm3
 
 # Development
-sudo apt install git emacs guake jekyll libssl-dev meld pandoc parallel apt-transport-https ca-certificates curl software-properties-common libcurl4-openssl-dev
+sudo apt install emacs guake libssl-dev meld pandoc parallel apt-transport-https ca-certificates curl software-properties-common libcurl4-openssl-dev python-software-properties
+
+# Git
+sudo apt install git software-properties-common python-software-properties
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+sudo apt-get install git-lfs
+git lfs install
 
 # SQL Databases
 sudo apt install mysql-client mysql-server postgresql-common libmysqlclient-dev
@@ -30,7 +38,7 @@ sudo apt install nodejs
 sudo npm install -g @angular/cli
 
 # Media
-sudo apt install audacity gimp inkscape kazam vlc
+sudo apt install audacity gimp inkscape kazam vlc jekyll
 
 # Virtualization
 sudo apt isntall virtualbox
