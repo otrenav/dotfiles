@@ -39,6 +39,9 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt install nodejs
 sudo npm install -g @angular/cli
 
+# Java
+sudo apt install default-jre default-jdk
+
 # Media
 sudo apt install audacity gimp inkscape kazam vlc jekyll
 
