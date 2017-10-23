@@ -9,7 +9,7 @@ sudo apt install cpufrequtils gdebi hexchat clipit
 sudo apt install ubuntu-gnome-desktop gnome-shell gnome-tweak-tool gdm3
 
 # Development
-sudo apt install emacs guake libssl-dev meld pandoc parallel apt-transport-https ca-certificates curl software-properties-common libcurl4-openssl-dev python-software-properties
+sudo apt install emacs guake libssl-dev meld pandoc parallel apt-transport-https ca-certificates curl software-properties-common libcurl4-openssl-dev python-software-properties libcairo2-dev
 
 # Git
 sudo apt install git software-properties-common python-software-properties
