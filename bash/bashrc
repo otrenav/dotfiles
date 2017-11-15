@@ -119,3 +119,8 @@ function show_keys() {
 # AWS
 #
 alias dynamodb='java -Djava.library.path=~/Applications/DynamoDB/DynamoDBLocal_lib -jar ~/Applications/DynamoDB/DynamoDBLocal.jar -sharedDb'
+
+#
+# CVEST
+#
+export NODE_PATH=~/Projects/personal/cvest/cvest-app
