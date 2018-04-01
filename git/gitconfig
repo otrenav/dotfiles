@@ -1,6 +1,6 @@
 [user]
 	name = Omar Trejo
-	email = otrenav@gmail.com
+	email = omar@otrenav.com
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f

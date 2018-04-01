@@ -1,11 +1,11 @@
 [MASTER]
 
 # Specify a configuration file.
-#rcfile=
+# rcfile=
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-#init-hook=
+# init-hook=
 
 # Profiled execution.
 profile=no
@@ -20,7 +20,6 @@ persistent=yes
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
 load-plugins=
-
 
 [MESSAGES CONTROL]
 
@@ -39,7 +38,6 @@ load-plugins=
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
 #disable=
-
 
 [REPORTS]
 
@@ -71,7 +69,6 @@ comment=no
 # used to format the message information. See doc for all details
 #msg-template=
 
-
 [SIMILARITIES]
 
 # Minimum lines number of a similarity.
@@ -85,7 +82,6 @@ ignore-docstrings=yes
 
 # Ignore imports when computing similarities.
 ignore-imports=no
-
 
 [BASIC]
 
@@ -141,7 +137,6 @@ no-docstring-rgx=__.*__
 # ones are exempt.
 docstring-min-length=-1
 
-
 [VARIABLES]
 
 # Tells whether we should check for unused import in __init__ files.
@@ -154,7 +149,6 @@ dummy-variables-rgx=_$|dummy
 # List of additional names supposed to be defined in builtins. Remember that
 # you should avoid to define new builtins when possible.
 additional-builtins=
-
 
 [TYPECHECK]
 
@@ -175,12 +169,10 @@ zope=no
 # expressions are accepted.
 generated-members=REQUEST,acl_users,aq_parent
 
-
 [MISCELLANEOUS]
 
 # List of note tags to take in consideration, separated by a comma.
 notes=FIXME,XXX,TODO
-
 
 [FORMAT]
 
@@ -203,7 +195,6 @@ max-module-lines=1000
 # String used as indentation unit. This is usually " " (4 spaces) or "\t" (1
 # tab).
 indent-string='    '
-
 
 [DESIGN]
 
@@ -238,7 +229,6 @@ min-public-methods=2
 # Maximum number of public methods for a class (see R0904).
 max-public-methods=20
 
-
 [CLASSES]
 
 # List of interface methods to ignore, separated by a comma. This is used for
@@ -253,7 +243,6 @@ valid-classmethod-first-arg=cls
 
 # List of valid names for the first argument in a metaclass class method.
 valid-metaclass-classmethod-first-arg=mcs
-
 
 [IMPORTS]
 
@@ -271,7 +260,6 @@ ext-import-graph=
 # Create a graph of internal dependencies in the given file (report RP0402 must
 # not be disabled)
 int-import-graph=
-
 
 [EXCEPTIONS]
 

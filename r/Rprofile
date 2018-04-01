@@ -7,5 +7,3 @@ local({r <- getOption("repos")
 })
 
 Sys.setlocale("LC_ALL", 'en_US.UTF-8')
-
-PLATFORM_APIS_DIRECTORY <- "~/Projects/datata/"

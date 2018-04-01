@@ -17,8 +17,6 @@ if [[ "$unamestr" == 'Linux' ]]; then
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias ls='ls -lGF'
     alias lsall='ls -flaF'
-    alias start_mysql='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
-    alias stop_mysql='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist'
 fi
 
 #
@@ -56,8 +54,8 @@ fi
 #
 if [[ "$unamestr" == 'Linux' ]]; then
     export ALTERNATE_EDITOR=""
-    alias emacs="emacsclient -c -n"
-    alias emacss="/usr/bin/emacs"
+    alias emacs="/usr/bin/emacs"
+    alias emacss="emacsclient -c -n"
     export EDITOR="emacsclient -c -n"
 elif [[ "$unamestr" == 'Darwin' ]]; then
     alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
@@ -67,7 +65,6 @@ fi
 #
 # Score Data
 #
-alias s='cd ~/Projects/datata/score-data/project/; ls;'
 function switch_database() {
     echo "[+] Switching database (development) for Score Data..."
     mysql < ~/Projects/system/dotfiles/sql/switch_database.sql
@@ -119,8 +116,3 @@ function show_keys() {
 # AWS
 #
 alias dynamodb='java -Djava.library.path=~/Applications/DynamoDB/DynamoDBLocal_lib -jar ~/Applications/DynamoDB/DynamoDBLocal.jar -sharedDb'
-
-#
-# CVEST
-#
-export NODE_PATH=~/Projects/personal/cvest/cvest-app
