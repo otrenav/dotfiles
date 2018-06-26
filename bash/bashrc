@@ -63,12 +63,13 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 #
-# Score Data
+# MySQL
 #
 function switch_database() {
-    echo "[+] Switching database (development) for Score Data..."
-    mysql < ~/Projects/system/dotfiles/sql/switch_database.sql
-    mysql development < $1
+    echo "[+] Switching database ($1)..."
+    mysql -u root -p -e "DROP DATABASE $1";
+    mysql -u root -p -e "CREATE DATABASE $1 CHARACTER SET UTF8;";
+    mysql $1 < $2
     echo "[+] Done."
 }
 

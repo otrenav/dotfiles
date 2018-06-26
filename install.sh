@@ -3,13 +3,13 @@
 #
 
 # Ubuntu generics
-sudo apt install cpufrequtils gdebi hexchat clipit
+sudo apt install cpufrequtils gdebi hexchat clipit font-manager zoom
 
 # Desktop environment
 sudo apt install ubuntu-gnome-desktop gnome-shell gnome-tweak-tool gdm3
 
 # Development
-sudo apt install emacs guake libssl-dev meld pandoc parallel apt-transport-https ca-certificates curl software-properties-common libcurl4-openssl-dev python-software-properties libcairo2-dev
+sudo apt install emacs guake meld ca-certificates curl software-properties-common python-software-properties aspell hugo graphviz hackhands httpie letsencrypt
 
 # Git
 sudo apt install git software-properties-common python-software-properties
@@ -31,29 +31,26 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt update
 sudo apt install r-base gfortran
 
-# Ruby
-sudo apt install ruby ruby-dev
-
 # JavaScript
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt install nodejs
-sudo npm install -g @angular/cli
+# curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+# sudo apt install nodejs
+# sudo npm install -g @angular/cli
 
 # Java
 sudo apt install default-jre default-jdk
 
 # Media
-sudo apt install audacity gimp inkscape kazam vlc jekyll
+sudo apt install audacity gimp inkscape vlc
 
 # Virtualization
 sudo apt install virtualbox
 
 # Docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt update
-sudo apt install docker-ce
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# sudo apt-key fingerprint 0EBFCD88
+# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# sudo apt update
+# sudo apt install docker-ce
 
 # Google Chrome
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -63,21 +60,21 @@ sudo apt install google-chrome-stable
 
 # Mongo
 # NOTE: There's no Mongo repo for non-LTS Ubuntu
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
-echo "deb [arch=amd64] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
-sudo apt update
-sudo apt install mongodb-org
+# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+# echo "deb [arch=amd64] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+# sudo apt update
+# sudo apt install mongodb-org
 
 # GIS (R ARCGIS)
 # sudo add-apt-repository ppa:ubuntugis/ppa
 # sudo apt update
-sudo apt install gdal-bin libgdal-dev
+# sudo apt install gdal-bin libgdal-dev
 
 # RGL (R 3D Graphs)
-sudo apt install libglu1-mesa-dev
+# sudo apt install libglu1-mesa-dev
 
 # Latex
-sudo apt install texlive-latex-base texlive-latex-extra
+# sudo apt install texlive-latex-base texlive-latex-extra
 
 # Numix icons
 sudo add-apt-repository ppa:numix/ppa
