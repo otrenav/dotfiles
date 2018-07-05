@@ -3,16 +3,13 @@
 #
 
 # Ubuntu generics
-sudo apt install cpufrequtils gdebi hexchat clipit font-manager zoom
-
-# Desktop environment
-sudo apt install ubuntu-gnome-desktop gnome-shell gnome-tweak-tool gdm3
+sudo apt install cpufrequtils gdebi hexchat clipit font-manager gnome-tweak-tool
 
 # Development
-sudo apt install emacs guake meld ca-certificates curl software-properties-common python-software-properties aspell hugo graphviz hackhands httpie letsencrypt
+sudo apt install emacs guake meld curl software-properties-common python-software-properties aspell hugo graphviz hackhands httpie letsencrypt
 
 # Git
-sudo apt install git software-properties-common python-software-properties
+sudo apt install git software-properties-common
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt update
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
@@ -23,8 +20,8 @@ git lfs install
 sudo apt install mysql-client mysql-server postgresql-common libmysqlclient-dev
 
 # Python
-sudo apt install python3-dev python3-pip python-dev python-pip python-software-properties
-sudo pip install virtualenvwrapper pyopenssl ipython git-up
+sudo apt install python3-dev python-dev python-pip
+sudo pip install virtualenvwrapper pyopenssl ipython
 
 # R
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
@@ -43,7 +40,7 @@ sudo apt install default-jre default-jdk
 sudo apt install audacity gimp inkscape vlc
 
 # Virtualization
-sudo apt install virtualbox
+# sudo apt install virtualbox
 
 # Docker
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -82,22 +79,22 @@ sudo apt-get update
 sudo apt-get install numix-icon-theme-circle
 
 # OSX Arc theme
-google-chrome https://github.com/LinxGem33/OSX-Arc-Darker
+google-chrome https://github.com/LinxGem33/OSX-Arc-Darker &
 
 # Insync
-google-chrome https://www.insynchq.com/downloads
+google-chrome https://www.insynchq.com/downloads &
 
 # Dropbox
-google-chrome https://www.dropbox.com
+google-chrome https://www.dropbox.com &
 
 # Skype
-google-chrome https://www.skype.com/en/download-skype/skype-for-computer/
+google-chrome https://www.skype.com/en/download-skype/skype-for-computer/ &
 
 # Spotify
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 0DF731E45CE24F27EEEB1450EFDC8610341D9410
-echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt update
-sudo apt install spotify-client
+# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+# echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+# sudo apt update
+# sudo apt install spotify-client
 
 # To remove notifications
 # echo "ui.track_notifications_enabled=false" > ~/.config/spotify/Users/<USER>/prefs
