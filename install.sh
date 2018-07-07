@@ -78,8 +78,11 @@ sudo add-apt-repository ppa:numix/ppa
 sudo apt-get update
 sudo apt-get install numix-icon-theme-circle
 
-# OSX Arc theme
+# OSX Arc Theme
 google-chrome https://github.com/LinxGem33/OSX-Arc-Darker &
+
+# Adapta Nokto Theme
+google-chrome https://github.com/adapta-project/adapta-gtk-theme &
 
 # Insync
 google-chrome https://www.insynchq.com/downloads &
