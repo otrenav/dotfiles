@@ -1,12 +1,15 @@
 #
-# System Installation (non-idempotent)
+# System Installation
 #
 
 # Ubuntu generics
-sudo apt install cpufrequtils gdebi hexchat clipit font-manager gnome-tweak-tool
+sudo apt install cpufrequtils gdebi hexchat clipit font-manager gnome-tweak-tool skype
 
 # Development
 sudo apt install emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev
+
+# Media
+sudo apt install audacity gimp inkscape vlc
 
 # Git
 sudo apt install git software-properties-common
@@ -20,8 +23,9 @@ git lfs install
 sudo apt install mysql-client mysql-server postgresql-common libmysqlclient-dev
 
 # Python
-sudo apt install python3-dev python-dev python-pip
-sudo pip install virtualenvwrapper pyopenssl ipython
+sudo apt install python3-dev python-dev python-pip python3-pip
+sudo -H pip install virtualenvwrapper pyopenssl ipython
+sudo -H pip3 install black flake8
 
 # R
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
@@ -34,9 +38,6 @@ sudo apt install nodejs
 
 # Java
 sudo apt install default-jre default-jdk
-
-# Media
-sudo apt install audacity gimp inkscape vlc
 
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -66,13 +67,13 @@ google-chrome https://github.com/LinxGem33/OSX-Arc-Darker &
 google-chrome https://github.com/adapta-project/adapta-gtk-theme &
 
 # Insync
-# google-chrome https://www.insynchq.com/downloads &
+google-chrome https://www.insynchq.com/downloads &
 
 # Dropbox
-# google-chrome https://www.dropbox.com &
+google-chrome https://www.dropbox.com &
 
-# Skype
-# google-chrome https://www.skype.com/en/download-skype/skype-for-computer/ &
+# Gnome Terminal Atom One Dark Theme
+google-chrome https://github.com/denysdovhan/one-gnome-terminal &
 
 # Spotify
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 0DF731E45CE24F27EEEB1450EFDC8610341D9410
@@ -87,6 +88,9 @@ echo "ui.track_notifications_enabled=false" > ~/.config/spotify/Users/<USER>/pre
 # Configuration
 #
 
+# Python
+rm -rf ~/.flake8rc
+ln -s /home/otrenav/Projects/system/dotfiles/python/flake8 /home/otrenav/.flake8rc
 
 # Bash
 rm -rf ~/.bashrc
@@ -103,6 +107,7 @@ mkdir ~/.bash_it/themes/otrenav
 ln -s /home/otrenav/Projects/system/dotfiles/bash/otrenav.theme.bash /home/otrenav/.bash_it/themes/otrenav/otrenav.theme.bash
 
 # Emacs
+git clone https://gitlab.com/otrenav/spacemacs ~/Projects/system/spacemacs
 source ~/Projects/system/spacemacs/install.sh
 
 # R

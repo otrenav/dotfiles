@@ -1,0 +1,6 @@
+# Should be linked to `~/.config/flake8` (for Blacken)
+# Should be linked to `~/.flake8rc` (for Emacs:Flycheck)
+
+[flake8]
+max-line-length = 80
+# ignore = E203, E266, E501, W503
