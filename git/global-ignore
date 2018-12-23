@@ -75,6 +75,7 @@ develop-eggs/
 docs/_build/
 eggs/
 env/
+.venv/
 htmlcov/
 lib/
 lib64/

@@ -1,5 +1,5 @@
 
-.libPaths(c("~/Projects/system/r/", .libPaths()))
+.libPaths(c("~/Code/system/r/", .libPaths()))
 
 local({r <- getOption("repos")
        r["CRAN"] <- "https://cran.itam.mx/"

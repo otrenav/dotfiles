@@ -1,12 +1,12 @@
 [user]
-	name = Omar Trejo
-	email = omar@otrenav.com
+	name = "Omar Trejo"
+	email = omar@omartrejo.com
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [core]
-	editor = emacs
-	excludesfile = ~/Projects/system/dotfiles/git/global-ignore
+	editor = "code -n"
+	excludesfile = ~/Code/system/dotfiles/git/global-ignore
 [color]
 	ui = true
 [git-up "fetch"]

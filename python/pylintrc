@@ -1,0 +1,22 @@
+[MESSAGES CONTROL]
+enable=all
+disable=
+    C0103,  # Invalid name
+    C0111,  # Missing docstring
+    C0330,  # Indentation before block
+    C0411,  # Import at top level
+    C0412,  # Imports not grouped
+    C0413,  # Import before others
+    W0201,  # Attribute defined outside __init__()
+    W0511,  # Highlight own user messages
+    W1203,  # Use string formatting when logging
+    W1618,  # import missing `from __future__ import absolute_import`
+    E1101,  # Instance has no member
+    E1102,  # Symbol is not callable
+    R0201,  # Method could be a function
+    R0902,  # Too many instance attributes
+    R0903,  # Too few public methods
+    R0913,  # Too many arguments
+    R0901,  # Too many ancestors
+    R1705,  # Unnecessary elif after return
+    R1710,  # All or none branches should return

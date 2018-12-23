@@ -90,26 +90,26 @@ echo "ui.track_notifications_enabled=false" > ~/.config/spotify/Users/<USER>/pre
 
 # Python
 rm -rf ~/.flake8rc
-ln -s /home/otrenav/Projects/system/dotfiles/python/flake8 /home/otrenav/.flake8rc
+ln -s /home/otrenav/Code/system/dotfiles/python/flake8 /home/otrenav/.flake8rc
 
 # Bash
 rm -rf ~/.bashrc
-ln -s /home/otrenav/Projects/system/dotfiles/bash/bashrc /home/otrenav/.bashrc
+ln -s /home/otrenav/Code/system/dotfiles/bash/bashrc /home/otrenav/.bashrc
 
 # Git
 rm -rf ~/.gitconfig
-ln -s /home/otrenav/Projects/system/dotfiles/git/gitconfig /home/otrenav/.gitconfig
+ln -s /home/otrenav/Code/system/dotfiles/git/gitconfig /home/otrenav/.gitconfig
 
 # Bash-it
 rm -rf ~/.bash_it
 git clone https://github.com/Bash-it/bash-it.git ~/.bash_it
 mkdir ~/.bash_it/themes/otrenav
-ln -s /home/otrenav/Projects/system/dotfiles/bash/otrenav.theme.bash /home/otrenav/.bash_it/themes/otrenav/otrenav.theme.bash
+ln -s /home/otrenav/Code/system/dotfiles/bash/otrenav.theme.bash /home/otrenav/.bash_it/themes/otrenav/otrenav.theme.bash
 
 # Emacs
-git clone https://gitlab.com/otrenav/spacemacs ~/Projects/system/spacemacs
-source ~/Projects/system/spacemacs/install.sh
+git clone https://gitlab.com/otrenav/spacemacs ~/Code/system/spacemacs
+source ~/Code/system/spacemacs/install.sh
 
 # R
-mkdir ~/Projects/system/r/
-Rscript ~/Projects/system/dotfiles/r/base_packages.R
+mkdir ~/Code/system/r/
+Rscript ~/Code/system/dotfiles/r/base_packages.R
