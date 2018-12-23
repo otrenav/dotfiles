@@ -89,7 +89,6 @@ alias m='./manage.py'
 alias dj='./manage.py runserver'
 alias ds='./manage.py shell_plus'
 alias rm_migrations='find . -name "000*.py*" -exec rm {} \;'
-source ~/Code/system/dotfiles/bash/scripts/django-bash-completion.bash
 
 #
 # Functions
