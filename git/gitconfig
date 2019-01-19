@@ -5,7 +5,7 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [core]
-	editor = "code -n"
+	editor = nano
 	excludesfile = ~/Code/system/dotfiles/git/global-ignore
 [color]
 	ui = true
