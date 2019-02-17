@@ -3,7 +3,7 @@
 #
 # Aliases
 #
-alias c='cd ~/Code; ls;'
+alias c='cd ~/code; ls;'
 alias d='cd ~/Downloads; ls;'
 alias grep='grep --color=auto'
 alias gg='grep --color=auto -rnwi . -e'
@@ -24,7 +24,7 @@ fi
 #
 alias R='R --no-save'
 alias r='R --no-save'
-export R_PROFILE_USER='~/Code/system/dotfiles/r/Rprofile'
+export R_PROFILE_USER='~/code/system/dotfiles/r/Rprofile'
 
 #
 # Bash-It
@@ -39,15 +39,15 @@ HISTCONTROL=ignoredups:ignorespace
 #
 # Git
 #
-source ~/Code/system/dotfiles/git/git-completion.bash
+source ~/code/system/dotfiles/git/git-completion.bash
 
 #
 # Google Cloud
 #
 export CLOUDSDK_PYTHON=/usr/bin/python2.7
-if [ -e ~/Code/system/google-cloud/completion.bash.inc ]; then
-    source ~/Code/system/google-cloud/path.bash.inc
-    source ~/Code/system/google-cloud/completion.bash.inc
+if [ -e ~/code/system/google-cloud/completion.bash.inc ]; then
+    source ~/code/system/google-cloud/path.bash.inc
+    source ~/code/system/google-cloud/completion.bash.inc
 fi
 
 #

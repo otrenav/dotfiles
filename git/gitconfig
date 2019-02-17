@@ -6,7 +6,7 @@
 	smudge = git-media-smudge %f
 [core]
 	editor = nano
-	excludesfile = ~/Code/system/dotfiles/git/global-ignore
+	excludesfile = ~/code/system/dotfiles/git/global-ignore
 [color]
 	ui = true
 [git-up "fetch"]
