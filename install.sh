@@ -3,7 +3,7 @@
 #
 
 # Ubuntu generics
-sudo apt install cpufrequtils gdebi hexchat clipit font-manager gnome-tweak-tool skype
+sudo apt install cpufrequtils hexchat clipit font-manager gnome-tweak-tool skype
 
 # Development
 sudo apt install emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev
@@ -18,14 +18,15 @@ sudo apt update
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
 git lfs install
+rm ./script.deb.sh
 
 # SQL Databases
 sudo apt install mysql-client mysql-server postgresql-common libmysqlclient-dev
 
 # Python
+sudo -H pip install pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc
+sudo -H pip3 install black flake8 autoflake hy jedi radon flake8 ipython importmagic epc
 sudo apt install python3-dev python-dev python-pip python3-pip
-sudo -H pip install virtualenvwrapper pyopenssl ipython
-sudo -H pip3 install black flake8
 
 # R
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
@@ -35,6 +36,10 @@ sudo apt install r-base gfortran
 # JavaScript
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install nodejs
+sudo npm install -g tern js-beautify eslint jshint typescript tslint typescript-formatter csslint jsonlint
+
+# Ruby
+sudo gem install pry pry-doc ruby_parser rubocop
 
 # Java
 sudo apt install default-jre default-jdk
@@ -52,25 +57,16 @@ echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sud
 sudo apt update
 sudo apt install google-chrome-stable
 
-# Latex
-sudo apt install texlive-latex-base texlive-latex-extra
-
 # Numix icons
 sudo add-apt-repository ppa:numix/ppa
 sudo apt-get update
 sudo apt-get install numix-icon-theme-circle
-
-# OSX Arc Theme
-google-chrome https://github.com/LinxGem33/OSX-Arc-Darker &
 
 # Adapta Nokto Theme
 google-chrome https://github.com/adapta-project/adapta-gtk-theme &
 
 # Insync
 google-chrome https://www.insynchq.com/downloads &
-
-# Dropbox
-google-chrome https://www.dropbox.com &
 
 # Gnome Terminal Atom One Dark Theme
 google-chrome https://github.com/denysdovhan/one-gnome-terminal &
@@ -82,14 +78,14 @@ sudo apt update
 sudo apt install spotify-client
 
 # To remove notifications
-echo "ui.track_notifications_enabled=false" > ~/.config/spotify/Users/<USER>/prefs
+# echo "ui.track_notifications_enabled=false" > ~/.config/spotify/Users/<USER>/prefs
 
 #
 # Configuration
 #
 
 # Python
-rm -rf ~/.flake8rc
+rm -rf ~/.flake8rc ~/.pylintrc
 ln -s /home/otrenav/code/system/dotfiles/python/flake8 /home/otrenav/.flake8rc
 
 # Bash
@@ -111,5 +107,11 @@ git clone https://gitlab.com/otrenav/spacemacs ~/code/system/spacemacs
 source ~/code/system/spacemacs/install.sh
 
 # R
+rm -rf ~/.Rprofile
+ln -s /home/otrenav/code/system/dotfiles/r/Rprofile /home/otrenav/.Rprofile
 mkdir ~/code/system/r/
 Rscript ~/code/system/dotfiles/r/base_packages.R
+
+# JavaScript
+rm -rf ~/.eslintrc
+ln -s /home/otrenav/code/system/dotfiles/js/eslintrc /home/otrenav/.eslintrc

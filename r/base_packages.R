@@ -1,4 +1,6 @@
 
+source("~/.Rprofile")
+
 install.packages(c(
     "curl",
     "openssl",
