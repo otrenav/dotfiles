@@ -5,7 +5,7 @@
 #
 alias c='cd ~/code; ls;'
 alias d='cd ~/Downloads; ls;'
-alias v='cd ~/code/vodafone/; ae; ls;
+alias v='cd ~/code/vodafone/; ae; ls;'
 alias grep='grep --color=auto'
 alias gg='grep --color=auto -rnwi . -e'
 alias file_count='find . -type f | wc -l'
