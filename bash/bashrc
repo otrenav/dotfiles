@@ -76,11 +76,11 @@ function switch_database() {
 #
 # Python
 #
-alias kp='killall python'
-alias rm_pyc='find . -name "*.pyc" -exec rm {} \;'
+alias pyclean='find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +'
 alias ae='deactivate &> /dev/null; source ./.venv/bin/activate'
-alias me='python3 -m venv .venv'
+alias me='python3 -m venv .venv; ae'
 alias re='rm -rf ./.venv/'
+alias kp='killall python'
 alias de='deactivate'
 
 #
