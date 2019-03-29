@@ -54,13 +54,18 @@ fi
 #
 # Emacs
 #
-if [[ "$unamestr" == 'Linux' ]]; then
-    export ALTERNATE_EDITOR="code -n"
-    export EDITOR="code -n"
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
-    export EDITOR="code -n"
-fi
+alias emt='emacsclient -a "" -c -t'
+alias em='emacsclient -a "" -c -n'
+export EDITOR='emacsclient -a "" -c -n'
+
+function emacs_stop() {
+    echo "[+] Stopping Emacs..."
+    n=$(ps aux | grep "emacs --daemon" | wc -l)
+    if [ $n -gt 0 ]; then
+        emacsclient -e '(kill-emacs)'
+    fi
+    echo "[+] Done."
+}
 
 #
 # MySQL
