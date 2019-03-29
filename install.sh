@@ -57,8 +57,8 @@ sudo apt install numix-icon-theme
 # Telikrin Theme
 google-chrome https://github.com/paullinuxthemer/Telinkrin-GTK
 
-# Gnome Terminal Atom One Dark Theme
-google-chrome https://github.com/denysdovhan/one-gnome-terminal &
+# Terminal Themes
+https://mayccoll.github.io/Gogh/
 
 # Insync
 google-chrome https://www.insynchq.com/downloads &
