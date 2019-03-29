@@ -107,3 +107,6 @@ Rscript ~/code/system/dotfiles/r/base_packages.R
 # JavaScript
 rm -rf ~/.eslintrc
 ln -s /home/otrenav/code/system/dotfiles/js/eslintrc /home/otrenav/.eslintrc
+
+# Hide ~/snap directory
+echo snap >> ~/.hidden
