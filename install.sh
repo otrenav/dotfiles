@@ -24,9 +24,10 @@ rm ./script.deb.sh
 sudo apt install -y mysql-client mysql-server postgresql-common libmysqlclient-dev
 
 # Python
-sudo -H pip install pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc
+sudo apt install -y python3-dev python-dev python-pip python3-pip python3-venv virtualenv
+sudo -H pip install pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper
 sudo -H pip3 install black flake8 autoflake hy jedi radon flake8 ipython importmagic epc
-sudo apt install -y python3-dev python-dev python-pip python3-pip
+mkdir -p ~/code/system/python/
 
 # R
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
@@ -110,3 +111,6 @@ ln -s /home/otrenav/code/system/dotfiles/js/eslintrc /home/otrenav/.eslintrc
 
 # Hide ~/snap directory
 echo snap >> ~/.hidden
+
+# Remove unwanted directories
+emacs ~/.config/user-dirs.dirs

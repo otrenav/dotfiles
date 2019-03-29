@@ -81,12 +81,18 @@ function switch_database() {
 #
 # Python
 #
-alias pyclean='find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +'
-alias ae='deactivate &> /dev/null; source ./.venv/bin/activate'
-alias me='python3 -m venv .venv; ae'
-alias re='rm -rf ./.venv/'
 alias kp='killall python'
-alias de='deactivate'
+export WORKON_HOME=~/code/system/python/
+source ~/.local/bin/virtualenvwrapper.sh
+
+# virtualenvwrapper environments
+alias pyclean='find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +'
+
+# standard environments
+# alias ae='deactivate &> /dev/null; source ./.venv/bin/activate'
+# alias me='python3 -m venv .venv; ae'
+# alias re='rm -rf ./.venv/'
+# alias de='deactivate'
 
 #
 # Django
