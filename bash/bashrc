@@ -10,14 +10,15 @@ alias grep='grep --color=auto'
 alias gg='grep --color=auto -rnwi . -e'
 alias file_count='find . -type f | wc -l'
 
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-    double_click='xdg-open'
-    alias ls='ls -lGF --color=auto'
-    alias lsall='ls -flaF --color=auto'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-    alias ls='ls -lGF'
-    alias lsall='ls -flaF'
+double_click='xdg-open'
+alias ls='ls -lGF --color=auto'
+alias lsall='ls -flaF --color=auto'
+
+unamestr=`hostname`
+if [[ "$unamestr" == 'ODESKTOP' ]]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+elif [[ "$unamestr" == 'OLAP' ]]; then
+    source ~/.local/bin/virtualenvwrapper.sh
 fi
 
 #
@@ -83,7 +84,6 @@ function switch_database() {
 #
 alias kp='killall python'
 export WORKON_HOME=~/code/system/python/
-source ~/.local/bin/virtualenvwrapper.sh
 
 # virtualenvwrapper environments
 alias pyclean='find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +'
@@ -124,8 +124,3 @@ function show_keys() {
     more "${f}"
     rm "${f}"
 }
-
-#
-# AWS
-#
-alias dynamodb='java -Djava.library.path=~/Applications/DynamoDB/DynamoDBLocal_lib -jar ~/Applications/DynamoDB/DynamoDBLocal.jar -sharedDb'
