@@ -114,3 +114,21 @@ echo snap >> ~/.hidden
 
 # Remove unwanted directories
 emacs ~/.config/user-dirs.dirs
+
+#
+# Install custom scripts
+#
+ln -s /home/otrenav/code/system/dotfiles/scripts/ /home/otrenav/.scripts
+
+#
+# Kubernetes
+#
+
+# Fuzzy finder for terminal
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# Kubectx
+git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
+ln -s ~/.kubectx/kubectx ~/.scripts/kubectx
+ln -s ~/.kubectx/kubens ~/.scripts/kubens

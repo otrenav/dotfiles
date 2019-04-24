@@ -55,18 +55,18 @@ fi
 #
 # Emacs
 #
-alias emt='emacsclient -a "" -c -t'
-alias em='emacsclient -a "" -c -n'
-export EDITOR='emacsclient -a "" -c -n'
+# alias emt='emacsclient -a "" -c -t'
+# alias em='emacsclient -a "" -c -n'
+# export EDITOR='emacsclient -a "" -c -n'
 
-function emacs_stop() {
-    echo "[+] Stopping Emacs..."
-    n=$(ps aux | grep "emacs --daemon" | wc -l)
-    if [ $n -gt 0 ]; then
-        emacsclient -e '(kill-emacs)'
-    fi
-    echo "[+] Done."
-}
+# function emacs_stop() {
+#     echo "[+] Stopping Emacs..."
+#     n=$(ps aux | grep "emacs --daemon" | wc -l)
+#     if [ $n -gt 0 ]; then
+#         emacsclient -e '(kill-emacs)'
+#     fi
+#     echo "[+] Done."
+# }
 
 #
 # MySQL
@@ -103,6 +103,16 @@ alias ds='./manage.py shell_plus'
 alias rm_migrations='find . -name "000*.py*" -exec rm {} \;'
 
 #
+# Fuzzy matching
+#
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#
+# Kubernetes
+#
+alias k='kubectl'
+
+#
 # Functions
 #
 function file_directory_size() {
@@ -124,3 +134,8 @@ function show_keys() {
     more "${f}"
     rm "${f}"
 }
+
+#
+# Update path
+#
+export PATH="$PATH:~/.scripts/"
