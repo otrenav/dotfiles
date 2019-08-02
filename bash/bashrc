@@ -53,6 +53,12 @@ if [ -e ~/code/system/google-cloud/completion.bash.inc ]; then
 fi
 
 #
+# Editor
+#
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+#
 # Emacs
 #
 # alias emt='emacsclient -a "" -c -t'

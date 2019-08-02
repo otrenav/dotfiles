@@ -4,6 +4,6 @@
 ;; activate Python 3 syntax checking, and other useful features.
 ;; It requires that you have the pyenv-mode configured, and the
 ;; following in your configuration files:
-;; (setenv "WORKON_HOME" "~/Projects/system/python/envs/")
+;; (setenv "WORKON_HOME" "~/code/system/python/envs/")
 ;;
 ((nil . ((pyvenv-workon . "<virtualenvwrapper-env-name>"))))
