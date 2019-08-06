@@ -15,11 +15,7 @@ alias ls='ls -lGF --color=auto'
 alias lsall='ls -flaF --color=auto'
 
 unamestr=`hostname`
-if [[ "$unamestr" == 'ODESKTOP' ]]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-elif [[ "$unamestr" == 'OLAP' ]]; then
-    source ~/.local/bin/virtualenvwrapper.sh
-fi
+source /usr/local/bin/virtualenvwrapper.sh
 
 #
 # R
