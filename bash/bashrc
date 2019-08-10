@@ -9,10 +9,11 @@ alias v='cd ~/code/vodafone/; workon vodafone; ls;'
 alias grep='grep --color=auto'
 alias gg='grep --color=auto -rnwi . -e'
 alias file_count='find . -type f | wc -l'
-
-double_click='xdg-open'
-alias ls='ls -lGF --color=auto'
 alias lsall='ls -flaF --color=auto'
+alias ls='ls -lGF --color=auto'
+alias k='kubectl'
+alias g='git'
+double_click='xdg-open'
 
 unamestr=`hostname`
 source /usr/local/bin/virtualenvwrapper.sh
@@ -51,24 +52,8 @@ fi
 #
 # Editor
 #
-export VISUAL=vim
+export VISUAL=emacs
 export EDITOR="$VISUAL"
-
-#
-# Emacs
-#
-# alias emt='emacsclient -a "" -c -t'
-# alias em='emacsclient -a "" -c -n'
-# export EDITOR='emacsclient -a "" -c -n'
-
-# function emacs_stop() {
-#     echo "[+] Stopping Emacs..."
-#     n=$(ps aux | grep "emacs --daemon" | wc -l)
-#     if [ $n -gt 0 ]; then
-#         emacsclient -e '(kill-emacs)'
-#     fi
-#     echo "[+] Done."
-# }
 
 #
 # MySQL
@@ -90,29 +75,10 @@ export WORKON_HOME=~/code/system/python/
 # virtualenvwrapper environments
 alias pyclean='find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +'
 
-# standard environments
-# alias ae='deactivate &> /dev/null; source ./.venv/bin/activate'
-# alias me='python3 -m venv .venv; ae'
-# alias re='rm -rf ./.venv/'
-# alias de='deactivate'
-
-#
-# Django
-#
-alias m='./manage.py'
-alias dj='./manage.py runserver'
-alias ds='./manage.py shell_plus'
-alias rm_migrations='find . -name "000*.py*" -exec rm {} \;'
-
 #
 # Fuzzy matching
 #
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-#
-# Kubernetes
-#
-alias k='kubectl'
 
 #
 # Functions

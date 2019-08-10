@@ -3,7 +3,7 @@
 #
 
 # Ubuntu generics
-sudo apt install -y cpufrequtils hexchat clipit font-manager gnome-tweak-tool skype
+sudo apt install -y cpufrequtils hexchat clipit font-manager gnome-tweak-tool skype dconf-cli uuid-runtime
 
 # Development
 sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev
@@ -52,20 +52,17 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update
 sudo apt install -y docker-ce
 
-# Numix icons
-sudo apt install numix-icon-theme
-
-# Telikrin Theme
-google-chrome https://github.com/paullinuxthemer/Telinkrin-GTK
-
 # Terminal Themes
-https://mayccoll.github.io/Gogh/
+wget -O gogh https://git.io/vQgMr
+chmod +x gogh
+./gogh
+rm ./gogh
 
 # Insync
 google-chrome https://www.insynchq.com/downloads &
 
 # Slack
-google-chrome https://slack.com/downloads/linux
+sudo apt install slack
 
 # Spotify
 snap install spotify
@@ -132,3 +129,4 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
 ln -s ~/.kubectx/kubectx ~/.scripts/kubectx
 ln -s ~/.kubectx/kubens ~/.scripts/kubens
+
