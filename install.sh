@@ -1,15 +1,12 @@
-#
-# System Installation
-#
 
 # Ubuntu generics
-sudo apt install -y cpufrequtils hexchat clipit font-manager gnome-tweak-tool skype dconf-cli uuid-runtime
+sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime
 
 # Development
 sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev
 
 # Media
-sudo apt install -y audacity gimp inkscape vlc
+sudo apt install -y gimp vlc
 
 # Git
 sudo apt install -y git software-properties-common
@@ -39,9 +36,6 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo npm install -g tern js-beautify eslint jshint typescript tslint typescript-formatter csslint jsonlint
 
-# Ruby
-sudo gem install pry pry-doc ruby_parser rubocop
-
 # Java
 sudo apt install -y default-jre default-jdk
 
@@ -52,27 +46,17 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update
 sudo apt install -y docker-ce
 
-# Terminal Themes
-wget -O gogh https://git.io/vQgMr
-chmod +x gogh
-./gogh
-rm ./gogh
-
 # Insync
 google-chrome https://www.insynchq.com/downloads &
 
 # Slack
-sudo apt install slack
+snap install slack
+
+# Skype
+snap install skype
 
 # Spotify
 snap install spotify
-
-# To remove notifications
-# echo "ui.track_notifications_enabled=false" > ~/.config/spotify/Users/<USER>/prefs
-
-#
-# Configuration
-#
 
 # Python
 rm -rf ~/.flake8rc ~/.pylintrc
@@ -112,14 +96,8 @@ echo snap >> ~/.hidden
 # Remove unwanted directories
 emacs ~/.config/user-dirs.dirs
 
-#
 # Install custom scripts
-#
 ln -s /home/otrenav/code/system/dotfiles/scripts/ /home/otrenav/.scripts
-
-#
-# Kubernetes
-#
 
 # Fuzzy finder for terminal
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -130,3 +108,13 @@ git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
 ln -s ~/.kubectx/kubectx ~/.scripts/kubectx
 ln -s ~/.kubectx/kubens ~/.scripts/kubens
 
+
+# Remove blocking and useless keybindings
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
+
+# Terminal Themes
+wget -O gogh https://git.io/vQgMr
+chmod +x gogh
+./gogh
+rm ./gogh
