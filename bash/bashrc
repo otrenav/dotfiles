@@ -50,6 +50,11 @@ if [ -e ~/code/system/google-cloud/completion.bash.inc ]; then
 fi
 
 #
+# kubectl
+#
+source ~/code/system/dotfiles/bash/kubectl_completion.sh
+
+#
 # Editor
 #
 export VISUAL=emacs
