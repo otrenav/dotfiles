@@ -13,6 +13,7 @@ alias ls='ls -lGF --color=auto -lh'
 alias grep='grep --color=auto'
 alias lss='./local_server.sh'
 double_click='xdg-open'
+alias t='./test.sh'
 alias k='kubectl'
 alias g='git'
 
