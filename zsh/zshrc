@@ -1,0 +1,94 @@
+
+# zsh
+export ZSH=$HOME/.oh-my-zsh
+DISABLE_AUTO_TITLE="true"
+ZSH_THEME="elessar"
+plugins=(
+    virtualenvwrapper
+    kubectl
+    docker
+    dotenv
+    gcloud
+    golang
+    git
+    ng
+)
+export LANG=en_US.UTF-8
+
+source $ZSH/oh-my-zsh.sh
+source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias zshconfig="code ~/.zshrc"
+
+# Aliases
+alias c='cd ~/code; ls;'
+alias d='cd ~/downloads; ls;'
+alias file_count='find . -type f | wc -l'
+alias gg='grep --color=auto -rnwi . -e'
+alias lsall='ls -flaF --color=auto -lh'
+alias ls='ls -lGF --color=auto -lh'
+alias grep='grep --color=auto'
+alias s='./server.sh'
+alias t='./test.sh'
+
+double_click='xdg-open'
+
+# Projects
+alias v='cd ~/code/vodafone/; workon vodafone3.6; ls;'
+
+# Git
+# alias g='git'
+
+# Editor
+export VISUAL=code
+export EDITOR="$VISUAL"
+
+# Python
+alias kp='killall python'
+alias pyclean='find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +'
+export WORKON_HOME=~/code/system/python/
+source /usr/local/bin/virtualenvwrapper.sh
+
+# R
+alias R='R --no-save'
+alias r='R --no-save'
+export R_PROFILE_USER='~/code/system/dotfiles/r/Rprofile'
+
+# kubectl
+alias k='kubectl'
+
+# Google Cloud
+export CLOUDSK_HOME=~/code/system/gcloud
+export CLOUDSDK_PYTHON=/usr/bin/python2.7
+
+# MySQL
+function switch_database() {
+    echo "[+] Switching database ($1)..."
+    mysql -u root -p -e "DROP DATABASE $1";
+    mysql -u root -p -e "CREATE DATABASE $1 CHARACTER SET UTF8;";
+    mysql -u root -p $1 < $2
+    echo "[+] Done."
+}
+
+# Functions
+function file_directory_size() {
+    if du -b /dev/null > /dev/null 2>&1; then
+        local arg=-sbh
+    else
+        local arg=-sh
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@"
+    else
+        du $arg .[^.]* *
+    fi
+}
+
+function show_keys() {
+    gpg $1
+    f=$(echo $1 | sed 's/\.[^.]*$//')
+    more "${f}"
+    rm "${f}"
+}
+
+# Update path
+export PATH="$PATH:~/.scripts/"
