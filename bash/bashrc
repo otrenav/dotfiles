@@ -46,9 +46,9 @@ source ~/code/system/dotfiles/git/git-completion.bash
 # Google Cloud
 #
 export CLOUDSDK_PYTHON=/usr/bin/python2.7
-if [ -e ~/code/system/google-cloud/completion.bash.inc ]; then
-    source ~/code/system/google-cloud/path.bash.inc
-    source ~/code/system/google-cloud/completion.bash.inc
+if [ -e ~/code/system/gcloud/completion.bash.inc ]; then
+    source ~/code/system/gcloud/path.bash.inc
+    source ~/code/system/gcloud/completion.bash.inc
 fi
 
 #
