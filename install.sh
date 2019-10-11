@@ -24,7 +24,7 @@ rm ./script.deb.sh
 # Zsh
 sudo apt install zsh
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highligting --depth 1
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting --depth 1
 mkdir -p ~/.oh-my-zsh/custom/themes
 curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.zsh-theme -L -o ~/.oh-my-zsh/custom/themes/elessar.zsh-theme
 ln -s ~/code/system/dotfiles/zsh/zshrc ~/.zshrc
