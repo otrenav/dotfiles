@@ -1,0 +1,321 @@
+
+let mapleader=" "
+set number
+set expandtab
+set autoindent
+set nocompatible
+set autowriteall
+set list listchars=tab:»·,trail:·,nbsp:·
+set backspace=indent,start,eol
+set softtabstop=4
+set wrapmargin=0
+set shiftwidth=4
+set shortmess+=I
+set columns=80
+set tabstop=4
+
+syntax on
+filetype plugin indent on
+highlight LineNr ctermfg=59
+
+" Yank to system clipboard ("+p)
+noremap y "*y :let @+=@*<CR>
+noremap <C-j> ddjP
+noremap <C-k> ddkP
+
+nnoremap <leader>fn :set formatoptions+=at<CR>
+nnoremap <leader>ff :set formatoptions-=at<CR>
+nnoremap <leader>s :set spell! spell?<CR>
+nnoremap <leader>v :edit $MYVIMRC<CR>
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Tab> :bnext<CR>
+nnoremap <C-s> :write<CR>
+
+vnoremap > >gv
+vnoremap < <gv
+
+autocmd BufWritePost vimrc source $MYVIMRC
+
+"
+" Minpac
+"
+packadd minpac
+call minpac#init()
+
+command! MinpacUpdate call minpac#update()
+command! MinpacClean call minpac#clean()
+
+call minpac#add("tpope/vim-unimpaired")
+call minpac#add("tpope/vim-scriptease", {"type": "opt"})
+call minpac#add("k-takata/minpac", {"type": "opt"})
+
+"
+" Whitespace
+"
+
+" TODO: This is broken... why? It should indent.
+" nmap _= :call Preserve("normal gg=G")<CR>
+
+" nnoremap <silent> <F5> :call Preserve("%s/\s\+$//e")
+" nmap _$ :call Preserve("%s/\\s\\+$//e")<CR> 
+autocmd BufWritePre :call Preserve("%s/\s\+$//e")<CR>
+
+function! Preserve(command)
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    execute a:command
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+"
+" TODO: Order
+"
+
+" :noremap Q !!$SHELL<CR>
+
+" # RelativeNumbering
+" # Fuzzy Searching
+" # Surround.vim
+" # Comments
+" # Snippets
+
+" set showcmd       " display incomplete command
+" set autoread      " Reload files changed outside vim
+" set cursorline    " highlight the current line
+" set wildmenu
+" set wildmode=list:longest,full
+
+" " Make searching better
+" set ignorecase    " case insensitive searching (unless specified)
+" set smartcase
+" set hlsearch
+" nnoremap <silent> <leader>, :noh<cr> " Stop highlight after searching
+" set incsearch
+" set showmatch
+
+" set tabstop=4
+" set shiftwidth=4
+" set shiftround
+" set expandtab
+
+" " Make it obvious where 100 characters is
+" set textwidth=100
+" " set formatoptions=cq
+" set formatoptions=qrn1
+" set wrapmargin=0
+" set colorcolumn=+1
+
+" " Numbers
+" set number
+" set numberwidth=5
+
+" " Open new split panes to right and bottom, which feels more natural
+" " set splitbelow
+" set splitright
+
+" " ================ Scrolling ========================
+
+" set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+" set sidescrolloff=15
+" set sidescroll=1
+
+" "Toggle relative numbering, and set to absolute on loss of focus or insert mode
+" set rnu
+" function! ToggleNumbersOn()
+"     set nu!
+"     set rnu
+" endfunction
+" function! ToggleRelativeOn()
+"     set rnu!
+"     set nu
+" endfunction
+" autocmd FocusLost * call ToggleRelativeOn()
+" autocmd FocusGained * call ToggleRelativeOn()
+" autocmd InsertEnter * call ToggleRelativeOn()
+" autocmd InsertLeave * call ToggleRelativeOn()
+
+" "Use enter to create new lines w/o entering insert mode
+" nnoremap <CR> o<Esc>
+" "Below is to fix issues with the ABOVE mappings in quickfix window
+" autocmd CmdwinEnter * nnoremap <CR> <CR>
+" autocmd BufReadPost quickfix nnoremap <CR> <CR>
+
+" " Quicker window movement
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
+
+" " Navigate properly when lines are wrapped
+" nnoremap j gj
+" nnoremap k gk
+
+" " Use tab to jump between blocks, because it's easier
+" nnoremap <tab> %
+" vnoremap <tab> %
+
+" " Set spellfile to location that is guaranteed to exist, can be symlinked to
+" " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
+" set spellfile=$HOME/.vim-spell-en.utf-8.add
+
+" " Always use vertical diffs
+" set diffopt+=vertical
+
+" """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
+" set pastetoggle=<F2> "F2 before pasting to preserve indentation
+" "Copy paste to/from clipboard
+" vnoremap <C-c> "*y
+" map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
+" map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
+
+" " Run the q macro
+" nnoremap <leader>q @q
+
+" " bind K to grep word under cursor
+" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" " bind \ (backward slash) to grep shortcut
+" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" nnoremap \ :Ag<SPACE>
+" " Ag will search from project root
+" let g:ag_working_path_mode="r"
+
+" "Map Ctrl + S to save in any mode
+" noremap <silent> <C-S>          :update<CR>
+" vnoremap <silent> <C-S>         <C-C>:update<CR>
+" inoremap <silent> <C-S>         <C-O>:update<CR>
+" " Also map leader + s
+" map <leader>s <C-S>
+
+" " Quickly close windows
+" nnoremap <leader>x :x<cr>
+" nnoremap <leader>X :q!<cr>
+
+" " zoom a vim pane, <C-w>= to re-balance
+" nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+" nnoremap <leader>= :wincmd =<cr>
+
+" " resize panes
+" nnoremap <silent> <Right> :vertical resize +5<cr>
+" nnoremap <silent> <Left> :vertical resize -5<cr>
+" nnoremap <silent> <Up> :resize +5<cr>
+" nnoremap <silent> <Down> :resize -5<cr>
+
+" inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+" inoremap <S-Tab> <c-n>
+
+" " Switch between the last two files
+" nnoremap <leader><leader> <c-^>
+
+" " Save whenever switching windows or leaving vim. This is useful when running
+" " the tests inside vim without having to save all files first.
+" au FocusLost,WinLeave * :silent! wa
+
+" " automatically rebalance windows on vim resize
+" autocmd VimResized * :wincmd =
+
+" "update dir to current file
+" autocmd BufEnter * silent! cd %:p:h
+
+" augroup vimrcEx
+"   autocmd!
+
+"   " Set syntax highlighting for specific file types
+"   autocmd BufRead,BufNewFile *.md set filetype=markdown
+
+"   " autocmd BufRead *.jsx set ft=jsx.html
+"   " autocmd BufNewFile *.jsx set ft=jsx.html
+
+"   " Enable spellchecking for Markdown
+"   autocmd FileType markdown setlocal spell
+
+"   " Automatically wrap at 100 characters for Markdown
+"   autocmd BufRead,BufNewFile *.md setlocal textwidth=100
+
+"   " Automatically wrap at 100 characters and spell check git commit messages
+"   autocmd FileType gitcommit setlocal textwidth=100
+"   autocmd FileType gitcommit setlocal spell
+
+" - TODO: Folding
+" - TODO: Macros: https://www.youtube.com/watch?v=wRFEBw02aT8
+" - TODO: `norm` command: https://www.youtube.com/watch?v=hraHAZ1-RaM
+" - TODO: vimagit
+" - TODO: leaderkey
+
+" - TODO: shellcheck
+" map <leader>s :!clear && shellcheck %<CR>
+
+" - TODO: Delete trailing whitespace
+" autocmd BufWritePre * %s/\s\+$//e
+
+" !- TODO: Spellchecking: https://www.youtube.com/watch?v=ez1XBUqbS68
+" TODO: vim feature: packpath, packages (8+)
+
+" TODO: Search with sub-matches: https://www.youtube.com/watch?v=sZoQrO4Zzxg
+
+" TODO: How to handle configs: https://www.youtube.com/watch?v=VHPY6bUboAQ
+
+" TODO: Mapping
+" nnoremap / /\v
+" vnoremap / /\v
+
+" TODO: Lookadhead/lookbehind
+" \zs: consider match to start at this point (i.e. match but don't capture)
+" \ze: consider match to end at this point
+
+
+" TODO: Case tricks
+" \C: make match case sensitive
+" \u: uppercase next letter in replacement
+" \l: lowercase next letter in replacement
+" \U: uppercase replacement from here on (until \e or \E)
+" \L: lowercase replacement from here on (until \e or \E)
+
+" TODO: Vim regexes
+" https://wincent.com/wiki/Vim_regexes
+
+" TODO: Relative numbers: https://www.youtube.com/watch?v=0aEv1Nj0IPg
+" nnoremap <silent> <Leader>r :call mappings#cycle_numering()<CR>
+" Put in a different file:
+" function! mappings#cycle_numbering() abort
+"   if exists("+relativenumber")
+"      execute {
+"          \ '00': 'set relativenumber | set number',
+"          \ '01': 'set nonrelativenumber | set number',
+"          \ '10': 'set nonrelativenumber | set nonumber',
+"          \ '11': 'set norelativenumber | set number' }[&number . &relativenumber]
+"   else
+"     " No relative numbering, just toggle numbers on and off.
+"     set number!<CR>
+"   endif
+" endfunction
+
+" :help
+
+" TODO: Git within Vim: https://www.youtube.com/watch?v=zKwsWIMfs24
+" TODO: Optimnizations: https://www.youtube.com/watch?v=wQ9uB8I0cCg
+" TODO: Nested macros: https://www.youtube.com/watch?v=7GpwgbK_Ei0
+" TODO: :py3 print('hello')
+
+" TODO: :help user-manual (then C-] go-to, C-o back)
+
+" TODO: Show whitespace as red
+
+" TODO: :help w − normal mode mapping for w (case-sensitive);
+" TODO: :help g8 − normal mode mapping for g8;
+" TODO: :help v_o − visual mode mapping for o; other modes are c for command-line and i for insert;
+" TODO: :help CTRL-W − normal mode mapping for <C-w>;
+" TODO: :help i_CTRL-W − insert mode mapping for <C-w>;
+" TODO: :help  CTRL-W_CTRL-I − normal mode mapping for <C-w><C-i>;
+" TODO: :help i_CTRL-G_<Down> − insert mode mapping for <C-g><Down>.
+" TODO: :map
+
+" TODO: nerdtree
+" TODO: :source %   run the current file (useful for editing .vimrc)
+
+" TODO: Multiple cursors: https://www.youtube.com/watch?v=YwMgnmZNWXA
+
+" TODO: Snippets and autocomplete: https://www.youtube.com/watch?v=WeppptWfV
+

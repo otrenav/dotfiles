@@ -59,7 +59,7 @@ source ~/code/system/dotfiles/bash/kubectl_completion.sh
 #
 # Editor
 #
-export VISUAL=emacs
+export VISUAL=vim
 export EDITOR="$VISUAL"
 
 #

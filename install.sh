@@ -30,6 +30,11 @@ curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.z
 ln -s ~/code/system/dotfiles/zsh/zshrc ~/.zshrc
 chsh -s $(which zsh)
 
+# Tmux
+mkdir -p ~/.tmux/
+ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/code/system/dotfiles/tmux/scripts ~/.tmux/scripts
+
 # Chrome
 snap install chrome
 
@@ -134,3 +139,6 @@ wget -O gogh https://git.io/vQgMr
 chmod +x gogh
 ./gogh
 rm ./gogh
+
+# Vim
+# TODO: Install vim
