@@ -129,5 +129,8 @@ chmod +x gogh
 ./gogh
 rm ./gogh
 
+# System theme (Ark Dark + Yaru Mouse/Icons)
+google-chrome https://github.com/horst3180/arc-theme
+
 # Remove unwanted directories
 vim ~/.config/user-dirs.dirs
