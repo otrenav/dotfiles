@@ -1,25 +1,72 @@
-
 let mapleader=" "
-set number
+set showcmd
+set hlsearch
+set autoread
+set smartcase
 set expandtab
+" set showmatch
+set incsearch
+set ignorecase
+set shiftround
 set autoindent
+set cursorline
+set splitright
+set splitbelow
 set nocompatible
 set autowriteall
+set number relativenumber
+set noerrorbells visualbell t_vb=
+set spellfile=$HOME/.vim/en_us.utf-8.add
 set list listchars=tab:»·,trail:·,nbsp:·
+set omnifunc=syntaxcomplete#Complete
 set backspace=indent,start,eol
+set wildmode=list:longest,full
+set backupdir=~/.vim/backups
+set diffopt+=vertical
+set formatoptions+=cqn
+set spelllang=en_us
+set colorcolumn=81
+" set grepprg=ag
+" set tags=./tags;
 set softtabstop=4
+set scrolloff=10
 set wrapmargin=0
 set shiftwidth=4
 set shortmess+=I
 set columns=80
 set tabstop=4
+set bg=dark
 
-syntax on
+highlight CursorLine ctermbg=236 term=bold cterm=bold
+highlight PmenuSel ctermbg=240 ctermfg=255
+highlight Pmenu ctermbg=245 ctermfg=255
+highlight CursorLineNr ctermfg=242
+highlight LineNr ctermfg=242
 filetype plugin indent on
-highlight LineNr ctermfg=59
+syntax on
+
+" Traverse buffers
+nmap <Right> :bn<CR>
+nmap <Left> :bp<CR>
+
+" Traverse windows
+" nmap <S-Up> <C-W><Up>
+" nmap <S-Right> <C-W><Right>
+" nmap <S-Left> <C-W><Left>
+" nmap <S-Down> <C-W><Down>
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
+
+" Create/delete lines in normal mode
+nnoremap <CR> ko<Esc>j
+nnoremap <BS> ddk
 
 " Yank to system clipboard ("+p)
 noremap y "*y :let @+=@*<CR>
+
+noremap <silent> <C-S> :write<CR>
 noremap <C-j> ddjP
 noremap <C-k> ddkP
 
@@ -27,17 +74,43 @@ nnoremap <leader>fn :set formatoptions+=at<CR>
 nnoremap <leader>ff :set formatoptions-=at<CR>
 nnoremap <leader>s :set spell! spell?<CR>
 nnoremap <leader>v :edit $MYVIMRC<CR>
+nnoremap <leader>h :nohlsearch<CR>
 nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <C-s> :write<CR>
+nnoremap <C-S-p> "*p
+nnoremap dw diw
+nnoremap / /\v
 
+" Workaround C-BS in Vim terminal
+noremap! <C-BS> <Esc>diwi<space>
+noremap! <C-h> <Esc>diwi<space>
+
+" Quickly close windows
+nnoremap <leader>X :q!<CR>
+nnoremap <leader>x :x<CR>
+
+" Run the q macro
+nnoremap <leader>q @q
+
+vnoremap <silent> <C-S> <C-C>:write<CR>
 vnoremap > >gv
 vnoremap < <gv
+vnoremap / /\v
 
-autocmd BufWritePost vimrc source $MYVIMRC
+inoremap <silent> <C-S> <C-O>:write<CR>
+inoremap <C-BS> echo "MESSAGE"
+inoremap jf <Esc>l
+inoremap fj <Esc>l
+
+imap <C-s> <Esc><C-s>
+
+autocmd! BufWritePost vimrc source $MYVIMRC
+autocmd! FileType gitcommit setlocal spell
+autocmd! FileType markdown setlocal spell
 
 "
-" Minpac
+" Minpac (exec `MinpacUpdate` to install new plugins)
 "
 packadd minpac
 call minpac#init()
@@ -45,277 +118,379 @@ call minpac#init()
 command! MinpacUpdate call minpac#update()
 command! MinpacClean call minpac#clean()
 
+" Highlight colors in source files
+call minpac#add("gko/vim-coloresque", {"type": "opt"})
+
+" Replace from position and forward
+call minpac#add("wincent/scalpel")
+
+" Work with surrounding characters
+call minpac#add("tpope/vim-surround")
+
+" TODO:
+call minpac#add("tomtom/tcomment_vim")
+
+" TODO:
 call minpac#add("tpope/vim-unimpaired")
+
+" Smart status line
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline_theme='deus'
+
+" Find TODOs in files (<leader>t)
+call minpac#add("fisadev/FixedTaskList.vim", {"type": "opt"})
+
+" TODO:
 call minpac#add("tpope/vim-scriptease", {"type": "opt"})
+
+" Package manager
 call minpac#add("k-takata/minpac", {"type": "opt"})
 
+call minpac#add("Xuyuanp/nerdtree-git-plugin")
+call minpac#add('scrooloose/nerdtree')
+" autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in = 1
+autocmd VimEnter * call OpenNERDTreeIfInitialDir()
+
+function! OpenNERDTreeIfInitialDir()
+    if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
+        exe 'NERDTree' argv()[0]
+        wincmd p | ene | exe 'cd '.argv()[0]
+    endif
+endfunction
+" 'akrawchyk/awesome-vim'
+" 'tpope/vim-repeat'
+" 'tpope/vim-commentary'
+" 'honza/vim-snippets'
+" 'ycm-core/YouCompleteMe'
+" 'dense-analysis/ale'
+" 'michaeljsmith/vim-indent-object'
+" 'jreybert/vimagit'
+" 'vim-syntastic/syntastic'
+" 'vim-ctrlspace/vim-ctrlspace'
+" 'gcmt/taboo.vim'
+" 'edkolev/tmuxline.vim'
+" 'airblade/vim-gitgutter'
+" 'weynhamz/vim-plugin-minibufexpl'
+" 'tpope/vim-fugitive'
+" 'scrooloose/nerdcommenter'
+" 'majutsushi/tagbar'
+" 'ctrlpvim/ctrlp.vim'
+" 'fisadev/vim-ctrlp-cmdpalette'
+" 'motemen/git-vim'
+" 'kien/tabman.vim'
+" 'Townk/vim-autoclose'
+" 'michaeljsmith/vim-indent-object'
+" 'jeetsukumaran/vim-indentwise'
+" 'davidhalter/jedi-vim'
+" 'Shougo/neocomplcache.vim'
+" 'tomtom/tlib_vim'
+" 'honza/vim-snippets'
+" 'garbas/vim-snipmate'
+" 'mhinz/vim-signify'
+" 'fisadev/vim-isort'
+" 'fisadev/dragvisuals.vim'
+" 't9md/vim-choosewin'
+" 'lilydjwg/colorizer'
+" 'mileszs/ack.vim'
+" 'pignacio/vim-yapf-format'
+" 'vim-scripts/IndexedSearch'
+" 'vim-scripts/matchit.zip'
+
+call minpac#add("junegunn/fzf.vim")
+call minpac#add("editorconfig/editorconfig-vim")
+
+" Linting and fixing code
+call minpac#add("w0rp/ale")
+let b:ale_linters = ["pyflakes", "flak8", "pylint"]
+let b:ale_fixers = ["eslint", "yapf", "black"]
+let b:ale_fix_on_save = 1
+
 "
-" Whitespace
+" Clean file
 "
-
-" TODO: This is broken... why? It should indent.
-" nmap _= :call Preserve("normal gg=G")<CR>
-
-" nnoremap <silent> <F5> :call Preserve("%s/\s\+$//e")
-" nmap _$ :call Preserve("%s/\\s\\+$//e")<CR> 
-autocmd BufWritePre :call Preserve("%s/\s\+$//e")<CR>
-
 function! Preserve(command)
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
+    let search = @/
+    let cursor_position = getpos('.')
+    normal! H
+    let window_position = getpos('.')
+    call setpos('.', cursor_position)
     execute a:command
-    let @/=_s
-    call cursor(l, c)
+    let @/ = search
+    call setpos('.', window_position)
+    normal! zt
+    call setpos('.', cursor_position)
 endfunction
 
+function! CleanFile()
+    call Preserve("%s/\\s\\+$//e")
+    call Preserve("normal gg=G")
+endfunction
+
+autocmd! BufWritePre <buffer> :call CleanFile()
+
 "
-" TODO: Order
+" Smart tab
 "
+function! CleverTab()
+    if pumvisible()
+        return "\<C-N>"
+    endif
+    if strpart(getline('.'), 0, col('.')-1) =~ '^\s*$'
+        return "\<Tab>"
+    elseif exists('&omnifunc') && &omnifunc != ''
+        return "\<C-X>\<C-O>"
+    else
+        return "\<C-N>"
+    endif
+endfunction
+
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+"
+" Rename current file
+"
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
 
 " :noremap Q !!$SHELL<CR>
 
-" # RelativeNumbering
-" # Fuzzy Searching
-" # Surround.vim
-" # Comments
-" # Snippets
+" Find files fuzzily: CommandT
+" Search for contents: ack.vim
+" nmap <leader>a :tab split<CR>:Ack ""<Left>
+" nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
+" nmap <leader>T :tab split<CR>:Ack "TODO"
 
-" set showcmd       " display incomplete command
-" set autoread      " Reload files changed outside vim
-" set cursorline    " highlight the current line
-" set wildmenu
-" set wildmode=list:longest,full
-
-" " Make searching better
-" set ignorecase    " case insensitive searching (unless specified)
-" set smartcase
-" set hlsearch
-" nnoremap <silent> <leader>, :noh<cr> " Stop highlight after searching
-" set incsearch
-" set showmatch
-
-" set tabstop=4
-" set shiftwidth=4
-" set shiftround
-" set expandtab
-
-" " Make it obvious where 100 characters is
-" set textwidth=100
-" " set formatoptions=cq
-" set formatoptions=qrn1
-" set wrapmargin=0
-" set colorcolumn=+1
-
-" " Numbers
-" set number
-" set numberwidth=5
-
-" " Open new split panes to right and bottom, which feels more natural
-" " set splitbelow
-" set splitright
-
-" " ================ Scrolling ========================
-
-" set scrolloff=8         "Start scrolling when we're 8 lines away from margins
-" set sidescrolloff=15
-" set sidescroll=1
-
-" "Toggle relative numbering, and set to absolute on loss of focus or insert mode
-" set rnu
-" function! ToggleNumbersOn()
-"     set nu!
-"     set rnu
-" endfunction
-" function! ToggleRelativeOn()
-"     set rnu!
-"     set nu
-" endfunction
-" autocmd FocusLost * call ToggleRelativeOn()
-" autocmd FocusGained * call ToggleRelativeOn()
-" autocmd InsertEnter * call ToggleRelativeOn()
-" autocmd InsertLeave * call ToggleRelativeOn()
-
-" "Use enter to create new lines w/o entering insert mode
-" nnoremap <CR> o<Esc>
-" "Below is to fix issues with the ABOVE mappings in quickfix window
-" autocmd CmdwinEnter * nnoremap <CR> <CR>
-" autocmd BufReadPost quickfix nnoremap <CR> <CR>
-
-" " Quicker window movement
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
-
-" " Navigate properly when lines are wrapped
-" nnoremap j gj
-" nnoremap k gk
-
-" " Use tab to jump between blocks, because it's easier
-" nnoremap <tab> %
-" vnoremap <tab> %
-
-" " Set spellfile to location that is guaranteed to exist, can be symlinked to
-" " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-" set spellfile=$HOME/.vim-spell-en.utf-8.add
-
-" " Always use vertical diffs
-" set diffopt+=vertical
-
-" """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
-" set pastetoggle=<F2> "F2 before pasting to preserve indentation
-" "Copy paste to/from clipboard
-" vnoremap <C-c> "*y
-" map <silent><Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>"
-" map <silent><Leader><S-p> :set paste<CR>O<esc>"*]p:set nopaste<cr>"
-
-" " Run the q macro
-" nnoremap <leader>q @q
-
-" " bind K to grep word under cursor
+" bind K to grep word under cursor
 " nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
-" " bind \ (backward slash) to grep shortcut
+" bind \ (backward slash) to grep shortcut
 " command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 " nnoremap \ :Ag<SPACE>
 " " Ag will search from project root
 " let g:ag_working_path_mode="r"
 
-" "Map Ctrl + S to save in any mode
-" noremap <silent> <C-S>          :update<CR>
-" vnoremap <silent> <C-S>         <C-C>:update<CR>
-" inoremap <silent> <C-S>         <C-O>:update<CR>
-" " Also map leader + s
-" map <leader>s <C-S>
+" shellcheck
+" map <leader>s :!clear && shellcheck<CR>
 
-" " Quickly close windows
-" nnoremap <leader>x :x<cr>
-" nnoremap <leader>X :q!<cr>
-
-" " zoom a vim pane, <C-w>= to re-balance
-" nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-" nnoremap <leader>= :wincmd =<cr>
-
-" " resize panes
-" nnoremap <silent> <Right> :vertical resize +5<cr>
-" nnoremap <silent> <Left> :vertical resize -5<cr>
-" nnoremap <silent> <Up> :resize +5<cr>
-" nnoremap <silent> <Down> :resize -5<cr>
-
-" inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-" inoremap <S-Tab> <c-n>
-
-" " Switch between the last two files
-" nnoremap <leader><leader> <c-^>
-
-" " Save whenever switching windows or leaving vim. This is useful when running
-" " the tests inside vim without having to save all files first.
-" au FocusLost,WinLeave * :silent! wa
-
-" " automatically rebalance windows on vim resize
-" autocmd VimResized * :wincmd =
-
-" "update dir to current file
-" autocmd BufEnter * silent! cd %:p:h
-
-" augroup vimrcEx
-"   autocmd!
-
-"   " Set syntax highlighting for specific file types
-"   autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-"   " autocmd BufRead *.jsx set ft=jsx.html
-"   " autocmd BufNewFile *.jsx set ft=jsx.html
-
-"   " Enable spellchecking for Markdown
-"   autocmd FileType markdown setlocal spell
-
-"   " Automatically wrap at 100 characters for Markdown
-"   autocmd BufRead,BufNewFile *.md setlocal textwidth=100
-
-"   " Automatically wrap at 100 characters and spell check git commit messages
-"   autocmd FileType gitcommit setlocal textwidth=100
-"   autocmd FileType gitcommit setlocal spell
-
-" - TODO: Folding
-" - TODO: Macros: https://www.youtube.com/watch?v=wRFEBw02aT8
-" - TODO: `norm` command: https://www.youtube.com/watch?v=hraHAZ1-RaM
-" - TODO: vimagit
-" - TODO: leaderkey
-
-" - TODO: shellcheck
-" map <leader>s :!clear && shellcheck %<CR>
-
-" - TODO: Delete trailing whitespace
-" autocmd BufWritePre * %s/\s\+$//e
-
-" !- TODO: Spellchecking: https://www.youtube.com/watch?v=ez1XBUqbS68
-" TODO: vim feature: packpath, packages (8+)
-
-" TODO: Search with sub-matches: https://www.youtube.com/watch?v=sZoQrO4Zzxg
-
-" TODO: How to handle configs: https://www.youtube.com/watch?v=VHPY6bUboAQ
-
-" TODO: Mapping
-" nnoremap / /\v
-" vnoremap / /\v
-
-" TODO: Lookadhead/lookbehind
-" \zs: consider match to start at this point (i.e. match but don't capture)
-" \ze: consider match to end at this point
+" Spellchecking: https://www.youtube.com/watch?v=ez1XBUqbS68
+" Search with sub-matches: https://www.youtube.com/watch?v=sZoQrO4Zzxg
+" How to handle configs: https://www.youtube.com/watch?v=VHPY6bUboAQ
+" Vim regexes: https://wincent.com/wiki/Vim_regexes
+" Git within Vim: https://www.youtube.com/watch?v=zKwsWIMfs24
+" Optimnizations: https://www.youtube.com/watch?v=wQ9uB8I0cCg
+" Nested macros: https://www.youtube.com/watch?v=7GpwgbK_Ei0
+" :py3 print('hello')
+" Show whitespace as red
+" - Macros: https://www.youtube.com/watch?v=wRFEBw02aT8
+" - `norm` command: https://www.youtube.com/watch?v=hraHAZ1-RaM
 
 
-" TODO: Case tricks
-" \C: make match case sensitive
-" \u: uppercase next letter in replacement
-" \l: lowercase next letter in replacement
-" \U: uppercase replacement from here on (until \e or \E)
-" \L: lowercase replacement from here on (until \e or \E)
-
-" TODO: Vim regexes
-" https://wincent.com/wiki/Vim_regexes
-
-" TODO: Relative numbers: https://www.youtube.com/watch?v=0aEv1Nj0IPg
-" nnoremap <silent> <Leader>r :call mappings#cycle_numering()<CR>
-" Put in a different file:
-" function! mappings#cycle_numbering() abort
-"   if exists("+relativenumber")
-"      execute {
-"          \ '00': 'set relativenumber | set number',
-"          \ '01': 'set nonrelativenumber | set number',
-"          \ '10': 'set nonrelativenumber | set nonumber',
-"          \ '11': 'set norelativenumber | set number' }[&number . &relativenumber]
-"   else
-"     " No relative numbering, just toggle numbers on and off.
-"     set number!<CR>
-"   endif
+" " tab navigation mappings
+" map tn :tabn<CR>
+" map tp :tabp<CR>
+" map tm :tabm
+" map tt :tabnew
+" map ts :tab split<CR>
+" map <C-S-Right> :tabn<CR>
+" imap <C-S-Right> <ESC>:tabn<CR>
+" map <C-S-Left> :tabp<CR>
+" imap <C-S-Left> <ESC>:tabp<CR>
+"
+" " navigate windows with meta+arrows
+" map <M-Right> <c-w>l
+" map <M-Left> <c-w>h
+" map <M-Up> <c-w>k
+" map <M-Down> <c-w>j
+" imap <M-Right> <ESC><c-w>l
+" imap <M-Left> <ESC><c-w>h
+" imap <M-Up> <ESC><c-w>k
+" imap <M-Down> <ESC><c-w>j
+"
+" " simple recursive grep
+" nmap ,r :Ack
+" nmap ,wr :Ack <cword><CR>
+"
+" " better backup, swap and undos storage
+" set directory=~/.vim/dirs/tmp     " directory to place swap files in
+" set backup                        " make backup files
+" set backupdir=~/.vim/dirs/backups " where to put backup files
+" set undofile                      " persistent undos - undo after you re-open the file
+" set undodir=~/.vim/dirs/undos
+" set viminfo+=n~/.vim/dirs/viminfo
+" " store yankring history file there too
+" let g:yankring_history_dir = '~/.vim/dirs/'
+"
+" " create needed directories if they don't exist
+" if !isdirectory(&backupdir)
+"     call mkdir(&backupdir, "p")
+" endif
+" if !isdirectory(&directory)
+"     call mkdir(&directory, "p")
+" endif
+" if !isdirectory(&undodir)
+"     call mkdir(&undodir, "p")
+" endif
+"
+" " ============================================================================
+" " Plugins settings and mappings
+" " Edit them as you wish.
+"
+" " Tagbar -----------------------------
+"
+" " toggle tagbar display
+" map <F4> :TagbarToggle<CR>
+" " autofocus on tagbar open
+" let g:tagbar_autofocus = 1
+"
+" " NERDTree -----------------------------
+"
+" " toggle nerdtree display
+" map <F3> :NERDTreeToggle<CR>
+" " open nerdtree with the current file selected
+" nmap ,t :NERDTreeFind<CR>
+" " don;t show these file types
+" let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+"
+"
+" " Tasklist ------------------------------
+"
+" " show pending tasks list
+" map <F2> :TaskList<CR>
+"
+" " CtrlP ------------------------------
+"
+" " file finder mapping
+" let g:ctrlp_map = ',e'
+" " tags (symbols) in current file finder mapping
+" nmap ,g :CtrlPBufTag<CR>
+" " tags (symbols) in all files finder mapping
+" nmap ,G :CtrlPBufTagAll<CR>
+" " general code finder in all files mapping
+" nmap ,f :CtrlPLine<CR>
+" " recent files finder mapping
+" nmap ,m :CtrlPMRUFiles<CR>
+" " commands finder mapping
+" nmap ,c :CtrlPCmdPalette<CR>
+" " to be able to call CtrlP with default search text
+" function! CtrlPWithSearchText(search_text, ctrlp_command_end)
+"     execute ':CtrlP' . a:ctrlp_command_end
+"     call feedkeys(a:search_text)
 " endfunction
-
-" :help
-
-" TODO: Git within Vim: https://www.youtube.com/watch?v=zKwsWIMfs24
-" TODO: Optimnizations: https://www.youtube.com/watch?v=wQ9uB8I0cCg
-" TODO: Nested macros: https://www.youtube.com/watch?v=7GpwgbK_Ei0
-" TODO: :py3 print('hello')
-
-" TODO: :help user-manual (then C-] go-to, C-o back)
-
-" TODO: Show whitespace as red
-
-" TODO: :help w − normal mode mapping for w (case-sensitive);
-" TODO: :help g8 − normal mode mapping for g8;
-" TODO: :help v_o − visual mode mapping for o; other modes are c for command-line and i for insert;
-" TODO: :help CTRL-W − normal mode mapping for <C-w>;
-" TODO: :help i_CTRL-W − insert mode mapping for <C-w>;
-" TODO: :help  CTRL-W_CTRL-I − normal mode mapping for <C-w><C-i>;
-" TODO: :help i_CTRL-G_<Down> − insert mode mapping for <C-g><Down>.
-" TODO: :map
-
-" TODO: nerdtree
-" TODO: :source %   run the current file (useful for editing .vimrc)
-
-" TODO: Multiple cursors: https://www.youtube.com/watch?v=YwMgnmZNWXA
-
-" TODO: Snippets and autocomplete: https://www.youtube.com/watch?v=WeppptWfV
-
+" " same as previous mappings, but calling with current word as default text
+" nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
+" nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
+" nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
+" nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
+" nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
+" nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
+" nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
+" " don't change working directory
+" let g:ctrlp_working_path_mode = 0
+" " ignore these files and folders on file finder
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/](\.git|\.hg|\.svn|node_modules)$',
+"   \ 'file': '\.pyc$\|\.pyo$',
+"   \ }
+"
+" " Syntastic ------------------------------
+"
+" " show list of errors and warnings on the current file
+" nmap <leader>e :Errors<CR>
+" " check also when just opened the file
+" let g:syntastic_check_on_open = 1
+" " don't put icons on the sign column (it hides the vcs status icons of signify)
+" let g:syntastic_enable_signs = 0
+" " custom icons (enable them if you use a patched font, and enable the previous
+" " setting)
+" "let g:syntastic_error_symbol = '✗'
+" "let g:syntastic_warning_symbol = '⚠'
+" "let g:syntastic_style_error_symbol = '✗'
+" "let g:syntastic_style_warning_symbol = '⚠'
+"
+" " Jedi-vim ------------------------------
+"
+" " All these mappings work only for python code:
+" " Go to definition
+" let g:jedi#goto_command = ',d'
+" " Find ocurrences
+" let g:jedi#usages_command = ',o'
+" " Find assignments
+" let g:jedi#goto_assignments_command = ',a'
+" " Go to definition in new tab
+" nmap ,D :tab split<CR>:call jedi#goto()<CR>
+"
+" " NeoComplCache ------------------------------
+"
+" " most of them not documented because I'm not sure how they work
+" " (docs aren't good, had to do a lot of trial and error to make
+" " it play nice)
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_ignore_case = 1
+" let g:neocomplcache_enable_smart_case = 1
+" let g:neocomplcache_enable_auto_select = 1
+" let g:neocomplcache_enable_fuzzy_completion = 1
+" let g:neocomplcache_enable_camel_case_completion = 1
+" let g:neocomplcache_enable_underbar_completion = 1
+" let g:neocomplcache_fuzzy_completion_start_length = 1
+" let g:neocomplcache_auto_completion_start_length = 1
+" let g:neocomplcache_manual_completion_start_length = 1
+" let g:neocomplcache_min_keyword_length = 1
+" let g:neocomplcache_min_syntax_length = 1
+" " complete with workds from any opened file
+" let g:neocomplcache_same_filetype_lists = {}
+" let g:neocomplcache_same_filetype_lists._ = '_'
+"
+" " TabMan ------------------------------
+"
+" " mappings to toggle display, and to focus on it
+" let g:tabman_toggle = 'tl'
+" let g:tabman_focus  = 'tf'
+"
+" " Autoclose ------------------------------
+"
+" " Fix to let ESC work as espected with Autoclose plugin
+" let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
+"
+" " DragVisuals ------------------------------
+"
+" " mappings to move blocks in 4 directions
+" vmap <expr> <S-M-LEFT> DVB_Drag('left')
+" vmap <expr> <S-M-RIGHT> DVB_Drag('right')
+" vmap <expr> <S-M-DOWN> DVB_Drag('down')
+" vmap <expr> <S-M-UP> DVB_Drag('up')
+" " mapping to duplicate block
+" vmap <expr> D DVB_Duplicate()
+"
+" " Signify ------------------------------
+"
+" " this first setting decides in which order try to guess your current vcs
+" " UPDATE it to reflect your preferences, it will speed up opening files
+" let g:signify_vcs_list = [ 'git', 'hg' ]
+" " mappings to jump to changed blocks
+" nmap <leader>sn <plug>(signify-next-hunk)
+" nmap <leader>sp <plug>(signify-prev-hunk)
+" " nicer colors
+" highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+" highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+" highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+" highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+" highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+" highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+"
+" " Window Chooser ------------------------------
+"
+" " mapping
+" nmap  -  <Plug>(choosewin)
+" " show big letters
+" let g:choosewin_overlay_enable = 1
+"
