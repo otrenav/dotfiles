@@ -9,3 +9,5 @@
 " setlocal autoindent
 " setlocal smarttab
 " setlocal formatoptions=croql
+
+let b:shouldReindent = 0
