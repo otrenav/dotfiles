@@ -7,7 +7,7 @@ sudo apt upgrade -y
 sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap
 
 # Development
-sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag
+sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep
 
 # Media
 sudo apt install -y gimp vlc
@@ -73,9 +73,10 @@ sudo apt install -y mysql-client mysql-server postgresql-common libmysqlclient-d
 # Python
 sudo apt install -y python3-dev python-dev python-pip python3-pip python3-venv virtualenv yapf yapf3
 sudo -H pip install pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper
-sudo -H pip3 install black flake8 autoflake hy jedi radon flake8 ipython importmagic epc
+sudo -H pip3 install black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort[requirements]
 mkdir -p ~/code/system/python/
 rm -rf ~/.flake8rc ~/.pylintrc
+ln -s ~/code/system/dotfiles/python/isort.cfg ~/.isort.cfg
 ln -s ~/code/system/dotfiles/python/flake8 ~/.flake8rc
 
 # R

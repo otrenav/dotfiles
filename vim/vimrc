@@ -16,7 +16,7 @@ set splitbelow
 set nocompatible
 set autowriteall
 set number relativenumber
-set noerrorbells visualbell t_vb=
+set noerrorbells novisualbell
 set spellfile=$HOME/.vim/en_us.utf-8.add
 set backupdir=$HOME/.vim/dirs/backups
 set omnifunc=syntaxcomplete#Complete
@@ -103,7 +103,7 @@ noremap <C-k> ddkP
 
 nnoremap <leader>fn :set formatoptions+=at<CR>
 nnoremap <leader>ff :set formatoptions-=at<CR>
-nnoremap <leader>s :set spell! spell?<CR>
+nnoremap <leader>p :set spell! spell?<CR>
 nnoremap <leader>v :edit $MYVIMRC<CR>
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <S-Tab> :bprevious<CR>
@@ -160,13 +160,14 @@ call minpac#add("tpope/vim-surround")
 
 " TODO:
 call minpac#add("tomtom/tcomment_vim")
+
 " TODO:
 call minpac#add("tpope/vim-unimpaired")
 
 " Smart status line
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('vim-airline/vim-airline-themes')
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#formatter='unique_tail_improved'
 let g:airline_theme='deus'
 
 " Find TODOs in files (<leader>t)
@@ -181,7 +182,7 @@ call minpac#add("k-takata/minpac", {"type": "opt"})
 call minpac#add("Xuyuanp/nerdtree-git-plugin")
 call minpac#add('scrooloose/nerdtree')
 " autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in = 1
+autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * call OpenNERDTreeIfInitialDir()
 
 function! OpenNERDTreeIfInitialDir()
@@ -191,29 +192,112 @@ function! OpenNERDTreeIfInitialDir()
     endif
 endfunction
 
+"
+" Git
+"
+call minpac#add("tpope/vim-fugitive")
+
+"
+" Editing
+"
+call minpac#add("vim-scripts/IndexedSearch")
+call minpac#add("justinmk/vim-sneak")
+" s<char1><char>    go to combination (forward)
+" S<char1><char>    go to combination (back)
+" ;                 go to next
+" ``                go back to start
+" s<Enter>          repeat last search
+
+call minpac#add("nathanaelkane/vim-indent-guides")
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd  ctermbg=237
+autocmd VimEnter,Colorscheme * :highlight IndentGuidesEven ctermbg=235
+
+call minpac#add("terryma/vim-expand-region")
+" +     expand region
+" -     shrink region
+
+"
+" Indentation
+"
+call minpac#add('jeetsukumaran/vim-indentwise')
+" [- : Move to previous line of lesser indent than the current line.
+" [+ : Move to previous line of greater indent than the current line.
+" [= : Move to previous line of same indent as the current line that is separated from the current line by lines of different indents.
+" ]- : Move to next line of lesser indent than the current line.
+" ]+ : Move to next line of greater indent than the current line.
+" ]= : Move to next line of same indent as the current line that is separated from the current line by lines of different indents.
+
+" Snippets
+call minpac#add("SirVer/ultisnips")
+
 " Fuzzy finder
+call minpac#add("junegunn/fzf")
 call minpac#add("junegunn/fzf.vim")
+
+nnoremap <leader>s :Snippets<CR>
+nnoremap <leader>f :Files .<CR>
+nnoremap <leader>g :GFile<CR>
+nnoremap <leader>r :Rg<space>
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " EditorConfig
 call minpac#add("editorconfig/editorconfig-vim")
 
 " Linting and fixing code
 call minpac#add("w0rp/ale")
-let b:ale_linters = ["pyflakes", "flak8", "pylint"]
-let b:ale_fixers = ["eslint", "yapf", "black"]
-let b:ale_fix_on_save = 1
+let b:ale_linters=["pyflakes", "flak8", "pylint"]
+let b:ale_fixers=["eslint", "yapf", "black"]
+let b:ale_fix_on_save=1
+
+"
+" Files
+"
+call minpac#add("mhinz/vim-startify")
+
+"
+" Searching
+"
+" Search for contents: ack.vim
+" nmap <leader>a :tab split<CR>:Ack ""<Left>
+" nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
+" nmap <leader>T :tab split<CR>:Ack "TODO"
+
+" bind K to grep word under cursor
+" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" nnoremap \ :Ag<SPACE>
+" " Ag will search from project root
+" let g:ag_working_path_mode="r"
+
+" simple recursive grep
+" nmap ,r :Ack
+" nmap ,wr :Ack <cword><CR>
 
 "
 " Clean file
 "
 function! Preserve(command)
-    let search = @/
-    let cursor_position = getpos('.')
+    let search=@/
+    let cursor_position=getpos('.')
     normal! H
-    let window_position = getpos('.')
+    let window_position=getpos('.')
     call setpos('.', cursor_position)
     execute a:command
-    let @/ = search
+    let @/=search
     call setpos('.', window_position)
     normal! zt
     call setpos('.', cursor_position)
@@ -227,7 +311,7 @@ function! CleanFile()
     endif
 endfunction
 
-" Add `let b:shouldReindent = 1` to filetypes that need cleaning.
+" Add `let b:shouldReindent=1` to filetypes that need cleaning.
 " The addition should be done in `vim/after/ftplugin/*.vim`. By
 " default no re-indentation will be applied.
 autocmd! BufWritePre * :call CleanFile()
@@ -254,8 +338,8 @@ inoremap <Tab> <C-R>=CleverTab()<CR>
 " Rename current file
 "
 function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
+    let old_name=expand('%')
+    let new_name=input('New file name: ', expand('%'), 'file')
     if new_name != '' && new_name != old_name
         exec ':saveas ' . new_name
         exec ':silent !rm ' . old_name
@@ -268,31 +352,11 @@ endfunction
 "
 command! MakeTags !ctags -R .
 
-" :noremap Q !!$SHELL<CR>
-
-" Search for contents: ack.vim
-" nmap <leader>a :tab split<CR>:Ack ""<Left>
-" nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
-" nmap <leader>T :tab split<CR>:Ack "TODO"
-
-" bind K to grep word under cursor
-" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" bind \ (backward slash) to grep shortcut
-" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-" nnoremap \ :Ag<SPACE>
-" " Ag will search from project root
-" let g:ag_working_path_mode="r"
-
-" shellcheck
-" map <leader>s :!clear && shellcheck<CR>
-
-" simple recursive grep
-" nmap ,r :Ack
-" nmap ,wr :Ack <cword><CR>
-
+"
+" Yanking
+"
 " store yankring history file there too
-" let g:yankring_history_dir = '~/.vim/dirs/'
+" let g:yankring_history_dir='~/.vim/dirs/'
 
 " create needed directories if they don't exist
 " if !isdirectory(&backupdir)
@@ -304,27 +368,30 @@ command! MakeTags !ctags -R .
 " if !isdirectory(&undodir)
 "     call mkdir(&undodir, "p")
 " endif
+
 "
-" " Tagbar -----------------------------
+" Tagbar
 "
-" " toggle tagbar display
+" toggle tagbar display
 " map <F4> :TagbarToggle<CR>
-" " autofocus on tagbar open
-" let g:tagbar_autofocus = 1
+" autofocus on tagbar open
+" let g:tagbar_autofocus=1
+
 "
-" " NERDTree -----------------------------
+" NERDTree
 "
-" " toggle nerdtree display
+" toggle nerdtree display
 " map <F3> :NERDTreeToggle<CR>
-" " open nerdtree with the current file selected
+" open nerdtree with the current file selected
 " nmap ,t :NERDTreeFind<CR>
-" " don;t show these file types
-" let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+" don;t show these file types
+" let NERDTreeIgnore=['\.pyc$', '\.pyo$']
+
 "
-" " CtrlP ------------------------------
+" CtrlP
 "
-" " file finder mapping
-" let g:ctrlp_map = ',e'
+" file finder mapping
+" let g:ctrlp_map=',e'
 " " tags (symbols) in current file finder mapping
 " nmap ,g :CtrlPBufTag<CR>
 " " tags (symbols) in all files finder mapping
@@ -349,61 +416,54 @@ command! MakeTags !ctags -R .
 " nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
 " nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
 " " don't change working directory
-" let g:ctrlp_working_path_mode = 0
+" let g:ctrlp_working_path_mode=0
 " " ignore these files and folders on file finder
-" let g:ctrlp_custom_ignore = {
+" let g:ctrlp_custom_ignore={
 "   \ 'dir':  '\v[\/](\.git|\.hg|\.svn|node_modules)$',
 "   \ 'file': '\.pyc$\|\.pyo$',
 "   \ }
 "
-" " Syntastic ------------------------------
+
 "
-" " show list of errors and warnings on the current file
+" Syntastic
+"
+" show list of errors and warnings on the current file
 " nmap <leader>e :Errors<CR>
-" " check also when just opened the file
-" let g:syntastic_check_on_open = 1
-" " don't put icons on the sign column (it hides the vcs status icons of signify)
-" let g:syntastic_enable_signs = 0
-" " custom icons (enable them if you use a patched font, and enable the previous
+" check also when just opened the file
+" let g:syntastic_check_on_open=1
+" don't put icons on the sign column (it hides the vcs status icons of signify)
+" let g:syntastic_enable_signs=0
+" custom icons (enable them if you use a patched font, and enable the previous
 " " setting)
-" "let g:syntastic_error_symbol = '✗'
-" "let g:syntastic_warning_symbol = '⚠'
-" "let g:syntastic_style_error_symbol = '✗'
-" "let g:syntastic_style_warning_symbol = '⚠'
+" let g:syntastic_error_symbol='✗'
+" let g:syntastic_warning_symbol='⚠'
+" let g:syntastic_style_error_symbol='✗'
+" let g:syntastic_style_warning_symbol='⚠'
+
 "
-" " Jedi-vim ------------------------------
+" Tabman
 "
-" " All these mappings work only for python code:
-" " Go to definition
-" let g:jedi#goto_command = ',d'
-" " Find ocurrences
-" let g:jedi#usages_command = ',o'
-" " Find assignments
-" let g:jedi#goto_assignments_command = ',a'
-" " Go to definition in new tab
-" nmap ,D :tab split<CR>:call jedi#goto()<CR>
+" mappings to toggle display, and to focus on it
+" let g:tabman_toggle='tl'
+" let g:tabman_focus ='tf'
+
 "
-" " TabMan ------------------------------
+" DragVisuals
 "
-" " mappings to toggle display, and to focus on it
-" let g:tabman_toggle = 'tl'
-" let g:tabman_focus  = 'tf'
-"
-" " DragVisuals ------------------------------
-"
-" " mappings to move blocks in 4 directions
+" mappings to move blocks in 4 directions
 " vmap <expr> <S-M-LEFT> DVB_Drag('left')
 " vmap <expr> <S-M-RIGHT> DVB_Drag('right')
 " vmap <expr> <S-M-DOWN> DVB_Drag('down')
 " vmap <expr> <S-M-UP> DVB_Drag('up')
-" " mapping to duplicate block
+" mapping to duplicate block
 " vmap <expr> D DVB_Duplicate()
+
 "
-" " Signify ------------------------------
+" Signify
 "
-" " this first setting decides in which order try to guess your current vcs
-" " UPDATE it to reflect your preferences, it will speed up opening files
-" let g:signify_vcs_list = [ 'git', 'hg' ]
+" this first setting decides in which order try to guess your current vcs
+" UPDATE it to reflect your preferences, it will speed up opening files
+" let g:signify_vcs_list=[ 'git', 'hg' ]
 " " mappings to jump to changed blocks
 " nmap <leader>sn <plug>(signify-next-hunk)
 " nmap <leader>sp <plug>(signify-prev-hunk)
@@ -414,11 +474,12 @@ command! MakeTags !ctags -R .
 " highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 " highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 " highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+
 "
-" " Window Chooser ------------------------------
+" Window Chooser
 "
-" " mapping
+" mapping
 " nmap  -  <Plug>(choosewin)
-" " show big letters
-" let g:choosewin_overlay_enable = 1
-"
+" show big letters
+" let g:choosewin_overlay_enable=1
+
