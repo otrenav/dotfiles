@@ -64,6 +64,8 @@ rm -rf ~/.vim
 ln -s ~/code/system/dotfiles/vim ~/.vim
 mkdir -p ~/.vim/pack/minpac/opt/
 git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+mkdir ~/.vim/dirs/backups
+mkdir ~/.vim/dirs/tmp
 
 # SQL Databases
 sudo apt install -y mysql-client mysql-server postgresql-common libmysqlclient-dev

@@ -1,6 +1,8 @@
 let mapleader=" "
+set backup
 set showcmd
 set hlsearch
+set undofile
 set autoread
 set smartcase
 set expandtab
@@ -16,13 +18,17 @@ set autowriteall
 set number relativenumber
 set noerrorbells visualbell t_vb=
 set spellfile=$HOME/.vim/en_us.utf-8.add
-set list listchars=tab:»·,trail:·,nbsp:·
+set backupdir=$HOME/.vim/dirs/backups
 set omnifunc=syntaxcomplete#Complete
+set directory=$HOME/.vim/dirs/tmp
 set backspace=indent,start,eol
 set wildmode=list:longest,full
-set backupdir=~/.vim/backups
-set diffopt+=vertical
+set undodir=$HOME/.vim/undo
+set list listchars=tab:»·
 set formatoptions+=cqn
+set diffopt+=vertical
+set undoreload=10000
+set undolevels=1000
 set spelllang=en_us
 set colorcolumn=81
 " set grepprg=ag
@@ -36,7 +42,8 @@ set columns=80
 set tabstop=4
 set bg=dark
 
-highlight CursorLine ctermbg=236 term=bold cterm=bold
+" Theme
+highlight ExtraWhitespace ctermbg=red guibg=red
 highlight PmenuSel ctermbg=240 ctermfg=255
 highlight Pmenu ctermbg=245 ctermfg=255
 highlight CursorLineNr ctermfg=242
@@ -44,7 +51,11 @@ highlight LineNr ctermfg=242
 filetype plugin indent on
 syntax on
 
+autocmd! ColorScheme * highlight ExtraWhitespace ctermbg=red
+autocmd! BufWinEnter * match ExtraWhitespace /\s\+$/
+
 " Traverse buffers
+highlight CursorLine ctermbg=236 term=bold cterm=bold
 nmap <Right> :bn<CR>
 nmap <Left> :bp<CR>
 
@@ -58,9 +69,30 @@ nmap <Left> :bp<CR>
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-l> <C-w>l
 
+" " tab navigation mappings
+" map tn :tabn<CR>
+" map tp :tabp<CR>
+" map tm :tabm
+" map tt :tabnew
+" map ts :tab split<CR>
+" map <C-S-Right> :tabn<CR>
+" imap <C-S-Right> <ESC>:tabn<CR>
+" map <C-S-Left> :tabp<CR>
+" imap <C-S-Left> <ESC>:tabp<CR>
+"
+" " navigate windows with meta+arrows
+" map <M-Right> <c-w>l
+" map <M-Left> <c-w>h
+" map <M-Up> <c-w>k
+" map <M-Down> <c-w>j
+" imap <M-Right> <ESC><c-w>l
+" imap <M-Left> <ESC><c-w>h
+" imap <M-Up> <ESC><c-w>k
+" imap <M-Down> <ESC><c-w>j
 " Create/delete lines in normal mode
+
 nnoremap <CR> ko<Esc>j
-nnoremap <BS> ddk
+nnoremap <BS> kdd
 
 " Yank to system clipboard ("+p)
 noremap y "*y :let @+=@*<CR>
@@ -128,7 +160,6 @@ call minpac#add("tpope/vim-surround")
 
 " TODO:
 call minpac#add("tomtom/tcomment_vim")
-
 " TODO:
 call minpac#add("tpope/vim-unimpaired")
 
@@ -160,46 +191,10 @@ function! OpenNERDTreeIfInitialDir()
     endif
 endfunction
 
-" 'akrawchyk/awesome-vim'
-" 'tpope/vim-repeat'
-" 'tpope/vim-commentary'
-" 'honza/vim-snippets'
-" 'ycm-core/YouCompleteMe'
-" 'dense-analysis/ale'
-" 'michaeljsmith/vim-indent-object'
-" 'jreybert/vimagit'
-" 'vim-syntastic/syntastic'
-" 'vim-ctrlspace/vim-ctrlspace'
-" 'gcmt/taboo.vim'
-" 'edkolev/tmuxline.vim'
-" 'airblade/vim-gitgutter'
-" 'weynhamz/vim-plugin-minibufexpl'
-" 'tpope/vim-fugitive'
-" 'scrooloose/nerdcommenter'
-" 'majutsushi/tagbar'
-" 'ctrlpvim/ctrlp.vim'
-" 'fisadev/vim-ctrlp-cmdpalette'
-" 'motemen/git-vim'
-" 'kien/tabman.vim'
-" 'Townk/vim-autoclose'
-" 'michaeljsmith/vim-indent-object'
-" 'jeetsukumaran/vim-indentwise'
-" 'davidhalter/jedi-vim'
-" 'Shougo/neocomplcache.vim'
-" 'tomtom/tlib_vim'
-" 'honza/vim-snippets'
-" 'garbas/vim-snipmate'
-" 'mhinz/vim-signify'
-" 'fisadev/vim-isort'
-" 'fisadev/dragvisuals.vim'
-" 't9md/vim-choosewin'
-" 'lilydjwg/colorizer'
-" 'mileszs/ack.vim'
-" 'pignacio/vim-yapf-format'
-" 'vim-scripts/IndexedSearch'
-" 'vim-scripts/matchit.zip'
-
+" Fuzzy finder
 call minpac#add("junegunn/fzf.vim")
+
+" EditorConfig
 call minpac#add("editorconfig/editorconfig-vim")
 
 " Linting and fixing code
@@ -268,9 +263,13 @@ function! RenameFile()
     endif
 endfunction
 
+"
+" ctags
+"
+command! MakeTags !ctags -R .
+
 " :noremap Q !!$SHELL<CR>
 
-" Find files fuzzily: CommandT
 " Search for contents: ack.vim
 " nmap <leader>a :tab split<CR>:Ack ""<Left>
 " nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
@@ -288,55 +287,14 @@ endfunction
 " shellcheck
 " map <leader>s :!clear && shellcheck<CR>
 
-" Spellchecking: https://www.youtube.com/watch?v=ez1XBUqbS68
-" Search with sub-matches: https://www.youtube.com/watch?v=sZoQrO4Zzxg
-" How to handle configs: https://www.youtube.com/watch?v=VHPY6bUboAQ
-" Vim regexes: https://wincent.com/wiki/Vim_regexes
-" Git within Vim: https://www.youtube.com/watch?v=zKwsWIMfs24
-" Optimnizations: https://www.youtube.com/watch?v=wQ9uB8I0cCg
-" Nested macros: https://www.youtube.com/watch?v=7GpwgbK_Ei0
-" :py3 print('hello')
-" Show whitespace as red
-" - Macros: https://www.youtube.com/watch?v=wRFEBw02aT8
-" - `norm` command: https://www.youtube.com/watch?v=hraHAZ1-RaM
-
-
-" " tab navigation mappings
-" map tn :tabn<CR>
-" map tp :tabp<CR>
-" map tm :tabm
-" map tt :tabnew
-" map ts :tab split<CR>
-" map <C-S-Right> :tabn<CR>
-" imap <C-S-Right> <ESC>:tabn<CR>
-" map <C-S-Left> :tabp<CR>
-" imap <C-S-Left> <ESC>:tabp<CR>
-"
-" " navigate windows with meta+arrows
-" map <M-Right> <c-w>l
-" map <M-Left> <c-w>h
-" map <M-Up> <c-w>k
-" map <M-Down> <c-w>j
-" imap <M-Right> <ESC><c-w>l
-" imap <M-Left> <ESC><c-w>h
-" imap <M-Up> <ESC><c-w>k
-" imap <M-Down> <ESC><c-w>j
-"
-" " simple recursive grep
+" simple recursive grep
 " nmap ,r :Ack
 " nmap ,wr :Ack <cword><CR>
-"
-" " better backup, swap and undos storage
-" set directory=~/.vim/dirs/tmp     " directory to place swap files in
-" set backup                        " make backup files
-" set backupdir=~/.vim/dirs/backups " where to put backup files
-" set undofile                      " persistent undos - undo after you re-open the file
-" set undodir=~/.vim/dirs/undos
-" set viminfo+=n~/.vim/dirs/viminfo
-" " store yankring history file there too
+
+" store yankring history file there too
 " let g:yankring_history_dir = '~/.vim/dirs/'
-"
-" " create needed directories if they don't exist
+
+" create needed directories if they don't exist
 " if !isdirectory(&backupdir)
 "     call mkdir(&backupdir, "p")
 " endif
@@ -346,10 +304,6 @@ endfunction
 " if !isdirectory(&undodir)
 "     call mkdir(&undodir, "p")
 " endif
-"
-" " ============================================================================
-" " Plugins settings and mappings
-" " Edit them as you wish.
 "
 " " Tagbar -----------------------------
 "
@@ -366,7 +320,6 @@ endfunction
 " nmap ,t :NERDTreeFind<CR>
 " " don;t show these file types
 " let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
-"
 "
 " " CtrlP ------------------------------
 "
