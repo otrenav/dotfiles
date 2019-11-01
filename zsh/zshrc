@@ -1,10 +1,10 @@
-# zsh
 export ZSH=$HOME/.oh-my-zsh
 DISABLE_AUTO_TITLE="true"
 CASE_SENSITIVE="true"
 ZSH_THEME="elessar"
 plugins=(
     virtualenvwrapper
+    command-time
     kubectl
     docker
     gcloud
@@ -109,7 +109,7 @@ function show_keys() {
 }
 
 # Update path
-export PATH="$PATH:~/.scripts/"
+export PATH="$PATH:$HOME/.scripts/:$HOME/.cargo/bin"
 
 # Ensure tmux
 _not_inside_tmux() {
@@ -146,3 +146,9 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height=40%"
 # Disable C-s and C-q for pausing terminal
 stty -ixon
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Command-time
+ZSH_COMMAND_TIME_MSG="\n[Execution time: %s]"
+
+# Fuzzy finder
+FZF_DEFAULT_COMMAND="rg --files"

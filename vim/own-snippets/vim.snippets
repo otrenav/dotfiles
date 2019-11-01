@@ -1,0 +1,36 @@
+
+global !p
+def complete(t, opts):
+	if t:
+		opts = [m[len(t):] for m in opts if m.startswith(t)]
+	if len(opts) == 1:
+		return opts[0]
+	return "(" + "|".join(opts) + ")"
+endglobal
+
+snippet this_is_a_test "this is a test"
+function! $1()
+	${0:${VISUAL:echo "It works!"}}
+endfunction
+endsnippet
+
+snippet this_is_another_test "this is another test" i
+" This message should not contain an "*":
+" ${1:`!p snip.rv = snip.v.text.replace("*", "") or "TEST" `}
+endsnippet
+
+snippet uuid "UUID"
+`!p
+import uuid
+if not snip.c:
+	snip.rv = str(uuid.uuid4())
+`
+endsnippet
+
+snippet "^ st" "Status" r
+status $1`!p snip.rv = complete(t[1], ['new', 'incomplete', 'invalid'])`
+endsnippet
+
+snippet "rep (\d+) (\w+)" "Repeat" r
+`!p snip.rv = int(match.group(1)) * match.group(2)`
+endsnippet

@@ -1,52 +1,25 @@
-let mapleader=" "
-set backup
-set showcmd
-set hlsearch
-set undofile
-set autoread
-set smartcase
-set expandtab
-set incsearch
-set ignorecase
-set shiftround
-set autoindent
-set cursorline
-set splitright
-set splitbelow
-set nocompatible
-set autowriteall
-set number relativenumber
-set noerrorbells novisualbell
-set spellfile=$HOME/.vim/en_us.utf-8.add
-set backupdir=$HOME/.vim/dirs/backups
-set omnifunc=syntaxcomplete#Complete
-set directory=$HOME/.vim/dirs/tmp
-set backspace=indent,start,eol
-set wildmode=list:longest,full
-set undodir=$HOME/.vim/undo
-set list listchars=tab:»·
-set formatoptions+=cqn
-set diffopt+=vertical
-set undoreload=10000
-set undolevels=1000
-set spelllang=en_us
-set colorcolumn=81
-" set grepprg=ag
-" set tags=./tags;
-set softtabstop=4
-set scrolloff=10
-set wrapmargin=0
-set shiftwidth=4
-set shortmess+=I
-set columns=80
-set tabstop=4
-set bg=dark
+source $HOME/.vim/config/basics.vim
+
+"
+" Create dirs on save
+"
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+autocmd! BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 
 " Theme
 highlight ExtraWhitespace ctermbg=red guibg=red
+highlight CursorLine ctermbg=236 cterm=bold
 highlight PmenuSel ctermbg=240 ctermfg=255
 highlight Pmenu ctermbg=245 ctermfg=255
 highlight CursorLineNr ctermfg=242
+highlight ColorColumn ctermbg=236
 highlight LineNr ctermfg=242
 filetype plugin indent on
 syntax on
@@ -55,21 +28,28 @@ autocmd! ColorScheme * highlight ExtraWhitespace ctermbg=red
 autocmd! BufWinEnter * match ExtraWhitespace /\s\+$/
 
 " Traverse buffers
-highlight CursorLine ctermbg=236 term=bold cterm=bold
-nmap <Right> :bn<CR>
-nmap <Left> :bp<CR>
+nnoremap <leader>bd :bn<CR>:bd#<CR>
+nnoremap <leader>w :bd<CR>
+nnoremap <Right> :bn<CR>
+nnoremap <Left> :bp<CR>
 
 " Traverse windows
-" nmap <S-Up> <C-W><Up>
-" nmap <S-Right> <C-W><Right>
-" nmap <S-Left> <C-W><Left>
-" nmap <S-Down> <C-W><Down>
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-" " tab navigation mappings
+" Move lines around
+vnoremap <down> dpV`]
+vnoremap <up> dkPV`]
+vnoremap > >gv
+vnoremap < <gv
+
+" Edit next/previous inside parenthesis
+onoremap in( :<c-u>normal! f(vi(<CR>
+onoremap in) :<c-u>normal! F)vi(<CR>
+
+" tab navigation mappings
 " map tn :tabn<CR>
 " map tp :tabp<CR>
 " map tm :tabm
@@ -79,23 +59,13 @@ nmap <Left> :bp<CR>
 " imap <C-S-Right> <ESC>:tabn<CR>
 " map <C-S-Left> :tabp<CR>
 " imap <C-S-Left> <ESC>:tabp<CR>
-"
-" " navigate windows with meta+arrows
-" map <M-Right> <c-w>l
-" map <M-Left> <c-w>h
-" map <M-Up> <c-w>k
-" map <M-Down> <c-w>j
-" imap <M-Right> <ESC><c-w>l
-" imap <M-Left> <ESC><c-w>h
-" imap <M-Up> <ESC><c-w>k
-" imap <M-Down> <ESC><c-w>j
-" Create/delete lines in normal mode
 
+" Create/delete lines in normal mode
 nnoremap <CR> ko<Esc>j
 nnoremap <BS> kdd
 
 " Yank to system clipboard ("+p)
-noremap y "*y :let @+=@*<CR>
+" noremap y "*y :let @+=@*<CR>
 
 noremap <silent> <C-S> :write<CR>
 noremap <C-j> ddjP
@@ -134,7 +104,7 @@ inoremap <C-BS> echo "MESSAGE"
 inoremap jf <Esc>l
 inoremap fj <Esc>l
 
-imap <C-s> <Esc><C-s>
+inoremap <C-s> <Esc><C-s>
 
 autocmd! BufWritePost vimrc source $MYVIMRC
 autocmd! FileType gitcommit setlocal spell
@@ -146,8 +116,26 @@ autocmd! FileType markdown setlocal spell
 packadd minpac
 call minpac#init()
 
-command! MinpacUpdate call minpac#update()
-command! MinpacClean call minpac#clean()
+function! MinpacUpdatePluginsAndDocs()
+    call minpac#update()
+    call minpac#clean()
+    silent! helptags ALL
+endfunction
+
+command! MinpacUpdate call MinpacUpdatePluginsAndDocs()
+
+" Snippets
+call minpac#add("SirVer/ultisnips")
+call minpac#add("honza/vim-snippets")
+call minpac#add("ycm-core/YouCompleteMe")
+
+let g:UltiSnipsSnippetDirectories = ["~/.vim/own-snippets"]
+let g:UltiSnipsSnippetsDir = "~/.vim/own-snippets"
+let g:UltiSnipsJumpBackwardTrigger = "<leader>sb"
+let g:UltiSnipsJumpForwardTrigger = "<leader>sf"
+let g:UltiSnipsExpandTrigger = "<leader>ss"
+let g:UltiSnipsListSnippets = "<leader>sl"
+let g:ycm_use_ultisnips_completer = 1
 
 " Highlight colors in source files
 call minpac#add("gko/vim-coloresque", {"type": "opt"})
@@ -158,11 +146,11 @@ call minpac#add("wincent/scalpel")
 " Work with surrounding characters
 call minpac#add("tpope/vim-surround")
 
-" TODO:
-call minpac#add("tomtom/tcomment_vim")
+" Easier word replacements
+call minpac#add("tpope/vim-abolish")
 
-" TODO:
-call minpac#add("tpope/vim-unimpaired")
+" Comments
+call minpac#add("tomtom/tcomment_vim")
 
 " Smart status line
 call minpac#add('vim-airline/vim-airline')
@@ -170,37 +158,147 @@ call minpac#add('vim-airline/vim-airline-themes')
 let g:airline#extensions#tabline#formatter='unique_tail_improved'
 let g:airline_theme='deus'
 
-" Find TODOs in files (<leader>t)
-call minpac#add("fisadev/FixedTaskList.vim", {"type": "opt"})
-
-" TODO:
-call minpac#add("tpope/vim-scriptease", {"type": "opt"})
-
 " Package manager
 call minpac#add("k-takata/minpac", {"type": "opt"})
 
-call minpac#add("Xuyuanp/nerdtree-git-plugin")
-call minpac#add('scrooloose/nerdtree')
-" autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * call OpenNERDTreeIfInitialDir()
+" Go
+call minpac#add("fatih/vim-go")
 
-function! OpenNERDTreeIfInitialDir()
-    if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
-        exe 'NERDTree' argv()[0]
-        wincmd p | ene | exe 'cd '.argv()[0]
+" NERDCommenter
+call minpac#add("scrooloose/nerdcommenter")
+
+" Asynchronous Lint Engine (ALE)
+call minpac#add("dense-analysis/ale")
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" let g:ale_keep_list_window_open = 1
+" let g:ale_list_vertical = 1
+" let g:ale_open_list = 1
+let g:ale_completion_tsserver_autoimport = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled = 0
+let g:ale_sign_column_always = 1
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
+
+"
+" TypeScript
+"
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
+"
+" TODOs
+"
+call minpac#add("fisadev/FixedTaskList.vim")
+call minpac#add("aserebryakov/vim-todo-lists")
+
+"
+" netrw
+"
+let g:netrw_altv = 1
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+
+let g:NetrwIsOpen=0
+
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Vexplore
     endif
 endfunction
+
+noremap <silent> <leader>n :call ToggleNetrw()<CR>
+
+"
+" Links (editing)
+"
+call minpac#add("mattn/webapi-vim")
+call minpac#add("christoomey/vim-quicklink")
+
+"
+" Custom text objects
+"
+" let g:vim_textobj_parameter_mapping = ','
+call minpac#add("wellle/targets.vim")
+call minpac#add("kana/vim-textobj-user")
+call minpac#add("bps/vim-textobj-python")
+call minpac#add("kana/vim-textobj-indent")
+call minpac#add("sgur/vim-textobj-parameter")
+call minpac#add("michaeljsmith/vim-indent-object")
+
+"
+" Commmentary
+"
+call minpac#add("tpope/vim-commentary")
 
 "
 " Git
 "
 call minpac#add("tpope/vim-fugitive")
+" nnoremap <space>ga :Git add %:p<CR><CR>
+" nnoremap <space>gs :Gstatus<CR>
+" nnoremap <space>gc :Gcommit -v -q<CR>
+" nnoremap <space>gt :Gcommit -v -q %:p<CR>
+" nnoremap <space>gd :Gdiff<CR>
+" nnoremap <space>ge :Gedit<CR>
+" nnoremap <space>gr :Gread<CR>
+" nnoremap <space>gw :Gwrite<CR><CR>
+" nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+" nnoremap <space>gp :Ggrep<Space>
+" nnoremap <space>gm :Gmove<Space>
+" nnoremap <space>gb :Git branch<Space>
+" nnoremap <space>go :Git checkout<Space>
+" nnoremap <space>gps :Dispatch! git push<CR>
+" nnoremap <space>gpl :Dispatch! git pull<CR>
+"
+" nnoremap <Leader>gs :Gstatus<CR>
+" nnoremap <Leader>gd :Gdiff<CR>
+" nnoremap <Leader>gb :Gblame<CR>
+" nnoremap <Leader>gL :exe ':!cd ' . expand('%:p:h') . '; git la'<CR>
+" nnoremap <Leader>gl :exe ':!cd ' . expand('%:p:h') . '; git las'<CR>
+" nnoremap <Leader>gh :Silent Glog<CR>
+" nnoremap <Leader>gH :Silent Glog<CR>:set nofoldenable<CR>
+" nnoremap <Leader>gr :Gread<CR>
+" nnoremap <Leader>gw :Gwrite<CR>
+" nnoremap <Leader>gp :Git push<CR>
+" nnoremap <Leader>g- :Silent Git stash<CR>:e<CR>
+" nnoremap <Leader>g+ :Silent Git stash pop<CR>:e<CR>
+"
+" alias.la=log --oneline --all --decorate --graph
+" alias.las=!git --no-pager log --oneline --all --decorate --graph -40
+" alias.lass=!git --no-pager log --oneline --all --decorate --graph -10
+" alias.lb=log --oneline --decorate --graph
+" alias.lbs=!git --no-pager log --oneline --decorate --graph -40
+" alias.lbss=!git --no-pager log --oneline --decorate --graph -10
+
+"
+" Searching
+"
+call minpac#add("osyo-manga/vim-anzu")
+call minpac#add("haya14busa/is.vim")
 
 "
 " Editing
 "
-call minpac#add("vim-scripts/IndexedSearch")
 call minpac#add("justinmk/vim-sneak")
 " s<char1><char>    go to combination (forward)
 " S<char1><char>    go to combination (back)
@@ -208,15 +306,14 @@ call minpac#add("justinmk/vim-sneak")
 " ``                go back to start
 " s<Enter>          repeat last search
 
-call minpac#add("nathanaelkane/vim-indent-guides")
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_enable_on_vim_startup = 1
-autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd  ctermbg=237
-autocmd VimEnter,Colorscheme * :highlight IndentGuidesEven ctermbg=235
-
 call minpac#add("terryma/vim-expand-region")
 " +     expand region
 " -     shrink region
+
+"
+" Projectionist
+"
+call minpac#add("tpope/vim-projectionist")
 
 "
 " Indentation
@@ -236,56 +333,30 @@ call minpac#add("SirVer/ultisnips")
 call minpac#add("junegunn/fzf")
 call minpac#add("junegunn/fzf.vim")
 
+nnoremap <leader>p :<C-u>FZF<CR>
 nnoremap <leader>s :Snippets<CR>
 nnoremap <leader>f :Files .<CR>
 nnoremap <leader>g :GFile<CR>
 nnoremap <leader>r :Rg<space>
 
 " Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+nnoremap <leader><tab> <plug>(fzf-maps-n)
+xnoremap <leader><tab> <plug>(fzf-maps-x)
+onoremap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <c-x><c-k> <plug>(fzf-complete-word)
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <c-x><c-l> <plug>(fzf-complete-line)
 
 " EditorConfig
 call minpac#add("editorconfig/editorconfig-vim")
-
-" Linting and fixing code
-call minpac#add("w0rp/ale")
-let b:ale_linters=["pyflakes", "flak8", "pylint"]
-let b:ale_fixers=["eslint", "yapf", "black"]
-let b:ale_fix_on_save=1
 
 "
 " Files
 "
 call minpac#add("mhinz/vim-startify")
-
-"
-" Searching
-"
-" Search for contents: ack.vim
-" nmap <leader>a :tab split<CR>:Ack ""<Left>
-" nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
-" nmap <leader>T :tab split<CR>:Ack "TODO"
-
-" bind K to grep word under cursor
-" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-" bind \ (backward slash) to grep shortcut
-" command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-" nnoremap \ :Ag<SPACE>
-" " Ag will search from project root
-" let g:ag_working_path_mode="r"
-
-" simple recursive grep
-" nmap ,r :Ack
-" nmap ,wr :Ack <cword><CR>
 
 "
 " Clean file
@@ -315,25 +386,6 @@ endfunction
 " The addition should be done in `vim/after/ftplugin/*.vim`. By
 " default no re-indentation will be applied.
 autocmd! BufWritePre * :call CleanFile()
-
-"
-" Smart tab
-"
-function! CleverTab()
-    if pumvisible()
-        return "\<C-N>"
-    endif
-    if strpart(getline('.'), 0, col('.')-1) =~ '^\s*$'
-        return "\<Tab>"
-    elseif exists('&omnifunc') && &omnifunc != ''
-        return "\<C-X>\<C-O>"
-    else
-        return "\<C-N>"
-    endif
-endfunction
-
-inoremap <Tab> <C-R>=CleverTab()<CR>
-
 "
 " Rename current file
 "
@@ -351,135 +403,3 @@ endfunction
 " ctags
 "
 command! MakeTags !ctags -R .
-
-"
-" Yanking
-"
-" store yankring history file there too
-" let g:yankring_history_dir='~/.vim/dirs/'
-
-" create needed directories if they don't exist
-" if !isdirectory(&backupdir)
-"     call mkdir(&backupdir, "p")
-" endif
-" if !isdirectory(&directory)
-"     call mkdir(&directory, "p")
-" endif
-" if !isdirectory(&undodir)
-"     call mkdir(&undodir, "p")
-" endif
-
-"
-" Tagbar
-"
-" toggle tagbar display
-" map <F4> :TagbarToggle<CR>
-" autofocus on tagbar open
-" let g:tagbar_autofocus=1
-
-"
-" NERDTree
-"
-" toggle nerdtree display
-" map <F3> :NERDTreeToggle<CR>
-" open nerdtree with the current file selected
-" nmap ,t :NERDTreeFind<CR>
-" don;t show these file types
-" let NERDTreeIgnore=['\.pyc$', '\.pyo$']
-
-"
-" CtrlP
-"
-" file finder mapping
-" let g:ctrlp_map=',e'
-" " tags (symbols) in current file finder mapping
-" nmap ,g :CtrlPBufTag<CR>
-" " tags (symbols) in all files finder mapping
-" nmap ,G :CtrlPBufTagAll<CR>
-" " general code finder in all files mapping
-" nmap ,f :CtrlPLine<CR>
-" " recent files finder mapping
-" nmap ,m :CtrlPMRUFiles<CR>
-" " commands finder mapping
-" nmap ,c :CtrlPCmdPalette<CR>
-" " to be able to call CtrlP with default search text
-" function! CtrlPWithSearchText(search_text, ctrlp_command_end)
-"     execute ':CtrlP' . a:ctrlp_command_end
-"     call feedkeys(a:search_text)
-" endfunction
-" " same as previous mappings, but calling with current word as default text
-" nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
-" nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
-" nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
-" nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
-" nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
-" nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
-" nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
-" " don't change working directory
-" let g:ctrlp_working_path_mode=0
-" " ignore these files and folders on file finder
-" let g:ctrlp_custom_ignore={
-"   \ 'dir':  '\v[\/](\.git|\.hg|\.svn|node_modules)$',
-"   \ 'file': '\.pyc$\|\.pyo$',
-"   \ }
-"
-
-"
-" Syntastic
-"
-" show list of errors and warnings on the current file
-" nmap <leader>e :Errors<CR>
-" check also when just opened the file
-" let g:syntastic_check_on_open=1
-" don't put icons on the sign column (it hides the vcs status icons of signify)
-" let g:syntastic_enable_signs=0
-" custom icons (enable them if you use a patched font, and enable the previous
-" " setting)
-" let g:syntastic_error_symbol='✗'
-" let g:syntastic_warning_symbol='⚠'
-" let g:syntastic_style_error_symbol='✗'
-" let g:syntastic_style_warning_symbol='⚠'
-
-"
-" Tabman
-"
-" mappings to toggle display, and to focus on it
-" let g:tabman_toggle='tl'
-" let g:tabman_focus ='tf'
-
-"
-" DragVisuals
-"
-" mappings to move blocks in 4 directions
-" vmap <expr> <S-M-LEFT> DVB_Drag('left')
-" vmap <expr> <S-M-RIGHT> DVB_Drag('right')
-" vmap <expr> <S-M-DOWN> DVB_Drag('down')
-" vmap <expr> <S-M-UP> DVB_Drag('up')
-" mapping to duplicate block
-" vmap <expr> D DVB_Duplicate()
-
-"
-" Signify
-"
-" this first setting decides in which order try to guess your current vcs
-" UPDATE it to reflect your preferences, it will speed up opening files
-" let g:signify_vcs_list=[ 'git', 'hg' ]
-" " mappings to jump to changed blocks
-" nmap <leader>sn <plug>(signify-next-hunk)
-" nmap <leader>sp <plug>(signify-prev-hunk)
-" " nicer colors
-" highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
-" highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
-" highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
-" highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
-" highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
-" highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
-
-"
-" Window Chooser
-"
-" mapping
-" nmap  -  <Plug>(choosewin)
-" show big letters
-" let g:choosewin_overlay_enable=1
-

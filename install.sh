@@ -7,7 +7,7 @@ sudo apt upgrade -y
 sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap
 
 # Development
-sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep
+sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel
 
 # Media
 sudo apt install -y gimp vlc
@@ -42,6 +42,7 @@ rm -rf ~/.oh-my-zsh
 rm -rf ~/.zshrc
 rm -rf ~/.zsh-syntax-highlighting
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting --depth 1
 mkdir -p ~/.oh-my-zsh/custom/themes
 curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.zsh-theme -L -o ~/.oh-my-zsh/custom/themes/elessar.zsh-theme
@@ -91,7 +92,7 @@ Rscript ~/code/system/dotfiles/r/base_packages.R
 # JavaScript
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install -y nodejs
-sudo npm install -g tern js-beautify eslint jshint typescript tslint typescript-formatter csslint jsonlint
+sudo npm install -g tern js-beautify eslint jshint typescript tslint typescript-formatter csslint jsonlint prettier
 rm -rf ~/.eslintrc
 ln -s ~/code/system/dotfiles/js/eslintrc ~/.eslintrc
 
@@ -137,3 +138,16 @@ google-chrome https://github.com/horst3180/arc-theme
 
 # Remove unwanted directories
 vim ~/.config/user-dirs.dirs
+
+# Rust (.zshrc already contains config)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# To install Vim's YouCompleteMe plug in:
+echo "---------------------------------------"
+echo "Missing manual piece: Vim:YouCompleteMe
+echo "---------------------------------------"
+echo "1. Run `MinpacUpdate` inside of Vim"
+echo "2. cd to `~/.vim/pack/minpac/start/YouCompleteMe`"
+echo "3. `rm -fr ./third_party/ycmd/third_party/cregex`"
+echo "4. `git submodule update --init --recursive`"
+echo "5. `/usr/bin/python3.7 ./install.py --all`"
