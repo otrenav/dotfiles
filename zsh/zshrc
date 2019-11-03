@@ -70,14 +70,6 @@ export R_PROFILE_USER="~/code/system/dotfiles/r/Rprofile"
 # kubectl
 alias k="kubectl"
 
-# Google Cloud
-export CLOUDSDK_HOME=~/code/system/gcloud
-export CLOUDSDK_PYTHON=/usr/bin/python2.7
-if [ -e ~/code/system/gcloud/completion.zsh.inc ]; then
-   source ~/code/system/gcloud/completion.zsh.inc
-   source ~/code/system/gcloud/path.zsh.inc
-fi
-
 # MySQL
 function switch_database() {
     echo "[+] Switching database ($1)..."

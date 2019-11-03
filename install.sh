@@ -7,7 +7,7 @@ sudo apt upgrade -y
 sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap
 
 # Development
-sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel tmux
+sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel
 
 # Media
 sudo apt install -y gimp vlc
@@ -50,6 +50,7 @@ ln -s ~/code/system/dotfiles/zsh/zshrc ~/.zshrc
 chsh -s $(which zsh)
 
 # Tmux
+sudo apt install -y tmux
 rm -rf ~/.tmux/
 mkdir -p ~/.tmux/
 ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
@@ -60,7 +61,7 @@ git clone https://gitlab.com/otrenav/spacemacs ~/code/system/spacemacs
 source ~/code/system/spacemacs/install.sh
 
 # Vim
-sudo apt install -y vim
+sudo apt install -y vim vim-gtk
 rm -rf ~/.vim
 ln -s ~/code/system/dotfiles/vim ~/.vim
 mkdir -p ~/.vim/pack/minpac/opt/
