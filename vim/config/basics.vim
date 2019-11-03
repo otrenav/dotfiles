@@ -1,3 +1,4 @@
+
 let mapleader=" "
 set title
 set backup
@@ -44,3 +45,5 @@ set nrformats=
 set tabstop=4
 
 runtime macros/matchit.vim
+
+autocmd! BufWritePost vimrc source $MYVIMRC

@@ -111,6 +111,14 @@ function show_keys() {
 # Update path
 export PATH="$PATH:$HOME/.scripts/:$HOME/.cargo/bin"
 
+
+#
+# Tmux
+#
+
+# Ensure colors are passed
+[ -z "$TMUX" ] && export TERM=xterm-256color
+
 # Ensure tmux
 _not_inside_tmux() {
     [[ -z "$TMUX" ]]
