@@ -7,7 +7,7 @@ sudo apt upgrade -y
 sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap
 
 # Development
-sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel
+sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel tmux
 
 # Media
 sudo apt install -y gimp vlc
@@ -65,8 +65,8 @@ rm -rf ~/.vim
 ln -s ~/code/system/dotfiles/vim ~/.vim
 mkdir -p ~/.vim/pack/minpac/opt/
 git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
-mkdir ~/.vim/dirs/backups
-mkdir ~/.vim/dirs/tmp
+mkdir -p ~/.vim/dirs/backups
+mkdir -p ~/.vim/dirs/tmp
 
 # SQL Databases
 sudo apt install -y mysql-client mysql-server postgresql-common libmysqlclient-dev
@@ -144,7 +144,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # To install Vim's YouCompleteMe plug in:
 echo "---------------------------------------"
-echo "Missing manual piece: Vim:YouCompleteMe
+echo "Missing manual piece: Vim:YouCompleteMe"
 echo "---------------------------------------"
 echo "1. Run `MinpacUpdate` inside of Vim"
 echo "2. cd to `~/.vim/pack/minpac/start/YouCompleteMe`"
