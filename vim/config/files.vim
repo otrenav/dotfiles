@@ -2,16 +2,7 @@
 "
 " Create dirs on save
 "
-function s:CreateMissingDirectory(file, buf)
-    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
-        let dir=fnamemodify(a:file, ':h')
-        if !isdirectory(dir)
-            call mkdir(dir, 'p')
-        endif
-    endif
-endfunction
-
-autocmd! BufWritePre * :call s:CreateMissingDirectory(expand('<afile>'), +expand('<abuf>'))
+call minpac#add("DataWraith/auto_mkdir")
 
 "
 " Projectionist
@@ -24,6 +15,13 @@ call minpac#add("tpope/vim-projectionist")
 call minpac#add("junegunn/fzf")
 call minpac#add("junegunn/fzf.vim")
 
+" command! -nargs=? -bang -complete=dir FzfFiles
+            \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview("up:60%") : {}, <bang>0)
+" command FzfChanges call s:fzf_changes()
+
+nnoremap <silent> <leader>b :FzfBuffers<CR>
+nnoremap <silent> <leader>o  :Files<CR>
+nnoremap <silent> <leader>O  :Files!<CR>
 nnoremap <leader>p :<C-u>FZF<CR>
 nnoremap <leader>s :Snippets<CR>
 nnoremap <leader>f :Files .<CR>

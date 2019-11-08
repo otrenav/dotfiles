@@ -12,48 +12,55 @@ plugins=(
     git
     ng
 )
+export VISUAL=vim
+export EDITOR="$VISUAL"
 export LANG=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-alias zshconfig="code ~/.zshrc"
+export PATH="$PATH:$HOME/.cargo/bin"
 
-# Aliases
+PDF_VIEWER=evince
+DIR_BASE="/home/otrenav"
+DIR_CODE="$DIR_BASE/code"
+DIR_DOWNLOADS="$DIR_BASE/downloads"
+DIR_PDF="$DIR_BASE/drive/personal/knowledge"
+DIR_DOTFILES="$DIR_BASE/code/system/dotfiles"
+DIR_CONTENT="$DIR_BASE/code/omartrejo/content"
+DIR_SCRIPTS="$DIR_BASE/code/system/dotfiles/scripts"
+C="$DIR_BASE/code/omartrejo/content"
+
+# Add "~/.scripts" and all subdirectories to $PATH
+export PATH="$PATH:$(du "$DIR_SCRIPTS" | cut -f2 | tr "\n" ":" | sed "s/:*$//")"
+
 alias g="git"
 alias v="vim"
+alias e="exit"
 alias sv="sudo vim"
-alias a="sudo apt"
-alias r="ranger"
-alias sr="sudo ranger"
 alias ka="killall"
-alias c="cd ~/code; ls;"
-alias d="cd ~/downloads; ls;"
-alias file_count="find . -type f | wc -l"
-alias gg="grep --color=auto -rnwi . -e"
-alias ccat="highlight --out-format=ansi"
-alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
-alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
+alias t="./test.sh"
+alias s="./server.sh"
+alias disk_usage="du -sh"
+alias c="cd $DIR_CODE; ls;"
+alias d="cd $DIR_DOWNLOADS; ls;"
+alias cn="cd $DIR_CONTENT; ls"
+alias double_click="xdg-open"
+alias ports="netstat -tulpn"
 alias grep="grep --color=auto"
 alias reload="source ~/.zshrc"
-alias ports="netstat -tulpn"
-alias s="./server.sh"
-alias t="./test.sh"
-alias disk_use="du -sh"
-alias e="exit"
+alias zconf="$EDITOR ~/.zshrc"
+alias vconf="$EDITOR ~/.vim/vimrc"
+alias nbp="new_blog_post.bash $1 $2"
+alias gg="grep --color=auto -rnwi . -e"
+alias ccat="highlight --out-format=ansi"
+alias file_count="find . -type f | wc -l"
+alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
+alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
 
-double_click="xdg-open"
-
-# Projects
-alias v="cd ~/code/vodafone-mlp/; workon vodafone-mlp; ls;"
-
-# Git
-# alias g="git"
-
-# Editor
-export VISUAL=vim
-export EDITOR="$VISUAL"
+# Manuals
+export PAGER="most"
 
 # Vim
-export VIM_CONFIG=~/.vim
+export VIM_CONFIG=~/.vim/vimrc
 export VIM_DATA=~/.vim
 
 # Python
@@ -100,55 +107,51 @@ function show_keys() {
     rm "${f}"
 }
 
-# Update path
-export PATH="$PATH:$HOME/.scripts/:$HOME/.cargo/bin"
-
-
-#
 # Tmux
-#
-
-# Ensure colors are passed
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-# Ensure tmux
-_not_inside_tmux() {
-    [[ -z "$TMUX" ]]
-}
+# Fuzzy matching
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--extended --layout=reverse --height=40%"
+export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_ALT_C_COMMAND="fd --type d ."
 
-ensure_tmux_is_running() {
-  if _not_inside_tmux; then
-     tmux
-     exit
-  fi
-}
-
-# ensure_tmux_is_running
-
-
-# TODO: Use scripts over functions
-# TODO: Use fzf to select inputs
-# TODO: entr: https://www.youtube.com/watch?v=9KAp_zWeI34
-# TODO: awk
-# TODO: sed
-
-# if [ -d ~/.bash_functions ]; then
-#     for file in ~/.bash_functions/*; do
-#         . "$file"
-#     done
-# fi
-
-# Add "~/.scripts" and all subdirectories to $PATH
-# export PATH="$PATH:$(du "$HOME/.scripts/" | cut -f2 | tr "\n" ":" | sed "s/:*$//")"
-
-export FZF_DEFAULT_OPTS="--layout=reverse --height=40%"
+# Command-time
+ZSH_COMMAND_TIME_MSG="\n[Execution time: %s] \n \n"
 
 # Disable C-s and C-q for pausing terminal
 stty -ixon
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Command-time
-ZSH_COMMAND_TIME_MSG="\n[Execution time: %s]"
+# Easily edit files
+f() {
+    fname="$(find \
+        $DIR_SCRIPTS \
+        $VIM_DATA/vimrc \
+        $VIM_DATA/config \
+        $VIM_DATA/own-snippets \
+        $DIR_DOTFILES/python \
+        $DIR_DOTFILES/tmux \
+        $DIR_DOTFILES/git \
+        $DIR_DOTFILES/js \
+        $DIR_DOTFILES/r \
+        $DIR_CONTENT \
+    -type f -exec du -a {} \; \
+    | cut -f2 \
+    | sed -e "s|$DIR_BASE|~|" \
+    | sed "/\~$/d" \
+    | fzf \
+    | sed -e "s|~|$DIR_BASE|" \
+    )"
+    if [ ! -z "$fname" ]; then
+        $EDITOR "$fname"
+    fi
+}
 
-# Fuzzy finder
-FZF_DEFAULT_COMMAND="rg --files"
+# Easily open PDFs
+p() {
+    $PDF_VIEWER "$DIR_PDF$(du -a $DIR_PDF | cut -f2 | \
+        grep .pdf | sed -e "s|$DIR_PDF||" | fzf)"
+}
+
+# Projects
+alias vmlp="cd ~/code/vodafone-mlp/; workon vodafone-mlp; ls;"

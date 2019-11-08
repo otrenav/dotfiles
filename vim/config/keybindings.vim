@@ -22,6 +22,8 @@ onoremap in( :<c-u>normal! f(vi(<CR>
 onoremap in) :<c-u>normal! F)vi(<CR>
 
 " tab navigation mappings
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 " map tn :tabn<CR>
 " map tp :tabp<CR>
 " map tm :tabm

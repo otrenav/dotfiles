@@ -4,10 +4,10 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # Ubuntu generics
-sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap
+sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf
 
 # Development
-sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel
+sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel xclip most fd-find
 
 # Media
 sudo apt install -y gimp vlc
@@ -119,6 +119,7 @@ mkdir ~/.bash_it/themes/otrenav
 ln -s ~/code/system/dotfiles/bash/otrenav.theme.bash ~/.bash_it/themes/otrenav/otrenav.theme.bash
 
 # Fuzzy finder for terminal
+ln -s ~/code/system/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
@@ -127,15 +128,26 @@ git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
 ln -s ~/.kubectx/kubectx ~/.scripts/kubectx
 ln -s ~/.kubectx/kubens ~/.scripts/kubens
 
+# Google Cloud (GCP)
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+sudo apt update && sudo apt install google-cloud-sdk
+
+# i3
+sudo add-apt-repository ppa:kgilmer/speed-ricer
+sudo apt update && sudo apt install i3 i3-gaps
+ln -s ~/code/system/dotfiles/i3 ~/.i3
+
 # Terminal Themes
-# Select Monokai Dark
 wget -O gogh https://git.io/vQgMr
 chmod +x gogh
 ./gogh
 rm ./gogh
 
-# System theme (Ark Dark + Yaru Mouse/Icons)
+# System theme (Yaru Mouse/Icons, Nordic Shell and GTK)
+google-chrome https://github.com/vinceliuice/Layan-gtk-theme
 google-chrome https://github.com/horst3180/arc-theme
+google-chrome https://github.com/EliverLara/Nordic
 
 # Remove unwanted directories
 vim ~/.config/user-dirs.dirs
