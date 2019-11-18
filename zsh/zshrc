@@ -49,6 +49,8 @@ alias grep="grep --color=auto"
 alias reload="source ~/.zshrc"
 alias zconf="$EDITOR ~/.zshrc"
 alias vconf="$EDITOR ~/.vim/vimrc"
+alias tconf="$EDITOR ~/.tmux.conf"
+alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
 alias nbp="new_blog_post.bash $1 $2"
 alias gg="grep --color=auto -rnwi . -e"
 alias ccat="highlight --out-format=ansi"
@@ -109,6 +111,19 @@ function show_keys() {
 
 # Tmux
 [ -z "$TMUX" ] && export TERM=xterm-256color
+
+_not_inside_tmux() {
+    [[ -z "$TMUX" ]]
+}
+
+ensure_tmux_is_running() {
+  if _not_inside_tmux; then
+     tmux
+     exit
+  fi
+}
+
+# ensure_tmux_is_running
 
 # Fuzzy matching
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

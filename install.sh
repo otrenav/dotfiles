@@ -4,13 +4,10 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # Ubuntu generics
-sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf
+sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf gimp vlc
 
 # Development
 sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel xclip most fd-find
-
-# Media
-sudo apt install -y gimp vlc
 
 # Basics
 google-chrome https://www.insynchq.com/downloads &
@@ -54,7 +51,6 @@ sudo apt install -y tmux
 rm -rf ~/.tmux/
 mkdir -p ~/.tmux/
 ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -s ~/code/system/dotfiles/tmux/scripts ~/.tmux/scripts
 
 # Emacs
 git clone https://gitlab.com/otrenav/spacemacs ~/code/system/spacemacs
@@ -133,19 +129,14 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt update && sudo apt install google-cloud-sdk
 
-# i3
-sudo add-apt-repository ppa:kgilmer/speed-ricer
-sudo apt update && sudo apt install i3 i3-gaps
-ln -s ~/code/system/dotfiles/i3 ~/.i3
-
 # Terminal Themes
-wget -O gogh https://git.io/vQgMr
-chmod +x gogh
-./gogh
-rm ./gogh
+google-chrome https://github.com/denysdovhan/one-gnome-terminal
+# wget -O gogh https://git.io/vQgMr
+# chmod +x gogh
+# ./gogh
+# rm ./gogh
 
-# System theme (Yaru Mouse/Icons, Nordic Shell and GTK)
-google-chrome https://github.com/vinceliuice/Layan-gtk-theme
+# System theme
 google-chrome https://github.com/horst3180/arc-theme
 google-chrome https://github.com/EliverLara/Nordic
 
