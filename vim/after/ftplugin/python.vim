@@ -49,4 +49,4 @@ call minpac#add("davidhalter/jedi-vim")
 " let g:jedi#rename_command = "<leader>r"
 
 call minpac#add("psf/black")
-autocmd! BufWritePre *.py execute ':Black'
+" autocmd! BufWritePre *.py execute ':Black'

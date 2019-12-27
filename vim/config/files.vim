@@ -16,7 +16,7 @@ call minpac#add("junegunn/fzf")
 call minpac#add("junegunn/fzf.vim")
 
 " command! -nargs=? -bang -complete=dir FzfFiles
-            \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview("up:60%") : {}, <bang>0)
+"            \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview("up:60%") : {}, <bang>0)
 " command FzfChanges call s:fzf_changes()
 
 nnoremap <silent> <leader>b :FzfBuffers<CR>

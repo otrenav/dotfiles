@@ -27,9 +27,9 @@ let g:airline#extensions#tabline#formatter="unique_tail_improved"
 " let g:monotone_contrast_factor=0.9
 " let g:airline_theme="monochrome"
 
-" colorscheme nord
-" let g:airline_theme="base16_nord"
+colorscheme nord
+let g:airline_theme="base16_nord"
 
-colorscheme onedark
-let g:airline_theme="onedark"
-let g:onedark_terminal_italics=1
+" colorscheme onedark
+" let g:airline_theme="onedark"
+" let g:onedark_terminal_italics=1

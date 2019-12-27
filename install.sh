@@ -4,7 +4,7 @@ sudo apt update -y
 sudo apt upgrade -y
 
 # Ubuntu generics
-sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf gimp vlc
+sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf gimp vlc ffmpeg
 
 # Development
 sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel xclip most fd-find
@@ -155,3 +155,8 @@ echo "2. cd to `~/.vim/pack/minpac/start/YouCompleteMe`"
 echo "3. `rm -fr ./third_party/ycmd/third_party/cregex`"
 echo "4. `git submodule update --init --recursive`"
 echo "5. `/usr/bin/python3.7 ./install.py --all`"
+
+# Recording videos
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install obs-studio
