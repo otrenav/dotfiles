@@ -169,3 +169,8 @@ sudo apt install -y obs-studio
 # and can't be disabled, so we make their extensions unreachable
 sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com.backup/
 sudo mv /usr/share/gnome-shell/extensions/desktop-icons@csoriano/ /usr/share/gnome-shell/extensions/desktop-icons@csoriano.backup/
+
+# Remove Nautilus bookmarks
+gedit ~/.config/gtk-3.0/bookmarks
+gedit ~/.config/user-dirs.dirs
+sudo gedit /etc/xdg/user-dirs.defaults
