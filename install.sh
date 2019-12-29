@@ -163,3 +163,9 @@ echo "5. `/usr/bin/python3.7 ./install.py --all`"
 sudo add-apt-repository ppa:obsproject/obs-studio
 sudo apt update
 sudo apt install -y obs-studio
+
+# Ubuntu Dock
+# NOTE: In Ubuntu 19.10 the dock and desktop icons are very annoying
+# and can't be disabled, so we make their extensions unreachable
+sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com.backup/
+sudo mv /usr/share/gnome-shell/extensions/desktop-icons@csoriano/ /usr/share/gnome-shell/extensions/desktop-icons@csoriano.backup/
