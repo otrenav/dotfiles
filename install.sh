@@ -99,7 +99,10 @@ sudo apt install -y default-jre default-jdk
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key fingerprint 0EBFCD88
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# NOTE: Since there's no Ubuntu 19.10 (i.e. eon) install
+# available, we need to # use `disco` (i.e. Ubuntu 19.04)
+# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable"
 sudo apt update
 sudo apt install -y docker-ce
 
