@@ -3,17 +3,17 @@
 sudo apt update -y
 sudo apt upgrade -y
 
-# Ubuntu generics
-sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf gimp vlc ffmpeg
+# Ubuntu generics 1/2
+snap install vlc spotify gimp
+snap install skype --classic
+snap install slack --classic
+google-chrome https://www.insynchq.com/downloads &
+
+# Ubuntu generics 2/2
+sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf ffmpeg audacity
 
 # Development
 sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel xclip most fd-find
-
-# Basics
-google-chrome https://www.insynchq.com/downloads &
-snap install spotify
-snap install slack
-snap install skype
 
 # Remove blocking and useless keybindings
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
