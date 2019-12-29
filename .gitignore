@@ -12,3 +12,9 @@ misc/
 srecode-map.el
 backup/
 .DS_Store
+vim/dirs/
+vim/undo/
+vim/dirs/*
+vim/undo/*
+vim/dirs/**
+vim/undo/**

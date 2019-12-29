@@ -34,7 +34,7 @@ rm -rf ~/.gitconfig
 ln -s ~/code/system/dotfiles/git/gitconfig ~/.gitconfig
 
 # Zsh
-sudo apt install zsh
+sudo apt install -y zsh
 rm -rf ~/.oh-my-zsh
 rm -rf ~/.zshrc
 rm -rf ~/.zsh-syntax-highlighting
@@ -53,7 +53,7 @@ mkdir -p ~/.tmux/
 ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # Emacs
-git clone https://gitlab.com/otrenav/spacemacs ~/code/system/spacemacs
+git clone git@gitlab.com:otrenav/spacemacs.git ~/code/system/spacemacs
 source ~/code/system/spacemacs/install.sh
 
 # Vim
@@ -127,18 +127,18 @@ ln -s ~/.kubectx/kubens ~/.scripts/kubens
 # Google Cloud (GCP)
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-sudo apt update && sudo apt install google-cloud-sdk
+sudo apt update && sudo apt install -y google-cloud-sdk
 
 # Terminal Themes
-google-chrome https://github.com/denysdovhan/one-gnome-terminal
+# google-chrome https://github.com/denysdovhan/one-gnome-terminal
 # wget -O gogh https://git.io/vQgMr
 # chmod +x gogh
 # ./gogh
 # rm ./gogh
 
 # System theme
-google-chrome https://github.com/horst3180/arc-theme
-google-chrome https://github.com/EliverLara/Nordic
+# google-chrome https://github.com/horst3180/arc-theme
+# google-chrome https://github.com/EliverLara/Nordic
 
 # Remove unwanted directories
 vim ~/.config/user-dirs.dirs
@@ -159,4 +159,4 @@ echo "5. `/usr/bin/python3.7 ./install.py --all`"
 # Recording videos
 sudo add-apt-repository ppa:obsproject/obs-studio
 sudo apt update
-sudo apt install obs-studio
+sudo apt install -y obs-studio
