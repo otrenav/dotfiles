@@ -89,7 +89,7 @@ Rscript ~/code/system/dotfiles/r/base_packages.R
 # JavaScript
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install -y nodejs
-sudo npm install -g tern js-beautify eslint jshint typescript tslint typescript-formatter csslint jsonlint prettier
+sudo npm install -g tern js-beautify eslint jshint typescript tslint typescript-formatter csslint jsonlint prettier @vue/cli
 rm -rf ~/.eslintrc
 ln -s ~/code/system/dotfiles/js/eslintrc ~/.eslintrc
 
