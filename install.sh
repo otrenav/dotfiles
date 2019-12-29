@@ -53,6 +53,7 @@ mkdir -p ~/.tmux/
 ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # Emacs
+rm -rf ~/code/system/spacemacs
 git clone git@gitlab.com:otrenav/spacemacs.git ~/code/system/spacemacs
 source ~/code/system/spacemacs/install.sh
 
