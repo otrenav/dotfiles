@@ -172,3 +172,6 @@ p() {
 
 # Projects
 alias vmlp="cd ~/code/vodafone-mlp/; workon vodafone-mlp; ls;"
+
+# Yarn
+export PATH="$PATH:$(yarn global bin)"
