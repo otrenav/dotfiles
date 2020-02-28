@@ -16,10 +16,10 @@ sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli 
 sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel xclip most fd-find
 
 # Install yarn
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt update
-sudo apt install -y yarn
+# curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+# echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+# sudo apt update
+# sudo apt install -y yarn
 
 # Remove blocking and useless keybindings
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
@@ -93,9 +93,8 @@ ln -s ~/code/system/dotfiles/r/Rprofile ~/.Rprofile
 mkdir ~/code/system/r/
 Rscript ~/code/system/dotfiles/r/base_packages.R
 
-# JavaScript
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt install -y nodejs
+# JavaScript/NPM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 sudo npm install -g tern js-beautify eslint jshint typescript tslint typescript-formatter csslint jsonlint prettier @vue/cli
 rm -rf ~/.eslintrc
 ln -s ~/code/system/dotfiles/js/eslintrc ~/.eslintrc
