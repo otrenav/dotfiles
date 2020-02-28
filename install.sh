@@ -95,7 +95,7 @@ Rscript ~/code/system/dotfiles/r/base_packages.R
 
 # JavaScript/NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
-sudo npm install -g tern js-beautify eslint jshint typescript tslint typescript-formatter csslint jsonlint prettier @vue/cli
+sudo npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
 rm -rf ~/.eslintrc
 ln -s ~/code/system/dotfiles/js/eslintrc ~/.eslintrc
 
