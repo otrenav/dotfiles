@@ -13,7 +13,7 @@ google-chrome https://www.insynchq.com/downloads &
 sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf ffmpeg audacity simplescreenrecorder
 
 # Development
-sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie letsencrypt libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel xclip most fd-find
+sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel xclip most fd-find jq
 
 # Install yarn
 # curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -37,7 +37,7 @@ sudo apt -y install git-lfs
 git lfs install
 rm ./script.deb.sh
 rm -rf ~/.gitconfig
-ln -s ~/code/system/dotfiles/git/gitconfig ~/.gitconfig
+ln -s ~/projects/system/dotfiles/git/gitconfig ~/.gitconfig
 
 # Zsh
 sudo apt install -y zsh
@@ -49,56 +49,56 @@ git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/pl
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting --depth 1
 mkdir -p ~/.oh-my-zsh/custom/themes
 curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.zsh-theme -L -o ~/.oh-my-zsh/custom/themes/elessar.zsh-theme
-ln -s ~/code/system/dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/projects/system/dotfiles/zsh/zshrc ~/.zshrc
 chsh -s $(which zsh)
 
-# Tmux
-sudo apt install -y tmux
-rm -rf ~/.tmux/
-mkdir -p ~/.tmux/
-ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
-
 # Emacs
-rm -rf ~/code/system/spacemacs
-git clone git@gitlab.com:otrenav/spacemacs.git ~/code/system/spacemacs
-source ~/code/system/spacemacs/install.sh
+rm -rf ~/projects/system/spacemacs
+git clone git@gitlab.com:otrenav/spacemacs.git ~/projects/system/spacemacs
+source ~/projects/system/spacemacs/install.sh
+
+# Tmux
+# sudo apt install -y tmux
+# rm -rf ~/.tmux/
+# mkdir -p ~/.tmux/
+# ln -s ~/projects/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # Vim
-sudo apt install -y vim vim-gtk
-rm -rf ~/.vim
-ln -s ~/code/system/dotfiles/vim ~/.vim
-mkdir -p ~/.vim/pack/minpac/opt/
-git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
-mkdir -p ~/.vim/dirs/backups
-mkdir -p ~/.vim/dirs/tmp
+# sudo apt install -y vim vim-gtk
+# rm -rf ~/.vim
+# ln -s ~/projects/system/dotfiles/vim ~/.vim
+# mkdir -p ~/.vim/pack/minpac/opt/
+# git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+# mkdir -p ~/.vim/dirs/backups
+# mkdir -p ~/.vim/dirs/tmp
 
 # SQL Databases
 sudo apt install -y mysql-client mysql-server postgresql-common libmysqlclient-dev
 
 # Python
-sudo apt install -y python3-dev python-dev python-pip python3-pip python3-venv virtualenv yapf yapf3
+sudo apt install -y python3-dev python3-pip python3-venv virtualenv yapf3
 sudo -H pip install pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper
-sudo -H pip3 install black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort[requirements]
-mkdir -p ~/code/system/python/
+sudo -H pip3 install black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort
+mkdir -p ~/projects/system/python/
 rm -rf ~/.flake8rc ~/.pylintrc
-ln -s ~/code/system/dotfiles/python/isort.cfg ~/.isort.cfg
-ln -s ~/code/system/dotfiles/python/flake8 ~/.flake8rc
+ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
+ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
 
 # R
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt update
 sudo apt install -y r-base gfortran
 rm -rf ~/.Rprofile
-ln -s ~/code/system/dotfiles/r/Rprofile ~/.Rprofile
-mkdir ~/code/system/r/
-Rscript ~/code/system/dotfiles/r/base_packages.R
+ln -s ~/projects/system/dotfiles/r/Rprofile ~/.Rprofile
+mkdir ~/projects/system/r/
+Rscript ~/projects/system/dotfiles/r/base_packages.R
 
 # JavaScript/NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 sudo ln -s ~/.nvm/versions/node/v10.19.0/bin/node /usr/bin/node
 sudo npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
 rm -rf ~/.eslintrc
-ln -s ~/code/system/dotfiles/js/eslintrc ~/.eslintrc
+ln -s ~/projects/system/dotfiles/js/eslintrc ~/.eslintrc
 
 # Java
 sudo apt install -y default-jre default-jdk
@@ -115,17 +115,17 @@ sudo apt install -y docker-ce
 
 # Bash
 rm -rf ~/.bashrc
-ln -s ~/code/system/dotfiles/bash/bashrc ~/.bashrc
-ln -s ~/code/system/dotfiles/scripts ~/.scripts
+ln -s ~/projects/system/dotfiles/bash/bashrc ~/.bashrc
+ln -s ~/projects/system/dotfiles/scripts ~/.scripts
 
 # Bash-it
 rm -rf ~/.bash_it
 git clone https://github.com/Bash-it/bash-it.git ~/.bash_it
 mkdir ~/.bash_it/themes/otrenav
-ln -s ~/code/system/dotfiles/bash/otrenav.theme.bash ~/.bash_it/themes/otrenav/otrenav.theme.bash
+ln -s ~/projects/system/dotfiles/bash/otrenav.theme.bash ~/.bash_it/themes/otrenav/otrenav.theme.bash
 
 # Fuzzy finder for terminal
-ln -s ~/code/system/dotfiles/fzf/fdignore ~/.fdignore
+ln -s ~/projects/system/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
@@ -151,20 +151,20 @@ sudo apt update && sudo apt install -y google-cloud-sdk
 # google-chrome https://github.com/EliverLara/Nordic
 
 # Remove unwanted directories
-vim ~/.config/user-dirs.dirs
+emacs ~/.config/user-dirs.dirs
 
 # Rust (.zshrc already contains config)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # To install Vim's YouCompleteMe plug in:
-echo "---------------------------------------"
-echo "Missing manual piece: Vim:YouCompleteMe"
-echo "---------------------------------------"
-echo "1. Run `MinpacUpdate` inside of Vim"
-echo "2. cd to `~/.vim/pack/minpac/start/YouCompleteMe`"
-echo "3. `rm -fr ./third_party/ycmd/third_party/cregex`"
-echo "4. `git submodule update --init --recursive`"
-echo "5. `/usr/bin/python3.7 ./install.py --all`"
+# echo "---------------------------------------"
+# echo "Missing manual piece: Vim:YouCompleteMe"
+# echo "---------------------------------------"
+# echo "1. Run `MinpacUpdate` inside of Vim"
+# echo "2. cd to `~/.vim/pack/minpac/start/YouCompleteMe`"
+# echo "3. `rm -fr ./third_party/ycmd/third_party/cregex`"
+# echo "4. `git submodule update --init --recursive`"
+# echo "5. `/usr/bin/python3.7 ./install.py --all`"
 
 # Recording videos
 sudo add-apt-repository ppa:obsproject/obs-studio

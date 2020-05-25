@@ -9,11 +9,10 @@ plugins=(
     kubectl
     docker
     gcloud
-    golang
     git
     ng
 )
-export VISUAL=vim
+export VISUAL=emacs
 export EDITOR="$VISUAL"
 export LANG=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
@@ -22,73 +21,52 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 PDF_VIEWER=evince
 DIR_BASE="/home/otrenav"
-DIR_CODE="$DIR_BASE/code"
+DIR_PROJECTS="$DIR_BASE/projects"
 DIR_DOWNLOADS="$DIR_BASE/downloads"
-DIR_PDF="$DIR_BASE/drive/personal/knowledge"
-DIR_DOTFILES="$DIR_BASE/code/system/dotfiles"
-DIR_CONTENT="$DIR_BASE/code/omartrejo/content"
-DIR_SCRIPTS="$DIR_BASE/code/system/dotfiles/scripts"
-C="$DIR_BASE/code/omartrejo/content"
+DIR_PDFS="$DIR_BASE/drive/personal/knowledge"
+DIR_DOTFILES="$DIR_BASE/projects/system/dotfiles"
+DIR_SCRIPTS="$DIR_BASE/projects/system/dotfiles/scripts"
+DIR_NOTES="$DIR_BASE/projects/notes"
+DIR_BLOG="$DIR_BASE/projects/blog"
+C="$DIR_BASE/projects/blog"
 
 # Add "~/.scripts" and all subdirectories to $PATH
 export PATH="$PATH:$(du "$DIR_SCRIPTS" | cut -f2 | tr "\n" ":" | sed "s/:*$//")"
 
 alias g="git"
-alias v="vim"
 alias e="exit"
 alias won="workon"
 alias ka="killall"
-alias sv="sudo vim"
 alias t="./test.sh"
 alias s="./server.sh"
 alias disk_usage="du -sh"
-alias c="cd $DIR_CODE; ls;"
 alias d="cd $DIR_DOWNLOADS; ls;"
-alias cn="cd $DIR_CONTENT; ls"
 alias double_click="xdg-open"
 alias ports="netstat -tulpn"
 alias grep="grep --color=auto"
 alias reload="source ~/.zshrc"
 alias zconf="$EDITOR ~/.zshrc"
-alias vconf="$EDITOR ~/.vim/vimrc"
-alias tconf="$EDITOR ~/.tmux.conf"
+alias econf="$EDITOR ~/.spacemacs"
 alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
-alias nbp="new_blog_post.bash $1 $2"
 alias gg="grep --color=auto -rnwi . -e"
 alias ccat="highlight --out-format=ansi"
 alias file_count="find . -type f | wc -l"
 alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
 alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
 
-# Manuals
-export PAGER="most"
-
-# Vim
-export VIM_CONFIG=~/.vim/vimrc
-export VIM_DATA=~/.vim
-
 # Python
 alias kp="killall python"
 alias pyclean="find . -name '*.py[co]' -o -name __pycache__ -exec rm -rf {} +"
-export WORKON_HOME=~/code/system/python/
+export WORKON_HOME=~/projects/system/python/
 source /usr/local/bin/virtualenvwrapper.sh
 
 # R
 alias R="R --no-save"
 alias r="R --no-save"
-export R_PROFILE_USER="~/code/system/dotfiles/r/Rprofile"
+export R_PROFILE_USER="~/projects/system/dotfiles/r/Rprofile"
 
 # kubectl
 alias k="kubectl"
-
-# MySQL
-function switch_database() {
-    echo "[+] Switching database ($1)..."
-    mysql -u root -p -e "DROP DATABASE $1";
-    mysql -u root -p -e "CREATE DATABASE $1 CHARACTER SET UTF8;";
-    mysql -u root -p $1 < $2
-    echo "[+] Done."
-}
 
 # Functions
 function file_directory_size() {
@@ -106,26 +84,10 @@ function file_directory_size() {
 
 function show_keys() {
     gpg $1
-    f=$(echo $1 | sed "s/\.[^.]*$//")
-    more "${f}"
-    rm "${f}"
+    fl=$(echo $1 | sed "s/\.[^.]*$//")
+    more "${fl}"
+    rm "${fl}"
 }
-
-# Tmux
-[ -z "$TMUX" ] && export TERM=xterm-256color
-
-_not_inside_tmux() {
-    [[ -z "$TMUX" ]]
-}
-
-ensure_tmux_is_running() {
-  if _not_inside_tmux; then
-     tmux
-     exit
-  fi
-}
-
-# ensure_tmux_is_running
 
 # Fuzzy matching
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -143,15 +105,12 @@ stty -ixon
 f() {
     fname="$(find \
         $DIR_SCRIPTS \
-        $VIM_DATA/vimrc \
-        $VIM_DATA/config \
-        $VIM_DATA/own-snippets \
         $DIR_DOTFILES/python \
-        $DIR_DOTFILES/tmux \
         $DIR_DOTFILES/git \
         $DIR_DOTFILES/js \
         $DIR_DOTFILES/r \
-        $DIR_CONTENT \
+        $DIR_NOTES \
+        $DIR_BLOG \
     -type f -exec du -a {} \; \
     | cut -f2 \
     | sed -e "s|$DIR_BASE|~|" \
@@ -166,19 +125,16 @@ f() {
 
 # Easily open PDFs
 p() {
-    $PDF_VIEWER "$DIR_PDF$(du -a $DIR_PDF | cut -f2 | \
-        grep .pdf | sed -e "s|$DIR_PDF||" | fzf)"
+    $PDF_VIEWER "$DIR_PDFS$(du -a $DIR_PDFS | cut -f2 | grep .pdf | sed -e "s|$DIR_PDFS||" | fzf)"
 }
-
-# Projects
-alias vmlp="cd ~/code/vodafone-mlp/; workon vodafone-mlp; ls;"
-
-# Yarn
-# export PATH="$PATH:$(yarn global bin)"
 
 #
 # Node Version Manager (NVM)
 #
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+load_nvm() {
+    echo "Loading NVM..."
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    echo "DONE."
+}

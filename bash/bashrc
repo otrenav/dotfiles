@@ -3,9 +3,9 @@
 #
 # Aliases
 #
-alias c='cd ~/code; ls;'
+alias p='cd ~/projects; ls;'
 alias d='cd ~/Downloads; ls;'
-alias v='cd ~/code/vodafone/; workon vodafone3.6; ls;'
+alias v='cd ~/projects/vodafone/; workon vodafone3.6; ls;'
 alias file_count='find . -type f | wc -l'
 alias gg='grep --color=auto -rnwi . -e'
 alias lsall='ls -flaF --color=auto -lh'
@@ -25,7 +25,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 #
 alias R='R --no-save'
 alias r='R --no-save'
-export R_PROFILE_USER='~/code/system/dotfiles/r/Rprofile'
+export R_PROFILE_USER='~/projects/system/dotfiles/r/Rprofile'
 
 #
 # Bash-It
@@ -40,21 +40,21 @@ HISTCONTROL=ignoredups:ignorespace
 #
 # Git
 #
-source ~/code/system/dotfiles/git/git-completion.bash
+source ~/projects/system/dotfiles/git/git-completion.bash
 
 #
 # Google Cloud
 #
 export CLOUDSDK_PYTHON=/usr/bin/python2.7
-if [ -e ~/code/system/gcloud/completion.bash.inc ]; then
-    source ~/code/system/gcloud/path.bash.inc
-    source ~/code/system/gcloud/completion.bash.inc
+if [ -e ~/projects/system/gcloud/completion.bash.inc ]; then
+    source ~/projects/system/gcloud/path.bash.inc
+    source ~/projects/system/gcloud/completion.bash.inc
 fi
 
 #
 # kubectl
 #
-source ~/code/system/dotfiles/bash/kubectl_completion.sh
+source ~/projects/system/dotfiles/bash/kubectl_completion.sh
 
 #
 # Editor
@@ -77,7 +77,7 @@ function switch_database() {
 # Python
 #
 alias kp='killall python'
-export WORKON_HOME=~/code/system/python/
+export WORKON_HOME=~/projects/system/python/
 
 # virtualenvwrapper environments
 alias pyclean='find . -name "*.py[co]" -o -name __pycache__ -exec rm -rf {} +'
