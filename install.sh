@@ -3,47 +3,42 @@
 sudo apt update -y
 sudo apt upgrade -y
 
-# Ubuntu generics 1/2
+# Generics
+firefox https://www.google.com/intl/en_us/chrome/
+google-chrome https://www.insynchq.com/downloads &
+
 snap install vlc spotify gimp
 snap install skype --classic
 snap install slack --classic
-google-chrome https://www.insynchq.com/downloads &
 
-# Ubuntu generics 2/2
-sudo apt install -y cpufrequtils clipit font-manager gnome-tweak-tool dconf-cli uuid-runtime nmap transmission gtk2-engines-murrine gtk2-engines-pixbuf ffmpeg audacity simplescreenrecorder
+sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio
 
-# Development
-sudo apt install -y emacs guake meld curl software-properties-common aspell hugo graphviz httpie libssl-dev libcurl4-openssl-dev silversearcher-ag shellcheck ripgrep cmake mono-devel xclip most fd-find jq
+# Fonts: Roboto, Roboto Mono
+google-chrome https://fonts.google.com/
 
 # Install yarn
-# curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-# echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-# sudo apt update
-# sudo apt install -y yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt install -y yarn
 
 # Remove blocking and useless keybindings
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
 
-# Hide ~/snap directory
+# Hide ~/snap directorymost
 echo snap >> ~/.hidden
 
 # Git
-sudo apt install -y git software-properties-common
 sudo add-apt-repository ppa:git-core/ppa
-sudo apt update
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt -y install git-lfs
 git lfs install
-rm ./script.deb.sh
 rm -rf ~/.gitconfig
 ln -s ~/projects/system/dotfiles/git/gitconfig ~/.gitconfig
 
 # Zsh
-sudo apt install -y zsh
-rm -rf ~/.oh-my-zsh
-rm -rf ~/.zshrc
-rm -rf ~/.zsh-syntax-highlighting
+ln -s ~/projects/system/dotfiles/scripts ~/.scripts
+rm -rf ~/.oh-my-zsh ~/.zshrc ~/.zsh-syntax-highlighting
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting --depth 1
@@ -52,40 +47,21 @@ curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.z
 ln -s ~/projects/system/dotfiles/zsh/zshrc ~/.zshrc
 chsh -s $(which zsh)
 
-# Emacs
-rm -rf ~/projects/system/spacemacs
-git clone git@gitlab.com:otrenav/spacemacs.git ~/projects/system/spacemacs
-source ~/projects/system/spacemacs/install.sh
-
-# Tmux
-# sudo apt install -y tmux
-# rm -rf ~/.tmux/
-# mkdir -p ~/.tmux/
-# ln -s ~/projects/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
-
-# Vim
-# sudo apt install -y vim vim-gtk
-# rm -rf ~/.vim
-# ln -s ~/projects/system/dotfiles/vim ~/.vim
-# mkdir -p ~/.vim/pack/minpac/opt/
-# git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
-# mkdir -p ~/.vim/dirs/backups
-# mkdir -p ~/.vim/dirs/tmp
-
 # SQL Databases
-sudo apt install -y mysql-client mysql-server postgresql-common libmysqlclient-dev
+sudo apt install -y mysql-client mysql-server libmysqlclient-dev
 
 # Python
-sudo apt install -y python3-dev python3-pip python3-venv virtualenv yapf3
-sudo -H pip install pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper
-sudo -H pip3 install black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort
+sudo apt install -y python3-pip python3-dev python3-pip python3-venv virtualenv yapf3
+sudo pip3 install autoflake hy jedi radon flake8 ipython importmagic epc black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper
 mkdir -p ~/projects/system/python/
 rm -rf ~/.flake8rc ~/.pylintrc
 ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
 
 # R
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo apt install libxml2-dev
+echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | sudo tee -a /etc/apt/sources.list.d/r.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 sudo apt update
 sudo apt install -y r-base gfortran
 rm -rf ~/.Rprofile
@@ -95,34 +71,29 @@ Rscript ~/projects/system/dotfiles/r/base_packages.R
 
 # JavaScript/NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
-sudo ln -s ~/.nvm/versions/node/v10.19.0/bin/node /usr/bin/node
-sudo npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
+source ~/.zshrc
+nvm install 10
+nvm install 14
+nvm alias default 10
+npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
 rm -rf ~/.eslintrc
 ln -s ~/projects/system/dotfiles/js/eslintrc ~/.eslintrc
+
+# Emacs
+rm -rf ~/projects/system/spacemacs
+git clone git@gitlab.com:otrenav/spacemacs.git ~/projects/system/spacemacs
+source ~/projects/system/spacemacs/install.sh
 
 # Java
 sudo apt install -y default-jre default-jdk
 
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-# NOTE: Since there's no Ubuntu 19.10 (i.e. eon) install
-# available, we need to # use `disco` (i.e. Ubuntu 19.04)
-# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable"
 sudo apt update
 sudo apt install -y docker-ce
-
-# Bash
-rm -rf ~/.bashrc
-ln -s ~/projects/system/dotfiles/bash/bashrc ~/.bashrc
-ln -s ~/projects/system/dotfiles/scripts ~/.scripts
-
-# Bash-it
-rm -rf ~/.bash_it
-git clone https://github.com/Bash-it/bash-it.git ~/.bash_it
-mkdir ~/.bash_it/themes/otrenav
-ln -s ~/projects/system/dotfiles/bash/otrenav.theme.bash ~/.bash_it/themes/otrenav/otrenav.theme.bash
+sudo usermod -aG docker ${USER}
+sudo systemctl stop docker.service docker.socket
+sudo systemctl disable docker.service docker.service
 
 # Fuzzy finder for terminal
 ln -s ~/projects/system/dotfiles/fzf/fdignore ~/.fdignore
@@ -131,6 +102,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Kubectx
 git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
+rm -rf ~/.scripts/kubectx ~/.scripts/kubens
 ln -s ~/.kubectx/kubectx ~/.scripts/kubectx
 ln -s ~/.kubectx/kubens ~/.scripts/kubens
 
@@ -140,15 +112,15 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 sudo apt update && sudo apt install -y google-cloud-sdk
 
 # Terminal Themes
-# google-chrome https://github.com/denysdovhan/one-gnome-terminal
-# wget -O gogh https://git.io/vQgMr
-# chmod +x gogh
-# ./gogh
-# rm ./gogh
+# NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
+wget -O gogh https://git.io/vQgMr
+chmod +x gogh
+./gogh
+rm ./gogh
 
 # System theme
+# NOTE: Currently using default yaru-dark
 # google-chrome https://github.com/horst3180/arc-theme
-# google-chrome https://github.com/EliverLara/Nordic
 
 # Remove unwanted directories
 emacs ~/.config/user-dirs.dirs
@@ -156,28 +128,17 @@ emacs ~/.config/user-dirs.dirs
 # Rust (.zshrc already contains config)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# To install Vim's YouCompleteMe plug in:
-# echo "---------------------------------------"
-# echo "Missing manual piece: Vim:YouCompleteMe"
-# echo "---------------------------------------"
-# echo "1. Run `MinpacUpdate` inside of Vim"
-# echo "2. cd to `~/.vim/pack/minpac/start/YouCompleteMe`"
-# echo "3. `rm -fr ./third_party/ycmd/third_party/cregex`"
-# echo "4. `git submodule update --init --recursive`"
-# echo "5. `/usr/bin/python3.7 ./install.py --all`"
-
-# Recording videos
-sudo add-apt-repository ppa:obsproject/obs-studio
-sudo apt update
-sudo apt install -y obs-studio
-
 # Ubuntu Dock
 # NOTE: In Ubuntu 19.10 the dock and desktop icons are very annoying
 # and can't be disabled, so we make their extensions unreachable
 sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com.backup/
 sudo mv /usr/share/gnome-shell/extensions/desktop-icons@csoriano/ /usr/share/gnome-shell/extensions/desktop-icons@csoriano.backup/
 
-# Remove Nautilus bookmarks
-gedit ~/.config/gtk-3.0/bookmarks
-gedit ~/.config/user-dirs.dirs
-sudo gedit /etc/xdg/user-dirs.defaults
+# Disable printing service
+sudo systemctl stop cups.service cups.socket cups.path cups-browsed.service
+sudo systemctl disable cups.service cups.socket cups.path cups-browsed.service
+
+google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
+google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
+google-chrome https://extensions.gnome.org/extension/28/gtile/ &
+google-chrome https://desktop.telegram.org/ &
