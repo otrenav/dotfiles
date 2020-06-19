@@ -42,15 +42,16 @@ alias s="./server.sh"
 alias disk_usage="du -sh"
 alias d="cd $DIR_DOWNLOADS; ls;"
 alias double_click="xdg-open"
-alias ports="netstat -tulpn"
 alias grep="grep --color=auto"
 alias reload="source ~/.zshrc"
 alias zconf="$EDITOR ~/.zshrc"
 alias econf="$EDITOR ~/.spacemacs"
 alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
-alias gg="grep --color=auto -rnwi . -e"
+alias gg="grep --color=auto -rnwi --exclude-dir={.git,node_modules} . -e"
 alias ccat="highlight --out-format=ansi"
 alias file_count="find . -type f | wc -l"
+alias open_ports="lsof -i -P -n | grep LISTEN"
+alias sudo_open_ports="sudo lsof -i -P -n | grep LISTEN"
 alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
 alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
 
@@ -128,6 +129,10 @@ f() {
 # Easily open PDFs
 p() {
     $PDF_VIEWER "$DIR_PDFS$(du -a $DIR_PDFS | cut -f2 | grep .pdf | sed -e "s|$DIR_PDFS||" | fzf)"
+}
+
+json() {
+    jq --color-output . $1 | less -R
 }
 
 #
