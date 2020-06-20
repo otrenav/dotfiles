@@ -51,7 +51,7 @@ chsh -s $(which zsh)
 sudo apt install -y mysql-client mysql-server libmysqlclient-dev
 
 # Python
-asudo apt install -y python3-pip python3-dev python3-pip python3-venv virtualenv yapf3
+sudo apt install -y python3-pip python3-dev python3-pip python3-venv virtualenv yapf3
 sudo pip3 install autoflake hy jedi radon flake8 ipython importmagic epc black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper
 rm -rf ~/.flake8rc ~/.pylintrc
 ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
