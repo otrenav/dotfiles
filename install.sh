@@ -3,30 +3,13 @@
 sudo apt update -y
 sudo apt upgrade -y
 
-# Generics
+# Apps
 firefox https://www.google.com/intl/en_us/chrome/
 google-chrome https://www.insynchq.com/downloads &
+google-chrome https://desktop.telegram.org/ &
 
-snap install vlc spotify gimp
-snap install skype --classic
-snap install slack --classic
-
+# Generics
 sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio
-
-# Fonts: Roboto, Roboto Mono
-google-chrome https://fonts.google.com/
-
-# Install yarn
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt install -y yarn
-
-# Remove blocking and useless keybindings
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"
-
-# Hide ~/snap directorymost
-echo snap >> ~/.hidden
 
 # Git
 sudo add-apt-repository ppa:git-core/ppa
@@ -35,6 +18,20 @@ sudo apt -y install git-lfs
 git lfs install
 rm -rf ~/.gitconfig
 ln -s ~/projects/system/dotfiles/git/gitconfig ~/.gitconfig
+
+# Fonts: Roboto, Roboto Mono
+google-chrome https://fonts.google.com/
+
+# Snap
+snap install vlc spotify gimp
+snap install skype --classic
+snap install slack --classic
+echo snap >> ~/.hidden
+
+# Install yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt install -y yarn
 
 # Zsh
 ln -s ~/projects/system/dotfiles/scripts ~/.scripts
@@ -111,13 +108,6 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt update && sudo apt install -y google-cloud-sdk
 
-# Terminal Themes
-# NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
-wget -O gogh https://git.io/vQgMr
-chmod +x gogh
-./gogh
-rm ./gogh
-
 # System theme
 # NOTE: Currently using default yaru-dark
 # google-chrome https://github.com/horst3180/arc-theme
@@ -138,7 +128,94 @@ sudo mv /usr/share/gnome-shell/extensions/desktop-icons@csoriano/ /usr/share/gno
 sudo systemctl stop cups.service cups.socket cups.path cups-browsed.service
 sudo systemctl disable cups.service cups.socket cups.path cups-browsed.service
 
+# Externals
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
-google-chrome https://desktop.telegram.org/ &
+
+# Remove desktop icons
+sudo apt remove -y gnome-shell-extension-desktop-icons
+
+# Remove Thunderbird
+sudo apt remove -y thunderbird
+
+# Add new keybindings
+gsettings set org.gnome.desktop.wm.keybindings close "['<Primary>q']"
+gsettings set org.gnome.desktop.wm.keybindings switch-group "['<Super>grave']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Primary><Shift>Up']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Primary><Shift>Down']"
+gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['<Shift><Super>grave']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Primary>Down']"
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Primary>Up']"
+
+# Custom keybindings
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+
+# Emacs
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Emacs"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "emacs"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Primary><Alt>e"
+
+# Slack
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "Slack"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "slack"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>s"
+
+# Downloads
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name "Downloads"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "nautilus /home/otrenav/downloads"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "<Primary><Alt>d"
+
+# Delete unused keybindings
+declare -a arr=(
+    "switch-applications-backward"
+    "switch-to-workspace-right"
+    "switch-to-workspace-last"
+    "switch-to-workspace-left"
+    "cycle-windows-backward"
+    "move-to-workspace-last"
+    "switch-panels-backward"
+    "cycle-panels-backward"
+    "move-to-monitor-right"
+    "switch-to-workspace-1"
+    "activate-window-menu"
+    "cycle-group-backward"
+    "move-to-monitor-down"
+    "move-to-monitor-left"
+    "move-to-workspace-1"
+    "switch-applications"
+    "move-to-monitor-up"
+    "panel-run-dialog"
+    "toggle-maximized"
+    "panel-main-menu"
+    "cycle-windows"
+    "switch-panels"
+    "begin-resize"
+    "cycle-panels"
+    "show-desktop"
+    "cycle-group"
+    "begin-move"
+    "unmaximize"
+    "maximize"
+    "minimize"
+    "close"
+)
+
+for i in "${arr[@]}"; do
+    gsettings set org.gnome.desktop.wm.keybindings "$i" "[]"
+done
+
+# Terminal Themes
+# NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
+wget -O gogh https://git.io/vQgMr
+chmod +x gogh
+./gogh
+rm ./gogh
+
+# Add startup applications
+# - SSH Key Agent
+# - Telegram
+# - Spotify
+# - InSync
+# - Slack
+# - Guake
