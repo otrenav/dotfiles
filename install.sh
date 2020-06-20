@@ -3,10 +3,7 @@
 sudo apt update -y
 sudo apt upgrade -y
 
-# Apps
 firefox https://www.google.com/intl/en_us/chrome/
-google-chrome https://www.insynchq.com/downloads &
-google-chrome https://desktop.telegram.org/ &
 
 # Generics
 sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio
@@ -118,6 +115,16 @@ emacs ~/.config/user-dirs.dirs
 # Rust (.zshrc already contains config)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# Apps that require manual installation
+google-chrome https://www.insynchq.com/downloads &
+google-chrome https://zoom.us/download?os=linux &
+google-chrome https://desktop.telegram.org/ &
+
+# Apps installed through gnome-extensions
+google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
+google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
+google-chrome https://extensions.gnome.org/extension/28/gtile/ &
+
 # Ubuntu Dock
 # NOTE: In Ubuntu 19.10 the dock and desktop icons are very annoying
 # and can't be disabled, so we make their extensions unreachable
@@ -127,11 +134,6 @@ sudo mv /usr/share/gnome-shell/extensions/desktop-icons@csoriano/ /usr/share/gno
 # Disable printing service
 sudo systemctl stop cups.service cups.socket cups.path cups-browsed.service
 sudo systemctl disable cups.service cups.socket cups.path cups-browsed.service
-
-# Externals
-google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
-google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
-google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 
 # Remove unnecessary software
 sudo apt remove -y gnome-shell-extension-desktop-icons thunderbird rhythmbox
@@ -144,6 +146,13 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Primar
 gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['<Shift><Super>grave']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Primary>Down']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Primary>Up']"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot "['<Primary><Shift>F9']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys window-screenshot "['<Primary>F9']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot "['F9']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Primary>F10']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Primary>F11']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Primary>F12']"
 
 # Custom keybindings
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
@@ -164,6 +173,22 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "<Primary><Alt>d"
 
 # Delete unused keybindings
+declare -a arr=(
+    "window-screenshot-clip"
+    "area-screenshot-clip"
+    "magnifier-zoom-out"
+    "magnifier-zoom-in"
+    "screenshot-clip"
+    "screenreader"
+    "screensaver"
+    "screencast"
+    "magnifier"
+    "logout"
+)
+for i in "${arr[@]}"; do
+    gsettings set org.gnome.settings-daemon.plugins.media-keys "$i" "[]"
+done
+
 declare -a arr=(
     "switch-applications-backward"
     "switch-to-workspace-right"
@@ -197,10 +222,24 @@ declare -a arr=(
     "minimize"
     "close"
 )
-
 for i in "${arr[@]}"; do
     gsettings set org.gnome.desktop.wm.keybindings "$i" "[]"
 done
+
+# Interface
+gsettings set org.gnome.desktop.wm.preferences titlebar-font "Roboto Medium 12"
+gsettings set org.gnome.desktop.interface monospace-font-name "Roboto Mono Medium 14"
+gsettings set org.gnome.desktop.interface document-font-name "Roboto Medium 12"
+gsettings set org.gnome.desktop.interface gtk-im-module "gtk-im-context-simple"
+gsettings set org.gnome.desktop.interface font-name "Roboto Medium 12"
+gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
+gsettings set org.gnome.desktop.interface clock-format "12h"
+
+gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled "true"
+gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled "false"
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll "false"
+
+gsettings set org.gnome.system.location enabled "false"
 
 # Terminal Themes
 # NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
@@ -209,10 +248,20 @@ chmod +x gogh
 ./gogh
 rm ./gogh
 
-# Add startup applications
+# Manually add startup applications
 # - SSH Key Agent
 # - Telegram
 # - Spotify
 # - InSync
 # - Slack
 # - Guake
+
+# Manually add nautilus favories
+# - downloads
+# - personal
+# - work
+# - projects
+# - videos
+# - knowledge
+# - [month receipts]
+# - shared
