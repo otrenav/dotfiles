@@ -252,6 +252,61 @@ gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll "false"
 
 gsettings set org.gnome.system.location enabled "false"
 
+dconf write /apps/guake/general/save-tabs-when-changed "'true'"
+dconf write /apps/guake/general/gtk-prefer-dark-theme "'true'"
+dconf write /apps/guake/general/restore-tabs-startups "'true'"
+dconf write /apps/guake/style/background/transparency "'100'"
+dconf write /apps/guake/general/restore-tabs-notify "'false'"
+dconf write /apps/guake/general/gtk-theme-name "'Yaru-dark'"
+dconf write /apps/guake/general/use-audible-bell "'false'"
+dconf write /apps/guake/general/start-fullscreen "'true'"
+dconf write /apps/guake/general/use-default-font "'true'"
+dconf write /apps/guake/general/window-losefocus "'true'"
+dconf write /apps/guake/general/window-refocus "'false'"
+dconf write /apps/guake/general/start-at-login "'true'"
+dconf write /apps/guake/general/window-halignment "'0'"
+dconf write /apps/guake/general/use-trayicon "'false'"
+dconf write /apps/guake/general/window-height "'100'"
+dconf write /apps/guake/general/window-tabbar "'true'"
+dconf write /apps/guake/general/window-width "'100'"
+dconf write /apps/guake/general/use-popup "'false'"
+
+dconf write /apps/guake/keybindings/local/rename-current-tab "'<Primary><Shift>r'"
+dconf write /apps/guake/keybindings/global/show-hide "'<Primary><Alt>backslash'"
+dconf write /apps/guake/keybindings/local/toggle-hide-on-lose-focus "'disabled'"
+dconf write /apps/guake/keybindings/local/decrease-transparency "'disabled'"
+dconf write /apps/guake/keybindings/local/increase-transparency "'disabled'"
+dconf write /apps/guake/keybindings/local/focus-terminal-right "'disabled'"
+dconf write /apps/guake/keybindings/local/split-tab-horizontal "'disabled'"
+dconf write /apps/guake/keybindings/local/focus-terminal-down "'disabled'"
+dconf write /apps/guake/keybindings/local/focus-terminal-left "'disabled'"
+dconf write /apps/guake/keybindings/local/toggle-transparency "'disabled'"
+dconf write /apps/guake/keybindings/local/move-tab-right "'<Shift>Right'"
+dconf write /apps/guake/keybindings/local/split-tab-vertical "'disabled'"
+dconf write /apps/guake/keybindings/local/focus-terminal-up "'disabled'"
+dconf write /apps/guake/keybindings/local/previous-tab "'<Primary>Left'"
+dconf write /apps/guake/keybindings/local/toggle-fullscreen "'disabled'"
+dconf write /apps/guake/keybindings/local/move-tab-left "'<Shift>Left'"
+dconf write /apps/guake/keybindings/local/decrease-height "'disabled'"
+dconf write /apps/guake/keybindings/local/increase-height "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab-last "'disabled'"
+dconf write /apps/guake/keybindings/local/close-terminal "'disabled'"
+dconf write /apps/guake/keybindings/local/next-tab "'<Primary>Right'"
+dconf write /apps/guake/keybindings/local/new-tab-home "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab10 "'disabled'"
+dconf write /apps/guake/keybindings/local/close-tab "'<Primary>w'"
+dconf write /apps/guake/keybindings/local/switch-tab1 "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab2 "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab3 "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab4 "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab5 "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab6 "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab7 "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab8 "'disabled'"
+dconf write /apps/guake/keybindings/local/switch-tab9 "'disabled'"
+dconf write /apps/guake/keybindings/local/new-tab "'<Primary>t'"
+dconf write /apps/guake/keybindings/local/quit "'<Primary>q'"
+
 # Terminal Themes
 # NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
 wget -O gogh https://git.io/vQgMr
@@ -261,9 +316,6 @@ rm ./gogh
 
 # Remove unnecessary packages
 sudo apt autoremove
-
-# Guake config
-# TODO: Guake config
 
 # Manually add startup applications
 # - SSH Key Agent
@@ -299,6 +351,11 @@ sudo apt autoremove
 # Nautilus config
 # - Show as folders
 # - Allow folders to be expanded
+
+# Guake
+# - Select Monokai color palette
+
+# Manually set the system-monitor config to "digits"
 
 # Remove from favorites dash all apps
 
