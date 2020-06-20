@@ -56,11 +56,8 @@ alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
 alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
 
 # Python
-alias pip="pip3"
-alias python="python3"
 alias kp="killall python"
 alias pyclean="find . -name '*.py[co]' -o -name __pycache__ -exec rm -rf {} +"
-export WORKON_HOME=~/projects/system/python/
 source /usr/local/bin/virtualenvwrapper.sh
 
 # R

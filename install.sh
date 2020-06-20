@@ -8,6 +8,9 @@ firefox https://www.google.com/intl/en_us/chrome/
 # Generics
 sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio
 
+# Ubuntu 20 doesn't have python: link py3 to py2
+sudo ln -s /usr/bin/python3 /usr/bin/python
+
 # Git
 sudo add-apt-repository ppa:git-core/ppa
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
@@ -220,7 +223,6 @@ declare -a arr=(
     "unmaximize"
     "maximize"
     "minimize"
-    "close"
 )
 for i in "${arr[@]}"; do
     gsettings set org.gnome.desktop.wm.keybindings "$i" "[]"
