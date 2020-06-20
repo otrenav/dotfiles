@@ -1,2 +1,2 @@
 
-.libPaths(c("~/projects/system/r/", .libPaths()))
+.libPaths(c("~/.r-lang-packages/", .libPaths()))

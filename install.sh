@@ -63,7 +63,8 @@ sudo apt update
 sudo apt install -y r-base gfortran
 rm -rf ~/.Rprofile
 ln -s ~/projects/system/dotfiles/r/Rprofile ~/.Rprofile
-mkdir ~/projects/system/r/
+rm -rf ~/.r-lang-packages
+mkdir ~/.r-lang-packages
 Rscript ~/projects/system/dotfiles/r/base_packages.R
 
 # JavaScript/NPM
