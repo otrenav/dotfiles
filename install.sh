@@ -133,11 +133,8 @@ google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 
-# Remove desktop icons
-sudo apt remove -y gnome-shell-extension-desktop-icons
-
-# Remove Thunderbird
-sudo apt remove -y thunderbird
+# Remove unnecessary software
+sudo apt remove -y gnome-shell-extension-desktop-icons thunderbird rhythmbox
 
 # Add new keybindings
 gsettings set org.gnome.desktop.wm.keybindings close "['<Primary>q']"
