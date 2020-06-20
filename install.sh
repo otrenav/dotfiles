@@ -1,4 +1,7 @@
 
+# Before this repo can be cloned, copy ssh keys to ~/.ssh,
+# chmod them to 600, and add them to keyring with ssh-add [key]
+
 # Update
 sudo apt update -y
 sudo apt upgrade -y
@@ -48,9 +51,8 @@ chsh -s $(which zsh)
 sudo apt install -y mysql-client mysql-server libmysqlclient-dev
 
 # Python
-sudo apt install -y python3-pip python3-dev python3-pip python3-venv virtualenv yapf3
+asudo apt install -y python3-pip python3-dev python3-pip python3-venv virtualenv yapf3
 sudo pip3 install autoflake hy jedi radon flake8 ipython importmagic epc black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper
-mkdir -p ~/projects/system/python/
 rm -rf ~/.flake8rc ~/.pylintrc
 ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
@@ -70,6 +72,7 @@ Rscript ~/projects/system/dotfiles/r/base_packages.R
 # JavaScript/NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 source ~/.zshrc
+load_nvm
 nvm install 10
 nvm install 14
 nvm alias default 10
@@ -87,6 +90,7 @@ sudo apt install -y default-jre default-jdk
 
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 sudo apt update
 sudo apt install -y docker-ce
 sudo usermod -aG docker ${USER}
@@ -120,6 +124,7 @@ emacs ~/.config/user-dirs.dirs
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Apps that require manual installation
+mkdir ~/apps
 google-chrome https://www.insynchq.com/downloads &
 google-chrome https://zoom.us/download?os=linux &
 google-chrome https://desktop.telegram.org/ &
@@ -128,6 +133,9 @@ google-chrome https://desktop.telegram.org/ &
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
+
+# Required by Gnome Extension: System Monitor
+sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
 # Ubuntu Dock
 # NOTE: In Ubuntu 19.10 the dock and desktop icons are very annoying
@@ -251,6 +259,12 @@ chmod +x gogh
 ./gogh
 rm ./gogh
 
+# Remove unnecessary packages
+sudo apt autoremove
+
+# Guake config
+# TODO: Guake config
+
 # Manually add startup applications
 # - SSH Key Agent
 # - Telegram
@@ -268,3 +282,24 @@ rm ./gogh
 # - knowledge
 # - [month receipts]
 # - shared
+
+# Manually sign-in to Chrome extensions
+# - Grammarly
+# - Calendly
+
+# Change "D/downloads" folder for
+# - Chrome (all profiles)
+# - Firefox
+# - Slack
+
+# Change with Tweak keyboard keys
+# - Left CTRL as Compose
+# - CAPS LOCK as CTRL
+
+# Nautilus config
+# - Show as folders
+# - Allow folders to be expanded
+
+# Remove from favorites dash all apps
+
+# Verify `running_services` are fine

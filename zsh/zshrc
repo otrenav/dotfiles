@@ -54,6 +54,7 @@ alias open_ports="lsof -i -P -n | grep LISTEN"
 alias sudo_open_ports="sudo lsof -i -P -n | grep LISTEN"
 alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
 alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
+alias running_services="sudo systemctl list-units --type=service --state=running"
 
 # Python
 alias kp="killall python"
