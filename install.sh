@@ -309,15 +309,15 @@ dconf write /apps/guake/keybindings/local/switch-tab9 "'disabled'"
 dconf write /apps/guake/keybindings/local/new-tab "'<Primary>t'"
 dconf write /apps/guake/keybindings/local/quit "'<Primary>q'"
 
+# Remove unnecessary packages
+sudo apt autoremove
+
 # Terminal Themes
 # NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
 wget -O gogh https://git.io/vQgMr
 chmod +x gogh
 ./gogh
 rm ./gogh
-
-# Remove unnecessary packages
-sudo apt autoremove
 
 # Manually add startup applications
 # - SSH Key Agent
