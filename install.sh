@@ -9,7 +9,7 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio
+sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape
 
 # Ubuntu 20 doesn't have python: link py3 to py2
 sudo rm -rf /usr/bin/python
@@ -309,15 +309,15 @@ dconf write /apps/guake/keybindings/local/switch-tab9 "'disabled'"
 dconf write /apps/guake/keybindings/local/new-tab "'<Primary>t'"
 dconf write /apps/guake/keybindings/local/quit "'<Primary>q'"
 
+# Remove unnecessary packages
+sudo apt autoremove
+
 # Terminal Themes
 # NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
 wget -O gogh https://git.io/vQgMr
 chmod +x gogh
 ./gogh
 rm ./gogh
-
-# Remove unnecessary packages
-sudo apt autoremove
 
 # Manually add startup applications
 # - SSH Key Agent
@@ -328,14 +328,14 @@ sudo apt autoremove
 # - Guake
 
 # Manually add nautilus favories
-# - downloads
-# - personal
-# - work
-# - projects
-# - videos
-# - knowledge
-# - [month receipts]
 # - shared
+# - [month receipts]
+# - knowledge
+# - videos
+# - work
+# - personal
+# - projects
+# - downloads
 
 # Manually sign-in to Chrome extensions
 # - Grammarly
