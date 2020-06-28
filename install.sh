@@ -106,9 +106,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Kubectx
 git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
-rm -rf ~/.scripts/kubectx ~/.scripts/kubens
-ln -s ~/.kubectx/kubectx ~/.scripts/kubectx
-ln -s ~/.kubectx/kubens ~/.scripts/kubens
+ln -s ~/.kubectx/kubectx
+ln -s ~/.kubectx/kubens
 
 # Google Cloud (GCP)
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
