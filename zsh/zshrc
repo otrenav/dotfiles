@@ -56,6 +56,13 @@ alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
 alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
 alias running_services="sudo systemctl list-units --type=service --state=running"
 
+# Google Cloud
+alias gcloud_gigster="gcloud config set account omar.trejo@gigsternetwork.com"
+alias gcloud_vodafone="gcloud config set account omar.trej@vodafone.com"
+alias gcloud_deltalab="gcloud config set account omar@deltalab.co"
+alias gcloud_envs_vodafone="source ./setup/env_vars_vodafone.sh"
+alias gcloud_envs_gigster="source ./setup/env_vars_gigster.sh"
+
 # Python
 alias kp="killall python"
 alias pyclean="find . -name '*.py[co]' -o -name __pycache__ -exec rm -rf {} +"
