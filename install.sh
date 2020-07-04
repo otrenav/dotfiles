@@ -60,6 +60,7 @@ ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
 
 # R
 sudo apt install libxml2-dev
+rm -f /etc/apt/sources.list.d/r.list
 echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | sudo tee -a /etc/apt/sources.list.d/r.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 sudo apt update
