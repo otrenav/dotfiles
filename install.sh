@@ -99,7 +99,7 @@ sudo systemctl stop docker.service docker.socket
 sudo systemctl disable docker.service docker.service
 
 # Fuzzy finder for terminal
-rm -r ~/.fdignore
+rm -r ~/.fdignore/etc/apt/sources.list.d/google-cloud-sdk.list
 ln -s ~/projects/system/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -111,6 +111,7 @@ ln -s ~/.kubectx/kubectx ~/.scripts/kubectx
 ln -s ~/.kubectx/kubens ~/.scripts/kubens
 
 # Google Cloud (GCP)
+rm -f /etc/apt/sources.list.d/google-cloud-sdk.list
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt update && sudo apt install -y google-cloud-sdk
