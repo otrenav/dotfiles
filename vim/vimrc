@@ -1,16 +1,33 @@
 
-source $HOME/.vim/config/basics.vim
-source $HOME/.vim/config/minpac.vim
-source $HOME/.vim/config/shared.vim
-source $HOME/.vim/config/theme.vim
-source $HOME/.vim/config/tasks.vim
-source $HOME/.vim/config/files.vim
-source $HOME/.vim/config/websites.vim
-source $HOME/.vim/config/editing.vim
-source $HOME/.vim/config/python.vim
-source $HOME/.vim/config/typescript.vim
-source $HOME/.vim/config/javascript.vim
-source $HOME/.vim/config/go.vim
-source $HOME/.vim/config/git.vim
-source $HOME/.vim/config/snippets.vim
-source $HOME/.vim/config/keybindings.vim
+source ~/.vim/config/basics.vim
+source ~/.vim/config/minpac.vim
+source ~/.vim/config/shared.vim
+source ~/.vim/config/editing.vim
+source ~/.vim/config/keybindings.vim
+source ~/.vim/config/snippets.vim
+source ~/.vim/config/files.vim
+source ~/.vim/config/git.vim
+source ~/.vim/config/theme.vim
+source ~/.vim/config/tasks.vim
+source ~/.vim/config/websites.vim
+source ~/.vim/config/typescript.vim
+source ~/.vim/config/javascript.vim
+source ~/.vim/config/python.vim
+source ~/.vim/config/go.vim
+
+autocmd! BufWritePost vimrc source $MYVIMRC
+autocmd! BufWritePost basics.vim source $MYVIMRC
+autocmd! BufWritePost minpac.vim source $MYVIMRC
+autocmd! BufWritePost shared.vim source $MYVIMRC
+autocmd! BufWritePost editing.vim source $MYVIMRC
+autocmd! BufWritePost keybindings.vim source $MYVIMRC
+autocmd! BufWritePost snippets.vim source $MYVIMRC
+autocmd! BufWritePost files.vim source $MYVIMRC
+autocmd! BufWritePost git.vim source $MYVIMRC
+autocmd! BufWritePost theme.vim source $MYVIMRC
+autocmd! BufWritePost tasks.vim source $MYVIMRC
+autocmd! BufWritePost websites.vim source $MYVIMRC
+autocmd! BufWritePost typescript.vim source $MYVIMRC
+autocmd! BufWritePost javascript.vim source $MYVIMRC
+autocmd! BufWritePost python.vim source $MYVIMRC
+autocmd! BufWritePost go.vim source $MYVIMRC

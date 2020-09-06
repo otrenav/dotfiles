@@ -1,3 +1,3 @@
 
-call minpac#add("fisadev/FixedTaskList.vim")
-call minpac#add("aserebryakov/vim-todo-lists")
+" TODO: Search for TODOs across wholel project
+" TODO: Toggle TODOs when there's a [ ] in front

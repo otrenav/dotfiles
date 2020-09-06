@@ -9,7 +9,7 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape
+sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag
 
 # Ubuntu 20 doesn't have python: link py3 to py2
 sudo rm -rf /usr/bin/python
@@ -39,10 +39,13 @@ sudo apt install -y yarn
 
 # Zsh
 ln -s ~/projects/system/dotfiles/scripts ~/.scripts
-rm -rf ~/.oh-my-zsh ~/.zshrc ~/.zsh-syntax-highlighting
+rm -rf ~/.oh-my-zsh ~/.zshrc
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting --depth 1
+git clone https://github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
 mkdir -p ~/.oh-my-zsh/custom/themes
 curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.zsh-theme -L -o ~/.oh-my-zsh/custom/themes/elessar.zsh-theme
 ln -s ~/projects/system/dotfiles/zsh/zshrc ~/.zshrc
@@ -100,10 +103,22 @@ sudo systemctl stop docker.service docker.socket
 sudo systemctl disable docker.service docker.service
 
 # Fuzzy finder for terminal
-rm -r ~/.fdignore/etc/apt/sources.list.d/google-cloud-sdk.list
 ln -s ~/projects/system/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+
+# Tmux
+rm -rf ~/.tmux/
+mkdir -p ~/.tmux/
+ln -s ~/projects/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/projects/system/dotfiles/tmux/scripts ~/.tmux/scripts
+
+# Vim
+sudo apt install -y vim
+rm -rf ~/.vim
+ln -s ~/projects/system/dotfiles/vim ~/.vim
+mkdir -p ~/.vim/pack/minpac/opt/
+git clone https://github.com/k-takata/minpact.git ~/.vim/pack/minpac/opt/minpac
 
 # Kubectx
 git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
@@ -312,6 +327,10 @@ dconf write /apps/guake/keybindings/local/quit "'<Primary>q'"
 
 # Remove unnecessary packages
 sudo apt autoremove
+
+# Overwrite user dirs
+rm ~/.config/user-dirs.dirs
+cp ~/projects/system/dotfiles/nautilus/user-dirs.dirs ~/.config/user-dirs.dirs
 
 # Terminal Themes
 # NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)

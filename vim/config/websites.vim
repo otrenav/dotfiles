@@ -1,3 +1,4 @@
 
 " Highlight colors in source files
-call minpac#add("gko/vim-coloresque", {"type": "opt"})
+" TODO: It's not working
+call minpac#add("gko/vim-coloresque")

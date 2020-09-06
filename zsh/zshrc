@@ -4,19 +4,21 @@ DISABLE_AUTO_TITLE="true"
 CASE_SENSITIVE="true"
 ZSH_THEME="elessar"
 plugins=(
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    zsh-completions
     virtualenvwrapper
     command-time
     kubectl
-    docker
     gcloud
+    docker
     git
     ng
 )
-export VISUAL=emacs
+export VISUAL=vim
 export EDITOR="$VISUAL"
 export LANG=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="$PATH:$HOME/.cargo/bin"
 
 PDF_VIEWER=evince
@@ -46,6 +48,7 @@ alias grep="grep --color=auto"
 alias reload="source ~/.zshrc"
 alias zconf="$EDITOR ~/.zshrc"
 alias econf="$EDITOR ~/.spacemacs"
+alias vconf="$EDITOR ~/.vim/vimrc"
 alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
 alias gg="grep --color=auto -rnwi --exclude-dir={.git,node_modules} . -e"
 alias ccat="highlight --out-format=ansi"
@@ -100,8 +103,8 @@ function show_keys() {
 # Fuzzy matching
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--extended --layout=reverse --height=40%"
-export FZF_DEFAULT_COMMAND="fd --type f"
-export FZF_ALT_C_COMMAND="fd --type d ."
+export FZF_DEFAULT_COMMAND="fdfind --type f"
+export FZF_ALT_C_COMMAND="fdfind --type d ."
 
 # Command-time
 ZSH_COMMAND_TIME_MSG="\n[Execution time: %s] \n \n"
@@ -110,6 +113,7 @@ ZSH_COMMAND_TIME_MSG="\n[Execution time: %s] \n \n"
 stty -ixon
 
 # Easily edit files
+# TODO: Change to fd
 f() {
     fname="$(find \
         $DIR_SCRIPTS \

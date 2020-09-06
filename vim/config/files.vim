@@ -1,25 +1,29 @@
 
 "
-" Create dirs on save
+" Projection management
 "
-call minpac#add("DataWraith/auto_mkdir")
+" call minpac#add("tpope/vim-projectionist")
 
 "
-" Projectionist
+" Fuzzy file finder
 "
-call minpac#add("tpope/vim-projectionist")
-
-"
-" Fuzzy finder
+" :GFiles <opts>  list git files
+" :Files <path>   list files in <path>
+" :Lines          search within opened file
+" :Maps           search through VIM's maps
+" :Commands       search through VIM commands
+" :Helptags       search through VIM's help tags
+" :Ag             search inside files in project
+" :Snippets       search for snippets for file type
+" :BCommits       search for commits for current buffer
+" :Commits        search through commits
+" :Buffers        list buffers
 "
 call minpac#add("junegunn/fzf")
 call minpac#add("junegunn/fzf.vim")
 
-" command! -nargs=? -bang -complete=dir FzfFiles
-"            \ call fzf#vim#files(<q-args>, <bang>0 ? fzf#vim#with_preview("up:60%") : {}, <bang>0)
-" command FzfChanges call s:fzf_changes()
-
-nnoremap <silent> <leader>b :FzfBuffers<CR>
+" TODO: Fix keybindings
+nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>o  :Files<CR>
 nnoremap <silent> <leader>O  :Files!<CR>
 nnoremap <leader>p :<C-u>FZF<CR>
@@ -69,7 +73,7 @@ function! RenameFile()
 endfunction
 
 "
-" netrw
+" netrw: file browser
 "
 let g:netrw_altv = 1
 let g:netrw_banner = 0
@@ -97,7 +101,5 @@ endfunction
 
 noremap <silent> <leader>n :call ToggleNetrw()<CR>
 
-"
-" Welcome buffer
-"
-call minpac#add("mhinz/vim-startify")
+" Others
+call minpac#add("DataWraith/auto_mkdir")
