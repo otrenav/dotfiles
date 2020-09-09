@@ -119,7 +119,7 @@ sudo apt install -y vim
 rm -rf ~/.vim
 ln -s ~/projects/system/dotfiles/vim ~/.vim
 mkdir -p ~/.vim/pack/minpac/opt/
-git clone https://github.com/k-takata/minpact.git ~/.vim/pack/minpac/opt/minpac
+git clone git@github.com:k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
 
 # Kubectx
 git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
