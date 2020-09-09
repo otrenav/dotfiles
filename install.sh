@@ -30,6 +30,7 @@ google-chrome https://fonts.google.com/
 snap install vlc spotify gimp
 snap install skype --classic
 snap install slack --classic
+snap install authy --beta
 echo snap >> ~/.hidden
 
 # Install yarn
