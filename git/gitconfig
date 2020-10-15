@@ -1,6 +1,6 @@
 [user]
 	name = Omar Trejo Navarro
-	email = omar@smrtops.com
+	email = omar@deltalab.co
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
