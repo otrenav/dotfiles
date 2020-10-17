@@ -1,5 +1,5 @@
 [user]
-	name = Omar Trejo Navarro
+	name = Omar Trejo
 	email = omar@deltalab.co
 [filter "media"]
 	clean = git-media-clean %f
