@@ -163,8 +163,8 @@ sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gno
 sudo mv /usr/share/gnome-shell/extensions/desktop-icons@csoriano/ /usr/share/gnome-shell/extensions/desktop-icons@csoriano.backup/
 
 # Disable printing service
-sudo systemctl stop cups.service cups.socket cups.path cups-browsed.service
-sudo systemctl disable cups.service cups.socket cups.path cups-browsed.service
+# sudo systemctl stop cups.service cups.socket cups.path cups-browsed.service
+# sudo systemctl disable cups.service cups.socket cups.path cups-browsed.service
 
 # Remove unnecessary software
 sudo apt remove -y gnome-shell-extension-desktop-icons thunderbird rhythmbox
