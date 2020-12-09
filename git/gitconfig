@@ -1,6 +1,6 @@
 [user]
 	name = Omar Trejo
-	email = omar@deltalab.co
+	email = omar@deltalab.ai
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
