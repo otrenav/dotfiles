@@ -256,6 +256,9 @@ for i in "${arr[@]}"; do
     gsettings set org.gnome.desktop.wm.keybindings "$i" "[]"
 done
 
+# Do not auto-change brightness based on light environment
+gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled "false"
+
 # Interface
 gsettings set org.gnome.desktop.wm.preferences titlebar-font "Roboto Medium 12"
 gsettings set org.gnome.desktop.interface monospace-font-name "Roboto Mono Medium 14"
