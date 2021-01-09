@@ -75,7 +75,7 @@ rm -rf ~/.r-lang-packages
 mkdir ~/.r-lang-packages
 Rscript ~/projects/system/dotfiles/r/base_packages.R
 
-# JavaScript/NPM
+# JavaScript / NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 source ~/.zshrc
 nvm_load
@@ -103,7 +103,7 @@ sudo usermod -aG docker ${USER}
 sudo systemctl stop docker.service docker.socket
 sudo systemctl disable docker.service docker.service
 
-# Fuzzy finder for terminal
+# Fuzzy Finder for terminal
 ln -s ~/projects/system/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -121,23 +121,11 @@ ln -s ~/projects/system/dotfiles/vim ~/.vim
 mkdir -p ~/.vim/pack/minpac/opt/
 git clone git@github.com:k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
 
-# Kubectx
-git clone https://github.com/ahmetb/kubectx/ ~/.kubectx
-ln -s ~/.kubectx/kubectx
-ln -s ~/.kubectx/kubens
-
 # Google Cloud (GCP)
 rm -f /etc/apt/sources.list.d/google-cloud-sdk.list
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt update && sudo apt install -y google-cloud-sdk
-
-# System theme
-# NOTE: Currently using default yaru-dark
-# google-chrome https://github.com/horst3180/arc-theme
-
-# Remove unwanted directories
-emacs ~/.config/user-dirs.dirs
 
 # Rust (.zshrc already contains config)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -157,7 +145,7 @@ google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
 # Ubuntu Dock
-# NOTE: In Ubuntu 19.10 the dock and desktop icons are very annoying
+# NOTE: In Ubuntu 19.10+ the dock and desktop icons are very annoying
 # and can't be disabled, so we make their extensions unreachable
 sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com.backup/
 sudo mv /usr/share/gnome-shell/extensions/desktop-icons@csoriano/ /usr/share/gnome-shell/extensions/desktop-icons@csoriano.backup/
