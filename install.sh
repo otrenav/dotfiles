@@ -3,7 +3,7 @@
 # chmod them to 600, and add them to keyring with ssh-add [key]
 
 # Update
-sudo apt update -y
+sudo apt update
 sudo apt upgrade -y
 
 firefox https://www.google.com/intl/en_us/chrome/
@@ -18,6 +18,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 # Git
 sudo add-apt-repository ppa:git-core/ppa
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+sudo apt update
 sudo apt -y install git-lfs
 git lfs install
 rm -rf ~/.gitconfig
@@ -36,10 +37,10 @@ echo snap >> ~/.hidden
 # Install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
 sudo apt install -y yarn
 
 # Zsh
-ln -s ~/projects/system/dotfiles/scripts ~/.scripts
 rm -rf ~/.oh-my-zsh ~/.zshrc
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
@@ -59,8 +60,8 @@ sudo apt install -y mysql-client mysql-server libmysqlclient-dev
 sudo apt install -y python3-pip python3-dev python3-pip python3-venv virtualenv yapf3
 sudo pip3 install autoflake hy jedi radon flake8 ipython importmagic epc black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper pygments
 rm -rf ~/.flake8rc ~/.pylintrc
-ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
+ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 
 # R
 sudo apt install libxml2-dev
@@ -108,6 +109,9 @@ ln -s ~/projects/system/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
+# Scripts
+ln -s ~/projects/system/dotfiles/scripts ~/.scripts
+
 # Tmux
 rm -rf ~/.tmux/
 mkdir -p ~/.tmux/
@@ -127,17 +131,22 @@ ln -s ~/.kubectx/kubectx
 ln -s ~/.kubectx/kubens
 
 # Google Cloud (GCP)
-rm -f /etc/apt/sources.list.d/google-cloud-sdk.list
+sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-sudo apt update && sudo apt install -y google-cloud-sdk
+sudo apt update
+sudo apt install -y google-cloud-sdk
+
+# Signal
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+sudo mv signal-desktop-keyring.gpg /usr/share/keyrings/
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update
+sudo apt install signal-desktop
 
 # System theme
 # NOTE: Currently using default yaru-dark
 # google-chrome https://github.com/horst3180/arc-theme
-
-# Remove unwanted directories
-emacs ~/.config/user-dirs.dirs
 
 # Rust (.zshrc already contains config)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -379,7 +388,5 @@ rm ./gogh
 # - Select Monokai color palette
 
 # Manually set the system-monitor config to "digits"
-
 # Remove from favorites dash all apps
-
 # Verify `running_services` are fine

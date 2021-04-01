@@ -156,3 +156,9 @@ nvm_load() {
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
     echo "DONE."
 }
+
+#
+# CUDA
+#
+PATH=/usr/local/cuda-11/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-11/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
