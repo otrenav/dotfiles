@@ -11,6 +11,9 @@ firefox https://www.google.com/intl/en_us/chrome/
 # Generics
 sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag
 
+# LaTeX
+sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+
 # Ubuntu 20 doesn't have python: link py3 to py2
 sudo rm -rf /usr/bin/python
 sudo ln -s /usr/bin/python3 /usr/bin/python

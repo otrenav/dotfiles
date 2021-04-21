@@ -1,3 +1,5 @@
+[init]
+    defaultBranch = main
 [user]
 	name = Omar Trejo
 	email = omar@deltalab.ai
