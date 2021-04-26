@@ -152,6 +152,7 @@ google-chrome https://zoom.us/download?os=linux &
 google-chrome https://desktop.telegram.org/ &
 
 # Apps installed through gnome-extensions
+google-chrome https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
