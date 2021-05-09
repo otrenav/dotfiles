@@ -2,6 +2,17 @@
 # Before this repo can be cloned, copy ssh keys to ~/.ssh,
 # chmod them to 600, and add them to keyring with ssh-add [key]
 
+# Apps to be installed from Ubuntu Software
+# - InkScape
+# - Gimp
+# - VLC
+# - Spotify
+# - Slack
+# - OBS
+# - Postman
+# - Telegram
+# - Zoom
+
 # Update
 sudo apt update
 sudo apt upgrade -y
@@ -31,9 +42,6 @@ ln -s ~/projects/system/dotfiles/git/gitconfig ~/.gitconfig
 google-chrome https://fonts.google.com/
 
 # Snap
-snap install vlc spotify gimp
-snap install skype --classic
-snap install slack --classic
 snap install authy --beta
 echo snap >> ~/.hidden
 
@@ -58,6 +66,7 @@ chsh -s $(which zsh)
 
 # SQL Databases
 sudo apt install -y mysql-client mysql-server libmysqlclient-dev
+sudo systemctl disable mysql
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-pip python3-venv virtualenv yapf3
@@ -67,6 +76,7 @@ ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
 ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 
 # R
+# TODO: Update for Ubuntu 21
 sudo apt install libxml2-dev
 sudo rm -f /etc/apt/sources.list.d/r.list
 echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | sudo tee -a /etc/apt/sources.list.d/r.list
@@ -100,7 +110,7 @@ sudo apt install -y default-jre default-jdk
 
 # Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu hirsute stable"
 sudo apt update
 sudo apt install -y docker-ce
 sudo usermod -aG docker ${USER}
@@ -148,11 +158,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Apps that require manual installation
 mkdir ~/apps
 google-chrome https://www.insynchq.com/downloads &
-google-chrome https://zoom.us/download?os=linux &
-google-chrome https://desktop.telegram.org/ &
 
 # Apps installed through gnome-extensions
-google-chrome https://extensions.gnome.org/extension/2890/tray-icons-reloaded/
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
@@ -162,9 +169,9 @@ sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
 # Ubuntu Dock
 # NOTE: In Ubuntu 19.10+ the dock and desktop icons are very annoying
-# and can't be disabled, so we make their extensions unreachable
+# and can't be disabled, so we make their extensions unreachable.
+# Desktop icons must be disabled in the "Extensions" app
 sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com.backup/
-sudo mv /usr/share/gnome-shell/extensions/desktop-icons@csoriano/ /usr/share/gnome-shell/extensions/desktop-icons@csoriano.backup/
 
 # Disable printing service
 # sudo systemctl stop cups.service cups.socket cups.path cups-browsed.service
@@ -349,17 +356,13 @@ rm ./gogh
 
 # Manually add startup applications
 # - SSH Key Agent
-# - Telegram
-# - Spotify
 # - InSync
-# - Slack
 # - Guake
 
 # Manually add nautilus favories
 # - shared
 # - [month receipts]
 # - knowledge
-# - videos
 # - work
 # - personal
 # - projects
