@@ -19,4 +19,4 @@ disable=
     R0913,  # Too many arguments
     R0901,  # Too many ancestors
     R1705,  # Unnecessary elif after return
-    R1710,  # All or none branches should return
+    R1710  # All or none branches should return

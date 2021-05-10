@@ -4,14 +4,14 @@
 
 # Apps to be installed from Ubuntu Software
 # - InkScape
-# - Gimp
-# - VLC
+# - Telegram
+# - Postman
 # - Spotify
 # - Slack
-# - OBS
-# - Postman
-# - Telegram
+# - Gimp
 # - Zoom
+# - OBS
+# - VLC
 
 # Update
 sudo apt update
@@ -20,10 +20,7 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag
-
-# LaTeX
-sudo apt install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag openshot texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 
 # Ubuntu 20 doesn't have python: link py3 to py2
 sudo rm -rf /usr/bin/python
@@ -77,17 +74,17 @@ ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 
 # R
 # TODO: Update for Ubuntu 21
-sudo apt install libxml2-dev
-sudo rm -f /etc/apt/sources.list.d/r.list
-echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | sudo tee -a /etc/apt/sources.list.d/r.list
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-sudo apt update
-sudo apt install -y r-base gfortran
-rm -rf ~/.Rprofile
-ln -s ~/projects/system/dotfiles/r/Rprofile ~/.Rprofile
-rm -rf ~/.r-lang-packages
-mkdir ~/.r-lang-packages
-Rscript ~/projects/system/dotfiles/r/base_packages.R
+# sudo apt install libxml2-dev
+# sudo rm -f /etc/apt/sources.list.d/r.list
+# echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | sudo tee -a /etc/apt/sources.list.d/r.list
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+# sudo apt update
+# sudo apt install -y r-base gfortran
+# rm -rf ~/.Rprofile
+# ln -s ~/projects/system/dotfiles/r/Rprofile ~/.Rprofile
+# rm -rf ~/.r-lang-packages
+# mkdir ~/.r-lang-packages
+# Rscript ~/projects/system/dotfiles/r/base_packages.R
 
 # JavaScript / NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
@@ -114,8 +111,10 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update
 sudo apt install -y docker-ce
 sudo usermod -aG docker ${USER}
-sudo systemctl stop docker.service docker.socket
-sudo systemctl disable docker.service docker.service
+sudo systemctl stop docker.service
+sudo systemctl stop docker.socket
+sudo systemctl disable docker.service
+sudo systemctl disable docker.socket
 
 # Fuzzy Finder for terminal
 ln -s ~/projects/system/dotfiles/fzf/fdignore ~/.fdignore
@@ -163,6 +162,7 @@ google-chrome https://www.insynchq.com/downloads &
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
+# Gtile: config for 3x1 cycle: 3x1 0:0 0:0, 1:0 1:0, 2:0 2:0
 
 # Required by Gnome Extension: System Monitor
 sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
@@ -179,6 +179,9 @@ sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gno
 
 # Remove unnecessary software
 sudo apt remove -y gnome-shell-extension-desktop-icons thunderbird rhythmbox
+
+# Disable animations
+gsettings set org.gnome.desktop.interface enable-animations false
 
 # Add new keybindings
 gsettings set org.gnome.desktop.wm.keybindings close "['<Primary>q']"
@@ -355,9 +358,11 @@ chmod +x gogh
 rm ./gogh
 
 # Manually add startup applications
+# - Guake (check key)
 # - SSH Key Agent
+# - Spotify
 # - InSync
-# - Guake
+# - Slack
 
 # Manually add nautilus favories
 # - shared
@@ -389,5 +394,6 @@ rm ./gogh
 # - Select Monokai color palette
 
 # Manually set the system-monitor config to "digits"
-# Remove from favorites dash all apps
 # Verify `running_services` are fine
+# Remove from favorites dash all apps
+# Remove animations
