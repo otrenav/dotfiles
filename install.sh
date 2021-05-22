@@ -163,6 +163,7 @@ google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 # Gtile: config for 3x1 cycle: 3x1 0:0 0:0, 1:0 1:0, 2:0 2:0
+# Gtile: config for grid sizes: 3x1, 3x2, 3x3
 
 # Required by Gnome Extension: System Monitor
 sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
