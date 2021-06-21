@@ -28,10 +28,11 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 
 # Git
 sudo add-apt-repository ppa:git-core/ppa
-curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-sudo apt update
-sudo apt -y install git-lfs
-git lfs install
+# Note using Git LFS for now (mayb re-add later)
+# curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+# sudo apt update
+# sudo apt -y install git-lfs
+# git lfs install
 rm -rf ~/.gitconfig
 ln -s ~/projects/system/dotfiles/git/gitconfig ~/.gitconfig
 
