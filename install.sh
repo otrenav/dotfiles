@@ -40,7 +40,7 @@ ln -s ~/projects/system/dotfiles/git/gitconfig ~/.gitconfig
 google-chrome https://fonts.google.com/
 
 # Snap
-snap install authy --beta
+snap install authy
 echo snap >> ~/.hidden
 
 # Install yarn
