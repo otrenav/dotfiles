@@ -197,9 +197,12 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Primar
 gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot "['<Primary><Shift>F9']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys window-screenshot "['<Primary>F9']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot "['F9']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Primary>F10']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Primary>F11']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Primary>F12']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['F10']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys next "['F11']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys play "['F12']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['Pause']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down "['Scroll_Lock']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-mute "['Print']"
 
 # Custom keybindings
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
