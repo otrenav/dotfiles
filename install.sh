@@ -74,18 +74,12 @@ ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
 ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 
 # R
-# TODO: Update for Ubuntu 21
-# sudo apt install libxml2-dev
-# sudo rm -f /etc/apt/sources.list.d/r.list
-# echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | sudo tee -a /etc/apt/sources.list.d/r.list
-# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-# sudo apt update
-# sudo apt install -y r-base gfortran
-# rm -rf ~/.Rprofile
-# ln -s ~/projects/system/dotfiles/r/Rprofile ~/.Rprofile
-# rm -rf ~/.r-lang-packages
-# mkdir ~/.r-lang-packages
-# Rscript ~/projects/system/dotfiles/r/base_packages.R
+sudo apt install -y r-base gfortran
+rm -rf ~/.Rprofile
+ln -s ~/projects/system/dotfiles/r/Rprofile ~/.Rprofile
+rm -rf ~/.r-lang-packages
+mkdir ~/.r-lang-packages
+Rscript ~/projects/system/dotfiles/r/base_packages.R
 
 # JavaScript / NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
