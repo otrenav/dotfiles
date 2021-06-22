@@ -187,6 +187,7 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Primar
 gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['<Shift><Super>grave']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Primary>Down']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Primary>Up']"
+gsettings set org.gnome.shell.keybindings toggle-overview "['F8']"
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot "['<Primary><Shift>F9']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys window-screenshot "['<Primary>F9']"
@@ -235,6 +236,7 @@ done
 
 declare -a arr=(
     "switch-applications-backward"
+    "switch-input-source-backward"
     "switch-to-workspace-right"
     "switch-to-workspace-last"
     "switch-to-workspace-left"
@@ -248,6 +250,7 @@ declare -a arr=(
     "cycle-group-backward"
     "move-to-monitor-down"
     "move-to-monitor-left"
+    "switch-input-source"
     "move-to-workspace-1"
     "switch-applications"
     "move-to-monitor-up"
