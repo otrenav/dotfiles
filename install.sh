@@ -20,7 +20,14 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag openshot texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc
+sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag openshot texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc tree
+
+# Python
+sudo apt install -y python3-pip python3-dev python3-venv virtualenv yapf3
+sudo pip3 install autoflake hy jedi radon flake8 ipython importmagic epc black isort pyopenssl virtualenvwrapper pygments
+rm -rf ~/.flake8rc ~/.pylintrc
+ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
+ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 
 # Ubuntu 20 doesn't have python: link py3 to py2
 sudo rm -rf /usr/bin/python
@@ -65,13 +72,6 @@ chsh -s $(which zsh)
 # SQL Databases
 sudo apt install -y mysql-client mysql-server libmysqlclient-dev
 sudo systemctl disable mysql
-
-# Python
-sudo apt install -y python3-pip python3-dev python3-pip python3-venv virtualenv yapf3
-sudo pip3 install autoflake hy jedi radon flake8 ipython importmagic epc black flake8 autoflake hy jedi radon flake8 ipython importmagic epc isort pyopenssl ipython autoflake hy jedi radon flake8 ipython importmagic epc virtualenvwrapper pygments
-rm -rf ~/.flake8rc ~/.pylintrc
-ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
-ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
 
 # R
 sudo apt install -y r-base gfortran
