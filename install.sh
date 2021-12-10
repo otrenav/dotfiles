@@ -20,7 +20,7 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y cpufrequtils gnome-tweak-tool dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag openshot texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc tree
+sudo apt install -y cpufrequtils gnome-tweaks dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag openshot texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc tree xclip chrome-gnome-shell gnome-shell-extension-prefs
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv yapf3
@@ -154,11 +154,13 @@ mkdir ~/apps
 google-chrome https://www.insynchq.com/downloads &
 
 # Apps installed through gnome-extensions
+google-chrome https://extensions.gnome.org/extension/4144/vertical-overview/ &
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
-# Gtile: config for 3x1 cycle: 3x1 0:0 0:0, 1:0 1:0, 2:0 2:0
-# Gtile: config for grid sizes: 3x1, 3x2, 3x3
+# Gtile: config for 3x1 3-cycle: 3x1 0:0 0:0, 1:0 1:0, 2:0 2:0
+# Gtile: config for 3x2 2-cycle 3x1 0:0 1:0, 1:0 2:0
+# Gtile: config for grid sizes: 3x1
 
 # Required by Gnome Extension: System Monitor
 sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0

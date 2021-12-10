@@ -7,7 +7,6 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     zsh-completions
-    virtualenvwrapper
     command-time
     kubectl
     gcloud
@@ -42,6 +41,7 @@ alias ka="killall"
 alias t="./test.sh"
 alias s="./server.sh"
 alias disk_usage="du -sh"
+alias ddone="spd-say Done"
 alias d="cd $DIR_DOWNLOADS; ls;"
 alias double_click="xdg-open"
 alias grep="grep --color=auto"
@@ -50,7 +50,7 @@ alias zconf="$EDITOR ~/.zshrc"
 alias econf="$EDITOR ~/.spacemacs"
 alias vconf="$EDITOR ~/.vim/vimrc"
 alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
-alias gg="grep --color=auto -rnwi --exclude-dir={.git,node_modules} . -e"
+alias gg="grep --color=auto -rnwiI --exclude-dir={.git,node_modules,env} . -e"
 alias ccat="highlight --out-format=ansi"
 alias file_count="find . -type f | wc -l"
 alias open_ports="lsof -i -P -n | grep LISTEN"
@@ -74,7 +74,7 @@ alias gcloud_envs_gigster="source ./setup/env_vars_gigster.sh"
 # Python
 alias kp="killall python"
 alias pyclean="find . -name '*.py[co]' -o -name __pycache__ -exec rm -rf {} +"
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
 
 # R
 alias R="R --no-save"
@@ -85,6 +85,20 @@ export R_PROFILE_USER="~/projects/system/dotfiles/r/Rprofile"
 alias k="kubectl"
 
 # Functions
+function compress() {
+    tar cfJ $1.tar.xz $1
+}
+
+function encrypt() {
+    gpg -c -o $1.dat $1
+}
+
+function compress_encrypt() {
+  compress $1
+  encrypt $1.tar.xz
+  rm $1.tar.xz
+}
+
 function file_directory_size() {
     if du -b /dev/null > /dev/null 2>&1; then
         local arg=-sbh
