@@ -20,14 +20,13 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y cpufrequtils gnome-tweaks dconf-cli transmission ffmpeg audacity simplescreenrecorder emacs guake meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq zsh apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag openshot texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc tree xclip chrome-gnome-shell gnome-shell-extension-prefs
+sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks dconf-cli transmission ffmpeg audacity simplescreenrecorder meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag openshot texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc tree xclip chrome-gnome-shell gnome-shell-extension-prefs
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv yapf3
 sudo pip3 install autoflake hy jedi radon flake8 ipython importmagic epc black isort pyopenssl virtualenvwrapper pygments
 rm -rf ~/.flake8rc ~/.pylintrc
-ln -s ~/projects/system/dotfiles/python/flake8 ~/.flake8rc
-ln -s ~/projects/system/dotfiles/python/isort.cfg ~/.isort.cfg
+ln -s ~/code/system/dotfiles/python/flake8 ~/.flake8rc
 
 # Ubuntu 20 doesn't have python: link py3 to py2
 sudo rm -rf /usr/bin/python
@@ -35,13 +34,8 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 
 # Git
 sudo add-apt-repository ppa:git-core/ppa
-# Note using Git LFS for now (mayb re-add later)
-# curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-# sudo apt update
-# sudo apt -y install git-lfs
-# git lfs install
 rm -rf ~/.gitconfig
-ln -s ~/projects/system/dotfiles/git/gitconfig ~/.gitconfig
+ln -s ~/code/system/dotfiles/git/gitconfig ~/.gitconfig
 
 # Fonts: Roboto, Roboto Mono
 google-chrome https://fonts.google.com/
@@ -66,7 +60,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 
 mkdir -p ~/.oh-my-zsh/custom/themes
 curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.zsh-theme -L -o ~/.oh-my-zsh/custom/themes/elessar.zsh-theme
-ln -s ~/projects/system/dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/code/system/dotfiles/zsh/zshrc ~/.zshrc
 chsh -s $(which zsh)
 
 # SQL Databases
@@ -76,10 +70,10 @@ sudo systemctl disable mysql
 # R
 sudo apt install -y r-base gfortran
 rm -rf ~/.Rprofile
-ln -s ~/projects/system/dotfiles/r/Rprofile ~/.Rprofile
+ln -s ~/code/system/dotfiles/r/Rprofile ~/.Rprofile
 rm -rf ~/.r-lang-packages
 mkdir ~/.r-lang-packages
-Rscript ~/projects/system/dotfiles/r/base_packages.R
+Rscript ~/code/system/dotfiles/r/base_packages.R
 
 # JavaScript / NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
@@ -89,13 +83,13 @@ nvm install 10
 nvm install 14
 nvm alias default 10
 npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
-rm -rf ~/.eslintrc
-ln -s ~/projects/system/dotfiles/js/eslintrc ~/.eslintrc
+rm -rf ~/.jsbeautifyrc
+ln -s ~/code/system/dotfiles/js/jsbeautifyrc ~/.jsbeautifyrc
 
 # Emacs
-rm -rf ~/projects/system/spacemacs
-git clone git@gitlab.com:otrenav/spacemacs.git ~/projects/system/spacemacs
-source ~/projects/system/spacemacs/install.sh
+rm -rf ~/code/system/spacemacs
+git clone git@gitlab.com:otrenav/spacemacs.git ~/code/system/spacemacs
+source ~/code/system/spacemacs/install.sh
 
 # Java
 sudo apt install -y default-jre default-jdk
@@ -112,25 +106,14 @@ sudo systemctl disable docker.service
 sudo systemctl disable docker.socket
 
 # Fuzzy Finder for terminal
-ln -s ~/projects/system/dotfiles/fzf/fdignore ~/.fdignore
+ln -s ~/code/system/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-
-# Scripts
-ln -s ~/projects/system/dotfiles/scripts ~/.scripts
 
 # Tmux
 rm -rf ~/.tmux/
 mkdir -p ~/.tmux/
-ln -s ~/projects/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
-ln -s ~/projects/system/dotfiles/tmux/scripts ~/.tmux/scripts
-
-# Vim
-sudo apt install -y vim
-rm -rf ~/.vim
-ln -s ~/projects/system/dotfiles/vim ~/.vim
-mkdir -p ~/.vim/pack/minpac/opt/
-git clone git@github.com:k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # Google Cloud (GCP)
 sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
@@ -138,13 +121,6 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt update
 sudo apt install -y google-cloud-sdk
-
-# Signal
-wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
-sudo mv signal-desktop-keyring.gpg /usr/share/keyrings/
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
-sudo apt update
-sudo apt install signal-desktop
 
 # Rust (.zshrc already contains config)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -292,9 +268,9 @@ gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll "false"
 
 gsettings set org.gnome.system.location enabled "false"
 
-dconf write /apps/guake/general/save-tabs-when-changed "'true'"
+dconf write /apps/guake/general/save-tabs-when-changed "'false'"
+dconf write /apps/guake/general/restore-tabs-startups "'false'"
 dconf write /apps/guake/general/gtk-prefer-dark-theme "'true'"
-dconf write /apps/guake/general/restore-tabs-startups "'true'"
 dconf write /apps/guake/style/background/transparency "100"
 dconf write /apps/guake/general/restore-tabs-notify "'false'"
 dconf write /apps/guake/general/gtk-theme-name "'Yaru-dark'"
@@ -311,8 +287,8 @@ dconf write /apps/guake/general/window-tabbar "'true'"
 dconf write /apps/guake/general/window-width "100"
 dconf write /apps/guake/general/use-popup "'false'"
 
+dconf write /apps/guake/keybindings/global/show-hide "'<Alt>backslash'"
 dconf write /apps/guake/keybindings/local/rename-current-tab "'<Primary><Shift>r'"
-dconf write /apps/guake/keybindings/global/show-hide "'<Primary><Alt>backslash'"
 dconf write /apps/guake/keybindings/local/toggle-hide-on-lose-focus "'disabled'"
 dconf write /apps/guake/keybindings/local/decrease-transparency "'disabled'"
 dconf write /apps/guake/keybindings/local/increase-transparency "'disabled'"
@@ -352,7 +328,7 @@ sudo apt autoremove
 
 # Overwrite user dirs
 sudo rm ~/.config/user-dirs.dirs
-cp ~/projects/system/dotfiles/nautilus/user-dirs.dirs ~/.config/user-dirs.dirs
+cp ~/code/system/dotfiles/nautilus/user-dirs.dirs ~/.config/user-dirs.dirs
 
 # Terminal Themes
 # NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
@@ -372,9 +348,9 @@ rm ./gogh
 # - shared
 # - [month receipts]
 # - knowledge
-# - work
-# - personal
-# - projects
+# - mllabs
+# - drive
+# - code
 # - downloads
 
 # Manually sign-in to Chrome extensions

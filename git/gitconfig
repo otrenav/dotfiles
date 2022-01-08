@@ -2,18 +2,16 @@
     defaultBranch = main
 [user]
 	name = Omar Trejo
-	email = omar@deltalab.ai
+	email = omar@mllabs.com
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [core]
-	editor = nano
+	editor = emacs
     sshCommand = ssh -i ~/.ssh/id_rsa
-	excludesfile = ~/projects/system/dotfiles/git/global-ignore
+	excludesfile = ~/code/system/dotfiles/git/global-ignore
 [color]
 	ui = true
-[git-up "fetch"]
-	all = true
 [push]
 	default = simple
 [alias]

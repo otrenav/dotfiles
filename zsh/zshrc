@@ -1,88 +1,134 @@
 export ZSH=$HOME/.oh-my-zsh
 unsetopt share_history
+
+ZSH_COMMAND_TIME_MSG="\n[Execution time: %s] \n \n"
 DISABLE_AUTO_TITLE="true"
 CASE_SENSITIVE="true"
 ZSH_THEME="elessar"
+
 plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     zsh-completions
     command-time
-    kubectl
-    gcloud
-    docker
-    git
-    ng
 )
-export VISUAL=vim
+
+export VISUAL="emacs"
 export EDITOR="$VISUAL"
 export LANG=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:$HOME/.cargo/bin"
 
-PDF_VIEWER=evince
+PDF_VIEWER=okular
 DIR_BASE="/home/otrenav"
-DIR_PROJECTS="$DIR_BASE/projects"
+DIR_CODE="$DIR_BASE/code"
+DIR_NOTES="$DIR_BASE/code/notes"
 DIR_DOWNLOADS="$DIR_BASE/downloads"
+DIR_CONTENT="$DIR_BASE/code/content"
 DIR_PDFS="$DIR_BASE/drive/personal/knowledge"
-DIR_DOTFILES="$DIR_BASE/projects/system/dotfiles"
-DIR_SCRIPTS="$DIR_BASE/projects/system/dotfiles/scripts"
-DIR_NOTES="$DIR_BASE/projects/notes"
-DIR_BLOG="$DIR_BASE/projects/blog"
-C="$DIR_BASE/projects/blog"
+DIR_DOTFILES="$DIR_BASE/code/system/dotfiles"
 
-# Add "~/.scripts" and all subdirectories to $PATH
-export PATH="$PATH:$(du "$DIR_SCRIPTS" | cut -f2 | tr "\n" ":" | sed "s/:*$//")"
-
-alias g="git"
 alias e="exit"
-alias won="workon"
 alias ka="killall"
 alias t="./test.sh"
 alias s="./server.sh"
+alias emacs="emacs -nw"
 alias disk_usage="du -sh"
 alias ddone="spd-say Done"
-alias d="cd $DIR_DOWNLOADS; ls;"
 alias double_click="xdg-open"
-alias grep="grep --color=auto"
 alias reload="source ~/.zshrc"
-alias zconf="$EDITOR ~/.zshrc"
-alias econf="$EDITOR ~/.spacemacs"
-alias vconf="$EDITOR ~/.vim/vimrc"
-alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
-alias gg="grep --color=auto -rnwiI --exclude-dir={.git,node_modules,env} . -e"
+alias d="cd $DIR_DOWNLOADS; ls;"
 alias ccat="highlight --out-format=ansi"
 alias file_count="find . -type f | wc -l"
 alias open_ports="lsof -i -P -n | grep LISTEN"
-alias sudo_open_ports="sudo lsof -i -P -n | grep LISTEN"
+alias open_ports="sudo lsof -i -P -n | grep LISTEN"
 alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
 alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
-alias running_services="sudo systemctl list-units --type=service --state=running"
-alias cov_report_branch="coverage run -m --branch pytest ; coverage report -m --sort=cover"
-alias cov_report="coverage run -m pytest ; coverage report -m --sort=cover"
 alias tree_normal="tree -L 3 -I 'env|docs|__pycache__|*.pyc' --dirsfirst -h"
+alias running_services="sudo systemctl list-units --type=service --state=running"
+
 alias chmod_normal_dirs="find . -type d -exec chmod u=rwx,g=rwx,o=rx {} \;"
 alias chmod_normal_files="find . -type f -exec chmod u=rw,g=rw,o=r {} \;"
+
+alias zconf="$EDITOR ~/.zshrc"
+alias econf="$EDITOR ~/.spacemacs"
+alias tconf="$EDITOR ~/.tmux.conf"
+alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
+
+alias grep="grep --color=auto"
+alias gg="grep --color=auto -rnwiI --exclude-dir={.git,node_modules,env} . -e"
+
+# Disable C-s and C-q for pausing terminal
+stty -ixon
 
 # Google Cloud
 alias gcloud_gigster="gcloud config set account omar.trejo@gigsternetwork.com"
 alias gcloud_vodafone="gcloud config set account omar.trej@vodafone.com"
 alias gcloud_mllabs="gcloud config set account omar@mllabs.com"
-alias gcloud_envs_vodafone="source ./setup/env_vars_vodafone.sh"
-alias gcloud_envs_gigster="source ./setup/env_vars_gigster.sh"
 
 # Python
 alias kp="killall python"
+alias cov_report="coverage run -m pytest ; coverage report -m --sort=cover"
+alias cov_report_branch="coverage run -m --branch pytest ; coverage report -m --sort=cover"
 alias pyclean="find . -name '*.py[co]' -o -name __pycache__ -exec rm -rf {} +"
-# source /usr/local/bin/virtualenvwrapper.sh
 
 # R
 alias R="R --no-save"
 alias r="R --no-save"
-export R_PROFILE_USER="~/projects/system/dotfiles/r/Rprofile"
+export R_PROFILE_USER="~/code/system/dotfiles/r/Rprofile"
 
-# kubectl
-alias k="kubectl"
+# Fuzzy matching
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--extended --layout=reverse --height=40%"
+export FZF_DEFAULT_COMMAND="fdfind --type f"
+export FZF_ALT_C_COMMAND="fdfind --type d ."
+
+own_open_file_in_editor() {
+    if [ ! -z "$1" ]; then
+        echo "Editing: $1"
+        if [ "$EDITOR" = "emacs" ]; then
+            # Open in terminal (not GUI)
+            $EDITOR -nw $1
+        else
+            $EDITOR $1
+        fi
+    fi
+}
+
+f() {
+    fname="$(find . -type f \
+        | grep -v env/ \
+        | grep -v .git/ \
+        | grep -v .png \
+        | grep -v .avro \
+        | grep -v __pycache__/ \
+        | grep -v .pytest_cache/ \
+        | fzf
+        )"
+    own_open_file_in_editor $fname
+}
+
+g() {
+    fname="$(find $DIR_DOWNLOADS $DIR_DOTFILES $DIR_NOTES $DIR_CONTENT -type f \
+        | sed -e "s|$DIR_BASE|~|" \
+        | fzf \
+        | sed -e "s|~|$DIR_BASE|"
+        )"
+    own_open_file_in_editor $fname
+}
+
+p() {
+    $PDF_VIEWER "$DIR_PDFS$(du -a $DIR_PDFS | cut -f2 | grep .pdf | sed -e "s|$DIR_PDFS||" | fzf)"
+}
+
+# Node Version Manager (NVM)
+export NVM_DIR="$HOME/.nvm"
+nvm_load() {
+    echo "Loading NVM..."
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    echo "DONE."
+}
 
 # Functions
 function compress() {
@@ -119,63 +165,6 @@ function show_keys() {
     rm "${fl}"
 }
 
-# Fuzzy matching
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS="--extended --layout=reverse --height=40%"
-export FZF_DEFAULT_COMMAND="fdfind --type f"
-export FZF_ALT_C_COMMAND="fdfind --type d ."
-
-# Command-time
-ZSH_COMMAND_TIME_MSG="\n[Execution time: %s] \n \n"
-
-# Disable C-s and C-q for pausing terminal
-stty -ixon
-
-# Easily edit files
-# TODO: Change to fd
-f() {
-    fname="$(find \
-        $DIR_SCRIPTS \
-        $DIR_DOTFILES/python \
-        $DIR_DOTFILES/git \
-        $DIR_DOTFILES/js \
-        $DIR_DOTFILES/r \
-        $DIR_NOTES \
-        $DIR_BLOG \
-    -type f -exec du -a {} \; \
-    | cut -f2 \
-    | sed -e "s|$DIR_BASE|~|" \
-    | sed "/\~$/d" \
-    | fzf \
-    | sed -e "s|~|$DIR_BASE|" \
-    )"
-    if [ ! -z "$fname" ]; then
-        $EDITOR "$fname"
-    fi
-}
-
-# Easily open PDFs
-p() {
-    $PDF_VIEWER "$DIR_PDFS$(du -a $DIR_PDFS | cut -f2 | grep .pdf | sed -e "s|$DIR_PDFS||" | fzf)"
-}
-
 json() {
     jq --color-output . $1 | less -R
 }
-
-#
-# Node Version Manager (NVM)
-#
-export NVM_DIR="$HOME/.nvm"
-nvm_load() {
-    echo "Loading NVM..."
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-    echo "DONE."
-}
-
-#
-# CUDA
-#
-export PATH=/usr/local/cuda-11.3/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-11.3/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
