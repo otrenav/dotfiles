@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SESSION="vodafone-vrs"
+SESSION="vf-vrs"
 
-CHROME_PROXIED="vodafone/chrome-proxied"
+CHROME_PROXIED="vf/chrome-proxied"
 GC_PROJECT="vf-grp-rtm-pprd-sor"
 GC_INSTANCE="instance-1"
 GC_ZONE="europe-west1-b"
@@ -37,17 +37,17 @@ sleep 10 && \
     tmux send-keys -t $SESSION:3 "cd mlp; . ./env.sh; cd .." Enter
 
 tmux new-window -t $SESSION -a -n local-1
-tmux send-keys -t $SESSION:4 "cd ~/code/vodafone/iter-3-vrs-prod/" Enter
+tmux send-keys -t $SESSION:4 "cd ~/code/vf/iter-3-vrs-prod/" Enter
 tmux send-keys -t $SESSION:4 ". ./env/bin/activate" Enter
 tmux send-keys -t $SESSION:4 ". ./env.sh" Enter
 
 tmux new-window -t $SESSION -a -n local-2
-tmux send-keys -t $SESSION:5 "cd ~/code/vodafone/iter-3-vrs-prod/" Enter
+tmux send-keys -t $SESSION:5 "cd ~/code/vf/iter-3-vrs-prod/" Enter
 tmux send-keys -t $SESSION:5 ". ./env/bin/activate" Enter
 tmux send-keys -t $SESSION:5 ". ./env.sh" Enter
 
 tmux new-window -t $SESSION -a -n emacs
-tmux send-keys -t $SESSION:6 "cd ~/code/vodafone/iter-3-vrs-prod/" Enter
+tmux send-keys -t $SESSION:6 "cd ~/code/vf/iter-3-vrs-prod/" Enter
 tmux send-keys -t $SESSION:6 ". ./env/bin/activate" Enter
 tmux send-keys -t $SESSION:6 ". ./env.sh" Enter
 tmux send-keys -t $SESSION:6 "emacs ." Enter
