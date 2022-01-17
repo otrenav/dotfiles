@@ -57,8 +57,7 @@ sleep 1 && \
     sleep 0.5 && \
     tmux send-keys -t $SESSION:6 Enter && \
     sleep 0.5 && \
-    tmux send-keys -t $SESSION:6 "C-x" && \
-    tmux send-keys -t $SESSION:6 "o" && \
+    tmux send-keys -t $SESSION:6 "C-o" && \
     sleep 0.5 && \
     tmux send-keys -t $SESSION:6 "C-x" && \
     tmux send-keys -t $SESSION:6 "k" && \
@@ -72,11 +71,9 @@ sleep 1 && \
     tmux send-keys -t $SESSION:6 "C-x" && \
     tmux send-keys -t $SESSION:6 "+" && \
     sleep 0.5 && \
-    tmux send-keys -t $SESSION:6 "C-x" && \
-    tmux send-keys -t $SESSION:6 "o" && \
+    tmux send-keys -t $SESSION:6 "C-o" && \
     sleep 0.5 && \
-    tmux send-keys -t $SESSION:6 "C-x" && \
-    tmux send-keys -t $SESSION:6 "o" && \
+    tmux send-keys -t $SESSION:6 "C-o" && \
     sleep 0.5 && \
     tmux send-keys -t $SESSION:6 "M->"
 
