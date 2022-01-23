@@ -2,7 +2,6 @@
 
 SESSION="vf-vrs"
 
-CHROME_PROXIED="vf/chrome-proxied"
 GC_PROJECT="vf-grp-rtm-pprd-sor"
 GC_INSTANCE="instance-1"
 GC_ZONE="europe-west1-b"
@@ -23,7 +22,7 @@ tmux new-window -t $SESSION -a -n chrome
 tmux send-keys -t $SESSION:2 "
   google-chrome \
   --proxy-server='socks5://localhost:$GC_PORT' \
-  --user-data-dir=/home/otrenav/code/$CHROME_PROXIED" Enter
+  --user-data-dir=/home/otrenav/code/ggstr/vf/chrome-proxied" Enter
 
 tmux new-window -t $SESSION -a -n vm
 tmux send-keys -t $SESSION:3 "
@@ -37,17 +36,17 @@ sleep 10 && \
     tmux send-keys -t $SESSION:3 "cd mlp; . ./env.sh; cd .." Enter
 
 tmux new-window -t $SESSION -a -n local-1
-tmux send-keys -t $SESSION:4 "cd ~/code/vf/iter-3-vrs-prod/" Enter
+tmux send-keys -t $SESSION:4 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux send-keys -t $SESSION:4 ". ./env/bin/activate" Enter
 tmux send-keys -t $SESSION:4 ". ./env.sh" Enter
 
 tmux new-window -t $SESSION -a -n local-2
-tmux send-keys -t $SESSION:5 "cd ~/code/vf/iter-3-vrs-prod/" Enter
+tmux send-keys -t $SESSION:5 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux send-keys -t $SESSION:5 ". ./env/bin/activate" Enter
 tmux send-keys -t $SESSION:5 ". ./env.sh" Enter
 
 tmux new-window -t $SESSION -a -n emacs
-tmux send-keys -t $SESSION:6 "cd ~/code/vf/iter-3-vrs-prod/" Enter
+tmux send-keys -t $SESSION:6 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux send-keys -t $SESSION:6 ". ./env/bin/activate" Enter
 tmux send-keys -t $SESSION:6 ". ./env.sh" Enter
 tmux send-keys -t $SESSION:6 "emacs ." Enter
@@ -66,6 +65,12 @@ sleep 1 && \
     tmux send-keys -t $SESSION:6 "k" && \
     sleep 0.5 && \
     tmux send-keys -t $SESSION:6 "C-x" && \
+    tmux send-keys -t $SESSION:6 "k" && \
+    sleep 0.5 && \
+    tmux send-keys -t $SESSION:6 "C-x" && \
+    tmux send-keys -t $SESSION:6 "3" && \
+    sleep 0.5 && \
+    tmux send-keys -t $SESSION:6 "C-x" && \
     tmux send-keys -t $SESSION:6 "3" && \
     sleep 0.5 && \
     tmux send-keys -t $SESSION:6 "C-x" && \
@@ -75,7 +80,7 @@ sleep 1 && \
     sleep 0.5 && \
     tmux send-keys -t $SESSION:6 "C-o" && \
     sleep 0.5 && \
-    tmux send-keys -t $SESSION:6 "M->"
+    tmux send-keys -t $SESSION:6 "C-o"
 
 tmux select-window -t $SESSION:3
 tmux attach -t $SESSION
