@@ -55,6 +55,13 @@ alias econf="$EDITOR ~/.spacemacs"
 alias tconf="$EDITOR ~/.tmux.conf"
 alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
 
+alias firefox-personal="nohup firefox -p 'personal' > /dev/null 2>&1 &"
+alias firefox-vf-gcp="nohup firefox -p 'vf-gcp' > /dev/null 2>&1 &"
+alias firefox-mllabs="nohup firefox -p 'mllabs' > /dev/null 2>&1 &"
+alias firefox-ggstr="nohup firefox -p 'ggstr' > /dev/null 2>&1 &"
+alias firefox-vf="nohup firefox -p 'vf' > /dev/null 2>&1 &"
+alias firefox-pm="nohup firefox -p 'pm' > /dev/null 2>&1 &"
+
 alias grep="grep --color=auto"
 alias gg="grep --color=auto -rnwiI --exclude-dir={.git,node_modules,env} . -e"
 
