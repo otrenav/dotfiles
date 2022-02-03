@@ -55,6 +55,14 @@ alias econf="$EDITOR ~/.spacemacs"
 alias tconf="$EDITOR ~/.tmux.conf"
 alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
 
+alis tmux-mll=". ~/code/system/dotfiles/tmux/envs/mll.sh"
+alis tmux-ayr=". ~/code/system/dotfiles/tmux/envs/ayr.sh"
+alis tmux-ft=". ~/code/system/dotfiles/tmux/envs/ftb.sh"
+alis tmux-vf=". ~/code/system/dotfiles/tmux/envs/vf.sh"
+
+# Used by Firefox to store temporary files
+export TMPDIR=~/downloads/.tmp
+
 alias firefox-personal="nohup firefox -p 'personal' > /dev/null 2>&1 &"
 alias firefox-vf-gcp="nohup firefox -p 'vf-gcp' > /dev/null 2>&1 &"
 alias firefox-mllabs="nohup firefox -p 'mllabs' > /dev/null 2>&1 &"

@@ -95,8 +95,6 @@ source ~/code/system/spacemacs/install.sh
 sudo apt install -y default-jre default-jdk
 
 # Docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu hirsute stable"
 sudo apt update
 sudo apt install -y docker-ce
 sudo usermod -aG docker ${USER}
@@ -130,6 +128,7 @@ mkdir ~/apps
 google-chrome https://www.insynchq.com/downloads &
 
 # Apps installed through gnome-extensions
+google-chrome https://extensions.gnome.org/extension/615/appindicator-support/ &
 google-chrome https://extensions.gnome.org/extension/4144/vertical-overview/ &
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
@@ -152,7 +151,7 @@ sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gno
 # sudo systemctl disable cups.service cups.socket cups.path cups-browsed.service
 
 # Remove unnecessary software
-sudo apt remove -y gnome-shell-extension-desktop-icons thunderbird rhythmbox
+sudo apt remove -y gnome-shell-extension-desktop-icons thunderbird\* rhythmbox\*
 
 # Disable animations
 gsettings set org.gnome.desktop.interface enable-animations false
@@ -377,3 +376,16 @@ rm ./gogh
 # Verify `running_services` are fine
 # Remove from favorites dash all apps
 # Remove animations
+
+# If there are PulseAudio issues when recording
+# (e.g. 48khz vs 44khz resulting in pitch changes),
+# follow these instrucions:
+# https://www.maartenbaert.be/simplescreenrecorder/recording-game-audio/
+# https://askubuntu.com/questions/371595/for-pulseaudio-what-does-tsched-do-and-what-are-the-defaults
+# In summary:
+# sudo emacs /etc/pulse/daemon.conf
+# - flat-volumes = no
+# - default-sample-rate = 48000
+# - alterante-sample-rate = 48000
+# sudo emacs /etc/puluse/default.pa
+# - load-module module-udev-detect tsched=0
