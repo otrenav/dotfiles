@@ -57,7 +57,7 @@ alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
 
 alias tmux-mll=". ~/code/system/dotfiles/tmux/envs/mll.sh"
 alias tmux-ayr=". ~/code/system/dotfiles/tmux/envs/ayr.sh"
-alias tmux-ft=". ~/code/system/dotfiles/tmux/envs/ftb.sh"
+alias tmux-ftb=". ~/code/system/dotfiles/tmux/envs/ftb.sh"
 alias tmux-vf=". ~/code/system/dotfiles/tmux/envs/vf.sh"
 
 # Used by Firefox to store temporary files
