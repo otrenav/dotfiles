@@ -1,5 +1,8 @@
 #!/bin/bash
 
+gcloud config set account omar@mllabs.com
+gcloud config set project mllabs-com
+
 . ~/code/system/dotfiles/tmux/funcs/emails.sh
 . ~/code/system/dotfiles/tmux/funcs/emacs.sh
 

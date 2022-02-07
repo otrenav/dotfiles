@@ -1,5 +1,8 @@
 #!/bin/bash
 
+gcloud config set account omar.trejo@vodafone.com
+gcloud config set project vf-grp-rtm-pprd-sor
+
 . ~/code/system/dotfiles/tmux/funcs/nested.sh
 . ~/code/system/dotfiles/tmux/funcs/emails.sh
 . ~/code/system/dotfiles/tmux/funcs/emacs.sh
