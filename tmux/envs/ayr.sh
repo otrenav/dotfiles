@@ -18,11 +18,11 @@ tmux send-keys -t $S:2 "az ssh vm --ip 10.0.0.4" Enter
 tmux_nested $S 2
 
 tmux new-window -t $S -a -n local
-tmux send-keys -t $S:3 "cd ~/code/pm/ayr/dashboards/" Enter
+tmux send-keys -t $S:3 "cd ~/code/pm/ayr/" Enter
 tmux_env_python $S 3
 
 tmux new-window -t $S -a -n emacs
-tmux send-keys -t $S:4 "cd ~/code/pm/ayr/dashboards/" Enter
+tmux send-keys -t $S:4 "cd ~/code/pm/ayr/" Enter
 tmux_env_python $S 4
 tmux_emacs $S 4
 
