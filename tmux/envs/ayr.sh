@@ -5,7 +5,7 @@
 . ~/code/system/dotfiles/tmux/funcs/emacs.sh
 . ~/code/system/dotfiles/tmux/funcs/envs.sh
 
-S="ayr"
+export S="ayr"
 
 tmux new-session -d -s $S
 tmux_email_pm $S
