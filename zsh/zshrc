@@ -114,23 +114,23 @@ own_open_file_in_editor() {
 
 f() {
     fname="$(find . -type f \
-        | grep -v env/ \
-        | grep -v .git/ \
-        | grep -v .png \
-        | grep -v .avro \
-        | grep -v __pycache__/ \
-        | grep -v .pytest_cache/ \
-        | fzf
-        )"
+    | grep -v env/ \
+    | grep -v .git/ \
+    | grep -v .png \
+    | grep -v .avro \
+    | grep -v __pycache__/ \
+    | grep -v .pytest_cache/ \
+    | fzf
+    )"
     own_open_file_in_editor $fname
 }
 
 g() {
     fname="$(find $DIR_DOWNLOADS $DIR_DOTFILES $DIR_NOTES $DIR_CONTENT -type f \
-        | sed -e "s|$DIR_BASE|~|" \
-        | fzf \
-        | sed -e "s|~|$DIR_BASE|"
-        )"
+    | sed -e "s|$DIR_BASE|~|" \
+    | fzf \
+    | sed -e "s|~|$DIR_BASE|"
+    )"
     own_open_file_in_editor $fname
 }
 
@@ -157,9 +157,9 @@ function encrypt() {
 }
 
 function compress_encrypt() {
-  compress $1
-  encrypt $1.tar.xz
-  rm $1.tar.xz
+    compress $1
+    encrypt $1.tar.xz
+    rm $1.tar.xz
 }
 
 function file_directory_size() {
@@ -184,4 +184,13 @@ function show_keys() {
 
 json() {
     jq --color-output . $1 | less -R
+}
+
+video_speed() {
+    origi="$1"
+    speed="$2"
+    extension=".mp4"
+    raw="${origi/$extension}-raw$extension"
+    mv "$origi" "$raw"
+    ffmpeg -i "$raw" -filter_complex "[0:v]setpts=PTS/1.5[v];[0:a]atempo=1.5[a]" -map "[v]" -map "[a]" "$origi"
 }
