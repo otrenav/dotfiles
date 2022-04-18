@@ -11,7 +11,7 @@ tmux new-session -d -s $S
 tmux_email_pm $S
 
 tmux rename-window -t $S:1 vpn
-tmux send-keys -t $S:1 "sudo openvpn ~/drive/mllabs/projects/pm/ayr/security/omar-azure.ovpn" Enter
+tmux send-keys -t $S:1 "sudo openvpn ~/drive/mllabs/clients/pm/projects/ayr/security/omar-azure.ovpn" Enter
 
 tmux new-window -t $S -a -n vm
 tmux send-keys -t $S:2 "az ssh vm --ip 10.0.0.4" Enter

@@ -12,10 +12,10 @@ tmux new-session -d -s $S
 tmux_email_mll $S
 
 tmux rename-window -t $S:1 local
-tmux send-keys -t $S:1 "cd ~/code/system/dotfiles/" Enter
+tmux send-keys -t $S:1 "cd ~/code/system/" Enter
 
 tmux new-window -t $S -a -n emacs
-tmux send-keys -t $S:2 "cd ~/code/system/dotfiles/" Enter
+tmux send-keys -t $S:2 "cd ~/code/system/" Enter
 tmux_emacs $S 2
 
 tmux select-window -t $S:2
