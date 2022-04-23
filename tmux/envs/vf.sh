@@ -45,14 +45,18 @@ tmux send-keys -t $S:4 "
   --tunnel-through-iap" Enter
 tmux_nested $S 4
 
-tmux new-window -t $S -a -n local
+tmux new-window -t $S -a -n local-1
 tmux send-keys -t $S:5 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux_env_python $S 5
 
-tmux new-window -t $S -a -n emacs
+tmux new-window -t $S -a -n local-2
 tmux send-keys -t $S:6 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux_env_python $S 6
-tmux_emacs $S 6
 
-tmux select-window -t $S:6
+tmux new-window -t $S -a -n emacs
+tmux send-keys -t $S:7 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
+tmux_env_python $S 7
+tmux_emacs $S 7
+
+tmux select-window -t $S:7
 tmux attach -t $S
