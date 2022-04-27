@@ -18,7 +18,7 @@ tmux send-keys -t $S:2 "az ssh vm --ip 10.0.0.4" Enter
 tmux_nested $S 2
 
 tmux new-window -t $S -a -n aws-vm
-tmux send-keys -t $S:4 "cd ~/code/pm/ayr/" Enter
+tmux send-keys -t $S:3 "cd ~/code/pm/ayr/" Enter
 tmux send-keys -t $S:3 "ssh -i ./aws/recommendation-engine.pem ubuntu@3.143.251.76" Enter
 tmux_nested $S 3
 

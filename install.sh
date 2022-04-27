@@ -20,11 +20,11 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks dconf-cli transmission ffmpeg audacity simplescreenrecorder meld curl software-properties-common aspell libssl-dev libcurl4-openssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag openshot texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc tree xclip chrome-gnome-shell gnome-shell-extension-prefs
+sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks dconf-cli transmission ffmpeg audacity simplescreenrecorder meld curl software-properties-common aspell libssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc tree xclip chrome-gnome-shell gnome-shell-extension-prefs
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv yapf3
-sudo pip3 install autoflake hy jedi radon flake8 ipython importmagic epc black isort pyopenssl virtualenvwrapper pygments
+sudo pip3 install autoflake jedi radon flake8 ipython importmagic epc black isort pyopenssl pygments
 rm -rf ~/.flake8rc ~/.pylintrc
 ln -s ~/code/system/dotfiles/python/flake8 ~/.flake8rc
 
@@ -76,12 +76,12 @@ mkdir ~/.r-lang-packages
 Rscript ~/code/system/dotfiles/r/base_packages.R
 
 # JavaScript / NPM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source ~/.zshrc
 nvm_load
-nvm install 10
 nvm install 14
-nvm alias default 10
+nvm install 16
+nvm alias default 16
 npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
 rm -rf ~/.jsbeautifyrc
 ln -s ~/code/system/dotfiles/js/jsbeautifyrc ~/.jsbeautifyrc
