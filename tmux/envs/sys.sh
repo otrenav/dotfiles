@@ -6,7 +6,7 @@ gcloud config set project mllabs-com
 . ~/code/system/dotfiles/tmux/funcs/emails.sh
 . ~/code/system/dotfiles/tmux/funcs/emacs.sh
 
-export S="mll"
+export S="sys"
 
 tmux new-session -d -s $S
 tmux_email_mll $S
