@@ -35,7 +35,9 @@ tmux new-window -t $S -a -n chrome-proxied
 tmux send-keys -t $S:3 "
   google-chrome \
   --proxy-server='socks5://localhost:5000' \
-  --user-data-dir=/home/otrenav/code/ggstr/vf/chrome-proxied" Enter
+  --user-data-dir=/home/otrenav/code/ggstr/vf/chrome-proxied \
+  1> /dev/null \
+  2> /dev/null" Enter
 
 tmux new-window -t $S -a -n vm
 tmux send-keys -t $S:4 "
