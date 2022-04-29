@@ -20,7 +20,13 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks dconf-cli transmission ffmpeg audacity simplescreenrecorder meld curl software-properties-common aspell libssl-dev shellcheck ripgrep cmake mono-devel most fd-find jq apt-transport-https ca-certificates obs-studio inkscape silversearcher-ag texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra pandoc tree xclip chrome-gnome-shell gnome-shell-extension-prefs
+sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks dconf-cli \
+     transmission ffmpeg audacity simplescreenrecorder meld curl \
+     software-properties-common aspell libssl-dev shellcheck ripgrep cmake \
+     mono-devel most fd-find jq apt-transport-https ca-certificates obs-studio \
+     inkscape silversearcher-ag texlive-latex-base texlive-fonts-recommended \
+     texlive-fonts-extra texlive-latex-extra pandoc tree xclip \
+     chrome-gnome-shell gnome-shell-extension-prefs flameshot
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv yapf3
@@ -163,11 +169,10 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Primar
 gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['<Shift><Super>grave']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Primary>Down']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Primary>Up']"
-gsettings set org.gnome.shell.keybindings toggle-overview "['F8']"
 
-gsettings set org.gnome.settings-daemon.plugins.media-keys screenshot "['<Primary><Shift>F9']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys window-screenshot "['<Primary>F9']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot "['F9']"
+gsettings set org.gnome.gnome-screenshot auto-save-directory "/home/otrenav"
+gsettings set org.gnome.shell.keybindings screenshot "['<Primary><Shift>F9']"
+gsettings set org.gnome.shell.keybindings screenshot-window "['<Primary>F9']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['F10']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys next "['F11']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys play "['F12']"
@@ -193,21 +198,31 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "nautilus /home/otrenav/downloads"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "<Primary><Alt>d"
 
+# Screenshot
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name "Screenshot"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "flameshot gui -p /home/otrenav"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding "['F9']"
+
 # Delete unused keybindings
 declare -a arr=(
-    "window-screenshot-clip"
-    "area-screenshot-clip"
     "magnifier-zoom-out"
     "magnifier-zoom-in"
-    "screenshot-clip"
     "screenreader"
     "screensaver"
-    "screencast"
     "magnifier"
     "logout"
 )
 for i in "${arr[@]}"; do
     gsettings set org.gnome.settings-daemon.plugins.media-keys "$i" "[]"
+done
+
+declare -a arr=(
+    "show-screen-recording-ui"
+    "show-screenshot-ui"
+    "toggle-overview"
+)
+for i in "${arr[@]}"; do
+    gsettings set org.gnome.shell.keybindings "$i" "[]"
 done
 
 declare -a arr=(
