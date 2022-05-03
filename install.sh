@@ -145,6 +145,14 @@ google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 # Required by Gnome Extension: System Monitor
 sudo apt install gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
+# Elasticsearch
+curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
+echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt update
+sudo apt install elasticsearch kibana
+# sudo emacs /etc/elasticsearch/elasticsearch.yml
+
+
 # Ubuntu Dock
 # NOTE: In Ubuntu 19.10+ the dock and desktop icons are very annoying
 # and can't be disabled, so we make their extensions unreachable.
