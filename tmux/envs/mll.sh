@@ -11,10 +11,10 @@ export S="mll"
 tmux new-session -d -s $S
 tmux_email_mll $S
 
-tmux rename-window -t $S:1 local-1
+tmux rename-window -t $S:1 devops
 tmux send-keys -t $S:1 "cd ~/code/mll/website/" Enter
 
-tmux new-window -t $S -a -n local-2
+tmux new-window -t $S -a -n local
 tmux send-keys -t $S:2 "cd ~/code/mll/website/" Enter
 
 tmux new-window -t $S -a -n emacs
