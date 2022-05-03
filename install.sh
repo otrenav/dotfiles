@@ -44,7 +44,7 @@ rm -rf ~/.gitconfig
 ln -s ~/code/system/dotfiles/git/gitconfig ~/.gitconfig
 
 # Fonts: Roboto, Roboto Mono
-google-chrome https://fonts.google.com/
+google-chrome https://fonts.google.com/ &
 
 # Snap
 snap install authy
