@@ -26,7 +26,7 @@ sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks dconf-cli \
      mono-devel most fd-find jq apt-transport-https ca-certificates obs-studio \
      inkscape silversearcher-ag texlive-latex-base texlive-fonts-recommended \
      texlive-fonts-extra texlive-latex-extra pandoc tree xclip \
-     chrome-gnome-shell gnome-shell-extension-prefs flameshot
+     chrome-gnome-shell gnome-shell-extension-prefs flameshot tmux
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv yapf3
@@ -116,6 +116,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Tmux
 rm -rf ~/.tmux/
+rm -rf ~/.tmux.conf
 mkdir -p ~/.tmux/
 ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
@@ -134,10 +135,9 @@ mkdir ~/apps
 google-chrome https://www.insynchq.com/downloads &
 
 # Apps installed through gnome-extensions
-google-chrome https://extensions.gnome.org/extension/615/appindicator-support/ &
-google-chrome https://extensions.gnome.org/extension/4144/vertical-overview/ &
+google-chrome https://extensions.gnome.org/extension/3010/system-monitor-next/ &
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
-google-chrome https://extensions.gnome.org/extension/120/system-monitor/ &
+google-chrome https://extensions.gnome.org/extension/4144/vertical-overview/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 # Gtile: config for 3x1 3-cycle: 3x1 1:1 1:1, 2:1 2:1, 3:1 3:1
 # Gtile: config for 3x2 2-cycle 3x1 3x1 1:1 2:1, 2:1 3:1
@@ -151,7 +151,6 @@ echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.
 sudo apt update
 sudo apt install -y elasticsearch kibana
 # sudo emacs /etc/elasticsearch/elasticsearch.yml
-
 
 # Ubuntu Dock
 # NOTE: In Ubuntu 19.10+ the dock and desktop icons are very annoying
