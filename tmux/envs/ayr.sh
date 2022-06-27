@@ -17,10 +17,15 @@ tmux new-window -t $S -a -n azure-vm
 tmux send-keys -t $S:2 "az ssh vm --ip 10.0.0.4" Enter
 tmux_nested $S 2
 
-tmux new-window -t $S -a -n aws-vm
+# This VM has been deleted
+# tmux new-window -t $S -a -n aws-vm
+# tmux send-keys -t $S:3 "cd ~/code/pm/ayr/" Enter
+# tmux send-keys -t $S:3 "ssh -i ./aws/recommendation-engine.pem ubuntu@3.143.251.76" Enter
+# tmux_nested $S 3
+
+tmux new-window -t $S -a -n db
 tmux send-keys -t $S:3 "cd ~/code/pm/ayr/" Enter
-tmux send-keys -t $S:3 "ssh -i ./aws/recommendation-engine.pem ubuntu@3.143.251.76" Enter
-tmux_nested $S 3
+tmux send-keys -t $S:3 "psql -h 10.0.0.5 -d ayr-surfside -U omarpocketmade@ayrdwpoc" Enter
 
 tmux new-window -t $S -a -n local
 tmux send-keys -t $S:4 "cd ~/code/pm/ayr/" Enter

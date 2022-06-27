@@ -24,15 +24,16 @@ tmux send-keys -t $S:1 "
   --zone=$GC_ZONE \
   --tunnel-through-iap -- -N -p 22 -D localhost:5000" Enter
 
-tmux new-window -t $S -a -n proxy-kibana
-tmux send-keys -t $S:2 "
-  gcloud compute ssh $GC_INSTANCE \
-  --project=$GC_PROJECT \
-  --zone=$GC_ZONE \
-  --tunnel-through-iap -- -N -p 22 -L 5602:localhost:5601" Enter
+# No longer using the VM as a Kibana proxy
+# tmux new-window -t $S -a -n proxy-kibana
+# tmux send-keys -t $S:2 "
+#   gcloud compute ssh $GC_INSTANCE \
+#   --project=$GC_PROJECT \
+#   --zone=$GC_ZONE \
+#   --tunnel-through-iap -- -N -p 22 -L 5602:localhost:5601" Enter
 
 tmux new-window -t $S -a -n chrome-proxied
-tmux send-keys -t $S:3 "
+tmux send-keys -t $S:2 "
   google-chrome \
   --proxy-server='socks5://localhost:5000' \
   --user-data-dir=/home/otrenav/code/ggstr/vf/chrome-proxied \
@@ -40,7 +41,7 @@ tmux send-keys -t $S:3 "
   2> /dev/null" Enter
 
 tmux new-window -t $S -a -n vm
-tmux send-keys -t $S:4 "
+tmux send-keys -t $S:3 "
   gcloud compute ssh $GC_INSTANCE \
   --project=$GC_PROJECT \
   --zone=$GC_ZONE \
@@ -48,17 +49,17 @@ tmux send-keys -t $S:4 "
 tmux_nested $S 4
 
 tmux new-window -t $S -a -n local-1
+tmux send-keys -t $S:4 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
+tmux_env_python $S 4
+
+tmux new-window -t $S -a -n local-2
 tmux send-keys -t $S:5 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux_env_python $S 5
 
-tmux new-window -t $S -a -n local-2
+tmux new-window -t $S -a -n emacs
 tmux send-keys -t $S:6 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux_env_python $S 6
+tmux_emacs $S 6
 
-tmux new-window -t $S -a -n emacs
-tmux send-keys -t $S:7 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
-tmux_env_python $S 7
-tmux_emacs $S 7
-
-tmux select-window -t $S:7
+tmux select-window -t $S:6
 tmux attach -t $S
