@@ -46,7 +46,7 @@ tmux send-keys -t $S:3 "
   --project=$GC_PROJECT \
   --zone=$GC_ZONE \
   --tunnel-through-iap" Enter
-tmux_nested $S 4
+tmux_nested $S 3
 
 tmux new-window -t $S -a -n local-1
 tmux send-keys -t $S:4 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
