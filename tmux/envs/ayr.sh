@@ -27,14 +27,22 @@ tmux new-window -t $S -a -n db
 tmux send-keys -t $S:3 "cd ~/code/pm/ayr/" Enter
 tmux send-keys -t $S:3 "psql -h 10.0.0.5 -d ayr-surfside -U omarpocketmade@ayrdwpoc" Enter
 
-tmux new-window -t $S -a -n local
-tmux send-keys -t $S:4 "cd ~/code/pm/ayr/" Enter
+tmux new-window -t $S -a -n local-0
+tmux send-keys -t $S:4 "cd ~/code/pm/ayr/prev/" Enter
 tmux_env_python $S 4
 
-tmux new-window -t $S -a -n emacs
-tmux send-keys -t $S:5 "cd ~/code/pm/ayr/" Enter
+tmux new-window -t $S -a -n local-1
+tmux send-keys -t $S:5 "cd ~/code/pm/ayr/ayr-website-connectors/" Enter
 tmux_env_python $S 5
-tmux_emacs $S 5
 
-tmux select-window -t $S:5
+tmux new-window -t $S -a -n local-2
+tmux send-keys -t $S:6 "cd ~/code/pm/ayr/ayr-website-connectors/" Enter
+tmux_env_python $S 6
+
+tmux new-window -t $S -a -n emacs
+tmux send-keys -t $S:7 "cd ~/code/pm/ayr/" Enter
+tmux_env_python $S 7
+tmux_emacs $S 7
+
+tmux select-window -t $S:7
 tmux attach -t $S
