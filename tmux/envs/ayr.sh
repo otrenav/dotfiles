@@ -17,14 +17,14 @@ tmux new-window -t $S -a -n azure-vm
 tmux send-keys -t $S:2 "az ssh vm --ip 10.0.0.4" Enter
 tmux_nested $S 2
 
-tmux new-window -t $S -a -n db
-tmux send-keys -t $S:3 "cd ~/code/pm/ayr/" Enter
-tmux send-keys -t $S:3 "psql -h 10.0.0.5 -d ayr-surfside -U omarpocketmade@ayrdwpoc" Enter
-
 tmux new-window -t $S -a -n aws-vm
+tmux send-keys -t $S:3 "cd ~/code/pm/ayr/" Enter
+tmux send-keys -t $S:3 "ssh ubuntu@18.217.167.102" Enter
+tmux_nested $S 3
+
+tmux new-window -t $S -a -n db
 tmux send-keys -t $S:4 "cd ~/code/pm/ayr/" Enter
-tmux send-keys -t $S:4 "ssh ubuntu@18.217.167.102" Enter
-tmux_nested $S 4
+tmux send-keys -t $S:4 "psql -h 10.0.0.5 -d ayr-surfside -U omarpocketmade@ayrdwpoc" Enter
 
 tmux new-window -t $S -a -n local-0
 tmux send-keys -t $S:5 "cd ~/code/pm/ayr/prev/" Enter
