@@ -40,26 +40,34 @@ tmux send-keys -t $S:2 "
   1> /dev/null \
   2> /dev/null" Enter
 
-tmux new-window -t $S -a -n vm
+tmux new-window -t $S -a -n vm-prd
 tmux send-keys -t $S:3 "
   gcloud compute ssh $GC_INSTANCE \
-  --project=$GC_PROJECT \
+  --project=vf-grp-rtm-prd-sor \
   --zone=$GC_ZONE \
   --tunnel-through-iap" Enter
 tmux_nested $S 3
 
-tmux new-window -t $S -a -n local-1
-tmux send-keys -t $S:4 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
-tmux_env_python $S 4
+tmux new-window -t $S -a -n vm-pprd
+tmux send-keys -t $S:4 "
+  gcloud compute ssh $GC_INSTANCE \
+  --project=vf-grp-rtm-pprd-sor \
+  --zone=$GC_ZONE \
+  --tunnel-through-iap" Enter
+tmux_nested $S 4
 
-tmux new-window -t $S -a -n local-2
+tmux new-window -t $S -a -n local-1
 tmux send-keys -t $S:5 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux_env_python $S 5
 
-tmux new-window -t $S -a -n emacs
+tmux new-window -t $S -a -n local-2
 tmux send-keys -t $S:6 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
 tmux_env_python $S 6
-tmux_emacs $S 6
 
-tmux select-window -t $S:6
+tmux new-window -t $S -a -n emacs
+tmux send-keys -t $S:7 "cd ~/code/ggstr/vf/3-vrs-prod/" Enter
+tmux_env_python $S 7
+tmux_emacs $S 7
+
+tmux select-window -t $S:7
 tmux attach -t $S
