@@ -122,6 +122,12 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyr
 sudo apt update
 sudo apt install -y google-cloud-sdk
 
+# Ubuntu Dock
+# NOTE: In Ubuntu 19.10+ the dock and desktop icons are very annoying
+# and can't be disabled, so we make their extensions unreachable.
+# Desktop icons must be disabled in the "Extensions" app
+sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com.backup/
+
 # Apps that require manual installation
 mkdir ~/apps
 google-chrome https://www.insynchq.com/downloads &
