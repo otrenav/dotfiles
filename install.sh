@@ -18,11 +18,11 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg \
+sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg xclip \
      simplescreenrecorder curl software-properties-common libssl-dev \
-     shellcheck ripgrep cmake most fd-find jq apt-ca-certificates \
-     inkscape silversearcher-ag tree xclip chrome-gnome-shell \
-     gnome-shell-extension-prefs flameshot tmux \
+     apt-transport-https ca-certificates tree chrome-gnome-shell \
+     shellcheck ripgrep silversearcher-ag fd-find jq cmake most \
+     gnome-shell-extension-prefs flameshot tmux
 
 # Optionals
 # sudo apt install -y dconf-cli meld apt-transport-https obs-studio inkscape
