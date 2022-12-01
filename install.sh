@@ -24,11 +24,10 @@ sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg xclip \
      shellcheck ripgrep silversearcher-ag fd-find jq cmake most \
      gnome-shell-extension-prefs flameshot tmux
 
-sudo snap install slack
+snap install authy telegram-desktop slack spotify gimp zoom-client vlc postman
 
 # Optionals
 # sudo apt install -y dconf-cli meld apt-transport-https obs-studio inkscape
-
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv
