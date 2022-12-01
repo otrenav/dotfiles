@@ -22,7 +22,7 @@ sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg xclip \
      simplescreenrecorder curl software-properties-common libssl-dev \
      apt-transport-https ca-certificates tree chrome-gnome-shell \
      shellcheck ripgrep silversearcher-ag fd-find jq cmake most \
-     gnome-shell-extension-prefs flameshot tmux
+     gnome-shell-extension-prefs flameshot tmux slack
 
 # Optionals
 # sudo apt install -y dconf-cli meld apt-transport-https obs-studio inkscape
