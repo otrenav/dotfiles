@@ -3,14 +3,12 @@
 # chmod them to 600, and add them to keyring with ssh-add [key]
 
 # Apps to be installed from Ubuntu Software
-# - InkScape
 # - Telegram
 # - Postman
 # - Spotify
 # - Slack
 # - Gimp
 # - Zoom
-# - OBS
 # - VLC
 
 # Update
@@ -20,17 +18,18 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/
 
 # Generics
-sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks dconf-cli \
-     transmission ffmpeg audacity simplescreenrecorder meld curl \
-     software-properties-common aspell libssl-dev shellcheck ripgrep cmake \
-     mono-devel most fd-find jq apt-transport-https ca-certificates obs-studio \
-     inkscape silversearcher-ag texlive-latex-base texlive-fonts-recommended \
-     texlive-fonts-extra texlive-latex-extra pandoc tree xclip \
-     chrome-gnome-shell gnome-shell-extension-prefs flameshot tmux
+sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg \
+     simplescreenrecorder curl software-properties-common libssl-dev \
+     shellcheck ripgrep cmake most fd-find jq apt-ca-certificates \
+     inkscape silversearcher-ag tree xclip chrome-gnome-shell \
+     gnome-shell-extension-prefs flameshot tmux \
+
+# Optionals
+# sudo apt install -y dconf-cli meld apt-transport-https obs-studio inkscape
 
 # Python
-sudo apt install -y python3-pip python3-dev python3-venv virtualenv yapf3
-sudo pip3 install autoflake jedi radon flake8 ipython importmagic epc black isort pyopenssl pygments
+sudo apt install -y python3-pip python3-dev python3-venv virtualenv
+sudo pip3 install jedi autoflake flake8 ipython epc black pyopenssl pygments
 rm -rf ~/.flake8rc ~/.pylintrc
 ln -s ~/code/system/dotfiles/python/flake8 ~/.flake8rc
 
@@ -69,10 +68,6 @@ curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.z
 ln -s ~/code/system/dotfiles/zsh/zshrc ~/.zshrc
 chsh -s $(which zsh)
 
-# SQL Databases
-sudo apt install -y mysql-client mysql-server libmysqlclient-dev
-sudo systemctl disable mysql
-
 # R
 sudo apt install -y r-base gfortran
 rm -rf ~/.Rprofile
@@ -85,9 +80,9 @@ Rscript ~/code/system/dotfiles/r/base_packages.R
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source ~/.zshrc
 nvm_load
-nvm install 14
+nvm install 18
 nvm install 16
-nvm alias default 16
+nvm alias default 18
 npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
 rm -rf ~/.jsbeautifyrc
 ln -s ~/code/system/dotfiles/js/jsbeautifyrc ~/.jsbeautifyrc
@@ -109,7 +104,7 @@ sudo systemctl stop docker.socket
 sudo systemctl disable docker.service
 sudo systemctl disable docker.socket
 
-# Fuzzy Finder for terminal
+# Fuzzy Finder
 ln -s ~/code/system/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -120,15 +115,12 @@ rm -rf ~/.tmux.conf
 mkdir -p ~/.tmux/
 ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
-# Google Cloud (GCP)
+# Google Cloud
 sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt update
 sudo apt install -y google-cloud-sdk
-
-# Rust (.zshrc already contains config)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # Apps that require manual installation
 mkdir ~/apps
@@ -146,17 +138,11 @@ google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 sudo apt install -y gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
 # Elasticsearch
-curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
-echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-sudo apt update
-sudo apt install -y elasticsearch kibana
+# curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
+# echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+# sudo apt update
+# sudo apt install -y elasticsearch kibana
 # sudo emacs /etc/elasticsearch/elasticsearch.yml
-
-# Ubuntu Dock
-# NOTE: In Ubuntu 19.10+ the dock and desktop icons are very annoying
-# and can't be disabled, so we make their extensions unreachable.
-# Desktop icons must be disabled in the "Extensions" app
-sudo mv /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/ /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com.backup/
 
 # Disable printing service
 # sudo systemctl stop cups.service cups.socket cups.path cups-browsed.service
@@ -360,7 +346,6 @@ rm ./gogh
 # Manually add startup applications
 # - Guake (check key)
 # - SSH Key Agent
-# - Spotify
 # - InSync
 # - Slack
 
