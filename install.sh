@@ -17,17 +17,17 @@ sudo apt upgrade -y
 firefox https://www.google.com/intl/en_us/chrome/ &
 
 sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg xclip \
+     gnome-shell-extension-prefs flameshot tmux aptitude npm lsb-release \
+     shellcheck ripgrep silversearcher-ag fd-find jq cmake most gnupg \
      simplescreenrecorder curl software-properties-common libssl-dev \
-     apt-transport-https ca-certificates tree chrome-gnome-shell \
-     shellcheck ripgrep silversearcher-ag fd-find jq cmake most \
-     gnome-shell-extension-prefs flameshot tmux aptitude
+     apt-transport-https ca-certificates tree chrome-gnome-shell
 
 sudo snap install authy telegram-desktop slack spotify gimp \
      zoom-client vlc postman
 echo snap >> ~/.hidden
 
 # Optionals
-# sudo apt install -y dconf-cli meld apt-transport-https obs-studio inkscape
+# sudo apt install -y meld obs-studio inkscape
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv
@@ -48,10 +48,7 @@ ln -s ~/code/system/dotfiles/git/gitconfig ~/.gitconfig
 google-chrome https://fonts.google.com/ &
 
 # Install yarn
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt update
-sudo apt install -y yarn
+sudo curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 
 # Zsh
 rm -rf ~/.oh-my-zsh ~/.zshrc
@@ -94,8 +91,15 @@ source ~/code/system/spacemacs/install.sh
 sudo apt install -y default-jre default-jdk
 
 # Docker
+sudo apt remove docker docker.io containerd runc
 sudo apt update
-sudo apt install -y docker-ce
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo usermod -aG docker ${USER}
 sudo systemctl stop docker.service
 sudo systemctl stop docker.socket
@@ -347,6 +351,13 @@ chmod +x gogh
 ./gogh
 rm ./gogh
 
+# Citrix
+# 1. Install (sudo dpkg -i ica...)
+google-chrome https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html &
+# 2. Use to login to gcloud using a GCP session in Citrix
+# 3. Uninstall (leaving Citrix installed creates issues for Chrome, Software, etc)
+#    - sudo `dpkg --remove icaclient`
+
 # Manually add startup applications
 # - Guake (check key)
 # - SSH Key Agent
@@ -381,6 +392,8 @@ rm ./gogh
 
 # Guake
 # - Select Monokai color palette
+# - Remove C-W and C-Q shortcuts
+# - Login with X11/Xorg session
 
 # Manually set the system-monitor config to "digits"
 # Verify `running_services` are fine
