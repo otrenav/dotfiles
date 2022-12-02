@@ -11,20 +11,20 @@
 # - Zoom
 # - VLC
 
-# Update
 sudo apt update
 sudo apt upgrade -y
 
-firefox https://www.google.com/intl/en_us/chrome/
+firefox https://www.google.com/intl/en_us/chrome/ &
 
-# Generics
 sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg xclip \
      simplescreenrecorder curl software-properties-common libssl-dev \
      apt-transport-https ca-certificates tree chrome-gnome-shell \
      shellcheck ripgrep silversearcher-ag fd-find jq cmake most \
      gnome-shell-extension-prefs flameshot tmux aptitude
 
-snap install authy telegram-desktop slack spotify gimp zoom-client vlc postman
+sudo snap install authy telegram-desktop slack spotify gimp \
+     zoom-client vlc postman
+echo snap >> ~/.hidden
 
 # Optionals
 # sudo apt install -y dconf-cli meld apt-transport-https obs-studio inkscape
@@ -46,10 +46,6 @@ ln -s ~/code/system/dotfiles/git/gitconfig ~/.gitconfig
 
 # Fonts: Roboto, Roboto Mono
 google-chrome https://fonts.google.com/ &
-
-# Snap
-snap install authy
-echo snap >> ~/.hidden
 
 # Install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -362,7 +358,7 @@ rm ./gogh
 # - [month receipts]
 # - knowledge
 # - mllabs
-# - drive
+# - personal
 # - code
 # - downloads
 
