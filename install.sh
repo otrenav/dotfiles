@@ -123,6 +123,7 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt update
 sudo apt install -y google-cloud-sdk
+$(gcloud info --format="value(basic.python_location)") -m pip install numpy
 
 # Ubuntu Dock
 # NOTE: In Ubuntu 19.10+ the dock and desktop icons are very annoying
