@@ -17,7 +17,7 @@ export VISUAL="emacs"
 export EDITOR="$VISUAL"
 export LANG=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
-export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$PATH"
 
 PDF_VIEWER=okular
 DIR_BASE="/home/otrenav"
