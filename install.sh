@@ -235,6 +235,8 @@ declare -a arr=(
     "switch-to-workspace-left"
     "cycle-windows-backward"
     "move-to-workspace-last"
+    "move-to-workspace-left"
+    "move-to-workspace-right"
     "switch-panels-backward"
     "cycle-panels-backward"
     "move-to-monitor-right"
