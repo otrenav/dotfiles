@@ -285,6 +285,8 @@ gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll "false"
 
 gsettings set org.gnome.system.location enabled "false"
 
+guake --restore-preferences=./guake/guake.cfg
+
 dconf write /apps/guake/general/save-tabs-when-changed "'false'"
 dconf write /apps/guake/general/restore-tabs-startups "'false'"
 dconf write /apps/guake/general/gtk-prefer-dark-theme "'true'"
