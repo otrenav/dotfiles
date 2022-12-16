@@ -77,7 +77,7 @@ source ~/.zshrc
 nvm_load
 nvm install 18
 nvm install 16
-nvm alias default 18
+nvm alias default 16
 npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
 rm -rf ~/.jsbeautifyrc
 ln -s ~/code/system/dotfiles/js/jsbeautifyrc ~/.jsbeautifyrc
