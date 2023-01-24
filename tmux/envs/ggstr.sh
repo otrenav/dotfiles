@@ -19,6 +19,7 @@ tmux_nested $S 1
 
 tmux new-window -t $S -a -n local-db
 tmux send-keys -t $S:2 "cd ~/code/ggstr/ggstr/platform" Enter
+tmux send-keys -t $2:2 "psql -d ggstr-gsd-dev"
 tmux_env_python $S 2
 
 tmux new-window -t $S -a -n local-1
