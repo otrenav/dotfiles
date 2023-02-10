@@ -30,7 +30,8 @@ echo snap >> ~/.hidden
 # sudo apt install -y meld obs-studio inkscape
 
 # Python
-sudo apt install -y python3-pip python3-dev python3-venv virtualenv
+sudo apt install -y python3-pip python3-dev python3-venv virtualenv \
+     libasound2-dev
 sudo pip3 install jedi autoflake flake8 ipython epc black pyopenssl pygments
 rm -rf ~/.flake8rc ~/.pylintrc
 ln -s ~/code/system/dotfiles/python/flake8 ~/.flake8rc

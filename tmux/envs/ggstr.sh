@@ -13,13 +13,13 @@ tmux_email_ggstr $S
 tmux rename-window -t $S:1 vm
 tmux send-keys -t $S:1 "cd ~/code/ggstr/ggstr/platform" Enter
 tmux send-keys -t $S:1 "
-  ssh -i 'auth/omar-trejo.pem' ubuntu@ec2-44-213-58-235.compute-1.amazonaws.com
+  ssh -i 'auth/omar-trejo.pem' ubuntu@ec2-44-210-134-74.compute-1.amazonaws.com
 " Enter
 tmux_nested $S 1
 
 tmux new-window -t $S -a -n local-db
 tmux send-keys -t $S:2 "cd ~/code/ggstr/ggstr/platform" Enter
-tmux send-keys -t $2:2 "psql -d ggstr-gsd-dev"
+tmux send-keys -t $2:2 "psql -d ggstr-gds" Enter
 tmux_env_python $S 2
 
 tmux new-window -t $S -a -n local-1
