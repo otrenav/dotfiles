@@ -30,9 +30,13 @@ tmux new-window -t $S -a -n local-2
 tmux send-keys -t $S:4 "cd ~/code/ggstr/ggstr/platform" Enter
 tmux_env_python $S 4
 
-tmux new-window -t $S -a -n emacs
+tmux new-window -t $S -a -n local-3
 tmux send-keys -t $S:5 "cd ~/code/ggstr/ggstr/platform" Enter
-tmux_emacs $S 5
+tmux_env_python $S 5
 
-tmux select-window -t $S:5
+tmux new-window -t $S -a -n emacs
+tmux send-keys -t $S:6 "cd ~/code/ggstr/ggstr/platform" Enter
+tmux_emacs $S 6
+
+tmux select-window -t $S:6
 tmux attach -t $S
