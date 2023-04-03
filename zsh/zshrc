@@ -75,6 +75,7 @@ alias firefox-pm="nohup firefox -p 'pm' > /dev/null 2>&1 &"
 
 alias grep="grep --color=auto"
 alias gg="grep --color=auto -rnwiI --exclude-dir={.git,node_modules,env} . -e"
+# NOTE: To exclude `gg "[PATTERN]" --exclude=\*.{csv,json}
 
 # Disable C-s and C-q for pausing terminal
 stty -ixon
