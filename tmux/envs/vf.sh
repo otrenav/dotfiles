@@ -22,7 +22,8 @@ tmux send-keys -t $S:1 "
   gcloud compute ssh $GC_INSTANCE \
   --project=$GC_PROJECT \
   --zone=$GC_ZONE \
-  --tunnel-through-iap -- -N -p 22 -D localhost:5000" Enter
+  --tunnel-through-iap -- -N -p 22 -D localhost:5000
+" Enter
 
 # No longer using the VM as a Kibana proxy
 # tmux new-window -t $S -a -n proxy-kibana

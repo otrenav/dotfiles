@@ -87,6 +87,11 @@ rm -rf ~/code/system/spacemacs
 git clone git@gitlab.com:otrenav/spacemacs.git ~/code/system/spacemacs
 source ~/code/system/spacemacs/install.sh
 
+# SQL
+mkdir -p ~/apps/
+# wget -q -O - https://github.com/mjibson/sqlfmt/releases/latest/download/sqlfmt_0.4.0_linux_amd64.tar.gz | tar -xpvzf - --directory "${installdir}/bin"
+sudo ln -s ~/apps/sqlfmt/sqlfmt /usr/local/bin/sqlfmt
+
 # Java
 sudo apt install -y default-jre default-jdk
 
