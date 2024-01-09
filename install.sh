@@ -23,7 +23,7 @@ sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg xclip \
      apt-transport-https ca-certificates tree chrome-gnome-shell
 
 sudo snap install authy telegram-desktop slack spotify gimp \
-     zoom-client vlc postman
+     zoom-client vlc postman bruno
 echo snap >> ~/.hidden
 
 # Optionals
