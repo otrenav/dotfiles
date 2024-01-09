@@ -23,11 +23,18 @@ sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg xclip \
      apt-transport-https ca-certificates tree chrome-gnome-shell
 
 sudo snap install authy telegram-desktop slack spotify gimp \
-     zoom-client vlc postman bruno
+     zoom-client vlc postman
 echo snap >> ~/.hidden
 
 # Optionals
 # sudo apt install -y meld obs-studio inkscape
+
+# APIs
+sudo add-apt-repository ppa:appimagelauncher-team/stable
+sudo apt update
+sudo apt install appimagelauncher
+google-chrome https://github.com/httpie/desktop/releases/
+# $ AppImageLauncher HTTPie-*.AppImage
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv
