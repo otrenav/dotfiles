@@ -27,7 +27,11 @@ sudo snap install authy telegram-desktop slack spotify gimp \
 echo snap >> ~/.hidden
 
 # Optionals
-# sudo apt install -y meld obs-studio inkscape
+# sudo apt install -y meld inkscape
+
+# OBS Studio
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt install obs-studio
 
 # APIs
 sudo add-apt-repository ppa:appimagelauncher-team/stable
