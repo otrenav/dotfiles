@@ -13,8 +13,8 @@ tmux rename-window -t $S:1 devops
 tmux send-keys -t $S:1 "cd ~/code/ggstr/orth/hs/insights-shared-backend/" Enter
 tmux_env_python $S 1
 
-tmux new-window -t $S:2 -a -n valid
-tmux send-keys -t $S:2 "cd ~/code/ggstr/orth/hs/insights-model-validation/" Enter
+tmux new-window -t $S:2 -a -n web
+tmux send-keys -t $S:2 "cd ~/code/ggstr/orth/hs/insights-web/" Enter
 tmux_env_python $S 2
 
 tmux new-window -t $S:3 -a -n lcl-1
