@@ -9,14 +9,13 @@ export S="hs"
 tmux new-session -d -s $S
 tmux_email_orth $S
 
-tmux rename-window -t $S:1 -a -n web
+tmux rename-window -t $S:1 web
 tmux send-keys -t $S:1 "cd ~/code/ggstr/orth/hs/insights-web/" Enter
 tmux_env_python $S 1
 
-tmux new-window -t $S:2 shared
+tmux new-window -t $S:2 -a -n shared
 tmux send-keys -t $S:2 "cd ~/code/ggstr/orth/hs/insights-shared-backend/" Enter
 tmux_env_python $S 2
-
 
 tmux new-window -t $S:3 -a -n lcl-1
 tmux send-keys -t $S:3 "cd ~/code/ggstr/orth/hs/insights-algo-backend/" Enter
