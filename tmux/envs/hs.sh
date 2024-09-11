@@ -17,19 +17,19 @@ tmux new-window -t $S:2 -a -n shared
 tmux send-keys -t $S:2 "cd ~/code/ggstr/orth/hs/insights-shared-backend/" Enter
 tmux_env_python $S 2
 
-tmux new-window -t $S:3 -a -n lcl-1
+tmux new-window -t $S:3 -a -n svc-dvc-1
 tmux send-keys -t $S:3 "cd ~/code/ggstr/orth/hs/insights-algo-backend/" Enter
 tmux_env_python $S 3
 
-tmux new-window -t $S:4 -a -n lcl-2
+tmux new-window -t $S:4 -a -n svc-dvc-2
 tmux send-keys -t $S:4 "cd ~/code/ggstr/orth/hs/insights-algo-backend/" Enter
 tmux_env_python $S 4
 
-tmux new-window -t $S:5 -a -n lcl-3
+tmux new-window -t $S:5 -a -n svc-plt-1
 tmux send-keys -t $S:5 "cd ~/code/ggstr/orth/hs/insights-platform-backend/" Enter
 tmux_env_python $S 5
 
-tmux new-window -t $S:6 -a -n lcl-4
+tmux new-window -t $S:6 -a -n svc-plt-2
 tmux send-keys -t $S:6 "cd ~/code/ggstr/orth/hs/insights-platform-backend/" Enter
 tmux_env_python $S 6
 
