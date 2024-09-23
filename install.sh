@@ -20,31 +20,16 @@ sudo apt install -y emacs zsh guake cpufrequtils gnome-tweaks ffmpeg xclip \
      gnome-shell-extension-prefs flameshot tmux aptitude npm lsb-release \
      shellcheck ripgrep silversearcher-ag fd-find jq cmake most gnupg \
      simplescreenrecorder curl software-properties-common libssl-dev \
-     apt-transport-https ca-certificates tree chrome-gnome-shell
+     apt-transport-https ca-certificates tree chrome-gnome-shell meld
 
-sudo snap install authy telegram-desktop slack spotify gimp \
-     zoom-client vlc postman
+
+sudo snap install authy telegram-desktop slack spotify gimp zoom-client vlc
 echo snap >> ~/.hidden
-
-# Optionals
-# sudo apt install -y meld inkscape
-
-# OBS Studio
-sudo add-apt-repository ppa:obsproject/obs-studio
-sudo apt install obs-studio
-
-# APIs
-sudo add-apt-repository ppa:appimagelauncher-team/stable
-sudo apt update
-sudo apt install appimagelauncher
-google-chrome https://github.com/httpie/desktop/releases/
-# $ AppImageLauncher HTTPie-*.AppImage
 
 # Python
 sudo apt install -y python3-pip python3-dev python3-venv virtualenv
-sudo pip3 install jedi autoflake flake8 ipython epc black pyopenssl pygments
-rm -rf ~/.flake8rc ~/.pylintrc
-ln -s ~/code/system/dotfiles/python/flake8 ~/.flake8rc
+sudo apt install python3-jedi python3-flake8 python3-ipython python3-epc python3-pygments
+sudo pip install --break-system-packages black
 
 # Ubuntu 20 doesn't have python: link py3 to py2
 sudo rm -rf /usr/bin/python
@@ -57,9 +42,6 @@ ln -s ~/code/system/dotfiles/git/gitconfig ~/.gitconfig
 
 # Fonts: Roboto, Roboto Mono
 google-chrome https://fonts.google.com/ &
-
-# Install yarn
-sudo curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 
 # Zsh
 rm -rf ~/.oh-my-zsh ~/.zshrc
@@ -75,21 +57,21 @@ ln -s ~/code/system/dotfiles/zsh/zshrc ~/.zshrc
 chsh -s $(which zsh)
 
 # R
-sudo apt install -y r-base gfortran
-rm -rf ~/.Rprofile
-ln -s ~/code/system/dotfiles/r/Rprofile ~/.Rprofile
-rm -rf ~/.r-lang-packages
-mkdir ~/.r-lang-packages
-Rscript ~/code/system/dotfiles/r/base_packages.R
+# sudo apt install -y r-base gfortran
+# rm -rf ~/.Rprofile
+# ln -s ~/code/system/dotfiles/r/Rprofile ~/.Rprofile
+# rm -rf ~/.r-lang-packages
+# mkdir ~/.r-lang-packages
+# Rscript ~/code/system/dotfiles/r/base_packages.R
 
 # JavaScript / NPM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source ~/.zshrc
 nvm_load
 nvm install 18
-nvm install 16
-nvm alias default 16
-npm install -g tern js-beautify eslint jshint typescript typescript-formatter csslint jsonlint prettier
+nvm alias default 18
+npm install -g tern js-beautify eslint jshint typescript typescript-formatter \
+csslint jsonlint prettier
 rm -rf ~/.jsbeautifyrc
 ln -s ~/code/system/dotfiles/js/jsbeautifyrc ~/.jsbeautifyrc
 
@@ -98,29 +80,21 @@ rm -rf ~/code/system/spacemacs
 git clone git@gitlab.com:otrenav/spacemacs.git ~/code/system/spacemacs
 source ~/code/system/spacemacs/install.sh
 
-# SQL
-mkdir -p ~/apps/
-# wget -q -O - https://github.com/mjibson/sqlfmt/releases/latest/download/sqlfmt_0.4.0_linux_amd64.tar.gz | tar -xpvzf - --directory "${installdir}/bin"
-sudo ln -s ~/apps/sqlfmt/sqlfmt /usr/local/bin/sqlfmt
-
-# Java
-sudo apt install -y default-jre default-jdk
-
 # Docker
-sudo apt remove docker docker.io containerd runc
-sudo apt update
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo usermod -aG docker ${USER}
-sudo systemctl stop docker.service
-sudo systemctl stop docker.socket
-sudo systemctl disable docker.service
-sudo systemctl disable docker.socket
+# sudo apt remove docker docker.io containerd runc
+# sudo apt update
+# sudo mkdir -p /etc/apt/keyrings
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+# echo \
+#     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+#   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+# sudo apt update
+# sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+# sudo usermod -aG docker ${USER}
+# sudo systemctl stop docker.service
+# sudo systemctl stop docker.socket
+# sudo systemctl disable docker.service
+# sudo systemctl disable docker.socket
 
 # Fuzzy Finder
 ln -s ~/code/system/dotfiles/fzf/fdignore ~/.fdignore
@@ -156,25 +130,15 @@ google-chrome https://extensions.gnome.org/extension/3010/system-monitor-next/ &
 google-chrome https://extensions.gnome.org/extension/600/launch-new-instance/ &
 google-chrome https://extensions.gnome.org/extension/4144/vertical-overview/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
-# Gtile: config for 3x1 3-cycle: 3x1 1:1 1:1, 2:1 2:1, 3:1 3:1
-# Gtile: config for 3x2 2-cycle 3x1 3x1 1:1 2:1, 2:1 3:1
+# Gtile: config for 3x1 3-cycle: 3x1 1:1 1:1, 2:1 2:1, 3:1 3:1 (CTRL + ALT + RIGHT)
+# Gtile: config for 3x2 2-cycle 3x1 3x1 1:1 2:1, 2:1 3:1 (SHIFT + ALT + RIGHT)
 
 # Required by Gnome Extension: System Monitor
 sudo apt install -y gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
-# Elasticsearch
-# curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
-# echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-# sudo apt update
-# sudo apt install -y elasticsearch kibana
-# sudo emacs /etc/elasticsearch/elasticsearch.yml
-
 # Disable printing service
 # sudo systemctl stop cups.service cups.socket cups.path cups-browsed.service
 # sudo systemctl disable cups.service cups.socket cups.path cups-browsed.service
-
-# Remove unnecessary software
-sudo apt remove -y gnome-shell-extension-desktop-icons thunderbird\* rhythmbox\*
 
 # Disable animations
 gsettings set org.gnome.desktop.interface enable-animations false
@@ -386,13 +350,20 @@ google-chrome https://www.citrix.com/downloads/workspace-app/linux/workspace-app
 # - Slack
 
 # Manually add nautilus favories
-# - shared
-# - [month receipts]
-# - knowledge
-# - mllabs
-# - personal
-# - code
 # - downloads
+# - personal
+# - mllabs
+# - code
+# - knowledge
+# - 3-vrs-prod
+# - 3-vrs-prod
+# - 4-vrs-iot
+# - hs
+# - hs
+# - alpha
+# - alpha
+# - [month receipts]
+# - shared
 
 # Manually sign-in to Chrome extensions
 # - Grammarly
