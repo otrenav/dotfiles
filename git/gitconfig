@@ -10,6 +10,7 @@
 	editor = emacs
     sshCommand = ssh -i ~/.ssh/id_rsa
 	excludesfile = ~/code/system/dotfiles/git/global-ignore
+	fscache = false
 [color]
 	ui = true
 [push]
