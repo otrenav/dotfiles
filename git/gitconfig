@@ -1,39 +1,39 @@
-[init]
-    defaultBranch = main
 [user]
-	name = Omar Trejo
-	email = omar@mllabs.com
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+	name=Omar Trejo
+	email=omar@mllabs.com
 [core]
-	editor = emacs
-    sshCommand = ssh -i ~/.ssh/id_rsa
-	excludesfile = ~/code/system/dotfiles/git/global-ignore
-	fscache = false
+	editor=emacs
+	excludesfile=~/code/system/dotfiles/git/global-ignore
+    sshCommand=ssh -i ~/.ssh/id_rsa
+	fscache=false
+[init]
+    defaultBranch=main
 [color]
-	ui = true
+	ui=true
 [push]
-	default = simple
-[alias]
-    st = status
-    br = branch
-    co = checkout
-    db = difftool -d
-    last = log -1 HEAD
-    unstage = reset HEAD --
-    cm = !git add -A && git commit -m
-    undo = reset --soft HEAD~1
-    amend = commit -a --amend
-    fp = fetch --all --prune
-[diff]
-	tool = meld
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+	default=simple
 [pull]
-	rebase = false
+	rebase=false
 [credential]
-	helper = cache
+	helper=cache
+[diff]
+	tool=meld
+[alias]
+    st=status
+    br=branch
+    co=checkout
+    db=difftool -d
+    last=log -1 HEAD
+    unstage=reset HEAD --
+    cm=!git add -A && git commit -m
+    undo=reset --soft HEAD~1
+    amend=commit -a --amend
+    prune=fetch --all --prune
+[filter "media"]
+	clean=git-media-clean %f
+	smudge=git-media-smudge %f
+[filter "lfs"]
+	clean=git-lfs clean -- %f
+	smudge=git-lfs smudge -- %f
+	process=git-lfs filter-process
+	required=true

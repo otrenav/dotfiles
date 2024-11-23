@@ -197,3 +197,11 @@ video_speed() {
     mv "$origi" "$raw"
     ffmpeg -i "$raw" -filter_complex "[0:v]setpts=PTS/1.5[v];[0:a]atempo=1.5[a]" -map "[v]" -map "[a]" "$origi"
 }
+
+git_untracked_list() {
+    git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}"
+}
+
+git_untracked_delete() {
+    git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d
+}
