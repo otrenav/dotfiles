@@ -1,2 +1,0 @@
-
-.libPaths(c("~/.r-lang-packages/", .libPaths()))
