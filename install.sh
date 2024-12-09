@@ -105,8 +105,9 @@ google-chrome https://www.insynchq.com/downloads &
 # Apps installed through gnome-extensions
 google-chrome https://extensions.gnome.org/extension/3010/system-monitor-next/ &
 google-chrome https://extensions.gnome.org/extension/28/gtile/ &
-# Gtile: config for 3x1 3-cycle: 3x1 1:1 1:1, 2:1 2:1, 3:1 3:1 (CTRL + ALT + RIGHT)
-# Gtile: config for 3x2 2-cycle 3x1 3x1 1:1 2:1, 2:1 3:1 (SHIFT + ALT + RIGHT)
+# Gtile: 2x1 1:1 1:1, 2:1 2:1 (CTRL + SHIFT + RIGHT)
+# Gtile: 3x1 1:1 2:1, 2:1 3:1 (SHIFT + ALT + RIGHT)
+# Gtile: 3x1 1:1 1:1, 2:1 2:1, 3:1 3:1 (CTRL + ALT + RIGHT)
 
 # Required by Gnome Extension: System Monitor (?)
 sudo apt install -y gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
@@ -114,189 +115,18 @@ sudo apt install -y gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 # Disable animations
 gsettings set org.gnome.desktop.interface enable-animations false
 
-# Add new keybindings
-gsettings set org.gnome.desktop.wm.keybindings close "['<Primary>q']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Primary><Shift>Left']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Primary><Shift>Rigth']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Primary>Left']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Primary>Right']"
-
-gsettings set org.gnome.shell.keybindings screenshot "['<Primary><Shift>F9']"
-gsettings set org.gnome.shell.keybindings screenshot-window "['<Primary>F9']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['F10']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys next "['F11']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys play "['F12']"
-# gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up "['Pause']"
-# gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down "['Scroll_Lock']"
-# gsettings set org.gnome.settings-daemon.plugins.media-keys volume-mute "['Print']"
-
-# Custom keybindings
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
-
-# Emacs
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Emacs"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "emacs"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Primary><Alt>e"
-
-# Slack
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "Slack"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "slack"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>s"
-
-# Downloads
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name "Downloads"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command "nautilus /home/otrenav/downloads"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "<Primary><Alt>d"
-
-# Screenshot
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name "Screenshot"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "flameshot gui -p /home/otrenav"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding "['F9']"
-
-# Delete unused keybindings
-declare -a arr=(
-    "magnifier-zoom-out"
-    "magnifier-zoom-in"
-    "screenreader"
-    "screensaver"
-    "magnifier"
-    "logout"
-)
-for i in "${arr[@]}"; do
-    gsettings set org.gnome.settings-daemon.plugins.media-keys "$i" "[]"
-done
-
-declare -a arr=(
-    "show-screen-recording-ui"
-    "show-screenshot-ui"
-    "toggle-overview"
-)
-for i in "${arr[@]}"; do
-    gsettings set org.gnome.shell.keybindings "$i" "[]"
-done
-
-declare -a arr=(
-    "switch-applications-backward"
-    "switch-input-source-backward"
-    "switch-to-workspace-down"
-    "switch-to-workspace-up"
-    "cycle-windows-backward"
-    "move-to-workspace-last"
-    "move-to-workspace-left"
-    "switch-panels-backward"
-    "cycle-panels-backward"
-    "move-to-monitor-right"
-    "switch-to-workspace-1"
-    "activate-window-menu"
-    "cycle-group-backward"
-    "move-to-monitor-down"
-    "move-to-monitor-left"
-    "switch-input-source"
-    "move-to-workspace-1"
-    "switch-applications"
-    "move-to-monitor-up"
-    "panel-run-dialog"
-    "toggle-maximized"
-    "panel-main-menu"
-    "cycle-windows"
-    "switch-panels"
-    "begin-resize"
-    "cycle-panels"
-    "show-desktop"
-    "cycle-group"
-    "begin-move"
-    "unmaximize"
-    "maximize"
-    "minimize"
-)
-for i in "${arr[@]}"; do
-    gsettings set org.gnome.desktop.wm.keybindings "$i" "[]"
-done
-
-# Do not auto-change brightness based on light environment
-gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
-
-# Interface
-gsettings set org.gnome.desktop.wm.preferences titlebar-font "Roboto Medium 12"
-gsettings set org.gnome.desktop.interface monospace-font-name "Roboto Mono Medium 14"
-gsettings set org.gnome.desktop.interface document-font-name "Roboto Medium 12"
-gsettings set org.gnome.desktop.interface gtk-im-module "gtk-im-context-simple"
-gsettings set org.gnome.desktop.interface font-name "Roboto Medium 12"
-gsettings set org.gnome.desktop.interface gtk-theme "Yaru-dark"
-gsettings set org.gnome.desktop.interface clock-format "12h"
-
-gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled "true"
-gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled "false"
-gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll "false"
-
-gsettings set org.gnome.system.location enabled "false"
-
-guake --restore-preferences=./guake/guake.cfg
-
-dconf write /apps/guake/general/save-tabs-when-changed "'false'"
-dconf write /apps/guake/general/restore-tabs-startups "'false'"
-dconf write /apps/guake/general/gtk-prefer-dark-theme "'true'"
-dconf write /apps/guake/style/background/transparency "100"
-dconf write /apps/guake/general/restore-tabs-notify "'false'"
-dconf write /apps/guake/general/gtk-theme-name "'Yaru-dark'"
-dconf write /apps/guake/general/use-audible-bell "'false'"
-dconf write /apps/guake/general/start-fullscreen "'true'"
-dconf write /apps/guake/general/use-default-font "'true'"
-dconf write /apps/guake/general/window-losefocus "'true'"
-dconf write /apps/guake/general/window-refocus "'false'"
-dconf write /apps/guake/general/start-at-login "'true'"
-dconf write /apps/guake/general/window-halignment "0"
-dconf write /apps/guake/general/use-trayicon "'false'"
-dconf write /apps/guake/general/window-height "100"
-dconf write /apps/guake/general/window-tabbar "'true'"
-dconf write /apps/guake/general/window-width "100"
-dconf write /apps/guake/general/use-popup "'false'"
-
-dconf write /apps/guake/keybindings/global/show-hide "'<Alt>backslash'"
-dconf write /apps/guake/keybindings/local/rename-current-tab "'<Primary><Shift>r'"
-dconf write /apps/guake/keybindings/local/toggle-hide-on-lose-focus "'disabled'"
-dconf write /apps/guake/keybindings/local/decrease-transparency "'disabled'"
-dconf write /apps/guake/keybindings/local/increase-transparency "'disabled'"
-dconf write /apps/guake/keybindings/local/focus-terminal-right "'disabled'"
-dconf write /apps/guake/keybindings/local/split-tab-horizontal "'disabled'"
-dconf write /apps/guake/keybindings/local/focus-terminal-down "'disabled'"
-dconf write /apps/guake/keybindings/local/focus-terminal-left "'disabled'"
-dconf write /apps/guake/keybindings/local/toggle-transparency "'disabled'"
-dconf write /apps/guake/keybindings/local/move-tab-right "'<Shift>Right'"
-dconf write /apps/guake/keybindings/local/split-tab-vertical "'disabled'"
-dconf write /apps/guake/keybindings/local/focus-terminal-up "'disabled'"
-dconf write /apps/guake/keybindings/local/previous-tab "'<Primary>Left'"
-dconf write /apps/guake/keybindings/local/toggle-fullscreen "'disabled'"
-dconf write /apps/guake/keybindings/local/move-tab-left "'<Shift>Left'"
-dconf write /apps/guake/keybindings/local/decrease-height "'disabled'"
-dconf write /apps/guake/keybindings/local/increase-height "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab-last "'disabled'"
-dconf write /apps/guake/keybindings/local/close-terminal "'disabled'"
-dconf write /apps/guake/keybindings/local/next-tab "'<Primary>Right'"
-dconf write /apps/guake/keybindings/local/new-tab-home "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab10 "'disabled'"
-dconf write /apps/guake/keybindings/local/close-tab "'<Primary>w'"
-dconf write /apps/guake/keybindings/local/switch-tab1 "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab2 "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab3 "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab4 "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab5 "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab6 "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab7 "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab8 "'disabled'"
-dconf write /apps/guake/keybindings/local/switch-tab9 "'disabled'"
-dconf write /apps/guake/keybindings/local/new-tab "'<Primary>t'"
-dconf write /apps/guake/keybindings/local/quit "'<Primary>q'"
-
 # Remove unnecessary packages
 sudo apt autoremove
 
 # Terminal Themes
 # NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
-wget -O gogh https://git.io/vQgMr
-chmod +x gogh
-./gogh
-rm ./gogh
+# wget -O gogh https://git.io/vQgMr
+# chmod +x gogh
+# ./gogh
+# rm ./gogh
+
+guake --restore-preferences=./guake/guake.cfg
+dconf load / < ./dconf/main.txt
 
 # Citrix
 # 1. Install (sudo dpkg -i ica...)
