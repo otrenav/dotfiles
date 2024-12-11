@@ -9,8 +9,8 @@ export S="hs"
 tmux new-session -d -s $S
 tmux_email_orth $S
 
-tmux rename-window -t $S:1 web
-tmux send-keys -t $S:1 "cd ~/code/ggstr/orth/hs/web/" Enter
+tmux rename-window -t $S:1 fe
+tmux send-keys -t $S:1 "cd ~/code/ggstr/orth/hs/fe/" Enter
 tmux_env_python $S 1
 
 tmux new-window -t $S:2 -a -n shared
