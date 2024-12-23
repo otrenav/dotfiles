@@ -126,6 +126,7 @@ sudo apt autoremove
 # rm ./gogh
 
 guake --restore-preferences=./guake/guake.cfg
+# dconf dump / > ./dconf/main.txt
 dconf load / < ./dconf/main.txt
 
 # Citrix
