@@ -48,6 +48,7 @@ alias ls="ls -lGF --color=auto -lh -hN --group-directories-first"
 alias lsall="ls -flaF --color=auto -lh -hN --group-directories-first"
 alias tree_normal="tree -L 3 -I 'env|docs|__pycache__|*.pyc' --dirsfirst -h"
 alias running_services="sudo systemctl list-units --type=service --state=running"
+alias screen_recorder="flatpak run com.github.vkohaupt.vokoscreenNG"
 
 alias chmod_normal_dirs="find . -type d -exec chmod u=rwx,g=rwx,o=rx {} \;"
 alias chmod_normal_files="find . -type f -exec chmod u=rw,g=rw,o=r {} \;"

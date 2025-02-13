@@ -19,8 +19,13 @@ firefox https://www.google.com/intl/en_us/chrome/ &
 sudo apt install -y zsh guake gnome-tweaks xclip \
      gnome-shell-extension-prefs flameshot tmux npm \
      ripgrep silversearcher-ag fd-find jq most gnupg \
-     simplescreenrecorder curl software-properties-common \
-     tree chrome-gnome-shell meld
+     curl software-properties-common tree chrome-gnome-shell meld
+
+
+# Screen Recorder
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub com.github.vkohaupt.vokoscreenNG
+# To run: flatpak run com.github.vkohaupt.vokoscreenNG
 
 echo snap >> ~/.hidden
 
