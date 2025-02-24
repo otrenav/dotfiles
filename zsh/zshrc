@@ -244,7 +244,7 @@ hs_jwt_update() {
         | jq -r .AuthenticationResult.AccessToken
     `
     sed -i~ \
-      's|PRJ_JWT=.*|PRJ_JWT="$prj_jwt_updated"|' \
+      "s|PRJ_JWT=.*|PRJ_JWT=${prj_jwt_updated}|" \
       ~/code/mll/hs/insights-platform/be/envs/env
     echo ""
     echo "[+] JWT updated to:"
