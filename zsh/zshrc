@@ -206,3 +206,48 @@ git_untracked_list() {
 git_untracked_delete() {
     git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d
 }
+
+hs_jwt_update() {
+    PRJ_COGNITO_USR=otrenav
+    PRJ_AWS_CLI_PROFILE=heart-sciences
+    PRJ_COGNITO_CLIENT_ID=5cnoiaqrieu4r37oet8ja9ij6g
+    PRJ_COGNITO_REGION=us-east-2
+
+    echo "Password:"
+    read -s prj_cognito_pwd
+    echo "2FA:"
+    read prj_cognito_2fa_token
+
+    prj_tmp_session=`
+        aws cognito-idp initiate-auth \
+        --region=$PRJ_COGNITO_REGION \
+        --profile=$PRJ_AWS_CLI_PROFILE \
+        --client-id=$PRJ_COGNITO_CLIENT_ID \
+        --auth-flow=USER_PASSWORD_AUTH \
+        --auth-parameters="USERNAME=$PRJ_COGNITO_USR,PASSWORD=$prj_cognito_pwd" \
+        --output=json \
+        | jq -r .Session
+    `
+    echo ""
+    echo "[+] Session: "
+    echo ""
+    echo $prj_tmp_session
+
+    prj_jwt_updated=`
+        aws cognito-idp respond-to-auth-challenge \
+        --region=$PRJ_COGNITO_REGION \
+        --profile=$PRJ_AWS_CLI_PROFILE \
+        --client-id=$PRJ_COGNITO_CLIENT_ID \
+        --challenge-name=SOFTWARE_TOKEN_MFA \
+        --session=$prj_tmp_session \
+        --challenge-responses="USERNAME=$PRJ_COGNITO_USR,SOFTWARE_TOKEN_MFA_CODE=$prj_cognito_2fa_token" \
+        | jq -r .AuthenticationResult.AccessToken
+    `
+    sed -i~ \
+      's|PRJ_JWT=.*|PRJ_JWT="$prj_jwt_updated"|' \
+      ~/code/mll/hs/insights-platform/be/envs/env
+    echo ""
+    echo "[+] JWT updated to:"
+    echo ""
+    echo $prj_jwt_updated
+}
