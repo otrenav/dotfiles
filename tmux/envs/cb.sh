@@ -4,7 +4,7 @@
 . ~/code/system/dotfiles/tmux/funcs/emacs.sh
 . ~/code/system/dotfiles/tmux/funcs/envs.sh
 
-export S="crowdbotics"
+export S="cb"
 
 tmux new-session -d -s $S
 tmux_email_cb $S
