@@ -1,5 +1,5 @@
 
-EMAIL_MLL="ML Labs: Omar Trejo (omar@mllabs.com) "
+EMAIL_MLL="ML LABS: Omar Trejo (omar@mllabs.com) "
 EMAIL_PM="Pocket Made: Omar Trejo (omar@pocketmade.com) "
 EMAIL_ORTH="Orthogonal: Omar Trejo (omar.trejo@orthogonal.io) "
 EMAIL_CB="CrowdBotics: Omar Trejo (omar.trejo@crowdbotics.com) "

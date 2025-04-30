@@ -7,7 +7,7 @@
 export S="hs"
 
 tmux new-session -d -s $S
-tmux_email_orth $S
+tmux_email_mll $S
 
 tmux rename-window -t $S:1 fe
 tmux send-keys -t $S:1 "cd ~/code/mll/hs/insights-platform/fe/" Enter
