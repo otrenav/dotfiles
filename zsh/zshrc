@@ -26,7 +26,7 @@ DIR_NOTES="$DIR_BASE/code/notes"
 DIR_DOWNLOADS="$DIR_BASE/downloads"
 DIR_CONTENT="$DIR_BASE/code/content"
 DIR_PDFS="$DIR_BASE/drive/personal/knowledge"
-DIR_DOTFILES="$DIR_BASE/code/system/dotfiles"
+DIR_DOTFILES="$DIR_BASE/code/sys/dotfiles"
 
 alias e="exit"
 alias more="most"
@@ -58,11 +58,11 @@ alias econf="$EDITOR ~/.spacemacs"
 alias tconf="$EDITOR ~/.tmux.conf"
 alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
 
-alias tmux-mll=". ~/code/system/dotfiles/tmux/envs/mll.sh"
-alias tmux-ayr=". ~/code/system/dotfiles/tmux/envs/ayr.sh"
-alias tmux-ftb=". ~/code/system/dotfiles/tmux/envs/ftb.sh"
-alias tmux-ic=". ~/code/system/dotfiles/tmux/envs/ic.sh"
-alias tmux-vf=". ~/code/system/dotfiles/tmux/envs/vf.sh"
+alias tmux-mll=". ~/code/sys/dotfiles/tmux/envs/mll.sh"
+alias tmux-ayr=". ~/code/sys/dotfiles/tmux/envs/ayr.sh"
+alias tmux-ftb=". ~/code/sys/dotfiles/tmux/envs/ftb.sh"
+alias tmux-ic=". ~/code/sys/dotfiles/tmux/envs/ic.sh"
+alias tmux-vf=". ~/code/sys/dotfiles/tmux/envs/vf.sh"
 
 # Used by Firefox to store temporary files
 export TMPDIR=~/downloads/.tmp
@@ -96,7 +96,7 @@ alias pyclean="find . -name '*.py[co]' -o -name __pycache__ -exec rm -rf {} +"
 # R
 alias R="R --no-save"
 alias r="R --no-save"
-export R_PROFILE_USER="~/code/system/dotfiles/r/Rprofile"
+export R_PROFILE_USER="~/code/sys/dotfiles/r/Rprofile"
 
 # Fuzzy matching
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

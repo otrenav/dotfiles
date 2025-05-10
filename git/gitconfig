@@ -3,7 +3,7 @@
 	email=omar@mllabs.com
 [core]
 	editor=emacs
-	excludesfile=~/code/system/dotfiles/git/global-ignore
+	excludesfile=~/code/sys/dotfiles/git/global-ignore
     sshCommand=ssh -i ~/.ssh/id_rsa
 	fscache=false
 [init]

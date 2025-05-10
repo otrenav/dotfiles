@@ -1,9 +1,9 @@
 #!/bin/bash
 
-. ~/code/system/dotfiles/tmux/funcs/nested.sh
-. ~/code/system/dotfiles/tmux/funcs/emails.sh
-. ~/code/system/dotfiles/tmux/funcs/emacs.sh
-. ~/code/system/dotfiles/tmux/funcs/envs.sh
+. ~/code/sys/dotfiles/tmux/funcs/nested.sh
+. ~/code/sys/dotfiles/tmux/funcs/emails.sh
+. ~/code/sys/dotfiles/tmux/funcs/emacs.sh
+. ~/code/sys/dotfiles/tmux/funcs/envs.sh
 
 export S="ggstr"
 

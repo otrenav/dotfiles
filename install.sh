@@ -40,7 +40,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 
 # Git
 rm -rf ~/.gitconfig
-ln -s ~/code/system/dotfiles/git/gitconfig ~/.gitconfig
+ln -s ~/code/sys/dotfiles/git/gitconfig ~/.gitconfig
 
 # Fonts: Roboto, Roboto Mono
 google-chrome https://fonts.google.com/ &
@@ -55,7 +55,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 
 mkdir -p ~/.oh-my-zsh/custom/themes
 curl https://raw.githubusercontent.com/fjpalacios/elessar-theme/master/elessar.zsh-theme -L -o ~/.oh-my-zsh/custom/themes/elessar.zsh-theme
-ln -s ~/code/system/dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/code/sys/dotfiles/zsh/zshrc ~/.zshrc
 chsh -s $(which zsh)
 
 # JavaScript / NPM
@@ -66,9 +66,9 @@ nvm install 22
 nvm alias default 22
 
 # Emacs
-rm -rf ~/code/system/spacemacs
-git clone git@gitlab.com:otrenav/spacemacs.git ~/code/system/spacemacs
-source ~/code/system/spacemacs/install.sh
+rm -rf ~/code/sys/spacemacs
+git clone git@gitlab.com:otrenav/spacemacs.git ~/code/sys/spacemacs
+source ~/code/sys/spacemacs/install.sh
 
 # Docker
 sudo apt remove docker docker.io containerd runc
@@ -86,7 +86,7 @@ sudo systemctl disable docker.service
 sudo systemctl disable docker.socket
 
 # Fuzzy Finder
-ln -s ~/code/system/dotfiles/fzf/fdignore ~/.fdignore
+ln -s ~/code/sys/dotfiles/fzf/fdignore ~/.fdignore
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
@@ -94,7 +94,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 rm -rf ~/.tmux/
 rm -rf ~/.tmux.conf
 mkdir -p ~/.tmux/
-ln -s ~/code/system/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/code/sys/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # Google Cloud
 sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
