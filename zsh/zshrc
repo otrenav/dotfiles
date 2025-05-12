@@ -199,6 +199,15 @@ video_speed() {
     ffmpeg -i "$raw" -filter_complex "[0:v]setpts=PTS/1.5[v];[0:a]atempo=1.5[a]" -map "[v]" -map "[a]" "$origi"
 }
 
+video_compress() {
+    origi="$1"
+    speed="$2"
+    extension=".mp4"
+    raw="${origi/$extension}-raw$extension"
+    mv "$origi" "$raw"
+    ffmpeg -i "$raw" -vcodec libx265 -crf 28 "$origi"
+}
+
 git_untracked_list() {
     git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}"
 }
