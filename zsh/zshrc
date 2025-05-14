@@ -19,6 +19,10 @@ export LANG=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$PATH"
 
+# CUDA
+export PATH="/usr/local/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+
 PDF_VIEWER=okular
 DIR_BASE="/home/otrenav"
 DIR_CODE="$DIR_BASE/code"
