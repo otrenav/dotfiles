@@ -13,7 +13,7 @@ tmux rename-window -t $S:1 nvtop
 tmux send-keys -t $S:1 "cd ~/code/mll/cb/gbc2s" Enter
 tmux_env_python $S 1
 
-tmux new-window -t $S -a -n llm-2
+tmux new-window -t $S -a -n llm-1
 tmux send-keys -t $S:2 "cd ~/code/mll/cb/gbc2s" Enter
 tmux_env_python $S 2
 
