@@ -20,8 +20,9 @@ sudo apt install -y zsh guake gnome-tweaks xclip \
      gnome-shell-extension-prefs flameshot tmux npm \
      apt-transport-https software-properties-common \
      curl tree chrome-gnome-shell meld ca-certificates \
-     ripgrep silversearcher-ag fd-find jq most gnupg flatpak
-
+     tidy hunspell aspell pylint python3-hy python3-jedi \
+     ripgrep silversearcher-ag fd-find jq most gnupg flatpak \
+     python3-flake8 python3-ipython
 
 # Screen Recorder
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -65,6 +66,8 @@ source ~/.zshrc
 nvm_load
 nvm install 22
 nvm alias default 22
+sudo npm install -g tern js-beautify eslint jshint \
+     typescript eslint typescript-formatter csslint jsonlint
 
 # Emacs
 rm -rf ~/code/sys/spacemacs
@@ -98,14 +101,15 @@ mkdir -p ~/.tmux/
 ln -s ~/code/sys/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # Google Cloud
-
-# sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
-
+sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 sudo apt update
 sudo apt install -y google-cloud-cli
 $(gcloud info --format="value(basic.python_location)") -m pip install numpy
+
+# Required by Gnome Extension: System Monitor (?)
+sudo apt install -y gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
 # Apps that require manual installation
 google-chrome https://www.insynchq.com/downloads &
@@ -116,9 +120,6 @@ google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 # Gtile: 2x1 1:1 1:1, 2:1 2:1 (CTRL + SHIFT + RIGHT)
 # Gtile: 3x1 1:1 2:1, 2:1 3:1 (SHIFT + ALT + RIGHT)
 # Gtile: 3x1 1:1 1:1, 2:1 2:1, 3:1 3:1 (CTRL + ALT + RIGHT)
-
-# Required by Gnome Extension: System Monitor (?)
-sudo apt install -y gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
 # Disable animations
 # gsettings set org.gnome.desktop.interface enable-animations false
@@ -154,14 +155,15 @@ dconf load / < ./dconf/main.txt
 # Manually add nautilus favories
 # - downloads
 # - personal
-# - mllabs
-# - code
 # - knowledge
-# - 3-vrs-prod
-# - 3-vrs-prod
-# - 4-vrs-iot
+# - mll
+# - mll
+# - vrs
+# - vrs
 # - hs
 # - hs
+# - cb
+# - cb
 # - alpha
 # - alpha
 # - [month receipts]
