@@ -18,8 +18,9 @@ firefox https://www.google.com/intl/en_us/chrome/ &
 
 sudo apt install -y zsh guake gnome-tweaks xclip \
      gnome-shell-extension-prefs flameshot tmux npm \
-     ripgrep silversearcher-ag fd-find jq most gnupg \
-     curl software-properties-common tree chrome-gnome-shell meld
+     apt-transport-https software-properties-common \
+     curl tree chrome-gnome-shell meld ca-certificates \
+     ripgrep silversearcher-ag fd-find jq most gnupg flatpak
 
 
 # Screen Recorder
@@ -30,8 +31,8 @@ flatpak install flathub com.github.vkohaupt.vokoscreenNG
 echo snap >> ~/.hidden
 
 # Python
-sudo apt install -y python3-pip python3-dev python3-venv
-sudo apt install python3-jedi python3-epc python3-pygments
+sudo apt install -y python3-pip python3-dev python3-venv \
+     python3-jedi python3-epc python3-pygments
 sudo pip install --break-system-packages black
 
 # Ubuntu 20 doesn't have python: link py3 to py2
@@ -97,11 +98,13 @@ mkdir -p ~/.tmux/
 ln -s ~/code/sys/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # Google Cloud
-sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+
+# sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
+
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 sudo apt update
-sudo apt install -y google-cloud-sdk
+sudo apt install -y google-cloud-cli
 $(gcloud info --format="value(basic.python_location)") -m pip install numpy
 
 # Apps that require manual installation
@@ -118,13 +121,14 @@ google-chrome https://extensions.gnome.org/extension/28/gtile/ &
 sudo apt install -y gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0
 
 # Disable animations
-gsettings set org.gnome.desktop.interface enable-animations false
+# gsettings set org.gnome.desktop.interface enable-animations false
 
 # Remove unnecessary packages
 sudo apt autoremove
 
 # Terminal Themes
 # NOTE: Requires new profile saved in gnome-terminal (not "Unnamed" default)
+# Install Monokai-Dark
 # wget -O gogh https://git.io/vQgMr
 # chmod +x gogh
 # ./gogh
@@ -181,8 +185,8 @@ dconf load / < ./dconf/main.txt
 
 # Guake
 # - Select Monokai color palette
-# - Remove C-W and C-Q shortcuts
 # - Login with X11/Xorg session
+# - Remove shortcuts: C-W, C-Q, C-S-l ("Extra Features")
 
 # Manually set the system-monitor config to "digits"
 # Verify `running_services` are fine
