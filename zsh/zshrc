@@ -259,6 +259,9 @@ hs_jwt_update() {
     sed -i~ \
       "s|PRJ_JWT=.*|PRJ_JWT=${prj_jwt_updated}|" \
       ~/code/mll/hs/insights-platform/be/envs/env
+
+    export PRJ_JWT=$prj_jwt_updated
+
     echo ""
     echo "[+] JWT updated to:"
     echo ""
