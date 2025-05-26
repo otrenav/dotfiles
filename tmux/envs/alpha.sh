@@ -24,6 +24,7 @@ tmux_env_python $S 3
 tmux new-window -t $S -a -n data-1
 tmux send-keys -t $S:4 "cd ~/code/ggstr/alpha/be/svc-data" Enter
 tmux_env_python $S 4
+tmux send-keys -t $S:4 "python main.py" Enter
 
 tmux new-window -t $S -a -n data-2
 tmux send-keys -t $S:5 "cd ~/code/ggstr/alpha/be/svc-data" Enter
@@ -32,6 +33,7 @@ tmux_env_python $S 5
 tmux new-window -t $S -a -n app-1
 tmux send-keys -t $S:6 "cd ~/code/ggstr/alpha/be/svc-app" Enter
 tmux_env_python $S 6
+tmux send-keys -t $S:6 "python main.py" Enter
 
 tmux new-window -t $S -a -n app-2
 tmux send-keys -t $S:7 "cd ~/code/ggstr/alpha/be/svc-app" Enter

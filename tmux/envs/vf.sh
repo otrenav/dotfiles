@@ -47,7 +47,7 @@ tmux send-keys -t $S:3 "
   --project=vf-grp-rtm-prd-sor \
   --zone=$GC_ZONE \
   --tunnel-through-iap" Enter
-tmux_nested $S 3
+tmux_nested_reuse $S 3
 
 tmux new-window -t $S -a -n vm-pprd
 tmux send-keys -t $S:4 "
@@ -55,15 +55,17 @@ tmux send-keys -t $S:4 "
   --project=vf-grp-rtm-pprd-sor \
   --zone=$GC_ZONE \
   --tunnel-through-iap" Enter
-tmux_nested $S 4
+tmux_nested_reuse $S 4
 
 tmux new-window -t $S -a -n local-1
 tmux send-keys -t $S:5 "cd ~/code/ggstr/vf/vrs/" Enter
 tmux_env_python $S 5
+tmux send-keys -t $S:5 ". ./env-pprd.sh" Enter
 
 tmux new-window -t $S -a -n local-2
 tmux send-keys -t $S:6 "cd ~/code/ggstr/vf/vrs/" Enter
 tmux_env_python $S 6
+tmux send-keys -t $S:6 ". ./env-pprd.sh" Enter
 
 tmux new-window -t $S -a -n emacs
 tmux send-keys -t $S:7 "cd ~/code/ggstr/vf/vrs/" Enter
