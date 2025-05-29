@@ -7,5 +7,5 @@ function tmux_nested() {
 }
 
 function tmux_nested_reuse() {
-    tmux send-keys -t $1:$2 "tmux -a" Enter
+    tmux send-keys -t $1:$2 "tmux a" Enter
 }

@@ -14,6 +14,8 @@ tmux_email_mll $S
 tmux rename-window -t $S:1 monitor
 tmux send-keys -t $S:1 "cd ~/code/sys/" Enter
 tmux send-keys -t $S:1 "btop" Enter
+sleep 2
+tmux send-keys -t $S:1 "5" Enter
 
 tmux new-window -t $S -a -n lcl-1
 tmux send-keys -t $S:2 "cd ~/code/sys/" Enter
