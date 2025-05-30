@@ -28,27 +28,21 @@ tmux_env_python $S 3
 tmux send-keys -t $S:3 "C-l" Enter
 tmux send-keys -t $S:3 "python main.py" Enter
 
-tmux new-window -t $S -a -n llm-codet5
-tmux send-keys -t $S:4 "cd ~/code/mll/cb/gbc2s/llms/codet5" Enter
+tmux new-window -t $S -a -n llm-crowdbotics
+tmux send-keys -t $S:4 "cd ~/code/mll/cb/gbc2s/llms/crowdbotics" Enter
 tmux_env_python $S 4
 tmux send-keys -t $S:4 "C-l" Enter
 tmux send-keys -t $S:4 "python main.py" Enter
 
-tmux new-window -t $S -a -n llm-codellama
-tmux send-keys -t $S:5 "cd ~/code/mll/cb/gbc2s/llms/codellama" Enter
+tmux new-window -t $S -a -n lcl-1
+tmux send-keys -t $S:5 "cd ~/code/mll/cb/gbc2s" Enter
 tmux_env_python $S 5
 tmux send-keys -t $S:5 "C-l" Enter
-tmux send-keys -t $S:5 "python main.py" Enter
 
-tmux new-window -t $S -a -n lcl-1
-tmux send-keys -t $S:7 "cd ~/code/mll/cb/gbc2s" Enter
+tmux new-window -t $S:6 -a -n emacs
+tmux send-keys -t $S:6 "cd ~/code/mll/cb/gbc2s" Enter
 tmux_env_python $S 6
-tmux send-keys -t $S:6 "C-l" Enter
+tmux_emacs $S 6
 
-tmux new-window -t $S:7 -a -n emacs
-tmux send-keys -t $S:7 "cd ~/code/mll/cb/gbc2s" Enter
-tmux_env_python $S 7
-tmux_emacs $S 7
-
-tmux select-window -t $S:7
+tmux select-window -t $S:6
 tmux attach -t $S
