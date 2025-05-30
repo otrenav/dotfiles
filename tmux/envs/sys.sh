@@ -19,7 +19,7 @@ tmux send-keys -t $S:1 "5" Enter
 
 tmux new-window -t $S -a -n lcl-1
 tmux send-keys -t $S:2 "cd ~/code/sys/" Enter
-tmux_emacs $S 2
+tmux send-keys -t $S:2 "C-l" Enter
 
 tmux new-window -t $S -a -n emacs
 tmux send-keys -t $S:3 "cd ~/code/sys/" Enter
