@@ -40,7 +40,7 @@ tmux_env_python $S 5
 tmux send-keys -t $S:5 "C-l" Enter
 
 tmux new-window -t $S:6 -a -n emacs
-tmux send-keys -t $S:6 "cd ~/code/mll/hs/" Enter
+tmux send-keys -t $S:6 "cd ~/code/mll/hs/platform/be/" Enter
 tmux_env_python $S 6
 tmux_emacs $S 6
 
