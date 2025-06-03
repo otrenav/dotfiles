@@ -5,7 +5,6 @@
 # Apps to be installed from Ubuntu Software
 # - Telegram
 # - Spotify
-# - Slack
 # - Emacs
 # - Gimp
 # - Zoom
@@ -22,7 +21,7 @@ sudo apt install -y zsh guake gnome-tweaks xclip \
      curl tree chrome-gnome-shell meld ca-certificates \
      tidy hunspell aspell pylint python3-hy python3-jedi \
      ripgrep silversearcher-ag fd-find jq most gnupg flatpak \
-     python3-flake8 python3-ipython
+     python3-flake8 python3-ipython slack
 
 # Screen Recorder
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
