@@ -16,13 +16,13 @@ tmux send-keys -t $S:1 "C-l" Enter
 tmux send-keys -t $S:1 "git pull" Enter
 tmux send-keys -t $S:1 "npm run dev:lcl" Enter
 
-tmux new-window -t $S:2 -a -n plg-1
+tmux new-window -t $S:2 -a -n mod-1
 tmux send-keys -t $S:2 "cd
 ~/code/mll/hs/plugins/insights-plugins-mt-sinai-lvef-low-densenet121-v1/" Enter
 tmux_env_python $S 2
 tmux send-keys -t $S:2 "python main.py" Enter
 
-tmux new-window -t $S:3 -a -n plg-2
+tmux new-window -t $S:3 -a -n mod-2
 tmux send-keys -t $S:3 "cd ~/code/mll/hs/plugins/insights-plugins-mt-sinai-lvef-high-densenet121-v1/" Enter
 tmux_env_python $S 3
 tmux send-keys -t $S:3 "C-l" Enter
