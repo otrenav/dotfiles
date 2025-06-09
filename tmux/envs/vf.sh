@@ -37,7 +37,7 @@ tmux new-window -t $S -a -n chrome-proxied
 tmux send-keys -t $S:2 "
   google-chrome \
   --proxy-server='socks5://localhost:5000' \
-  --user-data-dir=/home/otrenav/code/ggstr/vf/chrome-proxied \
+  --user-data-dir=/home/otrenav/code/ggstr/vrs/chrome-proxied \
   1> /dev/null \
   2> /dev/null" Enter
 
@@ -58,19 +58,19 @@ tmux send-keys -t $S:4 "
 tmux_nested_reuse $S 4
 
 tmux new-window -t $S -a -n lcl-1
-tmux send-keys -t $S:5 "cd ~/code/ggstr/vf/vrs/" Enter
+tmux send-keys -t $S:5 "cd ~/code/ggstr/vrs/vrs/" Enter
 tmux_env_python $S 5
 tmux send-keys -t $S:5 ". ./env-pprd.sh" Enter
 tmux send-keys -t $S:5 "C-l" Enter
 
 tmux new-window -t $S -a -n lcl-2
-tmux send-keys -t $S:6 "cd ~/code/ggstr/vf/vrs/" Enter
+tmux send-keys -t $S:6 "cd ~/code/ggstr/vrs/vrs/" Enter
 tmux_env_python $S 6
 tmux send-keys -t $S:6 ". ./env-pprd.sh" Enter
 tmux send-keys -t $S:6 "C-l" Enter
 
 tmux new-window -t $S -a -n emacs
-tmux send-keys -t $S:7 "cd ~/code/ggstr/vf/vrs/" Enter
+tmux send-keys -t $S:7 "cd ~/code/ggstr/vrs/vrs/" Enter
 tmux_env_python $S 7
 tmux_emacs $S 7
 
