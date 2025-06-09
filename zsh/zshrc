@@ -205,7 +205,6 @@ video_speed() {
 
 video_compress() {
     origi="$1"
-    speed="$2"
     extension=".mp4"
     raw="${origi/$extension}-raw$extension"
     mv "$origi" "$raw"
@@ -227,7 +226,9 @@ hs_jwt_update() {
     PRJ_COGNITO_REGION=us-east-2
 
     echo "Password:"
-    read -s prj_cognito_pwd
+    # read -s prj_cognito_pwd
+    # TODO: Do not commit this
+    prj_cognito_pwd=#2903@HeartSciences!
     echo "2FA:"
     read prj_cognito_2fa_token
 
