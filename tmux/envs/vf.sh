@@ -67,7 +67,7 @@ tmux new-window -t $S -a -n lcl-2
 tmux send-keys -t $S:6 "cd ~/code/ggstr/vf/vrs/" Enter
 tmux_env_python $S 6
 tmux send-keys -t $S:6 ". ./env-pprd.sh" Enter
-tmux send-keys -t $S:5 "C-l" Enter
+tmux send-keys -t $S:6 "C-l" Enter
 
 tmux new-window -t $S -a -n emacs
 tmux send-keys -t $S:7 "cd ~/code/ggstr/vf/vrs/" Enter
