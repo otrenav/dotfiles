@@ -11,7 +11,7 @@ export S="sys"
 tmux new-session -d -s $S
 tmux_email_mll $S
 
-tmux rename-window -t $S:1 monitor
+tmux rename-window -t $S:1 mon
 tmux send-keys -t $S:1 "cd ~/code/sys/" Enter
 tmux send-keys -t $S:1 "btop" Enter
 sleep 2
