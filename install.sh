@@ -21,7 +21,7 @@ sudo apt install -y zsh guake gnome-tweaks xclip \
      curl tree chrome-gnome-shell meld ca-certificates \
      tidy hunspell aspell pylint python3-hy python3-jedi \
      ripgrep silversearcher-ag fd-find jq most gnupg flatpak \
-     python3-flake8 python3-ipython slack
+     python3-flake8 python3-ipython nvtop
 
 # Slack
 flatpak install flathub com.slack.Slack

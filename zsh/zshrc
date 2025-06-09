@@ -44,7 +44,7 @@ alias double_click="xdg-open"
 alias reload="source ~/.zshrc"
 alias d="cd $DIR_DOWNLOADS; ls;"
 alias ccat="highlight --out-format=ansi"
-alias slack='flatpak run com.slack.Slack'
+alias slack="flatpak run com.slack.Slack"
 alias installed="aptitude search '~i!~M'"
 alias file_count="find . -type f | wc -l"
 alias open_ports="lsof -i -P -n | grep LISTEN"
