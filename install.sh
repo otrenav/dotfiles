@@ -35,9 +35,10 @@ sudo apt install -y python3-pip python3-dev python3-venv \
      python3-jedi python3-epc python3-pygments
 sudo pip install --break-system-packages black
 
-# Ubuntu 20 doesn't have python: link py3 to py2
+# Ubuntu does not have `python` command
 sudo rm -rf /usr/bin/python
-sudo ln -s /usr/bin/python3 /usr/bin/python
+# Select the Python version (install first)
+sudo ln -s /usr/local/bin/python3.12 /usr/bin/python
 
 # Git
 rm -rf ~/.gitconfig
