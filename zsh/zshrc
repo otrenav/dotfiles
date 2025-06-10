@@ -227,9 +227,7 @@ hs_jwt_update() {
     PRJ_COGNITO_REGION=us-east-2
 
     echo "Password:"
-    # read -s prj_cognito_pwd
-    # TODO: Do not commit this
-    prj_cognito_pwd=#2903@HeartSciences!
+    read -s prj_cognito_pwd
     echo "2FA:"
     read prj_cognito_2fa_token
 
