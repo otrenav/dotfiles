@@ -25,12 +25,11 @@ export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 
 PDF_VIEWER=okular
 DIR_BASE="/home/otrenav"
-DIR_CODE="$DIR_BASE/code"
-DIR_NOTES="$DIR_BASE/code/notes"
-DIR_DOWNLOADS="$DIR_BASE/downloads"
-DIR_CONTENT="$DIR_BASE/code/content"
-DIR_PDFS="$DIR_BASE/drive/personal/knowledge"
+DIR_CONTENT="$DIR_BASE/code/mll/mll/content"
 DIR_DOTFILES="$DIR_BASE/code/sys/dotfiles"
+DIR_PDFS="$DIR_BASE/drive/per/knowledge"
+DIR_CODE="$DIR_BASE/code"
+DIR_DB="$DIR_BASE/db"
 
 alias e="exit"
 alias more="most"
@@ -42,7 +41,7 @@ alias disk_usage="du -sh"
 alias ddone="spd-say Done"
 alias double_click="xdg-open"
 alias reload="source ~/.zshrc"
-alias d="cd $DIR_DOWNLOADS; ls;"
+alias d="cd $DIR_DB; ls;"
 alias ccat="highlight --out-format=ansi"
 alias slack="flatpak run com.slack.Slack"
 alias installed="aptitude search '~i!~M'"
@@ -70,7 +69,7 @@ alias tmux-ic=". ~/code/sys/dotfiles/tmux/envs/ic.sh"
 alias tmux-vf=". ~/code/sys/dotfiles/tmux/envs/vf.sh"
 
 # Used by Firefox to store temporary files
-export TMPDIR=~/downloads/.tmp
+export TMPDIR=~/db/.tmp
 
 alias firefox-personal="nohup firefox -p 'personal' > /dev/null 2>&1 &"
 alias firefox-vf-gcp="nohup firefox -p 'vf-gcp' > /dev/null 2>&1 &"
@@ -135,7 +134,7 @@ f() {
 }
 
 g() {
-    fname="$(find $DIR_DOWNLOADS $DIR_DOTFILES $DIR_NOTES $DIR_CONTENT -type f \
+    fname="$(find $DIR_DB $DIR_DOTFILES $DIR_CONTENT -type f \
     | sed -e "s|$DIR_BASE|~|" \
     | fzf \
     | sed -e "s|~|$DIR_BASE|"
