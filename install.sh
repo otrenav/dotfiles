@@ -9,6 +9,9 @@
 # - Gimp
 # - Zoom
 # - VLC
+#
+# Apps to be installed from their own websites
+# - Slack
 
 sudo apt update
 sudo apt upgrade -y
@@ -22,9 +25,6 @@ sudo apt install -y zsh guake gnome-tweaks xclip \
      tidy hunspell aspell pylint python3-hy python3-jedi \
      ripgrep silversearcher-ag fd-find jq most gnupg flatpak \
      python3-flake8 python3-ipython nvtop
-
-# Slack
-flatpak install flathub com.slack.Slack
 
 # Screen Recorder
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
