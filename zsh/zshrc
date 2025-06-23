@@ -222,7 +222,7 @@ git_untracked_delete() {
 hs_jwt_update() {
     PRJ_COGNITO_USR=otrenav
     PRJ_AWS_CLI_PROFILE=heart-sciences
-    PRJ_COGNITO_CLIENT_ID=5cnoiaqrieu4r37oet8ja9ij6g
+    PRJ_COGNITO_CLIENT_ID=28h1td4uvf0sm6lhaemr2mheao
     PRJ_COGNITO_REGION=us-east-2
 
     echo "Password:"
