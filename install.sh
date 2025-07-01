@@ -50,6 +50,9 @@ ln -s ~/code/sys/dotfiles/git/gitconfig ~/.gitconfig
 # Fonts: Roboto, Roboto Mono
 google-chrome https://fonts.google.com/ &
 
+# Go
+google-chrome https://go.dev/doc/install &
+
 # Zsh
 rm -rf ~/.oh-my-zsh ~/.zshrc
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh

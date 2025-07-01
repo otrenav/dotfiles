@@ -17,7 +17,10 @@ export VISUAL="emacs"
 export EDITOR="$VISUAL"
 export LANG=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
-export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.yarn/bin"
+export PATH="$PATH:/usr/local/go/bin"
 
 # CUDA
 export PATH="/usr/local/cuda/bin:$PATH"
