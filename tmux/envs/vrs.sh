@@ -8,7 +8,7 @@ gcloud config set project vf-grp-rtm-pprd-sor
 . ~/code/sys/dotfiles/tmux/funcs/emacs.sh
 . ~/code/sys/dotfiles/tmux/funcs/envs.sh
 
-export S="vf"
+export S="vrs"
 
 GC_PROJECT="vf-grp-rtm-pprd-sor"
 GC_INSTANCE="instance-1"
