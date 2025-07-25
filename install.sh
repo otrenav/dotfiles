@@ -77,7 +77,7 @@ sudo npm install -g tern js-beautify eslint jshint \
 
 # Emacs
 rm -rf ~/code/sys/spacemacs
-git clone git@gitlab.com:otrenav/spacemacs.git ~/code/sys/spacemacs
+git clone git@github.com:otrenav/spacemacs.git ~/code/sys/spacemacs
 source ~/code/sys/spacemacs/install.sh
 
 # Docker
