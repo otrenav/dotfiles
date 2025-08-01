@@ -21,7 +21,7 @@ tmux send-keys -t $S:2 "C-l" Enter
 tmux send-keys -t $S:2 "npm test dev" Enter
 
 tmux new-window -t $S:3 -a -n mod-2
-tmux send-keys -t $S:3 "cd ~/code/mll/hs/models/insights-models-mt-sinai-lvef-high-densenet121-v1/" Enter
+tmux send-keys -t $S:3 "cd ~/code/mll/hs/models/insights-models-mt-sinai-lvef-low-densenet121-v1/" Enter
 tmux_env_python $S 3
 tmux send-keys -t $S:3 "C-l" Enter
 
