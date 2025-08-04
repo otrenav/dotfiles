@@ -24,12 +24,7 @@ sudo apt install -y zsh guake gnome-tweaks xclip \
      curl tree chrome-gnome-shell meld ca-certificates \
      tidy hunspell aspell pylint python3-hy python3-jedi \
      ripgrep silversearcher-ag fd-find jq most gnupg flatpak \
-     python3-flake8 python3-ipython nvtop
-
-# Screen Recorder
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub com.github.vkohaupt.vokoscreenNG
-# To run: flatpak run com.github.vkohaupt.vokoscreenNG
+     python3-flake8 python3-ipython nvtope simplescreenrecorder
 
 echo snap >> ~/.hidden
 
