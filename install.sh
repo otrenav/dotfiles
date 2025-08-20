@@ -67,7 +67,7 @@ source ~/.zshrc
 nvm_load
 nvm install 22
 nvm alias default 22
-sudo npm install -g tern js-beautify eslint jshint \
+sudo npm install -g tern prettier js-beautify eslint jshint \
      typescript eslint typescript-formatter csslint jsonlint
 
 # Emacs
