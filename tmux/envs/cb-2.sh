@@ -17,12 +17,12 @@ sleep 2
 tmux send-keys -t $S:1 "5" Enter
 
 tmux new-window -t $S -a -n lcl-1
-tmux send-keys -t $S:2 "cd ~/code/mll/cb/poc-1" Enter
+tmux send-keys -t $S:2 "cd ~/code/mll/cb/poc-2" Enter
 tmux_env_python $S 2
 tmux send-keys -t $S:2 "C-l" Enter
 
 tmux new-window -t $S:3 -a -n emacs
-tmux send-keys -t $S:3 "cd ~/code/mll/cb/poc-1" Enter
+tmux send-keys -t $S:3 "cd ~/code/mll/cb/poc-2" Enter
 tmux_env_python $S 3
 tmux_emacs $S 3
 
