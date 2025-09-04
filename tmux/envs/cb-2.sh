@@ -26,5 +26,9 @@ tmux send-keys -t $S:3 "cd ~/code/mll/cb/poc-2" Enter
 tmux_env_python $S 3
 tmux_emacs $S 3
 
+tmux new-window -t $S -a -n ai
+tmux send-keys -t $S:4 "cd ~/code/mll/cb/poc-2" Enter
+tmux send-keys -t $S:4 "claude" Enter
+
 tmux select-window -t $S:3
 tmux attach -t $S
