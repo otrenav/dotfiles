@@ -42,9 +42,13 @@ tmux send-keys -t $S:6 "cd ~/code/mll/hs/platform/be/" Enter
 tmux_env_python $S 6
 tmux_emacs $S 6
 
-tmux new-window -t $S -a -n ai
+tmux new-window -t $S -a -n claude
 tmux send-keys -t $S:7 "cd ~/code/mll/hs/platform/" Enter
 tmux send-keys -t $S:7 "claude" Enter
+
+tmux new-window -t $S -a -n codex
+tmux send-keys -t $S:8 "cd ~/code/mll/hs/platform/" Enter
+tmux send-keys -t $S:8 "codex" Enter
 
 tmux select-window -t $S:6
 tmux attach -t $S
