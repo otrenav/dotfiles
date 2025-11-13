@@ -20,7 +20,7 @@ tmux_emacs $S 2
 
 tmux new-window -t $S -a -n ai
 tmux send-keys -t $S:3 "cd ~/code/mll/mll" Enter
-tmux send-keys -t $S:3 "claude" Enter
+tmux send-keys -t $S:3 "claude --dangerously-skip-permissions" Enter
 
 tmux select-window -t $S:2
 tmux attach -t $S
