@@ -46,5 +46,9 @@ tmux new-window -t $S -a -n claude
 tmux send-keys -t $S:7 "cd ~/code/mll/hs/platform/" Enter
 tmux send-keys -t $S:7 "claude --dangerously-skip-permissions" Enter
 
+tmux new-window -t $S -a -n gemini
+tmux send-keys -t $S:8 "cd ~/code/mll/hs/platform/" Enter
+tmux send-keys -t $S:8 "gemini" Enter
+
 tmux select-window -t $S:6
 tmux attach -t $S
