@@ -22,6 +22,9 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:/usr/local/go/bin"
 
+# Claude
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=65000
+
 # CUDA
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"

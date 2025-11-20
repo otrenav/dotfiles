@@ -39,15 +39,17 @@ tmux send-keys -t $S:5 "C-l" Enter
 
 tmux new-window -t $S:6 -a -n emacs
 tmux send-keys -t $S:6 "cd ~/code/mll/hs/platform/be/" Enter
-tmux_env_python $S 6
+tmux send-keys -t $S:7 ". ./env/bin/activate" Enter
 tmux_emacs $S 6
 
 tmux new-window -t $S -a -n claude
 tmux send-keys -t $S:7 "cd ~/code/mll/hs/platform/" Enter
+tmux send-keys -t $S:7 ". ./be/env/bin/activate" Enter
 tmux send-keys -t $S:7 "claude --dangerously-skip-permissions" Enter
 
 tmux new-window -t $S -a -n gemini
 tmux send-keys -t $S:8 "cd ~/code/mll/hs/platform/" Enter
+tmux send-keys -t $S:7 ". ./be/env/bin/activate" Enter
 tmux send-keys -t $S:8 "gemini" Enter
 
 tmux select-window -t $S:6
