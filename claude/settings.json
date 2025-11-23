@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python /home/otrenav/code/sys/dotfiles/python/say.py 'Task completed'"
+            "command": "python /home/otrenav/code/sys/dotfiles/python/say.py 'From Claude: Task completed'"
           },
           {
             "type": "command",
@@ -21,7 +21,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python /home/otrenav/code/sys/dotfiles/python/say.py 'Background subtask completed'"
+            "command": "python /home/otrenav/code/sys/dotfiles/python/say.py 'From Claude: Background subtask completed'"
           },
           {
             "type": "command",
@@ -36,7 +36,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python /home/otrenav/code/sys/dotfiles/python/say.py 'Background task completed'"
+            "command": "python /home/otrenav/code/sys/dotfiles/python/say.py 'From Claude: Background task completed'"
           },
           {
             "type": "command",
