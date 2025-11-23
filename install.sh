@@ -101,6 +101,10 @@ rm -rf ~/.tmux.conf
 mkdir -p ~/.tmux/
 ln -s ~/code/sys/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
+# Claude
+rm -rf ~/.claude/settings.json
+ln -s ~/code/sys/dotfiles/claude/settings.json ~/.claude/settings.json
+
 # Google Cloud
 sudo rm -f /etc/apt/sources.list.d/google-cloud-sdk.list*
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg

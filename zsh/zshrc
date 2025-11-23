@@ -1,3 +1,4 @@
+
 export ZSH=$HOME/.oh-my-zsh
 unsetopt share_history
 
@@ -13,6 +14,8 @@ plugins=(
     command-time
 )
 
+[[ -f ~/code/sys/dotfiles/zsh/secrets ]] && . ~/code/sys/dotfiles/zsh/secrets
+
 export VISUAL="emacs"
 export EDITOR="$VISUAL"
 export LANG=en_US.UTF-8
@@ -21,13 +24,6 @@ export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:/usr/local/go/bin"
-
-# Claude
-export CLAUDE_CODE_MAX_OUTPUT_TOKENS=65000
-
-# CUDA
-export PATH="/usr/local/cuda/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 
 PDF_VIEWER=okular
 DIR_BASE="/home/otrenav"
@@ -40,8 +36,6 @@ DIR_DB="$DIR_BASE/db"
 alias e="exit"
 alias more="most"
 alias ka="killall"
-alias t="./test.sh"
-alias s="./server.sh"
 alias emacs="emacs -nw"
 alias disk_usage="du -sh"
 alias ddone="spd-say Done"
@@ -69,20 +63,10 @@ alias tconf="$EDITOR ~/.tmux.conf"
 alias iconf="$EDITOR $DIR_DOTFILES/install.sh"
 
 alias tmux-mll=". ~/code/sys/dotfiles/tmux/envs/mll.sh"
-alias tmux-ayr=". ~/code/sys/dotfiles/tmux/envs/ayr.sh"
-alias tmux-ftb=". ~/code/sys/dotfiles/tmux/envs/ftb.sh"
-alias tmux-ic=". ~/code/sys/dotfiles/tmux/envs/ic.sh"
-alias tmux-vf=". ~/code/sys/dotfiles/tmux/envs/vf.sh"
+alias tmux-vrs=". ~/code/sys/dotfiles/tmux/envs/vrs.sh"
 
 # Used by Firefox to store temporary files
 export TMPDIR=~/db/.tmp
-
-alias firefox-personal="nohup firefox -p 'personal' > /dev/null 2>&1 &"
-alias firefox-vf-gcp="nohup firefox -p 'vf-gcp' > /dev/null 2>&1 &"
-alias firefox-mllabs="nohup firefox -p 'mllabs' > /dev/null 2>&1 &"
-alias firefox-ggstr="nohup firefox -p 'ggstr' > /dev/null 2>&1 &"
-alias firefox-vf="nohup firefox -p 'vf' > /dev/null 2>&1 &"
-alias firefox-pm="nohup firefox -p 'pm' > /dev/null 2>&1 &"
 
 alias grep="grep --color=auto"
 alias gg="grep --color=auto -rnwiI --exclude-dir={.git,node_modules,env} . -e"
@@ -91,9 +75,14 @@ alias gg="grep --color=auto -rnwiI --exclude-dir={.git,node_modules,env} . -e"
 # Disable C-s and C-q for pausing terminal
 stty -ixon
 
+# Claude
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=65000
+
+# CUDA
+export PATH="/usr/local/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
+
 # Google Cloud
-alias gcloud_gigster="gcloud config set account omar.trejo@gigsternetwork.com"
-alias gcloud_vodafone="gcloud config set account omar.trej@vodafone.com"
 alias gcloud_mllabs="gcloud config set account omar@mllabs.com"
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
@@ -102,11 +91,6 @@ alias kp="killall python"
 alias cov_report="coverage run -m pytest ; coverage report -m --sort=cover"
 alias cov_report_branch="coverage run -m --branch pytest ; coverage report -m --sort=cover"
 alias pyclean="find . -name '*.py[co]' -o -name __pycache__ -exec rm -rf {} +"
-
-# R
-alias R="R --no-save"
-alias r="R --no-save"
-export R_PROFILE_USER="~/code/sys/dotfiles/r/Rprofile"
 
 # Fuzzy matching
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -226,23 +210,19 @@ git_untracked_delete() {
 }
 
 hs_jwt_update() {
-    PRJ_COGNITO_USR=otrenav
-    PRJ_AWS_CLI_PROFILE=heart-sciences
-    PRJ_COGNITO_CLIENT_ID=28h1td4uvf0sm6lhaemr2mheao
-    PRJ_COGNITO_REGION=us-east-2
-
     echo "Password:"
-    read -s prj_cognito_pwd
+    # read -s prj_cognito_pwd
+    prj_cognito_pwd=$HS_COGNITO_PWD
     echo "2FA:"
     read prj_cognito_2fa_token
 
     prj_tmp_session=`
         aws cognito-idp initiate-auth \
-        --region=$PRJ_COGNITO_REGION \
-        --profile=$PRJ_AWS_CLI_PROFILE \
-        --client-id=$PRJ_COGNITO_CLIENT_ID \
+        --region=$HS_COGNITO_REGION \
+        --profile=$HS_AWS_CLI_PROFILE \
+        --client-id=$HS_COGNITO_CLIENT_ID \
         --auth-flow=USER_PASSWORD_AUTH \
-        --auth-parameters="USERNAME=$PRJ_COGNITO_USR,PASSWORD=$prj_cognito_pwd" \
+        --auth-parameters="USERNAME=$HS_COGNITO_USR,PASSWORD=$prj_cognito_pwd" \
         --output=json \
         | jq -r .Session
     `
@@ -253,19 +233,19 @@ hs_jwt_update() {
 
     prj_jwt_updated=`
         aws cognito-idp respond-to-auth-challenge \
-        --region=$PRJ_COGNITO_REGION \
-        --profile=$PRJ_AWS_CLI_PROFILE \
-        --client-id=$PRJ_COGNITO_CLIENT_ID \
+        --region=$HS_COGNITO_REGION \
+        --profile=$HS_AWS_CLI_PROFILE \
+        --client-id=$HS_COGNITO_CLIENT_ID \
         --challenge-name=SOFTWARE_TOKEN_MFA \
         --session=$prj_tmp_session \
-        --challenge-responses="USERNAME=$PRJ_COGNITO_USR,SOFTWARE_TOKEN_MFA_CODE=$prj_cognito_2fa_token" \
+        --challenge-responses="USERNAME=$HS_COGNITO_USR,SOFTWARE_TOKEN_MFA_CODE=$prj_cognito_2fa_token" \
         | jq -r .AuthenticationResult.AccessToken
     `
     sed -i~ \
-      "s|PRJ_JWT=.*|PRJ_JWT=${prj_jwt_updated}|" \
+      "s|HS_JWT=.*|HS_JWT=${prj_jwt_updated}|" \
       ~/code/mll/hs/platform/be/envs/env
 
-    export PRJ_JWT=$prj_jwt_updated
+    export HS_JWT=$prj_jwt_updated
 
     echo ""
     echo "[+] JWT updated to:"
