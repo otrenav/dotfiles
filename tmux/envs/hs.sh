@@ -20,7 +20,7 @@ tmux send-keys -t $S:2 "C-l" Enter
 tmux send-keys -t $S:2 ". ./start.sh" Enter
 
 tmux new-window -t $S:3 -a -n mip-fe
-tmux send-keys -t $S:3 "cd ~/code/mll/hs/fe/" Enter
+tmux send-keys -t $S:3 "cd ~/code/mll/hs/platform/fe/" Enter
 tmux send-keys -t $S:3 "C-l" Enter
 tmux send-keys -t $S:3 "npm run dev:lcl" Enter
 
