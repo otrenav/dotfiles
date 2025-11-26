@@ -10,7 +10,7 @@
           },
           {
             "type": "command",
-            "command": "notify-send 'Claude Code' 'Stop'"
+            "command": "notify-send -e -a 'Claude' 'Task completed'"
           }
         ]
       }
@@ -25,7 +25,7 @@
           },
           {
             "type": "command",
-            "command": "notify-send 'Claude Code' 'SubagentStop'"
+            "command": "notify-send -e -a 'Claude Code' 'Background subtask completed'"
           }
         ]
       }
@@ -40,11 +40,11 @@
           },
           {
             "type": "command",
-            "command": "notify-send 'Claude Code' 'Notification'"
+            "command": "notify-send -e -a 'Claude Code' 'Background task completed'"
           }
         ]
       }
     ]
   },
-  "alwaysThinkingEnabled": false
+  "alwaysThinkingEnabled": true
 }

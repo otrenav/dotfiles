@@ -39,10 +39,7 @@ A tactical, terminal-inspired dark theme for professional developer tools and da
 ### Font Stack
 
 ```css
-/* UI text */
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-/* Code, messages, technical content */
+/* All text uses monospace for terminal aesthetic */
 font-family: 'Courier New', monospace;
 ```
 
@@ -124,7 +121,7 @@ input, select, textarea {
   border: 1px solid #333;
   padding: 0.6rem;
   border-radius: 2px;
-  font-family: 'Courier New', monospace;
+  font-family: inherit;
   font-size: 0.85rem;
 }
 
@@ -154,7 +151,6 @@ input::placeholder {
   font-size: 0.75rem;
   letter-spacing: 1px;
   color: #666;
-  font-family: 'Courier New', monospace;
 }
 ```
 
@@ -282,9 +278,9 @@ border-left: 3px solid #ff0040;  /* Error */
 
 ## Design Principles
 
-1. **Minimal border-radius**: Use 2px-4px max for sharp, technical appearance
-2. **Uppercase labels**: Section headers and button text in uppercase with letter-spacing
-3. **Monospace for data**: All technical content (messages, codes, timestamps) in monospace
+1. **Monospace everywhere**: Use 'Courier New' for all text for consistent terminal aesthetic
+2. **Minimal border-radius**: Use 2px-4px max for sharp, technical appearance
+3. **Uppercase labels**: Section headers and button text in uppercase with letter-spacing
 4. **Subtle hover states**: Slight background/border color changes, not dramatic
 5. **High contrast text**: Light text on dark backgrounds for readability
 6. **Consistent spacing**: Use rem units (0.5rem, 1rem, 1.5rem increments)

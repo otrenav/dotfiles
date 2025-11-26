@@ -34,7 +34,7 @@
 
 ### Visual Style
 - Dark, terminal-inspired aesthetic
-- Monospace fonts for technical/data content
+- 'Courier New' monospace font everywhere
 - Minimal, clean interfaces
 - Transparent/outline buttons over filled buttons (except primary actions)
 - Uppercase labels with letter-spacing for headers and labels
@@ -55,3 +55,10 @@
 For detailed patterns, see:
 - `~/.claude/references/ui-dark-terminal-theme.md` - CSS/UI patterns
 - `~/.claude/references/vue-fastapi-patterns.md` - Full stack architecture patterns
+
+## Project Context
+When working on a project, check for `PROJECT_CONTEXT.md` in the project root for:
+- Architecture overview and recent changes
+- Directory structure and key files
+- Development setup and workflows
+- Current status and next steps
