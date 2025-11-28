@@ -59,19 +59,19 @@ tmux_nested_reuse $S 4
 
 tmux new-window -t $S -a -n lcl-1
 tmux send-keys -t $S:5 "cd ~/code/ggstr/vrs/vrs/" Enter
-tmux_env_python $S 5
+tmux send-keys -t $S:$5 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:5 ". ./env-pprd.sh" Enter
 tmux send-keys -t $S:5 "C-l" Enter
 
 tmux new-window -t $S -a -n lcl-2
 tmux send-keys -t $S:6 "cd ~/code/ggstr/vrs/vrs/" Enter
-tmux_env_python $S 6
+tmux send-keys -t $S:6 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:6 ". ./env-pprd.sh" Enter
 tmux send-keys -t $S:6 "C-l" Enter
 
 tmux new-window -t $S -a -n emacs
 tmux send-keys -t $S:7 "cd ~/code/ggstr/vrs/vrs/" Enter
-tmux_env_python $S 7
+tmux send-keys -t $S:7 ". ./venv/bin/activate" Enter
 tmux_emacs $S 7
 
 tmux select-window -t $S:7

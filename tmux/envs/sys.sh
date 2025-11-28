@@ -1,7 +1,7 @@
 #!/bin/bash
 
 gcloud config set account omar@mllabs.com
-gcloud config set project mllabs-com
+gcloud config set project mllabscom
 
 . ~/code/sys/dotfiles/tmux/funcs/emails.sh
 . ~/code/sys/dotfiles/tmux/funcs/emacs.sh
@@ -25,5 +25,5 @@ tmux new-window -t $S -a -n emacs
 tmux send-keys -t $S:3 "cd ~/code/sys/" Enter
 tmux_emacs $S 3
 
-tmux select-window -t $S:
+tmux select-window -t $S:3
 tmux attach -t $S

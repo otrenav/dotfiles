@@ -19,7 +19,7 @@ tmux send-keys -t $S:2 "cd ~/code/mll/mll/cvest/bt/be/" Enter
 tmux send-keys -t $S:2 "C-l" Enter
 tmux send-keys -t $S:2 ". ./start.sh" Enter
 
-tmux rename-window -t $S:3 sim-fe
+tmux new-window -t $S:3 -a -n sim-fe
 tmux send-keys -t $S:3 "cd ~/code/mll/mll/cvest/sim/fe/" Enter
 tmux send-keys -t $S:3 "C-l" Enter
 tmux send-keys -t $S:3 ". ./start.sh" Enter
@@ -29,7 +29,7 @@ tmux send-keys -t $S:4 "cd ~/code/mll/mll/cvest/sim/be/" Enter
 tmux send-keys -t $S:4 "C-l" Enter
 tmux send-keys -t $S:4 ". ./start.sh" Enter
 
-tmux rename-window -t $S:5 data-fe
+tmux new-window -t $S:5 -a -n data-fe
 tmux send-keys -t $S:5 "cd ~/code/mll/mll/cvest/data/fe/" Enter
 tmux send-keys -t $S:5 "C-l" Enter
 tmux send-keys -t $S:5 ". ./start.sh" Enter
@@ -39,7 +39,7 @@ tmux send-keys -t $S:6 "cd ~/code/mll/mll/cvest/data/be/" Enter
 tmux send-keys -t $S:6 "C-l" Enter
 tmux send-keys -t $S:6 ". ./start.sh" Enter
 
-tmux rename-window -t $S:7 app-fe
+tmux new-window -t $S:7 -a -n app-fe
 tmux send-keys -t $S:7 "cd ~/code/mll/mll/cvest/app/fe/" Enter
 tmux send-keys -t $S:7 "C-l" Enter
 tmux send-keys -t $S:7 ". ./start.sh" Enter
@@ -52,17 +52,12 @@ tmux send-keys -t $S:8 ". ./start.sh" Enter
 tmux new-window -t $S:9 -a -n emacs
 tmux send-keys -t $S:9 "cd ~/code/mll/mll/cvest/app/be/" Enter
 tmux send-keys -t $S:9 ". ./app/venv/bin/activate" Enter
-tmux_emacs $S 7
+tmux_emacs $S 9
 
-tmux new-window -t $S:8 -a -n claude
-tmux send-keys -t $S:8 "cd ~/code/mll/mll/cvest/" Enter
-tmux send-keys -t $S:8 ". ./app/venv/bin/activate" Enter
-tmux send-keys -t $S:8 "claude --dangerously-skip-permissions" Enter
-
-tmux new-window -t $S:8 -a -n gemini
-tmux send-keys -t $S:8 "cd ~/code/mll/mll/cvest/" Enter
-tmux send-keys -t $S:8 ". ./app/venv/bin/activate" Enter
-tmux send-keys -t $S:8 "gemini --yolo" Enter
+tmux new-window -t $S:10 -a -n claude
+tmux send-keys -t $S:10 "cd ~/code/mll/mll/cvest/" Enter
+tmux send-keys -t $S:10 ". ./app/venv/bin/activate" Enter
+# tmux send-keys -t $S:10 "claude --dangerously-skip-permissions" Enter
 
 tmux select-window -t $S:9
 tmux attach -t $S

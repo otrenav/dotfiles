@@ -39,15 +39,15 @@ tmux send-keys -t $2:7 "psql -d gigster-data-system" Enter
 
 tmux new-window -t $S -a -n lcl-1
 tmux send-keys -t $S:8 "cd ~/code/ggstr/ggstr/" Enter
-tmux_env_python $S 8 "gigster-data-system"
+tmux send-keys -t $S:8 ". ./venv/bin/activate" Enter
 
 tmux new-window -t $S -a -n lcl-2
 tmux send-keys -t $S:9 "cd ~/code/ggstr/ggstr/" Enter
-tmux_env_python $S 9 "gigster-data-system"
+tmux send-keys -t $S:9 ". ./venv/bin/activate" Enter
 
 tmux new-window -t $S -a -n lcl-3
 tmux send-keys -t $S:10 "cd ~/code/ggstr/ggstr/" Enter
-tmux_env_python $S 10 "gigster-data-system"
+tmux send-keys -t $S:10 ". ./venv/bin/activate" Enter
 
 tmux new-window -t $S -a -n emacs
 tmux send-keys -t $S:11 "cd ~/code/ggstr/ggstr/" Enter

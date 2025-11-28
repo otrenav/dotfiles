@@ -11,28 +11,28 @@ tmux_email_cb $S
 
 tmux rename-window -t $S:1 btop
 tmux send-keys -t $S:1 "cd ~/code/mll/cb/poc-1" Enter
-tmux_env_python $S 1
+tmux send-keys -t $S:1 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:1 "btop" Enter
 sleep 2
 tmux send-keys -t $S:1 "5" Enter
 
 tmux new-window -t $S -a -n llm-openai
 tmux send-keys -t $S:2 "cd ~/code/mll/cb/poc-1" Enter
-tmux_env_python $S 2
+tmux send-keys -t $S:2 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:2 "cd ~/code/mll/cb/poc-1/llms/openai" Enter
 tmux send-keys -t $S:2 "C-l" Enter
 tmux send-keys -t $S:2 "python main.py" Enter
 
 tmux new-window -t $S -a -n llm-llama
 tmux send-keys -t $S:3 "cd ~/code/mll/cb/poc-1" Enter
-tmux_env_python $S 3
+tmux send-keys -t $S:3 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:3 "cd ~/code/mll/cb/poc-1/llms/llama" Enter
 tmux send-keys -t $S:3 "C-l" Enter
 tmux send-keys -t $S:3 "python main.py" Enter
 
 tmux new-window -t $S -a -n llm-crowdbotics
 tmux send-keys -t $S:4 "cd ~/code/mll/cb/poc-1" Enter
-tmux_env_python $S 4
+tmux send-keys -t $S:4 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:4 "cd ~/code/mll/cb/poc-1/llms/crowdbotics" Enter
 tmux send-keys -t $S:4 "C-l" Enter
 tmux send-keys -t $S:4 "python main.py" Enter

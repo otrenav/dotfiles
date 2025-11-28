@@ -1,63 +1,75 @@
+
 # Global Coding Preferences
 
 ## Code Style
 
 ### Comments and Documentation
-- Do NOT add unnecessary comments that state the obvious
-- Do NOT add function/class/module docstrings unless they provide significant value
+
+- Do not add unnecessary comments that state the obvious
+- Code must be self-documenting with clear names and structure
+- Remove comments that duplicate what the code already expresses
+- Do not add function/class/module docstrings unless they
+provide significant value
 - Only add comments that explain "why" something is done, never "what" is being done
-- Code should be self-documenting through clear naming and structure
-- Remove all comments that duplicate what the code already expresses
 
 ### Naming Conventions
+
 - Keep identifiers short but meaningful: `scc` not `success`, `err` not `error`
-- Use kebab-case for IDs and file names: `scc-1`, `user-profile.vue`
-- Use camelCase for JavaScript/TypeScript variables and functions
-- Use PascalCase for components and classes
-- Use SCREAMING_SNAKE_CASE for constants
+- Prefer shorter/abbreviated names for vars, funcs, etc.
+- Use camelCase for JavaScript/TypeScript vars/funcs
+- Use kebab-case for IDs and file names
+- Use UPPER_SNAKE_CASE for constants
 
 ### Simplicity Principles
-- Avoid over-engineering - only build what's needed now
-- Don't add features, refactor code, or make "improvements" beyond what was asked
-- Don't create abstractions for one-time operations
-- Three similar lines of code is better than a premature abstraction
-- Delete unused code completely - no backwards-compatibility hacks
+
+- Avoid over-engineering; only build what's needed now
+- Only work on what was asked; no unsolicited work
 - Keep solutions focused and minimal
+- Delete unused code completely
+- No premature abstractions
 
 ### Code Organization
-- Prefer editing existing files over creating new ones
-- Group related functionality together
+
 - Keep functions small and focused on a single responsibility
+- Prefer editing existing files over creating new ones
 - Avoid deep nesting - early returns are preferred
+- Keep code cohesive and decoupled
 
 ## UI/UX Preferences
 
 ### Visual Style
+
+- Minimal, clean interfaces
 - Dark, terminal-inspired aesthetic
 - 'Courier New' monospace font everywhere
-- Minimal, clean interfaces
-- Transparent/outline buttons over filled buttons (except primary actions)
+- Outline buttons over filled buttons (except primary actions)
 - Uppercase labels with letter-spacing for headers and labels
 
 ### Interactions
+
 - Provide immediate visual feedback for user actions
-- Show loading/pending states clearly
 - Use subtle animations (0.2s transitions)
 - Scrollbars only when content overflows
+- Show loading/pending states clearly
 
 ## Communication Style
+
 - Be direct and concise
-- No unnecessary praise or validation
 - Focus on technical accuracy
+- No unnecessary praise or validation
 - Provide objective guidance, even if it means disagreeing
 
 ## References
+
 For detailed patterns, see:
-- `~/.claude/references/ui-dark-terminal-theme.md` - CSS/UI patterns
-- `~/.claude/references/vue-fastapi-patterns.md` - Full stack architecture patterns
+
+- `~/.claude/refs/ui-dark-theme.md` - CSS/UI patterns
+- `~/.claude/refs/vue-fastapi.md` - Full stack patterns
 
 ## Project Context
-When working on a project, check for `PROJECT_CONTEXT.md` in the project root for:
+
+When working on a project, check for `prd.md`, `sdd.md`, and `todos.md`  in the project `docs/` directory for:
+
 - Architecture overview and recent changes
 - Directory structure and key files
 - Development setup and workflows
