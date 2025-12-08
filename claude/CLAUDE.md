@@ -5,20 +5,37 @@
 
 ### Comments and Documentation
 
-- Do not add unnecessary comments that state the obvious
-- Code must be self-documenting with clear names and structure
+- Avoid comments unless very valuable (functions, classes, modules, etc)
+- Only comment "why" something is done, never "what" is being done
+- Do not create nested README.md files unless explicitly requested
 - Remove comments that duplicate what the code already expresses
-- Do not add function/class/module docstrings unless they
-provide significant value
-- Only add comments that explain "why" something is done, never "what" is being done
+- Code must be self-documenting with clear names and structure
+- Keep all documentation files within the `docs/` directory
+- Ensure all Markdown tables are aligned for easy reading
+- Use Mermaid for Markdown diagrams (do not use ASCII)
 
 ### Naming Conventions
 
-- Keep identifiers short but meaningful: `scc` not `success`, `err` not `error`
-- Prefer shorter/abbreviated names for vars, funcs, etc.
+- Keep identifiers short but meaningful (`scc` not `success`, `err` not `error`)
+- Prefer shorter/abbreviated names for files, vars, funcs, etc.
+- Use abbreviated names (e.g., `msgs` instead of `messages`)
 - Use camelCase for JavaScript/TypeScript vars/funcs
 - Use kebab-case for IDs and file names
 - Use UPPER_SNAKE_CASE for constants
+
+### Directory and File Structure
+
+Backend (Python/FastAPI):
+- `svcs/` for services (business logic)
+- `ctrl/` for controllers (HTTP handlers)
+- `core/` for core modules (parsing, validation, generation)
+- `reqs-dev.txt` for dev dependencies (testing, linting, etc.)
+- `reqs-prd.txt` for production dependencies only
+
+Frontend (Vue 3):
+- `use/` for composables (not `composables/`)
+- `comps/` for components (not `components/`)
+- `stores/` for Pinia stores
 
 ### Simplicity Principles
 
@@ -30,20 +47,25 @@ provide significant value
 
 ### Code Organization
 
+- Always keep imports at module top-level (avoid local imports in functions)
+- When similar code appears in multiple files, extract to a shared module
+- Ensure each piece of logic has one canonical location and re-use
 - Keep functions small and focused on a single responsibility
+- Abstract shared logic into reusable helpers/utilities
 - Prefer editing existing files over creating new ones
 - Avoid deep nesting - early returns are preferred
+- Prefer code reuse over code duplication
 - Keep code cohesive and decoupled
 
 ## UI/UX Preferences
 
 ### Visual Style
 
-- Minimal, clean interfaces
-- Dark, terminal-inspired aesthetic
-- 'Courier New' monospace font everywhere
 - Outline buttons over filled buttons (except primary actions)
 - Uppercase labels with letter-spacing for headers and labels
+- 'Courier New' monospace font everywhere
+- Dark, terminal-inspired aesthetic
+- Minimal, clean interfaces
 
 ### Interactions
 
@@ -54,10 +76,21 @@ provide significant value
 
 ## Communication Style
 
-- Be direct and concise
-- Focus on technical accuracy
+- Provide objective guidance, even if disagreeing
 - No unnecessary praise or validation
-- Provide objective guidance, even if it means disagreeing
+- Focus on technical accuracy
+- Be direct and concise
+
+## Code Execution
+
+- One `start.sh` script per service. Do not create `start-all.sh` files
+- Ensure the system can be fully tested locally (use mocks where ncessary)
+- Ensure the system can be fully executed locally (async, sockets, REST, etc)
+
+## Git Commits
+
+- Never add "Claude Code" references or co-author lines to git commits
+- Keep commit messages clean and professional without AI attribution
 
 ## References
 

@@ -46,10 +46,13 @@ tmux send-keys -t $S:7 "cd ~/code/mll/hs/platform/be/" Enter
 tmux send-keys -t $S:7 ". ./venv/bin/activate" Enter
 tmux_emacs $S 7
 
-tmux new-window -t $S:8 -a -n claude
+tmux new-window -t $S:8 -a -n ai-1
 tmux send-keys -t $S:8 "cd ~/code/mll/hs/platform/" Enter
 tmux send-keys -t $S:8 ". ./be/venv/bin/activate" Enter
-# tmux send-keys -t $S:8 "claude --dangerously-skip-permissions" Enter
+
+tmux new-window -t $S:9 -a -n ai-2
+tmux send-keys -t $S:9 "cd ~/code/mll/hs/platform/" Enter
+tmux send-keys -t $S:9 ". ./be/venv/bin/activate" Enter
 
 tmux select-window -t $S:7
 tmux attach -t $S
