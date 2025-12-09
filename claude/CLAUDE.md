@@ -5,14 +5,14 @@
 
 ### Comments and Documentation
 
-- Avoid comments unless very valuable (functions, classes, modules, etc)
-- Only comment "why" something is done, never "what" is being done
+- Only comment "why" something is done, never "what" or "how" it's done
 - Do not create nested README.md files unless explicitly requested
 - Remove comments that duplicate what the code already expresses
 - Code must be self-documenting with clear names and structure
 - Keep all documentation files within the `docs/` directory
 - Ensure all Markdown tables are aligned for easy reading
 - Use Mermaid for Markdown diagrams (do not use ASCII)
+- Avoid and delete obvious docstrings and comments
 
 ### Naming Conventions
 
@@ -41,21 +41,38 @@ Frontend (Vue 3):
 
 - Avoid over-engineering; only build what's needed now
 - Only work on what was asked; no unsolicited work
+- Delete unused code and comments completely
 - Keep solutions focused and minimal
-- Delete unused code completely
 - No premature abstractions
 
 ### Code Organization
 
+- Prefer a functional over object-oriented style of programming
+- Avoid nested function definitions (keep structure as flat as possible)
+- Avoid classes as much as possible (use composition; never inheritance)
+- If a framework (pytest) functionality depends on classes, use them properly
 - Always keep imports at module top-level (avoid local imports in functions)
 - When similar code appears in multiple files, extract to a shared module
 - Ensure each piece of logic has one canonical location and re-use
 - Keep functions small and focused on a single responsibility
 - Abstract shared logic into reusable helpers/utilities
 - Prefer editing existing files over creating new ones
-- Avoid deep nesting - early returns are preferred
+- Avoid deep nesting; early returns are preferred
 - Prefer code reuse over code duplication
 - Keep code cohesive and decoupled
+
+### Import Structure
+
+Python imports follow this structure:
+
+1. Python stdlib (first section)
+2. Tthird-party imports (second section)
+2. Internal repository imports (third section)
+3. Same-module/local imports (fourth section)
+4. No lines between same-section import to group them
+5. One line between sections to easily differentiate them
+6. Within each section, order by line length (longest to shortest)
+7. Multi-line imports (after `black` formatting) go below single-line imports
 
 ## UI/UX Preferences
 
@@ -86,6 +103,7 @@ Frontend (Vue 3):
 - One `start.sh` script per service. Do not create `start-all.sh` files
 - Ensure the system can be fully tested locally (use mocks where ncessary)
 - Ensure the system can be fully executed locally (async, sockets, REST, etc)
+- Always run `black` to format/lint Python code on every save
 
 ## Git Commits
 
