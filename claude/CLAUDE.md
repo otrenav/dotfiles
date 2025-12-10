@@ -109,6 +109,9 @@ Python imports follow this structure:
 
 - Never add "Claude Code" references or co-author lines to git commits
 - Keep commit messages clean and professional without AI attribution
+- Group related refactoring by directory or module for clarity
+- Commit frequently in small chunks (one feature per commit)
+- Run formatters (`black` for Python) before committing
 
 ## References
 

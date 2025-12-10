@@ -16,6 +16,7 @@ plugins=(
 
 [[ -f ~/code/sys/dotfiles/zsh/secrets ]] && . ~/code/sys/dotfiles/zsh/secrets
 
+umask 022
 export VISUAL="emacs"
 export EDITOR="$VISUAL"
 export LANG=en_US.UTF-8
