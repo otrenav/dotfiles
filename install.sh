@@ -3,6 +3,7 @@
 # chmod them to 600, and add them to keyring with ssh-add [key]
 
 # Apps to be installed from Ubuntu Software
+# - VeraCrypt
 # - Telegram
 # - Spotify
 # - Emacs
