@@ -103,7 +103,9 @@ mkdir -p ~/.tmux/
 ln -s ~/code/sys/dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # Claude
+rm -rf ~/.claude/CLAUDE.md
 rm -rf ~/.claude/settings.json
+ln -s ~/code/sys/dotfiles/claude/CLAUDE.md ~/.claude/CLAUDE.md
 ln -s ~/code/sys/dotfiles/claude/settings.json ~/.claude/settings.json
 
 # Google Cloud
