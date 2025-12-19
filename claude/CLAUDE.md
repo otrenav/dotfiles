@@ -14,6 +14,14 @@
 - Use Mermaid for Markdown diagrams (do not use ASCII)
 - Avoid and delete obvious docstrings and comments
 
+### Markdown Formatting
+
+- Always leave one blank line after a heading
+- Always leave one blank line before a list (after previous element)
+- Use dashes (`-`) for lists, never asterisks or other characters
+- No indentation for top-level list items (start at first column)
+- Nested lists use 4-space indentation per level
+
 ### Naming Conventions
 
 - Keep identifiers short but meaningful (`scc` not `success`, `err` not `error`)
@@ -107,11 +115,69 @@ Python imports follow this structure:
 
 ## Git Commits
 
+### General Rules
+
 - Never add "Claude Code" references or co-author lines to git commits
 - Keep commit messages clean and professional without AI attribution
 - Group related refactoring by directory or module for clarity
 - Commit frequently in small chunks (one feature per commit)
 - Run formatters (`black` for Python) before committing
+- Never do a `git push` command yourself
+
+### Commit Message Structure
+
+Commits should support reprocessing the repository history to understand:
+- **What** was changed (first line, imperative mood)
+- **Why** it was changed (body, explains reasoning)
+- **How** it was done (body, when non-obvious)
+
+Format:
+```
+<Imperative summary of change>
+
+<Why this change was needed. What problem it solves.>
+
+<How it works, if the approach is non-obvious.>
+```
+
+### Examples
+
+Good commit (explains what, why, how):
+```
+Fix mTLS auth: validate CN against allowed list
+
+Before: X-Client-CN header accepted without validation,
+allowing header spoofing attacks.
+
+After: CN validated against HL7_MTLS_ALLOWED_CNS env var.
+If empty, any CN accepted (backward compatible).
+```
+
+Good commit (simple change, why is clear):
+```
+Add OAuth token caching to reduce Cognito API calls
+
+Tokens cached with 60s buffer before expiry.
+Clear Token button forces re-authentication.
+```
+
+Bad commit (no context):
+```
+Fix bug
+```
+
+Bad commit (describes what, not why):
+```
+Update auth.py to add verify_api_key function
+```
+
+### Atomic Commits
+
+Each commit should be:
+- Self-contained (doesn't break the build)
+- Focused on one logical change
+- Reviewable independently
+- Revertable without side effects
 
 ## References
 
