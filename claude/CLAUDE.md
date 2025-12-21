@@ -16,11 +16,12 @@
 
 ### Markdown Formatting
 
-- Always leave one blank line after a heading
+- Wrap code-like names in backticks (field/function names, file paths, etc.)
 - Always leave one blank line before a list (after previous element)
 - Use dashes (`-`) for lists, never asterisks or other characters
 - No indentation for top-level list items (start at first column)
 - Nested lists use 4-space indentation per level
+- Always leave one blank line after a heading
 
 ### Naming Conventions
 
