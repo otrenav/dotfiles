@@ -35,13 +35,13 @@ tmux send-keys -t $S:5 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:5 "C-l" Enter
 tmux send-keys -t $S:5 "python main.py" Enter
 
-tmux new-window -t $S:6 -a -n mip-plt-1
+tmux new-window -t $S:6 -a -n mip-be
 tmux send-keys -t $S:6 "cd ~/code/mll/hs/plt/be/" Enter
 tmux send-keys -t $S:6 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:6 "C-l" Enter
 tmux send-keys -t $S:6 "python main.py" Enter
 
-tmux new-window -t $S:7 -a -n mip-plt-2
+tmux new-window -t $S:7 -a -n mip-lcl
 tmux send-keys -t $S:7 "cd ~/code/mll/hs/plt/be/" Enter
 tmux send-keys -t $S:7 ". ./venv/bin/activate" Enter
 tmux send-keys -t $S:7 "C-l" Enter
@@ -49,11 +49,15 @@ tmux send-keys -t $S:7 "C-l" Enter
 tmux new-window -t $S:8 -a -n emacs
 tmux send-keys -t $S:8 "cd ~/code/mll/hs/plt/be/" Enter
 tmux send-keys -t $S:8 ". ./venv/bin/activate" Enter
-tmux_emacs $S 7
+tmux_emacs $S 8
 
 tmux new-window -t $S:9 -a -n ai-1
 tmux send-keys -t $S:9 "cd ~/code/mll/hs/plt/" Enter
 tmux send-keys -t $S:9 ". ./be/venv/bin/activate" Enter
+
+tmux new-window -t $S:10 -a -n ai-2
+tmux send-keys -t $S:10 "cd ~/code/mll/hs/plt/" Enter
+tmux send-keys -t $S:10 ". ./be/venv/bin/activate" Enter
 
 tmux select-window -t $S:8
 tmux attach -t $S
